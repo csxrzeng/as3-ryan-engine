@@ -14,6 +14,7 @@ package controller
 		static public const NewPaper:String = "NewPaper";
 		static public const LoadPaper:String = "LoadPaper";
 		static public const ShowProperty:String = "ShowProperty";
+		static public const SaveToPng:String = "SaveToPng";
 		
 		public var data:*;
 		
