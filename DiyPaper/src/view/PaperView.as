@@ -52,6 +52,8 @@ package view
 		
 		public function get vo():PaperVo 
 		{
+			_vo.width = this.width;
+			_vo.height = this.height;
 			_vo.items.length = 0;
 			for (var i:int = 0; i < _list.length; i++) 
 			{
