@@ -18,7 +18,7 @@ package
 		//static public var menuContainer:JPanel;
 		// 工具栏
 		static public var toolContainer:JPanel;
-		// 主区域
+		// 海报
 		static public var paperContainer:PaperView;
 		// UI窗口区域
 		static public var uiContainer:JPanel;
@@ -48,8 +48,12 @@ package
 			var top:JPanel = new JPanel(new SoftBoxLayout(SoftBoxLayout.Y_AXIS));
 			//top.append(menuContainer);
 			top.append(toolContainer);
+			var middle:JPanel = new JPanel(new EmptyLayout());
+			middle.setOpaque(true);
+			middle.setBackground(new ASColor(0xEEEEEE, 1));
+			middle.append(paperContainer);
 			pane.append(top, BorderLayout.NORTH);
-			pane.append(paperContainer, BorderLayout.CENTER);
+			pane.append(middle, BorderLayout.CENTER);
 			pane.append(uiContainer, BorderLayout.CENTER);
 			mainWindow.setSizeWH(stage.stageWidth, stage.stageHeight);
 			mainWindow.show();

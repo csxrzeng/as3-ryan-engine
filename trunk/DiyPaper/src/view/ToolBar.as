@@ -15,10 +15,11 @@ package view
 	public class ToolBar extends JPanel 
 	{
 		private var bar:JToolBar;
-		private var addButton:JButton;
-		private var removeButton:JButton;
-		private var editButton:JButton;
-		private var importButton:JButton;
+		private var btnAddText:JButton;
+		private var btnAddImage:JButton;
+		private var btnSavePng:JButton;
+		private var btnSaveXml:JButton;
+		private var btnLoadXml:JButton;
 		
 		public function ToolBar() 
 		{
@@ -28,44 +29,52 @@ package view
 			bar = new JToolBar(JToolBar.HORIZONTAL, 5);
 			append(bar, BorderLayout.CENTER);
 			
-			addButton = new JButton("添加文字");
-			removeButton = new JButton("添加图片");
-			editButton = new JButton("保 存");
-			importButton = new JButton("打 开");
+			btnAddText = new JButton("添加文字");
+			btnAddImage = new JButton("添加图片");
+			btnLoadXml = new JButton("保存为图片");
+			btnSavePng = new JButton("保存模版");
+			btnSaveXml = new JButton("打开模版");
 			
-			bar.appendAll(addButton, removeButton, editButton, importButton);
+			bar.appendAll(btnAddText, btnAddImage, btnLoadXml, btnSavePng, btnSaveXml);
 			
 			initEvents();
 		}
 		
 		private function initEvents():void 
 		{
-			addButton.addEventListener(AWEvent.ACT, onAddTask);
-			removeButton.addEventListener(AWEvent.ACT, onRemoveTask);
-			editButton.addEventListener(AWEvent.ACT, onEditTask);
-			importButton.addEventListener(AWEvent.ACT, onImportTask);
+			btnAddText.addEventListener(AWEvent.ACT, onActHandler);
+			btnAddImage.addEventListener(AWEvent.ACT, onActHandler);
+			btnLoadXml.addEventListener(AWEvent.ACT, onActHandler);
+			btnSavePng.addEventListener(AWEvent.ACT, onActHandler);
+			btnSaveXml.addEventListener(AWEvent.ACT, onActHandler);
 		}
 		
-		private function onAddTask(e:AWEvent):void 
+		private function onActHandler(e:AWEvent):void 
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddText));
+			var type:String = "";
+			switch(e.currentTarget)
+			{
+				case btnAddText:
+					type = GameEvent.AddText;
+					break;
+				case btnAddImage:
+					type = GameEvent.AddImage;
+					break;
+				case btnLoadXml:
+					type = GameEvent.SaveToPng;
+					break;
+				case btnSavePng:
+					type = GameEvent.SavePaper;
+					break;
+				case btnSaveXml:
+					type = GameEvent.LoadPaper;
+					break;
+			}
+			if (type)
+			{
+				Dispatcher.dispatchEvent(new GameEvent(type));
+			}
 		}
-		
-		private function onRemoveTask(e:AWEvent):void 
-		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddImage));
-		}
-		
-		private function onEditTask(e:AWEvent):void 
-		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.SavePaper));
-		}
-		
-		private function onImportTask(e:AWEvent):void 
-		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.LoadPaper));
-		}
-		
 	}
 
 }

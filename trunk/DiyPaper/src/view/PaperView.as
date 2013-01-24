@@ -15,6 +15,7 @@ package view
 	import model.ItemVo;
 	import model.PaperVo;
 	import org.aswing.ASColor;
+	import org.aswing.border.LineBorder;
 	import org.aswing.JPanel;
 	
 	/**
@@ -31,8 +32,9 @@ package view
 		{
 			_vo = new PaperVo();
 			_tool = new TransformManager();
-			setBackground(new ASColor(0xCCE8CC, 1));
-			setSizeWH(500, 200);
+			setOpaque(true);
+			setBackground(new ASColor(0xFFFFFF, 1));
+			setSizeWH(600, 300);
 			//var tool:TransformManager = new TransformManager( { targetObjects:[tf, bmp] } );
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 		}
@@ -50,7 +52,7 @@ package view
 			}
 		}
 		
-		public function get vo():PaperVo
+		public function getVo():PaperVo 
 		{
 			_vo.width = this.width;
 			_vo.height = this.height;
@@ -62,7 +64,7 @@ package view
 			return _vo;
 		}
 		
-		public function set vo(value:PaperVo):void
+		public function setVo(value:PaperVo):void 
 		{
 			_tool.removeAllItems();
 			for (var i:int = 0; i < _list.length; i++)

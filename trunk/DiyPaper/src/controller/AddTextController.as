@@ -69,6 +69,7 @@ package controller
 		{
 			if (cache.font.hasLoadedFont(curFont))
 			{
+				trace("字体加载完成");
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddText, curFont));
 			}
 			else
