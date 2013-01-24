@@ -1,7 +1,9 @@
-package controller 
+package controller
 {
 	import com.greensock.transform.TransformItem;
 	import com.ryan.global.Global;
+	import flash.geom.Matrix;
+	import model.ItemVo;
 	import org.aswing.AsWingUtils;
 	import org.aswing.JFrame;
 	import view.ImagePane;
@@ -12,30 +14,32 @@ package controller
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class PropertyController extends Controller 
+	public class PropertyController extends Controller
 	{
+		private var item:TransformItem;
+		
 		private var _property:JFrame;
 		private var _textPane:TextPane;
 		private var _imagePane:ImagePane;
 		
-		public function PropertyController() 
+		public function PropertyController()
 		{
 			
 		}
 		
-		override protected function initServer():void 
+		override protected function initServer():void
 		{
 			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyProcessor);
 		}
 		
-		private function showPropertyProcessor(e:GameEvent):void 
+		private function showPropertyProcessor(e:GameEvent):void
 		{
 			if (!e.data)
 			{
 				property.hide();
 				return;
 			}
-			var item:TransformItem = e.data as TransformItem;
+			item = e.data as TransformItem;
 			if (item.targetObject is TextView)
 			{
 				property.setContentPane(textPane);
@@ -50,7 +54,7 @@ package controller
 			property.y = 30;
 		}
 		
-		public function get property():JFrame 
+		public function get property():JFrame
 		{
 			if (!_property)
 			{
@@ -60,7 +64,7 @@ package controller
 			return _property;
 		}
 		
-		public function get textPane():TextPane 
+		public function get textPane():TextPane
 		{
 			if (!_textPane)
 			{
@@ -69,13 +73,110 @@ package controller
 			return _textPane;
 		}
 		
-		public function get imagePane():ImagePane 
+		public function get imagePane():ImagePane
 		{
 			if (!_imagePane)
 			{
 				_imagePane = new ImagePane();
 			}
 			return _imagePane;
+		}
+		
+		public function deleteText():void
+		{
+			changeTextProperty(["text"], [""]);
+		}
+		
+		public function changeTextColor(color:uint, alpha:Number):void
+		{
+			changeTextProperty(["color", "alpha"], [color, alpha]);
+		}
+		
+		public function changeTextSpace(space:int):void
+		{
+			changeTextProperty(["letterSpacing"], [space]);
+		}
+		
+		public function changeTextLeading(leading:int):void
+		{
+			changeTextProperty(["leading"], [leading]);
+		}
+		
+		public function setTextBold(value:Boolean):void
+		{
+			changeTextProperty(["bold"], [value]);
+		}
+		
+		public function setTextItalic(value:Boolean):void
+		{
+			changeTextProperty(["italic"], [value]);
+		}
+		
+		public function changeTextSize(size:int):void
+		{
+			changeTextProperty(["size"], [size]);
+		}
+		
+		public function changeTextRotate(rotate:Number):void
+		{
+			var matrix:Matrix = getTextVo().matrix;
+			matrix.rotate(rotate);
+			changeTextProperty(["matrix"], [matrix]);
+		}
+		
+		public function setTextXpos(x:Number):void
+		{
+			var matrix:Matrix = getTextVo().matrix;
+			matrix.translate(x, 0);
+			changeTextProperty(["matrix"], [matrix]);
+		}
+		
+		public function setTextYpos(y:Number):void
+		{
+			var matrix:Matrix = getTextVo().matrix;
+			matrix.translate(0, y);
+			changeTextProperty(["matrix"], [matrix]);
+		}
+		
+		private function changeTextProperty(propertyList:Array, valueList:Array):void
+		{
+			if (item == null || propertyList == null || valueList == null || propertyList.length != valueList.length)
+			{
+				return;
+			}
+			var tf:TextView = item.targetObject as TextView;
+			if (tf == null)
+			{
+				return;
+			}
+			var vo:ItemVo = tf.vo;
+			try
+			{
+				for (var i:int = 0; i < propertyList.length; ++i)
+				{
+					vo[propertyList[i]] = valueList[i];
+				}
+			}
+			catch (e:Error)
+			{
+				trace("要修改的属性不存在");
+				return;
+			}
+			tf.vo = vo;
+		}
+		
+		private function getTextVo():ItemVo
+		{
+			if (item == null)
+			{
+				return null;
+			}
+			var tf:TextView = item.targetObject as TextView;
+			if (tf == null)
+			{
+				return null;
+			}
+			return tf.vo;
 		}
 	}
 

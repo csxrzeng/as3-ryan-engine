@@ -1,4 +1,4 @@
-package view 
+package view
 {
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
@@ -9,12 +9,12 @@ package view
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class TextView extends TextField 
+	public class TextView extends TextField
 	{
 		private var _vo:ItemVo;
 		private var formate:TextFormat;
 		
-		public function TextView() 
+		public function TextView()
 		{
 			_vo = new ItemVo(ItemVo.TEXT);
 			type = TextFieldType.INPUT;
@@ -22,7 +22,7 @@ package view
 			formate = new TextFormat();
 		}
 		
-		public function get vo():ItemVo 
+		public function get vo():ItemVo
 		{
 			formate = getTextFormat(0, length);
 			_vo.matrix = transform.matrix;
@@ -38,7 +38,7 @@ package view
 			return _vo;
 		}
 		
-		public function set vo(value:ItemVo):void 
+		public function set vo(value:ItemVo):void
 		{
 			_vo = value;
 			transform.matrix = _vo.matrix.clone();
@@ -51,6 +51,7 @@ package view
 			formate.leading = _vo.leading;
 			formate.letterSpacing = _vo.letterSpacing;
 			defaultTextFormat = formate;
+			setTextFormat(formate);
 			text = _vo.text;
 		}
 	}
