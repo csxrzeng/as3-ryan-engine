@@ -1,6 +1,8 @@
 package controller
 {
+	import flash.events.ErrorEvent;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
 	import model.ItemVo;
@@ -62,6 +64,8 @@ package controller
 		
 		private function onSelected(e:Event):void
 		{
+			file.removeEventListener(Event.SELECT, onSelected);
+			file.addEventListener(Event.COMPLETE, onLoadComplete);
 			file.load();
 		}
 		
