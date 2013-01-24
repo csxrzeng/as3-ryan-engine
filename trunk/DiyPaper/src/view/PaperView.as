@@ -21,13 +21,13 @@ package view
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class PaperView extends JPanel 
+	public class PaperView extends JPanel
 	{
 		private var _vo:PaperVo;
 		private var _list:Array = [];
 		private var _tool:TransformManager;
 		
-		public function PaperView() 
+		public function PaperView()
 		{
 			_vo = new PaperVo();
 			_tool = new TransformManager();
@@ -37,7 +37,7 @@ package view
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 		}
 		
-		private function onSelectChange(e:TransformEvent):void 
+		private function onSelectChange(e:TransformEvent):void
 		{
 			if (e.items.length > 0) // 暂时只处理一个的情况
 			{
@@ -50,29 +50,29 @@ package view
 			}
 		}
 		
-		public function get vo():PaperVo 
+		public function get vo():PaperVo
 		{
 			_vo.width = this.width;
 			_vo.height = this.height;
 			_vo.items.length = 0;
-			for (var i:int = 0; i < _list.length; i++) 
+			for (var i:int = 0; i < _list.length; i++)
 			{
 				_vo.items.push(_list[i].vo);
 			}
 			return _vo;
 		}
 		
-		public function set vo(value:PaperVo):void 
+		public function set vo(value:PaperVo):void
 		{
 			_tool.removeAllItems();
-			for (var i:int = 0; i < _list.length; i++) 
+			for (var i:int = 0; i < _list.length; i++)
 			{
 				removeChild(_list[i] as DisplayObject);
 			}
 			_list.length = 0;
 			_vo = value;
 			setSizeWH(_vo.width, _vo.height);
-			for (var j:int = 0; j < _vo.items.length; j++) 
+			for (var j:int = 0; j < _vo.items.length; j++)
 			{
 				var item:ItemVo = _vo.items[j];
 				addItem(item);
@@ -96,7 +96,7 @@ package view
 			text.vo = vo;
 			addChild(text);
 			_list.push(text);
-			_tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);			
+			_tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
 		}
 		
 		public function addItem(vo:ItemVo):void
