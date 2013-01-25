@@ -48,7 +48,7 @@ package
 			var top:JPanel = new JPanel(new SoftBoxLayout(SoftBoxLayout.Y_AXIS));
 			//top.append(menuContainer);
 			top.append(toolContainer);
-			var middle:JPanel = new JPanel(new EmptyLayout());
+			var middle:JPanel = new JPanel(new CenterLayout());
 			middle.setOpaque(true);
 			middle.setBackground(new ASColor(0xEEEEEE, 1));
 			middle.append(paperContainer);

@@ -7,8 +7,8 @@ package model
 	public class PaperVo 
 	{
 		public var id:int;
-		public var width:int = 0;
-		public var height:int = 0;
+		public var width:int = 600; // 默认宽度
+		public var height:int = 300; // 默认高度
 		
 		public var items:Array = [];
 		
