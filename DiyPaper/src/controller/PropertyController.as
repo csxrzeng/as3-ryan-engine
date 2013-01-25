@@ -42,10 +42,12 @@ package controller
 			item = e.data as TransformItem;
 			if (item.targetObject is TextView)
 			{
+				textPane.setItem(item);
 				property.setContentPane(textPane);
 			}
 			else if (item.targetObject is ImageView)
 			{
+				imagePane.setItem(item);
 				property.setContentPane(imagePane);
 			}
 			property.pack();
@@ -147,6 +149,7 @@ package controller
 			{
 				return;
 			}
+			item.rotation
 			var tf:TextView = item.targetObject as TextView;
 			if (tf == null)
 			{

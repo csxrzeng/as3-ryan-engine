@@ -1,5 +1,6 @@
 package view{
 
+import com.greensock.transform.TransformItem;
 import org.aswing.*;
 import org.aswing.border.*;
 import org.aswing.geom.*;
@@ -337,6 +338,11 @@ public class ImagePane extends JPanel{
 	
 	public function getABV():JAdjuster{
 		return aBV;
+	}
+	
+	public function setItem(item:TransformItem):void 
+	{
+		
 	}
 	
 	
