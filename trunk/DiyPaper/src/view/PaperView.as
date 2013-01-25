@@ -16,6 +16,7 @@ package view
 	import model.PaperVo;
 	import org.aswing.ASColor;
 	import org.aswing.border.LineBorder;
+	import org.aswing.geom.IntDimension;
 	import org.aswing.JPanel;
 	
 	/**
@@ -27,14 +28,16 @@ package view
 		private var _vo:PaperVo;
 		private var _list:Array = [];
 		private var _tool:TransformManager;
+		private var _perfersize:IntDimension;
 		
 		public function PaperView()
 		{
 			_vo = new PaperVo();
 			_tool = new TransformManager();
+			_perfersize = new IntDimension(_vo.width, _vo.height);
 			setOpaque(true);
 			setBackground(new ASColor(0xFFFFFF, 1));
-			setSizeWH(600, 300);
+			setPreferredSize(_perfersize);
 			//var tool:TransformManager = new TransformManager( { targetObjects:[tf, bmp] } );
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 		}
@@ -54,8 +57,8 @@ package view
 		
 		public function getVo():PaperVo 
 		{
-			_vo.width = this.width;
-			_vo.height = this.height;
+			_vo.width = _perfersize.width;
+			_vo.height = _perfersize.height;
 			_vo.items.length = 0;
 			for (var i:int = 0; i < _list.length; i++)
 			{
@@ -73,7 +76,8 @@ package view
 			}
 			_list.length = 0;
 			_vo = value;
-			setSizeWH(_vo.width, _vo.height);
+			_perfersize.setSizeWH(_vo.width, _vo.height);
+			setPreferredSize(_perfersize);
 			for (var j:int = 0; j < _vo.items.length; j++)
 			{
 				var item:ItemVo = _vo.items[j];
