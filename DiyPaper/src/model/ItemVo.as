@@ -1,6 +1,7 @@
-package model 
+package model
 {
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
@@ -9,7 +10,7 @@ package model
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class ItemVo 
+	public class ItemVo
 	{
 		static public const IMAGE:String = "image";
 		static public const TEXT:String = "text";
@@ -21,6 +22,7 @@ package model
 		
 		// 图片
 		public var url:String = "";
+		public var bitmapData:BitmapData;
 		public var colorTransform:ColorTransform = new ColorTransform();
 		
 		//文字
@@ -33,7 +35,7 @@ package model
 		public var italic:Boolean;
 		public var size:int = 12;
 		
-		public function ItemVo(type:String = IMAGE) 
+		public function ItemVo(type:String = IMAGE)
 		{
 			this.type = type;
 		}
@@ -106,7 +108,7 @@ package model
 			xml.@ty = matrix.ty;
 		}
 		
-		private function setColorTransform(xml:XML):void 
+		private function setColorTransform(xml:XML):void
 		{
 			with (colorTransform)
 			{
@@ -121,7 +123,7 @@ package model
 			}
 		}
 		
-		private function getColorTransform(xml:XML):void 
+		private function getColorTransform(xml:XML):void
 		{
 			with (colorTransform)
 			{

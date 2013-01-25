@@ -19,11 +19,22 @@ package controller
 	{
 		public function PaperController()
 		{
+			
 		}
 		
-		public function addText(item:ItemVo):void 
+		public function addText(item:ItemVo):void
 		{
 			paper.addText(item);
+		}
+		
+		public function addImage(item:ItemVo):void
+		{
+			paper.addImage(item);
+		}
+		
+		public function addItem(item:ItemVo):void
+		{
+			paper.addItem(item);
 		}
 		
 		override protected function initServer():void
@@ -34,7 +45,7 @@ package controller
 			Dispatcher.addEventListener(GameEvent.SaveToPng, saveToPngProcessor);
 		}
 		
-		private function saveToPngProcessor(e:GameEvent):void 
+		private function saveToPngProcessor(e:GameEvent):void
 		{
 			var vo:PaperVo = paper.getVo();
 			var bmd:BitmapData = new BitmapData(vo.width, vo.height, true, 0xFFFFFFFF);
@@ -98,7 +109,7 @@ package controller
 			paper.setVo(vo);
 		}
 		
-		public function get paper():PaperView 
+		public function get paper():PaperView
 		{
 			return Main.paperContainer;
 		}

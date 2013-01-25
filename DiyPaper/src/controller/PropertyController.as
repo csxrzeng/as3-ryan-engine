@@ -119,22 +119,25 @@ package controller
 		
 		public function changeTextRotate(rotate:Number):void
 		{
+			trace(rotate);
 			var matrix:Matrix = getTextVo().matrix;
-			matrix.rotate(rotate);
+			var m:Matrix = new Matrix();
+			m.rotate(rotate / 180 * Math.PI);
+			matrix.concat(m);
 			changeTextProperty(["matrix"], [matrix]);
 		}
 		
 		public function setTextXpos(x:Number):void
 		{
 			var matrix:Matrix = getTextVo().matrix;
-			matrix.translate(x, 0);
+			matrix.tx = x;
 			changeTextProperty(["matrix"], [matrix]);
 		}
 		
 		public function setTextYpos(y:Number):void
 		{
 			var matrix:Matrix = getTextVo().matrix;
-			matrix.translate(0, y);
+			matrix.ty = y;
 			changeTextProperty(["matrix"], [matrix]);
 		}
 		
