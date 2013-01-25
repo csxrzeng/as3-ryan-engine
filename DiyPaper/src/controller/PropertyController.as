@@ -2,6 +2,7 @@ package controller
 {
 	import com.greensock.transform.TransformItem;
 	import com.ryan.global.Global;
+	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
 	import model.ItemVo;
 	import org.aswing.AsWingUtils;
@@ -84,6 +85,7 @@ package controller
 			return _imagePane;
 		}
 		
+//——————————————————————————————————————文字属性设置——————————————————————————————————————————
 		public function deleteText():void
 		{
 			changeTextProperty(["text"], [""]);
@@ -184,6 +186,59 @@ package controller
 			}
 			return tf.vo;
 		}
+		
+//——————————————————————————————————————图片属性设置——————————————————————————————————————————
+		public function changeImgColor(color:uint, alpha:Number, redMultiplier:Number, greenMultiplier:Number, blueMultiplier:Number):void
+		{
+			
+			var colorTransform:ColorTransform = new ColorTransform();
+			colorTransform.color = color;
+			colorTransform.redMultiplier = redMultiplier;
+			colorTransform.greenMultiplier = greenMultiplier;
+			colorTransform.blueMultiplier = blueMultiplier;
+			
+			changeImgProperty(["colorTransform", "alpha"], [colorTransform, alpha]);
+		}
+		
+		private function changeImgProperty(propertyList:Array, valueList:Array):void
+		{
+			if (item == null || propertyList == null || valueList == null || propertyList.length != valueList.length)
+			{
+				return;
+			}
+			var img:ImageView = item.targetObject as ImageView;
+			if (img == null)
+			{
+				return;
+			}
+			var vo:ItemVo = img.vo;
+			try
+			{
+				for (var i:int = 0; i < propertyList.length; ++i)
+				{
+					vo[propertyList[i]] = valueList[i];
+				}
+			}
+			catch (e:Error)
+			{
+				trace("要修改的属性不存在");
+				return;
+			}
+			img.vo = vo;
+		}
+		
+		private function getImgVo():ItemVo
+		{
+			if (item == null)
+			{
+				return null;
+			}
+			var img:ImageView = item.targetObject as ImageView;
+			if (img == null)
+			{
+				return null;
+			}
+			return img.vo;
+		}
 	}
-
 }
