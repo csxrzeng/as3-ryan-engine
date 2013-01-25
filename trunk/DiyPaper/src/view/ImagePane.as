@@ -1,11 +1,17 @@
 package view{
 
 import com.greensock.transform.TransformItem;
+import controller.Dispatcher;
+import controller.GameController;
+import controller.GameEvent;
+import model.ItemVo;
 import org.aswing.*;
 import org.aswing.border.*;
-import org.aswing.geom.*;
 import org.aswing.colorchooser.*;
+import org.aswing.event.AWEvent;
+import org.aswing.event.ColorChooserEvent;
 import org.aswing.ext.*;
+import org.aswing.geom.*;
 
 /**
  * ImagePane
@@ -213,16 +219,22 @@ public class ImagePane extends JPanel{
 		sHue.setMaximum(100);
 		
 		aRV = new JAdjuster();
+		aRV.setMaximum(255);
+		aRV.setMinimum( -255);
 		aRV.setLocation(new IntPoint(220, 320));
 		aRV.setSize(new IntDimension(60, 22));
 		aRV.setColumns(3);
 		
 		aGV = new JAdjuster();
+		aGV.setMaximum(255);
+		aGV.setMinimum( -255);
 		aGV.setLocation(new IntPoint(220, 347));
 		aGV.setSize(new IntDimension(60, 22));
 		aGV.setColumns(3);
 		
 		aBV = new JAdjuster();
+		aBV.setMaximum(255);
+		aBV.setMinimum( -255);
 		aBV.setLocation(new IntPoint(220, 374));
 		aBV.setSize(new IntDimension(60, 22));
 		aBV.setColumns(3);
@@ -260,6 +272,65 @@ public class ImagePane extends JPanel{
 		append(aGV);
 		append(aBV);
 		
+		colormixer.addEventListener(ColorChooserEvent.COLOR_ADJUSTING, onColorChange);
+		aRP.addActionListener(onAdvancedColorChange);
+		aGP.addActionListener(onAdvancedColorChange);
+		aBP.addActionListener(onAdvancedColorChange);
+		
+		aRV.addActionListener(onColorOffsetChange);
+		aGV.addActionListener(onColorOffsetChange);
+		aBV.addActionListener(onColorOffsetChange);
+		
+		Dispatcher.addEventListener(GameEvent.ShowProperty, onItemSelected);
+	}
+	
+	private function onColorOffsetChange(e:AWEvent):void
+	{
+		var red:int = Math.max(aRV.getValue(), 0);
+		var green:int = Math.max(aGV.getValue(), 0);
+		var blue:int = Math.max(aBV.getValue(), 0);
+		
+		var color:ASColor = colormixer.getSelectedColor();
+		colormixer.setSelectedColor(ASColor.getASColor(red, green, blue, color.getAlpha()));
+	}
+	
+	private function onItemSelected(e:GameEvent):void
+	{
+		var item:TransformItem = e.data as TransformItem;
+		var image:ImageView = item.targetObject as ImageView;
+		if (image)
+		{
+			var imgItem:ItemVo = image.vo;
+			if (imgItem.type == ItemVo.IMAGE)
+			{
+				var color:ASColor = new ASColor(imgItem.colorTransform.color, imgItem.alpha);
+				colormixer.setSelectedColor(color);
+				aRP.setValue(imgItem.colorTransform.redMultiplier * 100);
+				aGP.setValue(imgItem.colorTransform.greenMultiplier * 100);
+				aBP.setValue(imgItem.colorTransform.blueMultiplier * 100);
+				
+				aRV.setValue(imgItem.colorTransform.redOffset);
+				aGV.setValue(imgItem.colorTransform.greenOffset);
+				aBV.setValue(imgItem.colorTransform.blueOffset);
+			}
+		}
+	}
+	
+	private function onColorChange(e:ColorChooserEvent):void
+	{
+		var color:ASColor = e.getColor();
+		aRV.setValue(color.getRed());
+		aGV.setValue(color.getGreen());
+		aBV.setValue(color.getBlue());
+		GameController.property.changeImgColor(color.getRGB(), color.getAlpha(),
+												aRP.getValue() / 100, aGP.getValue() / 100, aBP.getValue() / 100);
+	}
+	
+	private function onAdvancedColorChange(e:AWEvent):void
+	{
+		var color:ASColor = colormixer.getSelectedColor();
+		GameController.property.changeImgColor(color.getRGB(), color.getAlpha(),
+												aRP.getValue() / 100, aGP.getValue() / 100, aBP.getValue() / 100);
 	}
 	
 	//_________getters_________
