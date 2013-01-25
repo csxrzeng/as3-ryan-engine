@@ -16,6 +16,7 @@ package view
 		{
 			_vo = new ItemVo(ItemVo.IMAGE);
 			bmp = new Bitmap();
+			bmp.smoothing = true;
 			addChild(bmp);
 		}
 		

@@ -37,8 +37,9 @@ package view
 			_perfersize = new IntDimension(_vo.width, _vo.height);
 			setOpaque(true);
 			setBackground(new ASColor(0xFFFFFF, 1));
+			setClipMasked(false);
 			setPreferredSize(_perfersize);
-			//var tool:TransformManager = new TransformManager( { targetObjects:[tf, bmp] } );
+			_tool.forceSelectionToFront = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 		}
 		
