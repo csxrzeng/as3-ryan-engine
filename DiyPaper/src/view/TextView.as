@@ -18,6 +18,8 @@ package view
 		{
 			_vo = new ItemVo(ItemVo.TEXT);
 			type = TextFieldType.INPUT;
+			multiline = true;
+			wordWrap = true;
 			embedFonts = true;
 			formate = new TextFormat();
 		}
