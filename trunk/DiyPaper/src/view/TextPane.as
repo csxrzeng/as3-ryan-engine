@@ -1,6 +1,7 @@
 package view
 {
 	
+	import com.greensock.transform.TransformItem;
 	import controller.GameController;
 	import org.aswing.*;
 	import org.aswing.border.*;
@@ -274,6 +275,11 @@ package view
 		public function getSY():JStepper
 		{
 			return sY;
+		}
+		
+		public function setItem(item:TransformItem):void 
+		{
+			
 		}
 	
 	}
