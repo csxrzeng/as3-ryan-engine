@@ -31,8 +31,8 @@ package com.ryan.player
 			}
 			else
 			{
-				loadSwf();
 				_autoStart = true;
+				loadSwf();
 			}
 		}
 		
