@@ -1,0 +1,422 @@
+<AsWingUI name="ImageProperty" packageName="view.gui">
+  <Com name="JPanel" id="panel96">
+    <Properties>
+      <Property name="attr_scope" type="attr_scope">
+        <Value value="private"/>
+      </Property>
+      <Property name="getter_scope" type="getter_scope">
+        <Value value="none"/>
+      </Property>
+      <Property name="Size" type="Size">
+        <Value value="285,375"/>
+      </Property>
+      <Property name="Layout" type="Layout">
+        <Value>
+          <Layout name="CenterLayout">
+            <Properties/>
+          </Layout>
+        </Value>
+      </Property>
+    </Properties>
+    <Com name="JPanel" id="panel98">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="0,12"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="285,350"/>
+        </Property>
+        <Property name="PreferredSize" type="PreferredSize">
+          <Value value="285,350"/>
+        </Property>
+        <Property name="Layout" type="Layout">
+          <Value>
+            <Layout name="EmptyLayout">
+              <Properties/>
+            </Layout>
+          </Value>
+        </Property>
+      </Properties>
+      <Com name="JLoadPane" id="loadpane97">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="30,5"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="45,45"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="46,46"/>
+          </Property>
+          <Property name="Border" type="Border">
+            <Value>
+              <Border name="LineBorder">
+                <Properties>
+                  <Property name="Interior" type="Interior">
+                    <Value>
+                      <Border name="LineBorder">
+                        <Properties>
+                          <Property name="Interior" type="Interior">
+                            <Value>
+                              <Border name="LineBorder">
+                                <Properties>
+                                  <Property name="Color" type="Color">
+                                    <Value value="0,1"/>
+                                  </Property>
+                                  <Property name="Thickness" type="Thickness">
+                                    <Value value="1"/>
+                                  </Property>
+                                </Properties>
+                              </Border>
+                            </Value>
+                          </Property>
+                          <Property name="Color" type="Color">
+                            <Value value="ffffff,1"/>
+                          </Property>
+                          <Property name="Thickness" type="Thickness">
+                            <Value value="2"/>
+                          </Property>
+                        </Properties>
+                      </Border>
+                    </Value>
+                  </Property>
+                  <Property name="Color" type="Color">
+                    <Value value="0,1"/>
+                  </Property>
+                  <Property name="Thickness" type="Thickness">
+                    <Value value="1"/>
+                  </Property>
+                </Properties>
+              </Border>
+            </Value>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JPanel" id="panel100">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="139,11"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="10,10"/>
+          </Property>
+        </Properties>
+        <Com name="JButton" id="button101">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="public"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="5,5"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="58,26"/>
+            </Property>
+            <Property name="Text" type="Text">
+              <Value value="替换素材"/>
+            </Property>
+          </Properties>
+        </Com>
+        <Com name="JButton" id="button102">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="public"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="47,5"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="58,26"/>
+            </Property>
+            <Property name="Text" type="Text">
+              <Value value="删除素材"/>
+            </Property>
+          </Properties>
+        </Com>
+      </Com>
+      <Com name="JColorMixer" id="colormixer103">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="10,60"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="291,192"/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JPanel" id="panel108">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="10,265"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="265,90"/>
+          </Property>
+          <Property name="Layout" type="Layout">
+            <Value>
+              <Layout name="SoftBoxLayout">
+                <Properties>
+                  <Property name="Axis" type="Axis">
+                    <Value value="1"/>
+                  </Property>
+                  <Property name="Align" type="Align">
+                    <Value value="1"/>
+                  </Property>
+                  <Property name="Gap" type="Gap">
+                    <Value value="10"/>
+                  </Property>
+                </Properties>
+              </Layout>
+            </Value>
+          </Property>
+        </Properties>
+        <Com name="JPanel" id="panel104">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="none"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="8,261"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="265,19"/>
+            </Property>
+            <Property name="Layout" type="Layout">
+              <Value>
+                <Layout name="EmptyLayout">
+                  <Properties/>
+                </Layout>
+              </Value>
+            </Property>
+          </Properties>
+          <Com name="JLabel" id="label109">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="none"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="5,5"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="31,19"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value="变色(0)"/>
+              </Property>
+            </Properties>
+          </Com>
+          <Com name="JSlider" id="slider110">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="public"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="65,4"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="200,14"/>
+              </Property>
+              <Property name="Value" type="Value">
+                <Value value="0"/>
+              </Property>
+              <Property name="Extent" type="Extent">
+                <Value value="0"/>
+              </Property>
+              <Property name="Minimum" type="Minimum">
+                <Value value="0"/>
+              </Property>
+              <Property name="Maximum" type="Maximum">
+                <Value value="100"/>
+              </Property>
+            </Properties>
+          </Com>
+        </Com>
+        <Com name="JPanel" id="panel106">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="none"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="14,281"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="265,19"/>
+            </Property>
+            <Property name="Layout" type="Layout">
+              <Value>
+                <Layout name="EmptyLayout">
+                  <Properties/>
+                </Layout>
+              </Value>
+            </Property>
+          </Properties>
+          <Com name="JLabel" id="label111">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="none"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="5,5"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="31,19"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value="透明(100)"/>
+              </Property>
+            </Properties>
+          </Com>
+          <Com name="JSlider" id="slider112">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="public"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="65,4"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="200,14"/>
+              </Property>
+              <Property name="Value" type="Value">
+                <Value value="0"/>
+              </Property>
+              <Property name="Extent" type="Extent">
+                <Value value="0"/>
+              </Property>
+              <Property name="Minimum" type="Minimum">
+                <Value value="0"/>
+              </Property>
+              <Property name="Maximum" type="Maximum">
+                <Value value="100"/>
+              </Property>
+            </Properties>
+          </Com>
+        </Com>
+        <Com name="JPanel" id="panel107">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="none"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="32,324"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="265,19"/>
+            </Property>
+            <Property name="Layout" type="Layout">
+              <Value>
+                <Layout name="EmptyLayout">
+                  <Properties/>
+                </Layout>
+              </Value>
+            </Property>
+          </Properties>
+          <Com name="JLabel" id="label113">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="none"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="5,5"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="48,19"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value="旋转(0°)"/>
+              </Property>
+            </Properties>
+          </Com>
+          <Com name="JSlider" id="slider114">
+            <Properties>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="private"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="public"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="65,4"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="200,14"/>
+              </Property>
+              <Property name="Value" type="Value">
+                <Value value="0"/>
+              </Property>
+              <Property name="Extent" type="Extent">
+                <Value value="0"/>
+              </Property>
+              <Property name="Minimum" type="Minimum">
+                <Value value="0"/>
+              </Property>
+              <Property name="Maximum" type="Maximum">
+                <Value value="100"/>
+              </Property>
+            </Properties>
+          </Com>
+        </Com>
+      </Com>
+    </Com>
+  </Com>
+</AsWingUI>

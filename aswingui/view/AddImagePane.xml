@@ -132,10 +132,10 @@
           <Value value="public"/>
         </Property>
         <Property name="Location" type="Location">
-          <Value value="0,150"/>
+          <Value value="20,34"/>
         </Property>
         <Property name="Size" type="Size">
-          <Value value="400,93"/>
+          <Value value="360,83"/>
         </Property>
         <Property name="Constraints" type="Constraints">
           <Value value="Center"/>
