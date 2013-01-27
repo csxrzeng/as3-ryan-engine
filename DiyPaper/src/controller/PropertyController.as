@@ -8,9 +8,11 @@ package controller
 	import org.aswing.AsWingUtils;
 	import org.aswing.JFrame;
 	import view.ImagePane;
-	import view.ImageView;
+	import view.MainWindow;
+	import view.paper.ImageView;
+	import view.paper.TextView;
+	import view.property.PropertyWin;
 	import view.TextPane;
-	import view.TextView;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -30,7 +32,13 @@ package controller
 		
 		override protected function initServer():void
 		{
-			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyProcessor);
+			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyWin);
+		}
+		
+		private function showPropertyWin(e:GameEvent):void 
+		{
+			MainWindow.toolBar.propertyBar.setButtonType(e.data);
+			MainWindow.propertyWin.setType(e.data);
 		}
 		
 		private function showPropertyProcessor(e:GameEvent):void
@@ -61,7 +69,7 @@ package controller
 		{
 			if (!_property)
 			{
-				_property = new JFrame(AsWingUtils.getPopupAncestor(Main.uiContainer), "属性");
+				_property = new JFrame(AsWingUtils.getPopupAncestor(MainWindow.uiLayer), "属性");
 				_property.setResizable(false);
 			}
 			return _property;

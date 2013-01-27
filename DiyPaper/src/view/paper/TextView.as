@@ -1,4 +1,4 @@
-package view
+package view.paper
 {
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;

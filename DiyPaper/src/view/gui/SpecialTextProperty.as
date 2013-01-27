@@ -28,7 +28,7 @@ public class SpecialTextProperty extends JPanel{
 	public function SpecialTextProperty(){
 		//component creation
 		setSize(new IntDimension(285, 440));
-		var layout0:CenterLayout = new CenterLayout();
+		var layout0:EmptyLayout = new EmptyLayout();
 		setLayout(layout0);
 		
 		panel84 = new JPanel();

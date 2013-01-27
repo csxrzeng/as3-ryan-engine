@@ -9,8 +9,8 @@ package controller
 	import org.aswing.JOptionPane;
 	import utils.DateUtil;
 	import utils.PNGEncoder;
-	import view.PaperView;
-	
+	import view.MainWindow;
+	import view.paper.PaperView;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -24,12 +24,12 @@ package controller
 		
 		public function addText(item:ItemVo):void
 		{
-			paper.addText(item);
+			paper.addItem(item);
 		}
 		
 		public function addImage(item:ItemVo):void
 		{
-			paper.addImage(item);
+			paper.addItem(item);
 		}
 		
 		public function addItem(item:ItemVo):void
@@ -111,7 +111,7 @@ package controller
 		
 		public function get paper():PaperView
 		{
-			return Main.paperContainer;
+			return MainWindow.paper;
 		}
 	}
 }

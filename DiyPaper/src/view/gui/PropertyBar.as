@@ -13,73 +13,72 @@ public class PropertyBar extends JPanel{
 	
 	//members define
 	private var toolbar5:JToolBar;
-	private var togglebutton8:JToggleButton;
-	private var togglebutton9:JToggleButton;
-	private var togglebutton10:JToggleButton;
-	private var button6:JButton;
+	protected var btnBase:JToggleButton;
+	protected var btnText:JToggleButton;
+	protected var btnImage:JToggleButton;
+	private var spacer10:JSpacer;
+	protected var btnFullscreen:JButton;
 	
 	/**
 	 * PropertyBar Constructor
 	 */
 	public function PropertyBar(){
 		//component creation
-		setOpaque(true);
-		setBackground(new ASColor(0xa5ce1c, 1));
-		setSize(new IntDimension(155, 36));
+		setSize(new IntDimension(180, 36));
 		setConstraints("East");
+		var border0:EmptyBorder = new EmptyBorder();
+		border0.setRight(10);
+		setBorder(border0);
 		
 		toolbar5 = new JToolBar();
 		toolbar5.setLocation(new IntPoint(5, 5));
 		toolbar5.setSize(new IntDimension(106, 26));
+		toolbar5.setOrientation(AsWingConstants.HORIZONTAL);
+		toolbar5.setGap(5);
 		
-		togglebutton8 = new JToggleButton();
-		togglebutton8.setLocation(new IntPoint(36, 0));
-		togglebutton8.setSize(new IntDimension(37, 26));
-		togglebutton8.setText("属性");
+		btnBase = new JToggleButton();
+		btnBase.setLocation(new IntPoint(36, 0));
+		btnBase.setSize(new IntDimension(37, 26));
+		btnBase.setText("属性");
 		
-		togglebutton9 = new JToggleButton();
-		togglebutton9.setLocation(new IntPoint(36, 0));
-		togglebutton9.setSize(new IntDimension(37, 26));
-		togglebutton9.setText("文字");
+		btnText = new JToggleButton();
+		btnText.setLocation(new IntPoint(36, 0));
+		btnText.setSize(new IntDimension(37, 26));
+		btnText.setText("文字");
 		
-		togglebutton10 = new JToggleButton();
-		togglebutton10.setLocation(new IntPoint(108, 0));
-		togglebutton10.setSize(new IntDimension(34, 26));
-		togglebutton10.setText("图片");
+		btnImage = new JToggleButton();
+		btnImage.setLocation(new IntPoint(108, 0));
+		btnImage.setSize(new IntDimension(34, 26));
+		btnImage.setText("图片");
 		
-		button6 = new JButton();
-		button6.setLocation(new IntPoint(5, 36));
-		button6.setSize(new IntDimension(34, 26));
-		button6.setText("全屏");
+		spacer10 = new JSpacer();
+		spacer10.setLocation(new IntPoint(116, 13));
+		spacer10.setSize(new IntDimension(10, 10));
+		spacer10.setPreferredSize(new IntDimension(10, 10));
+		
+		btnFullscreen = new JButton();
+		btnFullscreen.setLocation(new IntPoint(5, 36));
+		btnFullscreen.setSize(new IntDimension(34, 26));
+		btnFullscreen.setText("全屏");
 		
 		//component layoution
 		append(toolbar5);
-		append(button6);
+		append(spacer10);
+		append(btnFullscreen);
 		
-		toolbar5.append(togglebutton8);
-		toolbar5.append(togglebutton9);
-		toolbar5.append(togglebutton10);
+		toolbar5.append(btnBase);
+		toolbar5.append(btnText);
+		toolbar5.append(btnImage);
 		
 	}
 	
 	//_________getters_________
 	
 	
-	public function getTogglebutton8():JToggleButton{
-		return togglebutton8;
-	}
 	
-	public function getTogglebutton9():JToggleButton{
-		return togglebutton9;
-	}
 	
-	public function getTogglebutton10():JToggleButton{
-		return togglebutton10;
-	}
 	
-	public function getButton6():JButton{
-		return button6;
-	}
+	
 	
 	
 }

@@ -12,6 +12,7 @@ import org.aswing.event.AWEvent;
 import org.aswing.event.ColorChooserEvent;
 import org.aswing.ext.*;
 import org.aswing.geom.*;
+import view.paper.ImageView;
 
 /**
  * ImagePane
