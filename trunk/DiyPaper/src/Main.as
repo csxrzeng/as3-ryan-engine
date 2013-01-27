@@ -7,6 +7,7 @@ package
 	import flash.events.MouseEvent;
 	import org.aswing.*;
 	import view.*;
+	import view.laf.MyLookAndFeel;
 	
 	/**
 	 * ...
@@ -38,6 +39,7 @@ package
 			// entry point
 			Global.instance.initStage(stage);
 			AsWingManager.initAsStandard(this);
+			UIManager.setLookAndFeel(new MyLookAndFeel());
 			//menuContainer = new Menu();
 			toolContainer = new ToolBar();
 			paperContainer = new PaperView();
