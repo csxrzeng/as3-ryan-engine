@@ -40,7 +40,17 @@ package view
 			setClipMasked(false);
 			setPreferredSize(_perfersize);
 			_tool.forceSelectionToFront = false;
+			_tool.autoDeselect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
+			addEventListener(MouseEvent.CLICK, onMouseClick);
+		}
+		
+		private function onMouseClick(e:MouseEvent):void 
+		{
+			if (e.target == this)
+			{
+				_tool.deselectAll();
+			}
 		}
 		
 		private function onSelectChange(e:TransformEvent):void

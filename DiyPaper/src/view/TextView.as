@@ -1,5 +1,6 @@
 package view
 {
+	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
@@ -21,11 +22,16 @@ package view
 			multiline = true;
 			wordWrap = true;
 			embedFonts = true;
+			antiAliasType = AntiAliasType.ADVANCED;
 			formate = new TextFormat();
 		}
 		
 		public function get vo():ItemVo
 		{
+			if (length == 0)
+			{
+				formate = defaultTextFormat;
+			}
 			formate = getTextFormat(0, length);
 			_vo.matrix = transform.matrix;
 			_vo.alpha = alpha;
@@ -53,7 +59,10 @@ package view
 			formate.leading = _vo.leading;
 			formate.letterSpacing = _vo.letterSpacing;
 			defaultTextFormat = formate;
-			setTextFormat(formate);
+			if (length > 0)
+			{
+				setTextFormat(formate, 0, length);
+			}
 			text = _vo.text;
 		}
 	}
