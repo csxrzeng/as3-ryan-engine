@@ -5,7 +5,8 @@ package controller
 	import org.aswing.AsWingUtils;
 	import org.aswing.event.AWEvent;
 	import org.aswing.JFrame;
-	import view.AddTextPane;
+	import org.aswing.JPanel;
+	import view.MainWindow;
 	
 	/**
 	 * ...
@@ -14,7 +15,7 @@ package controller
 	public class AddTextController extends Controller
 	{
 		private var _fontAddWindow:JFrame;
-		private var _addTextPane:AddTextPane;
+		private var _addTextPane:JPanel;
 		private var curFont:String;
 		
 		public function AddTextController()
@@ -23,7 +24,6 @@ package controller
 		
 		override protected function initServer():void
 		{
-			Dispatcher.addEventListener(GameEvent.AddText, addTextProcessor);
 		}
 		
 		private function addTextProcessor(e:GameEvent):void
@@ -37,7 +37,7 @@ package controller
 			}
 			else
 			{
-				AsWingUtils.getPopupAncestor(Main.uiContainer);
+				AsWingUtils.getPopupAncestor(MainWindow.uiLayer);
 				fontAddWindow.show();
 				_fontAddWindow.x = (Global.stage.stageWidth - _fontAddWindow.width) * 0.5;
 				_fontAddWindow.y = (Global.stage.stageHeight - _fontAddWindow.height) * 0.5;
@@ -48,21 +48,21 @@ package controller
 		{
 			if (!_fontAddWindow)
 			{
-				_fontAddWindow = new JFrame(AsWingUtils.getPopupAncestor(Main.uiContainer), "选择字体");
-				_fontAddWindow.setResizable(false);
-				_addTextPane = new AddTextPane();
-				_addTextPane.getCbFont().setListData(cache.font.getFontNameList());
-				_addTextPane.getBtnConfirm().addActionListener(onConfirmAct);
-				_fontAddWindow.setContentPane(_addTextPane);
-				_fontAddWindow.pack();
+				//_fontAddWindow = new JFrame(AsWingUtils.getPopupAncestor(MainWindow.uiLayer), "选择字体");
+				//_fontAddWindow.setResizable(false);
+				//_addTextPane = new AddTextPane();
+				//_addTextPane.getCbFont().setListData(cache.font.getFontNameList());
+				//_addTextPane.getBtnConfirm().addActionListener(onConfirmAct);
+				//_fontAddWindow.setContentPane(_addTextPane);
+				//_fontAddWindow.pack();
 			}
 			return _fontAddWindow;
 		}
 		
 		private function onConfirmAct(e:AWEvent):void
 		{
-			curFont = _addTextPane.getCbFont().getSelectedItem() as String;
-			cache.font.loadFont(curFont, onComplete);
+			//curFont = _addTextPane.getCbFont().getSelectedItem() as String;
+			//cache.font.loadFont(curFont, onComplete);
 		}
 		
 		private function onComplete():void
@@ -70,7 +70,6 @@ package controller
 			if (cache.font.hasLoadedFont(curFont))
 			{
 				trace("字体加载完成");
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddText, curFont));
 			}
 			else
 			{

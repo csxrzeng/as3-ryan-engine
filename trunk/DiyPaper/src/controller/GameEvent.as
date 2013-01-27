@@ -8,13 +8,18 @@ package controller
 	 */
 	public class GameEvent extends Event
 	{
-		static public const AddImage:String = "AddImage";
-		static public const AddText:String = "AddText";
+		/**
+		 * 显示特定类型的属性面板
+		 */
+		static public const ShowProperty:String = "ShowProperty";
+		
 		static public const SavePaper:String = "SavePaper";
 		static public const NewPaper:String = "NewPaper";
 		static public const LoadPaper:String = "LoadPaper";
-		static public const ShowProperty:String = "ShowProperty";
 		static public const SaveToPng:String = "SaveToPng";
+		static public const BgColorChange:String = "BgColorChange";
+		static public const BorderColorChange:String = "BorderColorChange";
+		static public const WidthChange:String = "WidthChange";
 		
 		public var data:*;
 		

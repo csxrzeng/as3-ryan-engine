@@ -1,4 +1,4 @@
-package view
+package view.paper
 {
 	import com.greensock.events.TransformEvent;
 	import com.greensock.transform.TransformItem;
@@ -16,6 +16,7 @@ package view
 	import model.PaperVo;
 	import org.aswing.ASColor;
 	import org.aswing.border.LineBorder;
+	import org.aswing.EmptyLayout;
 	import org.aswing.geom.IntDimension;
 	import org.aswing.JPanel;
 	
@@ -29,16 +30,19 @@ package view
 		private var _list:Array = [];
 		private var _tool:TransformManager;
 		private var _perfersize:IntDimension;
+		private var _paper:JPanel;
 		
 		public function PaperView()
 		{
 			_vo = new PaperVo();
 			_tool = new TransformManager();
 			_perfersize = new IntDimension(_vo.width, _vo.height);
-			setOpaque(true);
-			setBackground(new ASColor(0xFFFFFF, 1));
-			setClipMasked(false);
-			setPreferredSize(_perfersize);
+			_paper = new JPanel(new EmptyLayout());
+			append(_paper);
+			_paper.setOpaque(true);
+			_paper.setBackground(new ASColor(0xFFFFFF, 1));
+			_paper.setClipMasked(false);
+			_paper.setPreferredSize(_perfersize);
 			_tool.forceSelectionToFront = false;
 			_tool.autoDeselect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
@@ -96,24 +100,41 @@ package view
 			}
 		}
 		
-		public function addImage(vo:ItemVo):void
+		private function addImage(vo:ItemVo):void
 		{
 			var image:ImageView = new ImageView();
 			vo.type = ItemVo.IMAGE;
 			image.vo = vo;
-			addChild(image);
+			_paper.addChild(image);
 			_list.push(image);
 			_tool.addItem(image);
 		}
 		
-		public function addText(vo:ItemVo):void
+		private function addText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
 			vo.type = ItemVo.TEXT;
 			text.vo = vo;
-			addChild(text);
+			_paper.addChild(text);
 			_list.push(text);
 			_tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+		}
+		
+		/**
+		 * 删除对象
+		 * @param	vo
+		 */
+		public function removeItem(vo:ItemVo):void
+		{
+			for (var i:int = 0; i < _list.length; i++) 
+			{
+				if (_list[i].vo == vo)
+				{
+					_tool.removeItem(_list[i]);
+					_paper.remove(_list[i]);
+					_list.splice(i, 1);
+				}
+			}
 		}
 		
 		public function addItem(vo:ItemVo):void
