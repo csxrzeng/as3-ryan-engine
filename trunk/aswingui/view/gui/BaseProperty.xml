@@ -1,0 +1,189 @@
+<AsWingUI name="BaseProperty" packageName="view.gui">
+  <Com name="JPanel" id="panel11">
+    <Properties>
+      <Property name="attr_scope" type="attr_scope">
+        <Value value="private"/>
+      </Property>
+      <Property name="getter_scope" type="getter_scope">
+        <Value value="none"/>
+      </Property>
+      <Property name="Background" type="Background">
+        <Value value="33ff00,1"/>
+      </Property>
+      <Property name="Size" type="Size">
+        <Value value="285,95"/>
+      </Property>
+      <Property name="Layout" type="Layout">
+        <Value>
+          <Layout name="EmptyLayout">
+            <Properties/>
+          </Layout>
+        </Value>
+      </Property>
+    </Properties>
+    <Com name="JLabel" id="label12">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="15,18"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="31,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="宽度"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label13">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="15,46"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="31,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="高度"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label14">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="185,20"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="40,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="背景色"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label15">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="146,46"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="31,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="边框"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JStepper" id="sW">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="sW"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="protected"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="50,17"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="75,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JStepper" id="sH">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="sH"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="protected"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="50,46"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="75,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JStepper" id="sB">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="sB"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="protected"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,46"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="75,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JButton" id="btnBg">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="btnBg"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="protected"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="230,17"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="26,26"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="　"/>
+        </Property>
+      </Properties>
+    </Com>
+  </Com>
+</AsWingUI>

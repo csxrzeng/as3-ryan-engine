@@ -1,0 +1,721 @@
+<AsWingUI name="ImagePane" packageName="view">
+  <Com name="JPanel" id="panel1">
+    <Properties>
+      <Property name="attr_scope" type="attr_scope">
+        <Value value="private"/>
+      </Property>
+      <Property name="getter_scope" type="getter_scope">
+        <Value value="none"/>
+      </Property>
+      <Property name="Opaque" type="Opaque">
+        <Value value="true"/>
+      </Property>
+      <Property name="Location" type="Location">
+        <Value value="0,0"/>
+      </Property>
+      <Property name="Size" type="Size">
+        <Value value="350,500"/>
+      </Property>
+      <Property name="Border" type="Border">
+        <Value>
+          <Border name="LineBorder">
+            <Properties>
+              <Property name="Color" type="Color">
+                <Value value="0,1"/>
+              </Property>
+              <Property name="Thickness" type="Thickness">
+                <Value value="1"/>
+              </Property>
+              <Property name="Round" type="Round">
+                <Value value="5"/>
+              </Property>
+            </Properties>
+          </Border>
+        </Value>
+      </Property>
+      <Property name="Layout" type="Layout">
+        <Value>
+          <Layout name="EmptyLayout">
+            <Properties/>
+          </Layout>
+        </Value>
+      </Property>
+    </Properties>
+    <Com name="JColorMixer" id="colormixer">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="colormixer"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,90"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="291,192"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JButton" id="btnReplace">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="btnReplace"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="120,40"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="80,26"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="替换素材"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JButton" id="btnDelete">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="btnDelete"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="220,40"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="80,26"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="删除素材"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JPanel" id="paneThumb">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="paneThumb"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="25,15"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,60"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="txtR">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtR"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,400"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="70,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="旋转(0°)"/>
+        </Property>
+        <Property name="HorizontalAlignment" type="HorizontalAlignment">
+          <Value value="2"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JSlider" id="sliderR">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="sliderR"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,404"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="200,14"/>
+        </Property>
+        <Property name="Value" type="Value">
+          <Value value="0"/>
+        </Property>
+        <Property name="Extent" type="Extent">
+          <Value value="0"/>
+        </Property>
+        <Property name="Minimum" type="Minimum">
+          <Value value="0"/>
+        </Property>
+        <Property name="Maximum" type="Maximum">
+          <Value value="360"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label11">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,430"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="34,19"/>
+        </Property>
+        <Property name="Constraints" type="Constraints">
+          <Value value="West"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="大小"/>
+        </Property>
+        <Property name="HorizontalAlignment" type="HorizontalAlignment">
+          <Value value="2"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label12">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,460"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="34,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="位置"/>
+        </Property>
+        <Property name="HorizontalAlignment" type="HorizontalAlignment">
+          <Value value="2"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label15">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="70,430"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="28,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="宽："/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label16">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,430"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="22,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="高："/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JTextField" id="txtW">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtW"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,429"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Editable" type="Editable">
+          <Value value="true"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JTextField" id="txtH">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtH"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="210,429"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Editable" type="Editable">
+          <Value value="true"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label18">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="70,460"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="12,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="x:"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label19">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,460"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="12,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="y:"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JTextField" id="txtX">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtX"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,460"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Editable" type="Editable">
+          <Value value="true"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JTextField" id="txtY">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtY"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="210,460"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Editable" type="Editable">
+          <Value value="true"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label22">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,348"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="28,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="高级"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label23">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="70,320"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="28,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="红："/>
+        </Property>
+        <Property name="HorizontalAlignment" type="HorizontalAlignment">
+          <Value value="2"/>
+        </Property>
+        <Property name="VerticalAlignment" type="VerticalAlignment">
+          <Value value="0"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label24">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="70,347"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="28,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="绿："/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label25">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="70,374"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="28,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="蓝："/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aRP">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aRP"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,320"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aGP">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aGP"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,347"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aBP">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aBP"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,374"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label30">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,320"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="32,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="×R＋"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label31">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,347"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="27,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="×G+"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="label32">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="180,374"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="26,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="×B+"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JLabel" id="txtHue">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="txtHue"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="20,288"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="70,19"/>
+        </Property>
+        <Property name="Text" type="Text">
+          <Value value="变色(0)"/>
+        </Property>
+        <Property name="HorizontalAlignment" type="HorizontalAlignment">
+          <Value value="2"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JSlider" id="sHue">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="sHue"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="100,290"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="200,14"/>
+        </Property>
+        <Property name="Value" type="Value">
+          <Value value="100"/>
+        </Property>
+        <Property name="Extent" type="Extent">
+          <Value value="0"/>
+        </Property>
+        <Property name="Minimum" type="Minimum">
+          <Value value="0"/>
+        </Property>
+        <Property name="Maximum" type="Maximum">
+          <Value value="100"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aRV">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aRV"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="220,320"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aGV">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aGV"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="220,347"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+    <Com name="JAdjuster" id="aBV">
+      <Properties>
+        <Property name="id" type="id">
+          <Value value="aBV"/>
+        </Property>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="public"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="220,374"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="60,22"/>
+        </Property>
+        <Property name="Columns" type="Columns">
+          <Value value="3"/>
+        </Property>
+      </Properties>
+    </Com>
+  </Com>
+</AsWingUI>

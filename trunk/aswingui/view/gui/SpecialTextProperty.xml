@@ -1,0 +1,231 @@
+<AsWingUI name="SpecialTextProperty" packageName="view.gui">
+  <Com name="JPanel" id="panel83">
+    <Properties>
+      <Property name="attr_scope" type="attr_scope">
+        <Value value="private"/>
+      </Property>
+      <Property name="getter_scope" type="getter_scope">
+        <Value value="none"/>
+      </Property>
+      <Property name="Size" type="Size">
+        <Value value="285,440"/>
+      </Property>
+      <Property name="Layout" type="Layout">
+        <Value>
+          <Layout name="EmptyLayout">
+            <Properties/>
+          </Layout>
+        </Value>
+      </Property>
+    </Properties>
+    <Com name="JPanel" id="panel84">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="5,5"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="265,410"/>
+        </Property>
+        <Property name="PreferredSize" type="PreferredSize">
+          <Value value="265,410"/>
+        </Property>
+        <Property name="Layout" type="Layout">
+          <Value>
+            <Layout name="SoftBoxLayout">
+              <Properties>
+                <Property name="Axis" type="Axis">
+                  <Value value="1"/>
+                </Property>
+                <Property name="Align" type="Align">
+                  <Value value="1"/>
+                </Property>
+                <Property name="Gap" type="Gap">
+                  <Value value="5"/>
+                </Property>
+              </Properties>
+            </Layout>
+          </Value>
+        </Property>
+      </Properties>
+      <Com name="JPanel" id="panel85">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="265,26"/>
+          </Property>
+          <Property name="Layout" type="Layout">
+            <Value>
+              <Layout name="SoftBoxLayout">
+                <Properties>
+                  <Property name="Axis" type="Axis">
+                    <Value value="0"/>
+                  </Property>
+                  <Property name="Align" type="Align">
+                    <Value value="0"/>
+                  </Property>
+                </Properties>
+              </Layout>
+            </Value>
+          </Property>
+        </Properties>
+        <Com name="JToggleButton" id="togglebutton87">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="public"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="5,5"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="58,26"/>
+            </Property>
+            <Property name="Text" type="Text">
+              <Value value="特效文字"/>
+            </Property>
+          </Properties>
+        </Com>
+        <Com name="JToggleButton" id="togglebutton88">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="public"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="47,5"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="58,26"/>
+            </Property>
+            <Property name="Text" type="Text">
+              <Value value="静态文字"/>
+            </Property>
+          </Properties>
+        </Com>
+      </Com>
+      <Com name="JTextArea" id="textarea89">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="protected"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="0,31"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="265,60"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="265,60"/>
+          </Property>
+          <Property name="Editable" type="Editable">
+            <Value value="true"/>
+          </Property>
+          <Property name="MaxChars" type="MaxChars">
+            <Value value="200"/>
+          </Property>
+          <Property name="WordWrap" type="WordWrap">
+            <Value value="true"/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JPanel" id="panel91">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="0,96"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="265,0"/>
+          </Property>
+          <Property name="Layout" type="Layout">
+            <Value>
+              <Layout name="BorderLayout">
+                <Properties/>
+              </Layout>
+            </Value>
+          </Property>
+        </Properties>
+        <Com name="JButton" id="button92">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="public"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="104,0"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="265,26"/>
+            </Property>
+            <Property name="Constraints" type="Constraints">
+              <Value value="East"/>
+            </Property>
+            <Property name="Text" type="Text">
+              <Value value="添加文字"/>
+            </Property>
+          </Properties>
+        </Com>
+      </Com>
+      <Com name="JScrollPane" id="scrollpane93">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="0,127"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="265,283"/>
+          </Property>
+        </Properties>
+        <Com name="JPanel" id="panel95">
+          <Properties>
+            <Property name="attr_scope" type="attr_scope">
+              <Value value="private"/>
+            </Property>
+            <Property name="getter_scope" type="getter_scope">
+              <Value value="none"/>
+            </Property>
+            <Property name="Location" type="Location">
+              <Value value="0,0"/>
+            </Property>
+            <Property name="Size" type="Size">
+              <Value value="265,283"/>
+            </Property>
+            <Property name="PreferredSize" type="PreferredSize">
+              <Value value="265,283"/>
+            </Property>
+          </Properties>
+        </Com>
+      </Com>
+    </Com>
+  </Com>
+</AsWingUI>
