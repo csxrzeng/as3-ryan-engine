@@ -2,6 +2,7 @@ package model
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
@@ -13,6 +14,7 @@ package model
 	public class ItemVo
 	{
 		static public const IMAGE:String = "image";
+		static public const SPECIAL_TEXT:String = "special_text";
 		static public const TEXT:String = "text";
 		
 		public var type:String = IMAGE;
@@ -22,7 +24,7 @@ package model
 		
 		// 图片
 		public var url:String = "";
-		public var bitmapData:BitmapData;
+		public var display:DisplayObject; // 显示对象
 		public var colorTransform:ColorTransform = new ColorTransform();
 		
 		//文字

@@ -16,6 +16,8 @@ package view.paper
 	import model.PaperVo;
 	import org.aswing.ASColor;
 	import org.aswing.border.LineBorder;
+	import org.aswing.BorderLayout;
+	import org.aswing.CenterLayout;
 	import org.aswing.EmptyLayout;
 	import org.aswing.geom.IntDimension;
 	import org.aswing.JPanel;
@@ -38,7 +40,12 @@ package view.paper
 			_tool = new TransformManager();
 			_perfersize = new IntDimension(_vo.width, _vo.height);
 			_paper = new JPanel(new EmptyLayout());
+			//setLayout(new CenterLayout());
+			//setPreferredSize(new IntDimension(1000, 500));
 			append(_paper);
+			setClipMasked(false);
+			//setOpaque(true);
+			//setBackground(new ASColor(0xDDDDDD, 1));
 			_paper.setOpaque(true);
 			_paper.setBackground(new ASColor(0xFFFFFF, 1));
 			_paper.setClipMasked(false);

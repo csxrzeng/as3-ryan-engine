@@ -13,10 +13,10 @@ public class ImageLibrary extends JPanel{
 	
 	//members define
 	private var panel117:JPanel;
-	private var togglebutton120:JToggleButton;
-	private var button121:JButton;
-	private var scrollpane122:JScrollPane;
-	private var panel123:JPanel;
+	protected var btnOnline:JToggleButton;
+	protected var btnMyAssets:JButton;
+	protected var spLibrary:JScrollPane;
+	protected var pane:JPanel;
 	
 	/**
 	 * ImageLibrary Constructor
@@ -44,51 +44,51 @@ public class ImageLibrary extends JPanel{
 		layout2.setAlign(AsWingConstants.CENTER);
 		panel117.setLayout(layout2);
 		
-		togglebutton120 = new JToggleButton();
-		togglebutton120.setLocation(new IntPoint(104, 0));
-		togglebutton120.setSize(new IntDimension(58, 26));
-		togglebutton120.setText("在线图标");
+		btnOnline = new JToggleButton();
+		btnOnline.setLocation(new IntPoint(104, 0));
+		btnOnline.setSize(new IntDimension(58, 26));
+		btnOnline.setText("在线图标");
 		
-		button121 = new JButton();
-		button121.setLocation(new IntPoint(133, 0));
-		button121.setSize(new IntDimension(58, 26));
-		button121.setText("我的素材");
+		btnMyAssets = new JButton();
+		btnMyAssets.setLocation(new IntPoint(133, 0));
+		btnMyAssets.setSize(new IntDimension(58, 26));
+		btnMyAssets.setText("我的素材");
 		
-		scrollpane122 = new JScrollPane();
-		scrollpane122.setLocation(new IntPoint(10, 45));
-		scrollpane122.setSize(new IntDimension(265, 380));
+		spLibrary = new JScrollPane();
+		spLibrary.setLocation(new IntPoint(10, 45));
+		spLibrary.setSize(new IntDimension(265, 380));
 		
-		panel123 = new JPanel();
-		panel123.setLocation(new IntPoint(0, 0));
-		panel123.setSize(new IntDimension(265, 380));
-		panel123.setPreferredSize(new IntDimension(265, 380));
+		pane = new JPanel();
+		pane.setLocation(new IntPoint(0, 0));
+		pane.setSize(new IntDimension(265, 380));
+		pane.setPreferredSize(new IntDimension(265, 380));
 		var layout3:FlowWrapLayout = new FlowWrapLayout();
 		layout3.setPreferWidth(265);
 		layout3.setAlignment(AsWingConstants.LEFT);
 		layout3.setHgap(1);
 		layout3.setVgap(1);
-		panel123.setLayout(layout3);
+		pane.setLayout(layout3);
 		
 		//component layoution
 		append(panel117);
-		append(scrollpane122);
+		append(spLibrary);
 		
-		panel117.append(togglebutton120);
-		panel117.append(button121);
+		panel117.append(btnOnline);
+		panel117.append(btnMyAssets);
 		
-		scrollpane122.append(panel123);
+		spLibrary.append(pane);
 		
 	}
 	
 	//_________getters_________
 	
 	
-	public function getTogglebutton120():JToggleButton{
-		return togglebutton120;
+	public function getBtnOnline():JToggleButton{
+		return btnOnline;
 	}
 	
-	public function getButton121():JButton{
-		return button121;
+	public function getBtnMyAssets():JButton{
+		return btnMyAssets;
 	}
 	
 	
