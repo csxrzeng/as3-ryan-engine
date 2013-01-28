@@ -38,6 +38,9 @@ package view
 			paper = new PaperView()
 			
 			mapLayer = new JScrollPane(paper);
+			mapLayer.setOpaque(true);
+			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
+
 			uiLayer = new JPanel(new EmptyLayout());
 			pane.append(toolBar, BorderLayout.NORTH);
 			pane.append(mapLayer, BorderLayout.CENTER);

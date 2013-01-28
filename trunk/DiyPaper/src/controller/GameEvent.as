@@ -20,6 +20,10 @@ package controller
 		static public const BgColorChange:String = "BgColorChange";
 		static public const BorderColorChange:String = "BorderColorChange";
 		static public const WidthChange:String = "WidthChange";
+		/**
+		 * 把图片添加到工作区
+		 */
+		static public var AddImageToPaper:String = "AddImageToPaper";
 		
 		public var data:*;
 		

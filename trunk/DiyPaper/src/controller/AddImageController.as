@@ -25,11 +25,14 @@ package controller
 		
 		override protected function initServer():void
 		{
+			Dispatcher.addEventListener(GameEvent.AddImageToPaper, onAddImageToPaper);
 		}
 		
-		private function onDownloadClick(e:AWEvent):void
+		private function onAddImageToPaper(e:GameEvent):void 
 		{
-			//LoaderManager.instance.load(_addImagePane.getTxtRemote().getText(), onImgLoaded);
+			var item:ItemVo = new ItemVo(ItemVo.IMAGE);
+			item.display = new Bitmap(e.data, "auto", true);
+			GameController.paper.addImage(item);
 		}
 		
 		private function onUploadClick(e:AWEvent):void
@@ -62,20 +65,9 @@ package controller
 			var bitmap:Bitmap = loaderInfo.content as Bitmap;
 			if (bitmap)
 			{
-				addImageToPaper(bitmap.bitmapData);
+				//addImageToPaper(bitmap.bitmapData);
 			}
 		}
 		
-		private function onImgLoaded(info:ImageInfo):void
-		{
-			addImageToPaper(info.bitmapData);
-		}
-		
-		private function addImageToPaper(img:BitmapData):void
-		{
-			var item:ItemVo = new ItemVo(ItemVo.IMAGE);
-			item.bitmapData = img;
-			GameController.paper.addImage(item);
-		}
 	}
 }

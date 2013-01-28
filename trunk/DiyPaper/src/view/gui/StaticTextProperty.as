@@ -14,54 +14,54 @@ public class StaticTextProperty extends JPanel{
 	//members define
 	protected var panel28:JPanel;
 	private var panel25:JPanel;
-	private var togglebutton23:JToggleButton;
-	private var togglebutton26:JToggleButton;
-	private var textarea27:JTextArea;
+	protected var btnSpecial:JToggleButton;
+	protected var btnStatic:JToggleButton;
+	protected var txtInput:JTextArea;
 	private var panel29:JPanel;
-	private var combobox30:JComboBox;
-	private var button31:JButton;
+	protected var combobox:JComboBox;
+	protected var btnAdd:JButton;
 	private var panel32:JPanel;
 	private var panel46:JPanel;
-	private var togglebutton37:JToggleButton;
-	private var togglebutton38:JToggleButton;
-	private var togglebutton39:JToggleButton;
-	private var togglebutton40:JToggleButton;
-	private var togglebutton41:JToggleButton;
-	private var togglebutton42:JToggleButton;
+	protected var btnLeft:JToggleButton;
+	protected var btnCenter:JToggleButton;
+	protected var btnRight:JToggleButton;
+	protected var btnBold:JToggleButton;
+	protected var btnItalic:JToggleButton;
+	protected var btnUnderline:JToggleButton;
 	private var panel47:JPanel;
-	private var togglebutton43:JToggleButton;
-	private var togglebutton44:JToggleButton;
+	protected var btnLtr:JToggleButton;
+	protected var btnTtb:JToggleButton;
 	private var spacer68:JSpacer;
 	private var panel82:JPanel;
 	private var panel48:JPanel;
-	private var label49:JLabel;
-	private var slider50:JSlider;
+	protected var txtSize:JLabel;
+	protected var sliderSize:JSlider;
 	private var panel52:JPanel;
 	private var label53:JLabel;
-	private var button54:JButton;
+	protected var btnBlur:JButton;
 	private var separator56:JSeparator;
 	private var panel57:JPanel;
-	private var label58:JLabel;
-	private var slider59:JSlider;
+	protected var txtBlur:JLabel;
+	protected var sliderBlur:JSlider;
 	private var panel60:JPanel;
-	private var label61:JLabel;
-	private var slider62:JSlider;
+	protected var txtBlurAlpha:JLabel;
+	protected var sliderBlurAlpha:JSlider;
 	private var panel63:JPanel;
 	private var label64:JLabel;
-	private var button65:JButton;
+	protected var btnDrop:JButton;
 	private var separator66:JSeparator;
 	private var panel70:JPanel;
-	private var label71:JLabel;
-	private var slider72:JSlider;
+	protected var txtDrop:JLabel;
+	protected var sliderDrop:JSlider;
 	private var panel73:JPanel;
-	private var label74:JLabel;
-	private var slider75:JSlider;
+	protected var txtDropAlpha:JLabel;
+	protected var sliderDropAlpha:JSlider;
 	private var panel76:JPanel;
-	private var label77:JLabel;
-	private var slider78:JSlider;
+	protected var txtDropAngle:JLabel;
+	protected var sliderDropAngle:JSlider;
 	private var panel79:JPanel;
-	private var label80:JLabel;
-	private var slider81:JSlider;
+	protected var txtDropDistance:JLabel;
+	protected var sliderDropDistance:JSlider;
 	
 	/**
 	 * StaticTextProperty Constructor
@@ -69,6 +69,7 @@ public class StaticTextProperty extends JPanel{
 	public function StaticTextProperty(){
 		//component creation
 		setSize(new IntDimension(285, 440));
+		setPreferredSize(new IntDimension(285, 440));
 		var layout0:CenterLayout = new CenterLayout();
 		setLayout(layout0);
 		
@@ -90,23 +91,23 @@ public class StaticTextProperty extends JPanel{
 		layout2.setAlign(AsWingConstants.CENTER);
 		panel25.setLayout(layout2);
 		
-		togglebutton23 = new JToggleButton();
-		togglebutton23.setLocation(new IntPoint(0, 202));
-		togglebutton23.setSize(new IntDimension(58, 26));
-		togglebutton23.setText("特效文字");
+		btnSpecial = new JToggleButton();
+		btnSpecial.setLocation(new IntPoint(0, 202));
+		btnSpecial.setSize(new IntDimension(58, 26));
+		btnSpecial.setText("特效文字");
 		
-		togglebutton26 = new JToggleButton();
-		togglebutton26.setLocation(new IntPoint(143, 0));
-		togglebutton26.setSize(new IntDimension(58, 26));
-		togglebutton26.setText("静态文字");
+		btnStatic = new JToggleButton();
+		btnStatic.setLocation(new IntPoint(143, 0));
+		btnStatic.setSize(new IntDimension(58, 26));
+		btnStatic.setText("静态文字");
 		
-		textarea27 = new JTextArea();
-		textarea27.setLocation(new IntPoint(0, 206));
-		textarea27.setSize(new IntDimension(265, 60));
-		textarea27.setPreferredSize(new IntDimension(265, 60));
-		textarea27.setEditable(true);
-		textarea27.setMaxChars(200);
-		textarea27.setWordWrap(true);
+		txtInput = new JTextArea();
+		txtInput.setLocation(new IntPoint(0, 206));
+		txtInput.setSize(new IntDimension(265, 60));
+		txtInput.setPreferredSize(new IntDimension(265, 60));
+		txtInput.setEditable(true);
+		txtInput.setMaxChars(200);
+		txtInput.setWordWrap(true);
 		
 		panel29 = new JPanel();
 		panel29.setLocation(new IntPoint(0, 96));
@@ -116,18 +117,18 @@ public class StaticTextProperty extends JPanel{
 		layout3.setVgap(0);
 		panel29.setLayout(layout3);
 		
-		combobox30 = new JComboBox();
-		combobox30.setLocation(new IntPoint(0, 0));
-		combobox30.setSize(new IntDimension(60, 22));
-		combobox30.setPreferredSize(new IntDimension(60, 22));
-		combobox30.setConstraints("West");
-		combobox30.setMaximumRowCount(7);
+		combobox = new JComboBox();
+		combobox.setLocation(new IntPoint(0, 0));
+		combobox.setSize(new IntDimension(60, 22));
+		combobox.setPreferredSize(new IntDimension(60, 22));
+		combobox.setConstraints("West");
+		combobox.setMaximumRowCount(7);
 		
-		button31 = new JButton();
-		button31.setLocation(new IntPoint(207, 0));
-		button31.setSize(new IntDimension(58, 26));
-		button31.setConstraints("East");
-		button31.setText("添加文字");
+		btnAdd = new JButton();
+		btnAdd.setLocation(new IntPoint(207, 0));
+		btnAdd.setSize(new IntDimension(58, 26));
+		btnAdd.setConstraints("East");
+		btnAdd.setText("添加文字");
 		
 		panel32 = new JPanel();
 		panel32.setLocation(new IntPoint(0, 127));
@@ -145,41 +146,41 @@ public class StaticTextProperty extends JPanel{
 		layout5.setVgap(0);
 		panel46.setLayout(layout5);
 		
-		togglebutton37 = new JToggleButton();
-		togglebutton37.setLocation(new IntPoint(5, 5));
-		togglebutton37.setSize(new IntDimension(22, 26));
-		togglebutton37.setConstraints("West");
-		togglebutton37.setText("左");
+		btnLeft = new JToggleButton();
+		btnLeft.setLocation(new IntPoint(5, 5));
+		btnLeft.setSize(new IntDimension(22, 26));
+		btnLeft.setConstraints("West");
+		btnLeft.setText("左");
 		
-		togglebutton38 = new JToggleButton();
-		togglebutton38.setLocation(new IntPoint(0, 0));
-		togglebutton38.setSize(new IntDimension(22, 26));
-		togglebutton38.setConstraints("West");
-		togglebutton38.setText("中");
+		btnCenter = new JToggleButton();
+		btnCenter.setLocation(new IntPoint(0, 0));
+		btnCenter.setSize(new IntDimension(22, 26));
+		btnCenter.setConstraints("West");
+		btnCenter.setText("中");
 		
-		togglebutton39 = new JToggleButton();
-		togglebutton39.setLocation(new IntPoint(0, 0));
-		togglebutton39.setSize(new IntDimension(22, 26));
-		togglebutton39.setConstraints("West");
-		togglebutton39.setText("右");
+		btnRight = new JToggleButton();
+		btnRight.setLocation(new IntPoint(0, 0));
+		btnRight.setSize(new IntDimension(22, 26));
+		btnRight.setConstraints("West");
+		btnRight.setText("右");
 		
-		togglebutton40 = new JToggleButton();
-		togglebutton40.setLocation(new IntPoint(0, 0));
-		togglebutton40.setSize(new IntDimension(22, 26));
-		togglebutton40.setConstraints("West");
-		togglebutton40.setText("粗");
+		btnBold = new JToggleButton();
+		btnBold.setLocation(new IntPoint(0, 0));
+		btnBold.setSize(new IntDimension(22, 26));
+		btnBold.setConstraints("West");
+		btnBold.setText("粗");
 		
-		togglebutton41 = new JToggleButton();
-		togglebutton41.setLocation(new IntPoint(0, 0));
-		togglebutton41.setSize(new IntDimension(22, 26));
-		togglebutton41.setConstraints("West");
-		togglebutton41.setText("斜");
+		btnItalic = new JToggleButton();
+		btnItalic.setLocation(new IntPoint(0, 0));
+		btnItalic.setSize(new IntDimension(22, 26));
+		btnItalic.setConstraints("West");
+		btnItalic.setText("斜");
 		
-		togglebutton42 = new JToggleButton();
-		togglebutton42.setLocation(new IntPoint(0, 0));
-		togglebutton42.setSize(new IntDimension(22, 26));
-		togglebutton42.setConstraints("West");
-		togglebutton42.setText("线");
+		btnUnderline = new JToggleButton();
+		btnUnderline.setLocation(new IntPoint(0, 0));
+		btnUnderline.setSize(new IntDimension(22, 26));
+		btnUnderline.setConstraints("West");
+		btnUnderline.setText("线");
 		
 		panel47 = new JPanel();
 		panel47.setLocation(new IntPoint(197, 0));
@@ -190,17 +191,17 @@ public class StaticTextProperty extends JPanel{
 		layout6.setVgap(0);
 		panel47.setLayout(layout6);
 		
-		togglebutton43 = new JToggleButton();
-		togglebutton43.setLocation(new IntPoint(167, 5));
-		togglebutton43.setSize(new IntDimension(34, 26));
-		togglebutton43.setConstraints("East");
-		togglebutton43.setText("横排");
+		btnLtr = new JToggleButton();
+		btnLtr.setLocation(new IntPoint(167, 5));
+		btnLtr.setSize(new IntDimension(34, 26));
+		btnLtr.setConstraints("East");
+		btnLtr.setText("横排");
 		
-		togglebutton44 = new JToggleButton();
-		togglebutton44.setLocation(new IntPoint(231, 0));
-		togglebutton44.setSize(new IntDimension(34, 26));
-		togglebutton44.setConstraints("East");
-		togglebutton44.setText("竖排");
+		btnTtb = new JToggleButton();
+		btnTtb.setLocation(new IntPoint(231, 0));
+		btnTtb.setSize(new IntDimension(34, 26));
+		btnTtb.setConstraints("East");
+		btnTtb.setText("竖排");
 		
 		spacer68 = new JSpacer();
 		spacer68.setLocation(new IntPoint(0, 186));
@@ -208,41 +209,41 @@ public class StaticTextProperty extends JPanel{
 		
 		panel82 = new JPanel();
 		panel82.setLocation(new IntPoint(0, 304));
-		panel82.setSize(new IntDimension(265, 236));
-		var border7:EmptyBorder = new EmptyBorder();
-		border7.setRight(10);
-		panel82.setBorder(border7);
-		var layout8:SoftBoxLayout = new SoftBoxLayout();
-		layout8.setAxis(AsWingConstants.VERTICAL);
-		layout8.setAlign(AsWingConstants.TOP);
-		layout8.setGap(5);
-		panel82.setLayout(layout8);
+		panel82.setSize(new IntDimension(265, 216));
+		panel82.setPreferredSize(new IntDimension(265, 216));
+		var layout7:SoftBoxLayout = new SoftBoxLayout();
+		layout7.setAxis(AsWingConstants.VERTICAL);
+		layout7.setAlign(AsWingConstants.TOP);
+		layout7.setGap(5);
+		panel82.setLayout(layout7);
 		
 		panel48 = new JPanel();
 		panel48.setLocation(new IntPoint(0, 0));
-		panel48.setSize(new IntDimension(265, 23));
-		var layout9:EmptyLayout = new EmptyLayout();
-		panel48.setLayout(layout9);
+		panel48.setSize(new IntDimension(255, 20));
+		var layout8:EmptyLayout = new EmptyLayout();
+		panel48.setLayout(layout8);
 		
-		label49 = new JLabel();
-		label49.setLocation(new IntPoint(5, 5));
-		label49.setSize(new IntDimension(50, 23));
-		label49.setPreferredSize(new IntDimension(50, 23));
-		label49.setConstraints("West");
-		label49.setText("字号(12)");
+		txtSize = new JLabel();
+		txtSize.setLocation(new IntPoint(0, 0));
+		txtSize.setSize(new IntDimension(50, 19));
+		txtSize.setConstraints("West");
+		txtSize.setText("字号(12)");
 		
-		slider50 = new JSlider();
-		slider50.setLocation(new IntPoint(60, 4));
-		slider50.setSize(new IntDimension(200, 14));
-		slider50.setConstraints("East");
-		slider50.setValue(0);
-		slider50.setExtent(0);
-		slider50.setMinimum(0);
-		slider50.setMaximum(100);
+		sliderSize = new JSlider();
+		sliderSize.setLocation(new IntPoint(60, 4));
+		sliderSize.setSize(new IntDimension(200, 14));
+		sliderSize.setConstraints("East");
+		sliderSize.setValue(0);
+		sliderSize.setExtent(0);
+		sliderSize.setMinimum(0);
+		sliderSize.setMaximum(100);
 		
 		panel52 = new JPanel();
 		panel52.setLocation(new IntPoint(0, 27));
 		panel52.setSize(new IntDimension(265, 27));
+		var border9:EmptyBorder = new EmptyBorder();
+		border9.setRight(10);
+		panel52.setBorder(border9);
 		var layout10:BorderLayout = new BorderLayout();
 		layout10.setHgap(0);
 		layout10.setVgap(0);
@@ -254,11 +255,11 @@ public class StaticTextProperty extends JPanel{
 		label53.setConstraints("West");
 		label53.setText("描边：");
 		
-		button54 = new JButton();
-		button54.setLocation(new IntPoint(239, 0));
-		button54.setSize(new IntDimension(26, 26));
-		button54.setConstraints("East");
-		button54.setText("　　");
+		btnBlur = new JButton();
+		btnBlur.setLocation(new IntPoint(239, 0));
+		btnBlur.setSize(new IntDimension(26, 26));
+		btnBlur.setConstraints("East");
+		btnBlur.setText("　");
 		
 		separator56 = new JSeparator();
 		separator56.setLocation(new IntPoint(0, 26));
@@ -267,51 +268,54 @@ public class StaticTextProperty extends JPanel{
 		
 		panel57 = new JPanel();
 		panel57.setLocation(new IntPoint(0, 54));
-		panel57.setSize(new IntDimension(255, 19));
+		panel57.setSize(new IntDimension(255, 20));
 		var layout11:EmptyLayout = new EmptyLayout();
 		panel57.setLayout(layout11);
 		
-		label58 = new JLabel();
-		label58.setLocation(new IntPoint(5, 5));
-		label58.setSize(new IntDimension(43, 19));
-		label58.setConstraints("West");
-		label58.setText("粗细(5)");
+		txtBlur = new JLabel();
+		txtBlur.setLocation(new IntPoint(0, 0));
+		txtBlur.setSize(new IntDimension(43, 19));
+		txtBlur.setConstraints("West");
+		txtBlur.setText("粗细(5)");
 		
-		slider59 = new JSlider();
-		slider59.setLocation(new IntPoint(60, 4));
-		slider59.setSize(new IntDimension(200, 19));
-		slider59.setConstraints("East");
-		slider59.setValue(0);
-		slider59.setExtent(0);
-		slider59.setMinimum(0);
-		slider59.setMaximum(100);
+		sliderBlur = new JSlider();
+		sliderBlur.setLocation(new IntPoint(60, 4));
+		sliderBlur.setSize(new IntDimension(200, 14));
+		sliderBlur.setConstraints("East");
+		sliderBlur.setValue(0);
+		sliderBlur.setExtent(0);
+		sliderBlur.setMinimum(0);
+		sliderBlur.setMaximum(100);
 		
 		panel60 = new JPanel();
 		panel60.setLocation(new IntPoint(0, 81));
-		panel60.setSize(new IntDimension(255, 19));
+		panel60.setSize(new IntDimension(255, 20));
 		var layout12:EmptyLayout = new EmptyLayout();
 		panel60.setLayout(layout12);
 		
-		label61 = new JLabel();
-		label61.setLocation(new IntPoint(5, 5));
-		label61.setSize(new IntDimension(43, 19));
-		label61.setConstraints("West");
-		label61.setText("透明(0)");
+		txtBlurAlpha = new JLabel();
+		txtBlurAlpha.setLocation(new IntPoint(0, 0));
+		txtBlurAlpha.setSize(new IntDimension(43, 19));
+		txtBlurAlpha.setConstraints("West");
+		txtBlurAlpha.setText("透明(0)");
 		
-		slider62 = new JSlider();
-		slider62.setLocation(new IntPoint(60, 4));
-		slider62.setSize(new IntDimension(200, 14));
-		slider62.setConstraints("East");
-		slider62.setValue(0);
-		slider62.setExtent(0);
-		slider62.setMinimum(0);
-		slider62.setMaximum(100);
+		sliderBlurAlpha = new JSlider();
+		sliderBlurAlpha.setLocation(new IntPoint(60, 4));
+		sliderBlurAlpha.setSize(new IntDimension(200, 14));
+		sliderBlurAlpha.setConstraints("East");
+		sliderBlurAlpha.setValue(0);
+		sliderBlurAlpha.setExtent(0);
+		sliderBlurAlpha.setMinimum(0);
+		sliderBlurAlpha.setMaximum(100);
 		
 		panel63 = new JPanel();
 		panel63.setLocation(new IntPoint(0, 108));
-		panel63.setSize(new IntDimension(265, 26));
-		var layout13:BorderLayout = new BorderLayout();
-		panel63.setLayout(layout13);
+		panel63.setSize(new IntDimension(265, 27));
+		var border13:EmptyBorder = new EmptyBorder();
+		border13.setRight(10);
+		panel63.setBorder(border13);
+		var layout14:BorderLayout = new BorderLayout();
+		panel63.setLayout(layout14);
 		
 		label64 = new JLabel();
 		label64.setLocation(new IntPoint(5, 5));
@@ -319,11 +323,11 @@ public class StaticTextProperty extends JPanel{
 		label64.setConstraints("West");
 		label64.setText("投影：");
 		
-		button65 = new JButton();
-		button65.setLocation(new IntPoint(239, 0));
-		button65.setSize(new IntDimension(26, 26));
-		button65.setConstraints("East");
-		button65.setText("　　");
+		btnDrop = new JButton();
+		btnDrop.setLocation(new IntPoint(237, 0));
+		btnDrop.setSize(new IntDimension(18, 26));
+		btnDrop.setConstraints("East");
+		btnDrop.setText("　");
 		
 		separator66 = new JSeparator();
 		separator66.setLocation(new IntPoint(0, 26));
@@ -332,115 +336,116 @@ public class StaticTextProperty extends JPanel{
 		
 		panel70 = new JPanel();
 		panel70.setLocation(new IntPoint(0, 135));
-		panel70.setSize(new IntDimension(255, 14));
-		var layout14:EmptyLayout = new EmptyLayout();
-		panel70.setLayout(layout14);
+		panel70.setSize(new IntDimension(255, 20));
+		var layout15:EmptyLayout = new EmptyLayout();
+		panel70.setLayout(layout15);
 		
-		label71 = new JLabel();
-		label71.setSize(new IntDimension(43, 19));
-		label71.setConstraints("West");
-		label71.setText("效果(1)");
+		txtDrop = new JLabel();
+		txtDrop.setLocation(new IntPoint(0, 0));
+		txtDrop.setSize(new IntDimension(43, 19));
+		txtDrop.setConstraints("West");
+		txtDrop.setText("效果(1)");
 		
-		slider72 = new JSlider();
-		slider72.setLocation(new IntPoint(60, 4));
-		slider72.setSize(new IntDimension(200, 19));
-		slider72.setConstraints("East");
-		slider72.setValue(0);
-		slider72.setExtent(0);
-		slider72.setMinimum(0);
-		slider72.setMaximum(100);
+		sliderDrop = new JSlider();
+		sliderDrop.setLocation(new IntPoint(60, 4));
+		sliderDrop.setSize(new IntDimension(200, 14));
+		sliderDrop.setConstraints("East");
+		sliderDrop.setValue(0);
+		sliderDrop.setExtent(0);
+		sliderDrop.setMinimum(0);
+		sliderDrop.setMaximum(100);
 		
 		panel73 = new JPanel();
 		panel73.setLocation(new IntPoint(0, 332));
-		panel73.setSize(new IntDimension(255, 14));
-		var layout15:EmptyLayout = new EmptyLayout();
-		panel73.setLayout(layout15);
+		panel73.setSize(new IntDimension(255, 20));
+		var layout16:EmptyLayout = new EmptyLayout();
+		panel73.setLayout(layout16);
 		
-		label74 = new JLabel();
-		label74.setLocation(new IntPoint(0, 0));
-		label74.setSize(new IntDimension(43, 19));
-		label74.setConstraints("West");
-		label74.setText("透明(0)");
+		txtDropAlpha = new JLabel();
+		txtDropAlpha.setLocation(new IntPoint(0, 0));
+		txtDropAlpha.setSize(new IntDimension(43, 19));
+		txtDropAlpha.setConstraints("West");
+		txtDropAlpha.setText("透明(0)");
 		
-		slider75 = new JSlider();
-		slider75.setLocation(new IntPoint(60, 4));
-		slider75.setSize(new IntDimension(200, 19));
-		slider75.setConstraints("East");
-		slider75.setValue(0);
-		slider75.setExtent(0);
-		slider75.setMinimum(0);
-		slider75.setMaximum(100);
+		sliderDropAlpha = new JSlider();
+		sliderDropAlpha.setLocation(new IntPoint(60, 4));
+		sliderDropAlpha.setSize(new IntDimension(200, 14));
+		sliderDropAlpha.setConstraints("East");
+		sliderDropAlpha.setValue(0);
+		sliderDropAlpha.setExtent(0);
+		sliderDropAlpha.setMinimum(0);
+		sliderDropAlpha.setMaximum(100);
 		
 		panel76 = new JPanel();
 		panel76.setLocation(new IntPoint(0, 189));
-		panel76.setSize(new IntDimension(255, 14));
-		var layout16:EmptyLayout = new EmptyLayout();
-		panel76.setLayout(layout16);
+		panel76.setSize(new IntDimension(255, 20));
+		var layout17:EmptyLayout = new EmptyLayout();
+		panel76.setLayout(layout17);
 		
-		label77 = new JLabel();
-		label77.setLocation(new IntPoint(0, 0));
-		label77.setSize(new IntDimension(50, 19));
-		label77.setConstraints("West");
-		label77.setText("角度(45)");
+		txtDropAngle = new JLabel();
+		txtDropAngle.setLocation(new IntPoint(0, 0));
+		txtDropAngle.setSize(new IntDimension(50, 19));
+		txtDropAngle.setConstraints("West");
+		txtDropAngle.setText("角度(45)");
 		
-		slider78 = new JSlider();
-		slider78.setLocation(new IntPoint(60, 4));
-		slider78.setSize(new IntDimension(200, 19));
-		slider78.setConstraints("East");
-		slider78.setValue(0);
-		slider78.setExtent(0);
-		slider78.setMinimum(0);
-		slider78.setMaximum(100);
+		sliderDropAngle = new JSlider();
+		sliderDropAngle.setLocation(new IntPoint(60, 4));
+		sliderDropAngle.setSize(new IntDimension(200, 14));
+		sliderDropAngle.setConstraints("East");
+		sliderDropAngle.setValue(0);
+		sliderDropAngle.setExtent(0);
+		sliderDropAngle.setMinimum(0);
+		sliderDropAngle.setMaximum(100);
 		
 		panel79 = new JPanel();
 		panel79.setLocation(new IntPoint(0, 216));
-		panel79.setSize(new IntDimension(265, 19));
-		var layout17:EmptyLayout = new EmptyLayout();
-		panel79.setLayout(layout17);
+		panel79.setSize(new IntDimension(255, 20));
+		var layout18:EmptyLayout = new EmptyLayout();
+		panel79.setLayout(layout18);
 		
-		label80 = new JLabel();
-		label80.setLocation(new IntPoint(5, 5));
-		label80.setSize(new IntDimension(43, 19));
-		label80.setConstraints("West");
-		label80.setText("距离(1)");
+		txtDropDistance = new JLabel();
+		txtDropDistance.setLocation(new IntPoint(0, 0));
+		txtDropDistance.setSize(new IntDimension(43, 19));
+		txtDropDistance.setConstraints("West");
+		txtDropDistance.setText("距离(1)");
 		
-		slider81 = new JSlider();
-		slider81.setLocation(new IntPoint(60, 4));
-		slider81.setSize(new IntDimension(200, 14));
-		slider81.setConstraints("East");
-		slider81.setValue(0);
-		slider81.setExtent(0);
-		slider81.setMinimum(0);
-		slider81.setMaximum(100);
+		sliderDropDistance = new JSlider();
+		sliderDropDistance.setLocation(new IntPoint(60, 4));
+		sliderDropDistance.setSize(new IntDimension(200, 14));
+		sliderDropDistance.setConstraints("East");
+		sliderDropDistance.setValue(0);
+		sliderDropDistance.setExtent(0);
+		sliderDropDistance.setMinimum(0);
+		sliderDropDistance.setMaximum(100);
 		
 		//component layoution
 		append(panel28);
 		
 		panel28.append(panel25);
-		panel28.append(textarea27);
+		panel28.append(txtInput);
 		panel28.append(panel29);
 		panel28.append(panel32);
 		panel28.append(spacer68);
 		panel28.append(panel82);
 		
-		panel25.append(togglebutton23);
-		panel25.append(togglebutton26);
+		panel25.append(btnSpecial);
+		panel25.append(btnStatic);
 		
-		panel29.append(combobox30);
-		panel29.append(button31);
+		panel29.append(combobox);
+		panel29.append(btnAdd);
 		
 		panel32.append(panel46);
 		panel32.append(panel47);
 		
-		panel46.append(togglebutton37);
-		panel46.append(togglebutton38);
-		panel46.append(togglebutton39);
-		panel46.append(togglebutton40);
-		panel46.append(togglebutton41);
-		panel46.append(togglebutton42);
+		panel46.append(btnLeft);
+		panel46.append(btnCenter);
+		panel46.append(btnRight);
+		panel46.append(btnBold);
+		panel46.append(btnItalic);
+		panel46.append(btnUnderline);
 		
-		panel47.append(togglebutton43);
-		panel47.append(togglebutton44);
+		panel47.append(btnLtr);
+		panel47.append(btnTtb);
 		
 		panel82.append(panel48);
 		panel82.append(panel52);
@@ -452,34 +457,34 @@ public class StaticTextProperty extends JPanel{
 		panel82.append(panel76);
 		panel82.append(panel79);
 		
-		panel48.append(label49);
-		panel48.append(slider50);
+		panel48.append(txtSize);
+		panel48.append(sliderSize);
 		
 		panel52.append(label53);
-		panel52.append(button54);
+		panel52.append(btnBlur);
 		panel52.append(separator56);
 		
-		panel57.append(label58);
-		panel57.append(slider59);
+		panel57.append(txtBlur);
+		panel57.append(sliderBlur);
 		
-		panel60.append(label61);
-		panel60.append(slider62);
+		panel60.append(txtBlurAlpha);
+		panel60.append(sliderBlurAlpha);
 		
 		panel63.append(label64);
-		panel63.append(button65);
+		panel63.append(btnDrop);
 		panel63.append(separator66);
 		
-		panel70.append(label71);
-		panel70.append(slider72);
+		panel70.append(txtDrop);
+		panel70.append(sliderDrop);
 		
-		panel73.append(label74);
-		panel73.append(slider75);
+		panel73.append(txtDropAlpha);
+		panel73.append(sliderDropAlpha);
 		
-		panel76.append(label77);
-		panel76.append(slider78);
+		panel76.append(txtDropAngle);
+		panel76.append(sliderDropAngle);
 		
-		panel79.append(label80);
-		panel79.append(slider81);
+		panel79.append(txtDropDistance);
+		panel79.append(sliderDropDistance);
 		
 	}
 	
@@ -487,118 +492,118 @@ public class StaticTextProperty extends JPanel{
 	
 	
 	
-	public function getTogglebutton23():JToggleButton{
-		return togglebutton23;
+	public function getBtnSpecial():JToggleButton{
+		return btnSpecial;
 	}
 	
-	public function getTogglebutton26():JToggleButton{
-		return togglebutton26;
+	public function getBtnStatic():JToggleButton{
+		return btnStatic;
 	}
 	
-	public function getTextarea27():JTextArea{
-		return textarea27;
-	}
-	
-	
-	public function getCombobox30():JComboBox{
-		return combobox30;
-	}
-	
-	public function getButton31():JButton{
-		return button31;
+	public function getTxtInput():JTextArea{
+		return txtInput;
 	}
 	
 	
-	
-	public function getTogglebutton37():JToggleButton{
-		return togglebutton37;
+	public function getCombobox():JComboBox{
+		return combobox;
 	}
 	
-	public function getTogglebutton38():JToggleButton{
-		return togglebutton38;
-	}
-	
-	public function getTogglebutton39():JToggleButton{
-		return togglebutton39;
-	}
-	
-	public function getTogglebutton40():JToggleButton{
-		return togglebutton40;
-	}
-	
-	public function getTogglebutton41():JToggleButton{
-		return togglebutton41;
-	}
-	
-	public function getTogglebutton42():JToggleButton{
-		return togglebutton42;
-	}
-	
-	
-	public function getTogglebutton43():JToggleButton{
-		return togglebutton43;
-	}
-	
-	public function getTogglebutton44():JToggleButton{
-		return togglebutton44;
+	public function getBtnAdd():JButton{
+		return btnAdd;
 	}
 	
 	
 	
+	public function getBtnLeft():JToggleButton{
+		return btnLeft;
+	}
 	
+	public function getBtnCenter():JToggleButton{
+		return btnCenter;
+	}
 	
-	public function getSlider50():JSlider{
-		return slider50;
+	public function getBtnRight():JToggleButton{
+		return btnRight;
+	}
+	
+	public function getBtnBold():JToggleButton{
+		return btnBold;
+	}
+	
+	public function getBtnItalic():JToggleButton{
+		return btnItalic;
+	}
+	
+	public function getBtnUnderline():JToggleButton{
+		return btnUnderline;
 	}
 	
 	
+	public function getBtnLtr():JToggleButton{
+		return btnLtr;
+	}
 	
-	public function getButton54():JButton{
-		return button54;
+	public function getBtnTtb():JToggleButton{
+		return btnTtb;
 	}
 	
 	
 	
 	
-	public function getSlider59():JSlider{
-		return slider59;
+	
+	public function getSliderSize():JSlider{
+		return sliderSize;
 	}
 	
 	
 	
-	public function getSlider62():JSlider{
-		return slider62;
-	}
-	
-	
-	
-	public function getButton65():JButton{
-		return button65;
+	public function getBtnBlur():JButton{
+		return btnBlur;
 	}
 	
 	
 	
 	
-	public function getSlider72():JSlider{
-		return slider72;
+	public function getSliderBlur():JSlider{
+		return sliderBlur;
 	}
 	
 	
 	
-	public function getSlider75():JSlider{
-		return slider75;
+	public function getSliderBlurAlpha():JSlider{
+		return sliderBlurAlpha;
 	}
 	
 	
 	
-	public function getSlider78():JSlider{
-		return slider78;
+	public function getBtnDrop():JButton{
+		return btnDrop;
 	}
 	
 	
 	
-	public function getSlider81():JSlider{
-		return slider81;
+	
+	public function getSliderDrop():JSlider{
+		return sliderDrop;
+	}
+	
+	
+	
+	public function getSliderDropAlpha():JSlider{
+		return sliderDropAlpha;
+	}
+	
+	
+	
+	public function getSliderDropAngle():JSlider{
+		return sliderDropAngle;
+	}
+	
+	
+	
+	public function getSliderDropDistance():JSlider{
+		return sliderDropDistance;
 	}
 	
 	
