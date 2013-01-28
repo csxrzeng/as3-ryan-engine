@@ -81,7 +81,10 @@ package com.ryan.player
 					if (_autoStart)
 					{
 						_autoStart = false;
-						start();
+						if (swf) // 防止无限递归
+						{
+							start();
+						}
 					}
 				}
 			}
