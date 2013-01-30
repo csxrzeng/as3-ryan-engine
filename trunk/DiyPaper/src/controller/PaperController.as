@@ -39,7 +39,6 @@ package controller
 		
 		override protected function initServer():void
 		{
-			Dispatcher.addEventListener(GameEvent.NewPaper, newPaperProcessor);
 			Dispatcher.addEventListener(GameEvent.SavePaper, savePaperProcessor);
 			Dispatcher.addEventListener(GameEvent.LoadPaper, loadPaperProcessor);
 			Dispatcher.addEventListener(GameEvent.SaveToPng, saveToPngProcessor);
@@ -47,7 +46,7 @@ package controller
 		
 		private function saveToPngProcessor(e:GameEvent):void
 		{
-			var vo:PaperVo = paper.getVo();
+			var vo:PaperVo = cache.paper;
 			var bmd:BitmapData = new BitmapData(vo.width, vo.height, true, 0xFFFFFFFF);
 			bmd.draw(paper);
 			var encoder:PNGEncoder = new PNGEncoder();
@@ -55,18 +54,10 @@ package controller
 			saveByteArray(png, DateUtil.getDateString() + ".png");
 		}
 		
-		private function newPaperProcessor(e:GameEvent):void
-		{
-			var vo:PaperVo = new PaperVo();
-			vo.width = 500;
-			vo.height = 300;
-			paper.setVo(vo);
-		}
-		
 		private function savePaperProcessor(e:GameEvent):void
 		{
 			var data:ByteArray = new ByteArray();
-			data.writeUTFBytes(paper.getVo().toXML());
+			data.writeUTFBytes(cache.paper.toXML());
 			saveByteArray(data, DateUtil.getDateString() + ".xml");
 		}
 		
@@ -104,9 +95,8 @@ package controller
 			var bytes:ByteArray = file.data as ByteArray;
 			var str:String = bytes.readUTFBytes(bytes.length);
 			var xml:XML = XML(str);
-			var vo:PaperVo = new PaperVo();
+			var vo:PaperVo = cache.paper;
 			vo.fromXML(xml);
-			paper.setVo(vo);
 		}
 		
 		public function get paper():PaperView

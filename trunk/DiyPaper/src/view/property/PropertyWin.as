@@ -57,6 +57,7 @@ package view.property
 			{
 				case BASE:
 					setContentPane(pBase);
+					pBase.update();
 					break;
 				case STATIC_TEXT:
 					setContentPane(pStaticText);

@@ -26,6 +26,7 @@ package model
 		}
 		
 		public var font:FontCache = new FontCache();
+		public var paper:PaperVo = new PaperVo();
 	}
 
 }

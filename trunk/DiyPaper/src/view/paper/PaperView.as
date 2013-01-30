@@ -5,21 +5,19 @@ package view.paper
 	import com.greensock.transform.TransformManager;
 	import controller.Dispatcher;
 	import controller.GameEvent;
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
+	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
+	import model.Cache;
 	import model.ItemVo;
 	import model.PaperVo;
 	import org.aswing.ASColor;
+	import org.aswing.border.EmptyBorder;
 	import org.aswing.border.LineBorder;
-	import org.aswing.BorderLayout;
 	import org.aswing.CenterLayout;
 	import org.aswing.EmptyLayout;
 	import org.aswing.geom.IntDimension;
+	import org.aswing.Insets;
 	import org.aswing.JPanel;
 	
 	/**
@@ -33,27 +31,43 @@ package view.paper
 		private var _tool:TransformManager;
 		private var _perfersize:IntDimension;
 		private var _paper:JPanel;
+		private var _bg:Sprite;
 		
 		public function PaperView()
 		{
-			_vo = new PaperVo();
-			_tool = new TransformManager();
+			setBorder(new EmptyBorder(null, new Insets(100, 150, 100, 150)));
+			setClipMasked(false);
+			setLayout(new CenterLayout());
+			_vo = Cache.instance.paper;
 			_perfersize = new IntDimension(_vo.width, _vo.height);
 			_paper = new JPanel(new EmptyLayout());
-			//setLayout(new CenterLayout());
-			//setPreferredSize(new IntDimension(1000, 500));
-			append(_paper);
-			setClipMasked(false);
-			//setOpaque(true);
-			//setBackground(new ASColor(0xDDDDDD, 1));
 			_paper.setOpaque(true);
-			_paper.setBackground(new ASColor(0xFFFFFF, 1));
 			_paper.setClipMasked(false);
-			_paper.setPreferredSize(_perfersize);
+			_bg = new Sprite();
+			_paper.addChild(_bg);
+			append(_paper);
+			_tool = new TransformManager();
 			_tool.forceSelectionToFront = false;
 			_tool.autoDeselect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
+			updateBase();
+		}
+		
+		public function updateBase():void 
+		{
+			_perfersize.setSizeWH(_vo.width, _vo.height);
+			_paper.setPreferredSize(_perfersize);
+			_paper.setBackground(_vo.background);
+			_paper.setBorder(new LineBorder(null, _vo.background, 1));
+			_bg.graphics.clear();
+			if (_vo.border > 0)
+			{
+				_bg.graphics.beginFill(_vo.borderColor.getRGB(), _vo.borderColor.getAlpha());
+				_bg.graphics.drawRect(0, 0, _vo.width, _vo.height);
+				_bg.graphics.drawRect(_vo.border, _vo.border, _vo.width - _vo.border * 2, _vo.height - _vo.border * 2);
+			}
+			_bg.graphics.endFill();
 		}
 		
 		private function onMouseClick(e:MouseEvent):void 
