@@ -2,6 +2,7 @@ package view.property
 {
 	import controller.Dispatcher;
 	import controller.GameEvent;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import model.Cache;
 	import model.PaperVo;
@@ -33,9 +34,10 @@ package view.property
 		
 		public function BasePane()
 		{
+			setClipMasked(false);
 			colorBorder = new ASColor(0x000000, 1);
 			colorMixer = new JColorMixer();
-			pop = new JPopup(AsWingUtils.getPopupAncestor(this));
+			pop = new JPopup(this);
 			pop.append(colorMixer);
 			colorMixer.setOpaque(true);
 			colorMixer.setBackground(new ASColor(0xeeeeee, 1));
@@ -71,9 +73,16 @@ package view.property
 			sH.addEventListener(InteractiveEvent.STATE_CHANGED, onStateChange);
 			sB.addEventListener(InteractiveEvent.STATE_CHANGED, onStateChange);
 			sB.addEventListener(MouseEvent.ROLL_OVER, onBorderRollOver);
+			sB.addEventListener(MouseEvent.ROLL_OUT, onBorderRollOut);
 			btnBg.addEventListener(AWEvent.ACT, onBgAction);
 			colorMixer.addEventListener(ColorChooserEvent.COLOR_ADJUSTING, onColorAdjusting);
 			pop.addEventListener(AWEvent.HIDDEN, onPopHidden);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
+		}
+		
+		private function onRemoved(e:Event):void 
+		{
+			pop.hide();
 		}
 		
 		private function onStateChange(e:InteractiveEvent):void 
@@ -88,6 +97,7 @@ package view.property
 		
 		private function onPopHidden(e:AWEvent):void
 		{
+			mixerOwner = null;
 		}
 		
 		private function onColorAdjusting(e:ColorChooserEvent):void
@@ -106,16 +116,34 @@ package view.property
 		
 		private function onBorderRollOver(e:MouseEvent):void
 		{
-			mixerOwner = sB;
-			colorMixer.setSelectedColor(vo.borderColor);
-			showMixer();
+			if (mixerOwner != sB)
+			{
+				mixerOwner = sB;
+				colorMixer.setSelectedColor(vo.borderColor);
+				showMixer();
+			}
+		}
+		
+		private function onBorderRollOut(e:MouseEvent):void
+		{
+			if (!pop.hitTestMouse())
+			{
+				pop.hide();
+			}
 		}
 		
 		private function onBgAction(e:AWEvent):void
 		{
-			mixerOwner = btnBg;
-			colorMixer.setSelectedColor(vo.background);
-			showMixer();
+			if (mixerOwner != btnBg)
+			{
+				mixerOwner = btnBg;
+				colorMixer.setSelectedColor(vo.background);
+				showMixer();
+			}
+			else
+			{
+				pop.hide();
+			}
 		}
 		
 		private function showMixer():void

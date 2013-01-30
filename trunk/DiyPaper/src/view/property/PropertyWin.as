@@ -27,6 +27,7 @@ package view.property
 		public function PropertyWin(owner:* = null, title:String = "", modal:Boolean = false)
 		{
 			super(owner, title, modal);
+			setClipMasked(false);
 			configUI();
 		}
 		
