@@ -1,5 +1,6 @@
 package model 
 {
+	import org.aswing.ASColor;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -9,6 +10,9 @@ package model
 		public var id:int;
 		public var width:int = 600; // 默认宽度
 		public var height:int = 300; // 默认高度
+		public var background:ASColor = new ASColor(0xffffff, 1);
+		public var border:int = 0;
+		public var borderColor:ASColor = new ASColor(0x000000, 1);
 		
 		public var items:Array = [];
 		

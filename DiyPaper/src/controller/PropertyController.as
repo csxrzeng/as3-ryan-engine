@@ -33,6 +33,16 @@ package controller
 		override protected function initServer():void
 		{
 			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyWin);
+			Dispatcher.addEventListener(GameEvent.BasePropertyChange, basePropertyChange);
+		}
+		
+		private function basePropertyChange(e:GameEvent):void 
+		{
+			for (var key:String in e.data)
+			{
+				cache.paper[key] = e.data[key];
+			}
+			MainWindow.paper.updateBase();
 		}
 		
 		private function showPropertyWin(e:GameEvent):void 
