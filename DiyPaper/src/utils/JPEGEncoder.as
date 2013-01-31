@@ -27,7 +27,7 @@ import flash.utils.ByteArray;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class JPEGEncoder implements IImageEncoder
+public class JPEGEncoder
 {
 	//--------------------------------------------------------------------------
 	//
