@@ -35,8 +35,44 @@ package view.property
 			btnCenter.addActionListener(onAlignChange);
 			
 			sliderSize.addStateListener(onTextSizeChange);
+			sliderBlur.addStateListener(onGlowBlurChange);
+			sliderBlurAlpha.addStateListener(onGlowAlphaChange);
+			sliderDrop.addStateListener(onShadowBlurChange);
+			sliderDropAlpha.addStateListener(onShadowAlphaChange);
+			sliderDropAngle.addStateListener(onShadowAngleChange);
+			sliderDropDistance.addStateListener(onShadowDistanceChange);
 			
 			settingVo = new ItemVo(ItemVo.TEXT);
+		}
+		
+		private function onShadowDistanceChange(e:AWEvent):void
+		{
+			txtDropDistance.setText("距离(" + sliderDropDistance.getValue() + ")");
+		}
+		
+		private function onShadowAngleChange(e:AWEvent):void
+		{
+			txtDropAngle.setText("角度(" + sliderDropAngle.getValue() + ")");
+		}
+		
+		private function onShadowAlphaChange(e:AWEvent):void
+		{
+			txtDropAlpha.setText("透明(" + sliderDropAlpha.getValue() + ")");
+		}
+		
+		private function onShadowBlurChange(e:AWEvent):void
+		{
+			txtDrop.setText("效果(" + sliderDrop.getValue() + ")");
+		}
+		
+		private function onGlowAlphaChange(e:AWEvent):void
+		{
+			txtBlurAlpha.setText("透明(" + sliderBlurAlpha.getValue() + ")");
+		}
+		
+		private function onGlowBlurChange(e:AWEvent):void
+		{
+			txtBlur.setText("粗细(" + sliderBlur.getValue() + ")");
 		}
 		
 		private function onTextSizeChange(e:AWEvent):void
