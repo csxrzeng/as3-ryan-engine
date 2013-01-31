@@ -229,7 +229,7 @@ package view.property
 		
 		private function onAddClick(e:AWEvent):void
 		{
-			GameController.paper.addText(_settingVo);
+			GameController.paper.addItem(_settingVo);
 		}
 		
 		private function onStatic(e:AWEvent):void
