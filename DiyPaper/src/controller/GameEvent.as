@@ -28,6 +28,10 @@ package controller
 		 * 添加在线图片到工作区
 		 */
 		static public const AddLibraryImage:String = "AddLibraryImage";
+		/**
+		 * 静态文本属性改变
+		 */
+		static public const STATIC_TEXT_PROPERTY_CHANGE:String = "static_text_property_change";
 		
 		public var data:*;
 		

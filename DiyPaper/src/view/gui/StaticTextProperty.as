@@ -295,7 +295,8 @@ public class StaticTextProperty extends JPanel{
 		
 		txtBlurAlpha = new JLabel();
 		txtBlurAlpha.setLocation(new IntPoint(0, 0));
-		txtBlurAlpha.setSize(new IntDimension(43, 19));
+		txtBlurAlpha.setSize(new IntDimension(60, 19));
+		txtBlurAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
 		txtBlurAlpha.setConstraints("West");
 		txtBlurAlpha.setText("透明(0)");
 		
@@ -363,7 +364,8 @@ public class StaticTextProperty extends JPanel{
 		
 		txtDropAlpha = new JLabel();
 		txtDropAlpha.setLocation(new IntPoint(0, 0));
-		txtDropAlpha.setSize(new IntDimension(43, 19));
+		txtDropAlpha.setSize(new IntDimension(60, 19));
+		txtDropAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
 		txtDropAlpha.setConstraints("West");
 		txtDropAlpha.setText("透明(0)");
 		
@@ -384,7 +386,8 @@ public class StaticTextProperty extends JPanel{
 		
 		txtDropAngle = new JLabel();
 		txtDropAngle.setLocation(new IntPoint(0, 0));
-		txtDropAngle.setSize(new IntDimension(50, 19));
+		txtDropAngle.setSize(new IntDimension(60, 19));
+		txtDropAngle.setHorizontalAlignment(AsWingConstants.LEFT);
 		txtDropAngle.setConstraints("West");
 		txtDropAngle.setText("角度(45)");
 		
