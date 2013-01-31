@@ -17,8 +17,8 @@
   <classpaths>
     <class path="src" />
     <class path="..\Ryan" />
-    <class path="..\..\aswing\trunk\AsWing\src" />
-    <class path="..\..\greensock" />
+    <class path="..\AsWing\src" />
+    <class path="..\greensock" />
   </classpaths>
   <!-- Build options -->
   <build>
