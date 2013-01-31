@@ -8,7 +8,7 @@ package controller
 	import model.PaperVo;
 	import org.aswing.JOptionPane;
 	import utils.DateUtil;
-	import utils.PNGEncoder;
+	import utils.JPEGEncoder;
 	import view.MainWindow;
 	import view.paper.PaperView;
 	/**
@@ -49,9 +49,9 @@ package controller
 			var vo:PaperVo = cache.paper;
 			var bmd:BitmapData = new BitmapData(vo.width, vo.height, true, 0xFFFFFFFF);
 			bmd.draw(paper);
-			var encoder:PNGEncoder = new PNGEncoder();
+			var encoder:JPEGEncoder = new JPEGEncoder();
 			var png:ByteArray = encoder.encode(bmd);
-			saveByteArray(png, DateUtil.getDateString() + ".png");
+			saveByteArray(png, DateUtil.getDateString() + ".jpg");
 		}
 		
 		private function savePaperProcessor(e:GameEvent):void
