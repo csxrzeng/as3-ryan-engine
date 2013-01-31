@@ -276,16 +276,16 @@ public class StaticTextProperty extends JPanel{
 		txtBlur.setLocation(new IntPoint(0, 0));
 		txtBlur.setSize(new IntDimension(43, 19));
 		txtBlur.setConstraints("West");
-		txtBlur.setText("粗细(5)");
+		txtBlur.setText("粗细(1)");
 		
 		sliderBlur = new JSlider();
 		sliderBlur.setLocation(new IntPoint(60, 4));
 		sliderBlur.setSize(new IntDimension(200, 14));
 		sliderBlur.setConstraints("East");
-		sliderBlur.setValue(0);
+		sliderBlur.setValue(1);
 		sliderBlur.setExtent(0);
-		sliderBlur.setMinimum(0);
-		sliderBlur.setMaximum(100);
+		sliderBlur.setMinimum(1);
+		sliderBlur.setMaximum(5);
 		
 		panel60 = new JPanel();
 		panel60.setLocation(new IntPoint(0, 81));
@@ -350,10 +350,10 @@ public class StaticTextProperty extends JPanel{
 		sliderDrop.setLocation(new IntPoint(60, 4));
 		sliderDrop.setSize(new IntDimension(200, 14));
 		sliderDrop.setConstraints("East");
-		sliderDrop.setValue(0);
+		sliderDrop.setValue(1);
 		sliderDrop.setExtent(0);
-		sliderDrop.setMinimum(0);
-		sliderDrop.setMaximum(100);
+		sliderDrop.setMinimum(1);
+		sliderDrop.setMaximum(5);
 		
 		panel73 = new JPanel();
 		panel73.setLocation(new IntPoint(0, 332));
@@ -392,10 +392,10 @@ public class StaticTextProperty extends JPanel{
 		sliderDropAngle.setLocation(new IntPoint(60, 4));
 		sliderDropAngle.setSize(new IntDimension(200, 14));
 		sliderDropAngle.setConstraints("East");
-		sliderDropAngle.setValue(0);
+		sliderDropAngle.setValue(45);
 		sliderDropAngle.setExtent(0);
 		sliderDropAngle.setMinimum(0);
-		sliderDropAngle.setMaximum(100);
+		sliderDropAngle.setMaximum(360);
 		
 		panel79 = new JPanel();
 		panel79.setLocation(new IntPoint(0, 216));
@@ -413,10 +413,10 @@ public class StaticTextProperty extends JPanel{
 		sliderDropDistance.setLocation(new IntPoint(60, 4));
 		sliderDropDistance.setSize(new IntDimension(200, 14));
 		sliderDropDistance.setConstraints("East");
-		sliderDropDistance.setValue(0);
+		sliderDropDistance.setValue(1);
 		sliderDropDistance.setExtent(0);
-		sliderDropDistance.setMinimum(0);
-		sliderDropDistance.setMaximum(100);
+		sliderDropDistance.setMinimum(1);
+		sliderDropDistance.setMaximum(5);
 		
 		//component layoution
 		append(panel28);
