@@ -142,25 +142,25 @@ package controller
 		public function changeTextRotate(rotate:Number):void
 		{
 			trace(rotate);
-			var matrix:Matrix = getTextVo().matrix;
-			var m:Matrix = new Matrix();
-			m.rotate(rotate / 180 * Math.PI);
-			matrix.concat(m);
-			changeTextProperty(["matrix"], [matrix]);
+			//var matrix:Matrix = getTextVo().matrix;
+			//var m:Matrix = new Matrix();
+			//m.rotate(rotate / 180 * Math.PI);
+			//matrix.concat(m);
+			//changeTextProperty(["matrix"], [matrix]);
 		}
 		
 		public function setTextXpos(x:Number):void
 		{
-			var matrix:Matrix = getTextVo().matrix;
-			matrix.tx = x;
-			changeTextProperty(["matrix"], [matrix]);
+			//var matrix:Matrix = getTextVo().matrix;
+			//matrix.tx = x;
+			//changeTextProperty(["matrix"], [matrix]);
 		}
 		
 		public function setTextYpos(y:Number):void
 		{
-			var matrix:Matrix = getTextVo().matrix;
-			matrix.ty = y;
-			changeTextProperty(["matrix"], [matrix]);
+			//var matrix:Matrix = getTextVo().matrix;
+			//matrix.ty = y;
+			//changeTextProperty(["matrix"], [matrix]);
 		}
 		
 		private function changeTextProperty(propertyList:Array, valueList:Array):void
@@ -169,7 +169,7 @@ package controller
 			{
 				return;
 			}
-			item.rotation
+			
 			var tf:TextView = item.targetObject as TextView;
 			if (tf == null)
 			{

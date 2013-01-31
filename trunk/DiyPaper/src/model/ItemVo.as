@@ -19,7 +19,11 @@ package model
 		
 		public var type:String = IMAGE;
 		
-		public var matrix:Matrix = new Matrix(1, 0, 0, 1, 100, 100); // 默认放在100 100 的位置
+		public var width:int;
+		public var height:int;
+		public var x:int = 100;
+		public var y:int = 100;
+		public var rotation:int;
 		public var alpha:Number = 1;
 		
 		// 图片
@@ -92,22 +96,20 @@ package model
 		
 		private function setMatrix(xml:XML):void
 		{
-			matrix.a = xml.@a;
-			matrix.b = xml.@b;
-			matrix.c = xml.@c;
-			matrix.d = xml.@d;
-			matrix.tx = xml.@tx;
-			matrix.ty = xml.@ty;
+			width = xml.@width;
+			height = xml.@height;
+			x = xml.@x;
+			y = xml.@y;
+			rotation = xml.@rotation;
 		}
 		
 		private function getMatrix(xml:XML):void
 		{
-			xml.@a = matrix.a;
-			xml.@b = matrix.b;
-			xml.@c = matrix.c;
-			xml.@d = matrix.d;
-			xml.@tx = matrix.tx;
-			xml.@ty = matrix.ty;
+			xml.@width = width;
+			xml.@height = height;
+			xml.@x = x;
+			xml.@y = y;
+			xml.@rotation = rotation;
 		}
 		
 		private function setColorTransform(xml:XML):void

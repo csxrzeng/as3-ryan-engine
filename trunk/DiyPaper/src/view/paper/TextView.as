@@ -1,5 +1,6 @@
 package view.paper
 {
+	import com.greensock.transform.TransformItem;
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
@@ -10,10 +11,11 @@ package view.paper
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class TextView extends TextField
+	public class TextView extends TextField implements IItemView
 	{
 		private var _vo:ItemVo;
 		private var formate:TextFormat;
+		private var _item:TransformItem;
 		
 		public function TextView()
 		{
@@ -26,6 +28,18 @@ package view.paper
 			formate = new TextFormat();
 		}
 		
+		/* INTERFACE view.paper.IItemView */
+		
+		public function get item():TransformItem 
+		{
+			return _item;
+		}
+		
+		public function set item(value:TransformItem):void 
+		{
+			_item = value;
+		}
+		
 		public function get vo():ItemVo
 		{
 			if (length == 0)
@@ -36,7 +50,7 @@ package view.paper
 			{
 				formate = getTextFormat(0, length);
 			}
-			_vo.matrix = transform.matrix;
+			//_vo.matrix = transform.matrix;
 			_vo.alpha = alpha;
 			_vo.font = formate.font;
 			_vo.size = int(formate.size);
@@ -52,7 +66,7 @@ package view.paper
 		public function set vo(value:ItemVo):void
 		{
 			_vo = value;
-			transform.matrix = _vo.matrix.clone();
+			//transform.matrix = _vo.matrix.clone();
 			alpha = _vo.alpha;
 			formate.font = _vo.font;
 			formate.size = _vo.size;

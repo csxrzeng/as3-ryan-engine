@@ -129,7 +129,7 @@ package view.paper
 			image.vo = vo;
 			_paper.addChild(image);
 			_list.push(image);
-			_tool.addItem(image);
+			image.item = _tool.addItem(image);
 		}
 		
 		private function addText(vo:ItemVo):void
@@ -139,7 +139,7 @@ package view.paper
 			text.vo = vo;
 			_paper.addChild(text);
 			_list.push(text);
-			_tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
 		}
 		
 		private function addStaticText(vo:ItemVo):void
@@ -148,8 +148,8 @@ package view.paper
 			text.vo = vo;
 			_paper.addChild(text);
 			_list.push(text);
-			var item:TransformItem = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
-			item.lockRotation = true;
+			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+			text.item.lockRotation = true;
 		}
 		
 		/**
