@@ -8,6 +8,7 @@ package view.paper
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.text.TextField;
 	import model.Cache;
 	import model.ItemVo;
 	import model.PaperVo;
@@ -141,6 +142,16 @@ package view.paper
 			_tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
 		}
 		
+		private function addStaticText(vo:ItemVo):void
+		{
+			var text:StaticTextView = new StaticTextView();
+			text.vo = vo;
+			_paper.addChild(text);
+			_list.push(text);
+			var item:TransformItem = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+			item.lockRotation = true;
+		}
+		
 		/**
 		 * 删除对象
 		 * @param	vo
@@ -164,9 +175,13 @@ package view.paper
 			{
 				addImage(vo);
 			}
-			else
+			else if (vo.type == ItemVo.SPECIAL_TEXT)
 			{
 				addText(vo);
+			}
+			else if (vo.type == ItemVo.TEXT)
+			{
+				addStaticText(vo);
 			}
 		}
 	}
