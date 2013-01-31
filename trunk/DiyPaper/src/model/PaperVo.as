@@ -14,7 +14,9 @@ package model
 		public var border:int = 0;
 		public var borderColor:ASColor = new ASColor(0x000000, 1);
 		
-		public var items:Array = [];
+		public var items:Array = []; // LinkVo
+	
+		public var links:Array = []; // 
 		
 		public function PaperVo() 
 		{
