@@ -12,7 +12,6 @@ package view.paper
 	import model.Cache;
 	import model.ItemVo;
 	import model.PaperVo;
-	import org.aswing.ASColor;
 	import org.aswing.border.EmptyBorder;
 	import org.aswing.border.LineBorder;
 	import org.aswing.CenterLayout;
@@ -55,7 +54,7 @@ package view.paper
 			updateBase();
 		}
 		
-		public function updateBase():void 
+		public function updateBase():void
 		{
 			_perfersize.setSizeWH(_vo.width, _vo.height);
 			_paper.setPreferredSize(_perfersize);
@@ -71,7 +70,7 @@ package view.paper
 			_bg.graphics.endFill();
 		}
 		
-		private function onMouseClick(e:MouseEvent):void 
+		private function onMouseClick(e:MouseEvent):void
 		{
 			if (e.target == this)
 			{
@@ -92,7 +91,7 @@ package view.paper
 			}
 		}
 		
-		public function getVo():PaperVo 
+		public function getVo():PaperVo
 		{
 			_vo.width = _perfersize.width;
 			_vo.height = _perfersize.height;
@@ -104,7 +103,7 @@ package view.paper
 			return _vo;
 		}
 		
-		public function setVo(value:PaperVo):void 
+		public function setVo(value:PaperVo):void
 		{
 			_tool.removeAllItems();
 			for (var i:int = 0; i < _list.length; i++)
@@ -158,7 +157,7 @@ package view.paper
 		 */
 		public function removeItem(vo:ItemVo):void
 		{
-			for (var i:int = 0; i < _list.length; i++) 
+			for (var i:int = 0; i < _list.length; i++)
 			{
 				if (_list[i].vo == vo)
 				{

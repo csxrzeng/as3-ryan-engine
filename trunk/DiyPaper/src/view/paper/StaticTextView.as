@@ -1,4 +1,4 @@
-package view.paper 
+package view.paper
 {
 	import com.greensock.transform.TransformItem;
 	import flash.text.TextField;
@@ -15,7 +15,7 @@ package view.paper
 		private var formate:TextFormat;
 		private var _item:TransformItem;
 		
-		public function StaticTextView() 
+		public function StaticTextView()
 		{
 			multiline = true;
 			wordWrap = true;
@@ -24,12 +24,12 @@ package view.paper
 		
 		/* INTERFACE view.paper.IItemView */
 		
-		public function get item():TransformItem 
+		public function get item():TransformItem
 		{
 			return _item;
 		}
 		
-		public function set item(value:TransformItem):void 
+		public function set item(value:TransformItem):void
 		{
 			_item = value;
 		}

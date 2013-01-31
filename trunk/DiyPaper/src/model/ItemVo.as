@@ -1,12 +1,11 @@
 package model
 {
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
-	import flash.display.Sprite;
+	import flash.filters.DropShadowFilter;
+	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
-	import flash.text.TextField;
+	import flash.text.TextFormatAlign;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -40,6 +39,10 @@ package model
 		public var bold:Boolean;
 		public var italic:Boolean;
 		public var size:int = 12;
+		public var align:String = TextFormatAlign.LEFT;
+		public var underline:Boolean;
+		public var glowFilter:GlowFilter = new GlowFilter();
+		public var shadowFilter:DropShadowFilter = new DropShadowFilter();
 		
 		public function ItemVo(type:String = IMAGE)
 		{

@@ -1,6 +1,8 @@
-package view 
+package view
 {
 	import org.aswing.*;
+	import org.aswing.event.ResizedEvent;
+	import org.aswing.geom.IntDimension;
 	import view.paper.PaperView;
 	import view.property.PropertyWin;
 	import view.thumb.ThumbWin;
@@ -10,7 +12,7 @@ package view
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class MainWindow extends JWindow 
+	public class MainWindow extends JWindow
 	{
 		static public var mapLayer:JScrollPane;
 		static public var uiLayer:JPanel;
@@ -23,13 +25,13 @@ package view
 		// 属性
 		static public var propertyWin:PropertyWin;
 		
-		public function MainWindow(owner:*=null, modal:Boolean=false) 
+		public function MainWindow(owner:*=null, modal:Boolean=false)
 		{
 			super(owner, modal);
 			configUI();
 		}
 		
-		private function configUI():void 
+		private function configUI():void
 		{
 			var pane:Container = getContentPane();
 			pane.setLayout(new BorderLayout());
@@ -55,6 +57,17 @@ package view
 			propertyWin.show();
 			propertyWin.x = 700;
 			propertyWin.y = 50;
+			
+			addEventListener(ResizedEvent.RESIZED, onApplicationResize);
+		}
+		
+		private function onApplicationResize(e:ResizedEvent):void
+		{
+			var size:IntDimension = e.getNewSize();
+			if (propertyWin.x + propertyWin.width > size.width)
+			{
+				propertyWin.x = size.width - propertyWin.width;
+			}
 		}
 	}
 }
