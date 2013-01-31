@@ -4,11 +4,13 @@ package controller
 	import flash.events.Event;
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
+	import model.ItemVo;
 	import model.PaperVo;
 	import org.aswing.JOptionPane;
 	import utils.DateUtil;
 	import utils.JPEGEncoder;
 	import view.MainWindow;
+	import view.paper.PaperView;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -18,6 +20,11 @@ package controller
 		public function PaperController()
 		{
 			
+		}
+		
+		public function addItem(item:ItemVo):void
+		{
+			paper.addItem(item);
 		}
 		
 		override protected function initServer():void
@@ -31,7 +38,7 @@ package controller
 		{
 			var vo:PaperVo = cache.paper;
 			var bmd:BitmapData = new BitmapData(vo.width, vo.height, true, 0xFFFFFFFF);
-			bmd.draw(MainWindow.paper);
+			bmd.draw(paper);
 			var encoder:JPEGEncoder = new JPEGEncoder();
 			var png:ByteArray = encoder.encode(bmd);
 			saveByteArray(png, DateUtil.getDateString() + ".jpg");
@@ -80,6 +87,11 @@ package controller
 			var xml:XML = XML(str);
 			var vo:PaperVo = cache.paper;
 			vo.fromXML(xml);
+		}
+		
+		public function get paper():PaperView
+		{
+			return MainWindow.paper;
 		}
 	}
 }

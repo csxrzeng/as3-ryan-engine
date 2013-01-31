@@ -1,8 +1,6 @@
 package controller
 {
-	import com.ryan.resource.info.ImageInfo;
 	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
 	import flash.events.Event;
@@ -13,7 +11,6 @@ package controller
 	import org.aswing.event.AWEvent;
 	import org.aswing.JLoadPane;
 	import resource.Config;
-	import view.MainWindow;
 	
 	/**
 	 * ...
@@ -37,14 +34,14 @@ package controller
 		{
 			var item:ItemVo = new ItemVo(ItemVo.IMAGE);
 			item.display = new JLoadPane(Config.MEDIA_PATH + e.data + ".swf", AssetPane.PREFER_SIZE_IMAGE);
-			MainWindow.paper.addItem(item);
+			GameController.paper.addItem(item);
 		}
 		
 		private function onAddImageToPaper(e:GameEvent):void 
 		{
 			var item:ItemVo = new ItemVo(ItemVo.IMAGE);
 			item.display = new Bitmap(e.data, "auto", true);
-			MainWindow.paper.addItem(item);
+			GameController.paper.addItem(item);
 		}
 		
 		private function onUploadClick(e:AWEvent):void
