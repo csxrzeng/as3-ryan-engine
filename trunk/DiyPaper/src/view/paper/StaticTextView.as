@@ -1,8 +1,6 @@
-package view.paper
+package view.paper 
 {
-	import flash.text.AntiAliasType;
 	import flash.text.TextField;
-	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import model.ItemVo;
 	
@@ -10,23 +8,24 @@ package view.paper
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class TextView extends TextField
+	public class StaticTextView extends TextField 
 	{
 		private var _vo:ItemVo;
 		private var formate:TextFormat;
 		
-		public function TextView()
+		public function StaticTextView() 
 		{
-			_vo = new ItemVo(ItemVo.TEXT);
-			type = TextFieldType.INPUT;
 			multiline = true;
 			wordWrap = true;
-			embedFonts = true;
-			antiAliasType = AntiAliasType.ADVANCED;
 			formate = new TextFormat();
 		}
 		
 		public function get vo():ItemVo
+		{
+			
+		}
+		
+		public function set vo(value:ItemVo):void
 		{
 			if (length == 0)
 			{
@@ -47,26 +46,6 @@ package view.paper
 			_vo.letterSpacing = int(formate.letterSpacing);
 			_vo.text = text;
 			return _vo;
-		}
-		
-		public function set vo(value:ItemVo):void
-		{
-			_vo = value;
-			transform.matrix = _vo.matrix.clone();
-			alpha = _vo.alpha;
-			formate.font = _vo.font;
-			formate.size = _vo.size;
-			formate.color = _vo.color;
-			formate.bold = _vo.bold;
-			formate.italic = _vo.italic;
-			formate.leading = _vo.leading;
-			formate.letterSpacing = _vo.letterSpacing;
-			defaultTextFormat = formate;
-			if (length > 0)
-			{
-				setTextFormat(formate, 0, length);
-			}
-			text = _vo.text;
 		}
 	}
 
