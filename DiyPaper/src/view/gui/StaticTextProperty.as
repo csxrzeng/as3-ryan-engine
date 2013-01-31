@@ -209,8 +209,8 @@ public class StaticTextProperty extends JPanel{
 		
 		panel82 = new JPanel();
 		panel82.setLocation(new IntPoint(0, 304));
-		panel82.setSize(new IntDimension(265, 216));
-		panel82.setPreferredSize(new IntDimension(265, 216));
+		panel82.setSize(new IntDimension(265, 246));
+		panel82.setPreferredSize(new IntDimension(265, 246));
 		var layout7:SoftBoxLayout = new SoftBoxLayout();
 		layout7.setAxis(AsWingConstants.VERTICAL);
 		layout7.setAlign(AsWingConstants.TOP);
