@@ -24,6 +24,10 @@ package controller
 		 * 基本属性改变
 		 */
 		static public const BasePropertyChange:String = "BasePropertyChange";
+		/**
+		 * 添加在线图片到工作区
+		 */
+		static public const AddLibraryImage:String = "AddLibraryImage";
 		
 		public var data:*;
 		

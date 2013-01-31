@@ -25,8 +25,9 @@ package model
 			return _instance;
 		}
 		
-		public var font:FontCache = new FontCache();
 		public var paper:PaperVo = new PaperVo();
+		public var font:FontCache = new FontCache();
+		public var assets:AssetsCache = new AssetsCache();
 	}
 
 }

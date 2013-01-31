@@ -32,7 +32,7 @@ package controller
 			{
 				var item:ItemVo = new ItemVo(ItemVo.TEXT);
 				item.font = cache.font.getFont(e.data);
-				GameController.paper.addText(item);
+				MainWindow.paper.addItem(item);
 				fontAddWindow.hide();
 			}
 			else

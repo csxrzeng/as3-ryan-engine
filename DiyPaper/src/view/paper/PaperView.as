@@ -49,6 +49,7 @@ package view.paper
 			_tool = new TransformManager();
 			_tool.forceSelectionToFront = false;
 			_tool.autoDeselect = false;
+			_tool.allowMultiSelect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
 			updateBase();
