@@ -1,4 +1,4 @@
-package view.property 
+package view.property
 {
 	import controller.Dispatcher;
 	import controller.GameEvent;
@@ -9,15 +9,15 @@ package view.property
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class SpecialTextPane extends SpecialTextProperty 
+	public class SpecialTextPane extends SpecialTextProperty
 	{
 		
-		public function SpecialTextPane() 
+		public function SpecialTextPane()
 		{
 			configUI();
 		}
 		
-		private function configUI():void 
+		private function configUI():void
 		{
 			btnSpecial.setSelected(true);
 			btnSpecial.addEventListener(AWEvent.ACT, onSpecial);
@@ -25,18 +25,18 @@ package view.property
 			btnAdd.addEventListener(AWEvent.ACT, onAdd);
 		}
 		
-		private function onSpecial(e:AWEvent):void 
+		private function onSpecial(e:AWEvent):void
 		{
 			btnSpecial.setSelected(true);
 		}
 		
-		private function onStatic(e:AWEvent):void 
+		private function onStatic(e:AWEvent):void
 		{
 			btnStatic.setSelected(false);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.STATIC_TEXT));
 		}
 		
-		private function onAdd(e:AWEvent):void 
+		private function onAdd(e:AWEvent):void
 		{
 			// 向服务器请求数据
 		}

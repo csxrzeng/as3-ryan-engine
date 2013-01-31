@@ -59,6 +59,8 @@ package view.paper
 			_vo.italic = Boolean(formate.italic);
 			_vo.leading = int(formate.leading);
 			_vo.letterSpacing = int(formate.letterSpacing);
+			_vo.align = formate.align;
+			_vo.underline = formate.underline;
 			_vo.text = text;
 			return _vo;
 		}
@@ -75,6 +77,8 @@ package view.paper
 			formate.italic = _vo.italic;
 			formate.leading = _vo.leading;
 			formate.letterSpacing = _vo.letterSpacing;
+			formate.align = _vo.align;
+			formate.underline = _vo.underline;
 			defaultTextFormat = formate;
 			if (length > 0)
 			{
