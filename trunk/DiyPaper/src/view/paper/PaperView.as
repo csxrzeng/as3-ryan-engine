@@ -33,6 +33,8 @@ package view.paper
 		private var _paper:JPanel;
 		private var _bg:Sprite;
 		
+		private var selectedItem:IItemView;
+		
 		public function PaperView()
 		{
 			setBorder(new EmptyBorder(null, new Insets(100, 150, 100, 150)));
@@ -53,6 +55,8 @@ package view.paper
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
 			updateBase();
+			
+			Dispatcher.addEventListener(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, onStaticTextPropertyChange);
 		}
 		
 		public function updateBase():void
@@ -84,11 +88,24 @@ package view.paper
 			if (e.items.length > 0) // 暂时只处理一个的情况
 			{
 				var item:TransformItem = e.items[0];
+				selectedItem = item.targetObject as IItemView;
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, item));
 			}
 			else
 			{
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty));
+			}
+		}
+		
+		/**
+		 * 静态文本属性面板的设置发生改变
+		 * @param	e
+		 */
+		private function onStaticTextPropertyChange(e:GameEvent):void
+		{
+			if (selectedItem && selectedItem is StaticTextView)
+			{
+				selectedItem.vo = e.data as ItemVo;
 			}
 		}
 		
