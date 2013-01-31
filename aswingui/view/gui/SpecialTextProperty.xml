@@ -27,7 +27,7 @@
           <Value value="none"/>
         </Property>
         <Property name="Location" type="Location">
-          <Value value="5,5"/>
+          <Value value="10,15"/>
         </Property>
         <Property name="Size" type="Size">
           <Value value="265,410"/>
@@ -79,10 +79,13 @@
             </Value>
           </Property>
         </Properties>
-        <Com name="JToggleButton" id="togglebutton87">
+        <Com name="JToggleButton" id="btnSpecial">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="btnSpecial"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="public"/>
@@ -98,10 +101,13 @@
             </Property>
           </Properties>
         </Com>
-        <Com name="JToggleButton" id="togglebutton88">
+        <Com name="JToggleButton" id="btnStatic">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="btnStatic"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="public"/>
@@ -118,8 +124,11 @@
           </Properties>
         </Com>
       </Com>
-      <Com name="JTextArea" id="textarea89">
+      <Com name="JTextArea" id="txtInput">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="txtInput"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
             <Value value="protected"/>
           </Property>
@@ -168,10 +177,13 @@
             </Value>
           </Property>
         </Properties>
-        <Com name="JButton" id="button92">
+        <Com name="JButton" id="btnAdd">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="btnAdd"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="public"/>
@@ -191,10 +203,13 @@
           </Properties>
         </Com>
       </Com>
-      <Com name="JScrollPane" id="scrollpane93">
+      <Com name="JScrollPane" id="scrollpane">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="scrollpane"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="none"/>
@@ -206,10 +221,13 @@
             <Value value="265,283"/>
           </Property>
         </Properties>
-        <Com name="JPanel" id="panel95">
+        <Com name="JPanel" id="pane">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="pane"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="none"/>
