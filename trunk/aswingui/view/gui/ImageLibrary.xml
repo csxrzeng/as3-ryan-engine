@@ -77,10 +77,13 @@
           </Value>
         </Property>
       </Properties>
-      <Com name="JToggleButton" id="togglebutton120">
+      <Com name="JToggleButton" id="btnOnline">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="btnOnline"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
@@ -96,10 +99,13 @@
           </Property>
         </Properties>
       </Com>
-      <Com name="JButton" id="button121">
+      <Com name="JButton" id="btnMyAssets">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="btnMyAssets"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
@@ -116,10 +122,13 @@
         </Properties>
       </Com>
     </Com>
-    <Com name="JScrollPane" id="scrollpane122">
+    <Com name="JScrollPane" id="spLibrary">
       <Properties>
+        <Property name="id" type="id">
+          <Value value="spLibrary"/>
+        </Property>
         <Property name="attr_scope" type="attr_scope">
-          <Value value="private"/>
+          <Value value="protected"/>
         </Property>
         <Property name="getter_scope" type="getter_scope">
           <Value value="none"/>
@@ -131,10 +140,13 @@
           <Value value="265,380"/>
         </Property>
       </Properties>
-      <Com name="JPanel" id="panel123">
+      <Com name="JPanel" id="pane">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="pane"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="none"/>

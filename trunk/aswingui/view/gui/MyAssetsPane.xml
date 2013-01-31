@@ -10,6 +10,9 @@
       <Property name="Size" type="Size">
         <Value value="285,440"/>
       </Property>
+      <Property name="PreferredSize" type="PreferredSize">
+        <Value value="285,440"/>
+      </Property>
       <Property name="Border" type="Border">
         <Value>
           <Border name="EmptyBorder">
@@ -67,10 +70,13 @@
           </Value>
         </Property>
       </Properties>
-      <Com name="JButton" id="button157">
+      <Com name="JButton" id="btnBack">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="btnBack"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
@@ -106,10 +112,13 @@
         </Property>
       </Properties>
     </Com>
-    <Com name="JTextField" id="textfield160">
+    <Com name="JTextField" id="txtUpload">
       <Properties>
+        <Property name="id" type="id">
+          <Value value="txtUpload"/>
+        </Property>
         <Property name="attr_scope" type="attr_scope">
-          <Value value="private"/>
+          <Value value="protected"/>
         </Property>
         <Property name="getter_scope" type="getter_scope">
           <Value value="public"/>
@@ -143,10 +152,13 @@
           <Value value="265,10"/>
         </Property>
       </Properties>
-      <Com name="JButton" id="button162">
+      <Com name="JButton" id="btnBrowse">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="btnBrowse"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
@@ -204,10 +216,13 @@
         </Property>
       </Properties>
     </Com>
-    <Com name="JTextField" id="textfield165">
+    <Com name="JTextField" id="txtDownload">
       <Properties>
+        <Property name="id" type="id">
+          <Value value="txtDownload"/>
+        </Property>
         <Property name="attr_scope" type="attr_scope">
-          <Value value="private"/>
+          <Value value="protected"/>
         </Property>
         <Property name="getter_scope" type="getter_scope">
           <Value value="public"/>
@@ -218,11 +233,11 @@
         <Property name="Size" type="Size">
           <Value value="265,22"/>
         </Property>
-        <Property name="Text" type="Text">
-          <Value value="http://"/>
-        </Property>
         <Property name="Editable" type="Editable">
           <Value value="true"/>
+        </Property>
+        <Property name="MaxChars" type="MaxChars">
+          <Value value="200"/>
         </Property>
       </Properties>
     </Com>
@@ -241,10 +256,13 @@
           <Value value="265,10"/>
         </Property>
       </Properties>
-      <Com name="JButton" id="button167">
+      <Com name="JButton" id="btnDownload">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="btnDownload"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
