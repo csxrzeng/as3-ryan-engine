@@ -57,22 +57,28 @@ package view.property
 			switch (type)
 			{
 				case BASE:
+					setTitle("基本属性");
 					setContentPane(pBase);
 					pBase.update();
 					break;
 				case STATIC_TEXT:
+					setTitle("静态文字");
 					setContentPane(pStaticText);
 					break;
 				case SPECIAL_TEXT:
+					setTitle("特效文字");
 					setContentPane(pSpecialText);
 					break;
 				case IMAGE:
+					setTitle("图片属性");
 					setContentPane(pImage);
 					break;
 				case LIBRARY:
+					setTitle("在线图标");
 					setContentPane(pLibrary);
 					break;
 				case ASSETS:
+					setTitle("我的素材");
 					setContentPane(pAssets);
 					break;
 			}

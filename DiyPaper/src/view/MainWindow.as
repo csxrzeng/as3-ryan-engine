@@ -46,12 +46,12 @@ package view
 			pane.append(mapLayer, BorderLayout.CENTER);
 			pane.append(uiLayer, BorderLayout.CENTER);
 
-			layerWin = new ThumbWin(AsWingUtils.getPopupAncestor(uiLayer), "图层");
+			layerWin = new ThumbWin(pane, "图层");
 			layerWin.show();
 			layerWin.x = 0;
 			layerWin.y = 50;
 			
-			propertyWin = new PropertyWin(AsWingUtils.getPopupAncestor(uiLayer), "基本属性");
+			propertyWin = new PropertyWin(pane, "基本属性");
 			propertyWin.show();
 			propertyWin.x = 700;
 			propertyWin.y = 50;
