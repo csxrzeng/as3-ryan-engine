@@ -1,8 +1,10 @@
 package view.paper
 {
 	import com.greensock.transform.TransformItem;
+	import flash.display.Sprite;
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import model.ItemVo;
@@ -11,44 +13,49 @@ package view.paper
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class TextView extends TextField implements IItemView
+	public class TextView extends Sprite implements IItemView
 	{
 		private var _vo:ItemVo;
 		private var formate:TextFormat;
 		private var _item:TransformItem;
+		private var _textfield:TextField;
 		
 		public function TextView()
 		{
+			_textfield = new TextField();
+			//_textfield.multiline = true;
+			//_textfield.wordWrap = true;
+			//_textfield.embedFonts = true;
+			_textfield.type = TextFieldType.INPUT;
+			_textfield.antiAliasType = AntiAliasType.ADVANCED;
+			_textfield.autoSize = TextFieldAutoSize.LEFT;
+			addChild(_textfield);
+			
 			_vo = new ItemVo(ItemVo.STATIC_TEXT);
-			type = TextFieldType.INPUT;
-			multiline = true;
-			wordWrap = true;
-			embedFonts = true;
-			antiAliasType = AntiAliasType.ADVANCED;
 			formate = new TextFormat();
 		}
 		
 		/* INTERFACE view.paper.IItemView */
 		
-		public function get item():TransformItem 
+		public function get item():TransformItem
 		{
 			return _item;
 		}
 		
-		public function set item(value:TransformItem):void 
+		public function set item(value:TransformItem):void
 		{
 			_item = value;
 		}
 		
 		public function get vo():ItemVo
 		{
-			if (length == 0)
+			if (_textfield.length == 0)
 			{
-				formate = defaultTextFormat;
+				formate = _textfield.defaultTextFormat;
 			}
 			else
 			{
-				formate = getTextFormat(0, length);
+				formate = _textfield.getTextFormat(0, _textfield.length);
 			}
 			//_vo.matrix = transform.matrix;
 			_vo.alpha = alpha;
@@ -61,7 +68,7 @@ package view.paper
 			_vo.letterSpacing = int(formate.letterSpacing);
 			_vo.align = formate.align;
 			_vo.underline = formate.underline;
-			_vo.text = text;
+			_vo.text = _textfield.text;
 			return _vo;
 		}
 		
@@ -79,13 +86,12 @@ package view.paper
 			formate.letterSpacing = _vo.letterSpacing;
 			formate.align = _vo.align;
 			formate.underline = _vo.underline;
-			defaultTextFormat = formate;
-			if (length > 0)
+			_textfield.defaultTextFormat = formate;
+			if (_textfield.length > 0)
 			{
-				setTextFormat(formate, 0, length);
+				_textfield.setTextFormat(formate, 0, _textfield.length);
 			}
-			text = _vo.text;
+			_textfield.text = _vo.text;
 		}
 	}
-
 }

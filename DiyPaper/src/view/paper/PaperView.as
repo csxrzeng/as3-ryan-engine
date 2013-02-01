@@ -172,7 +172,7 @@ package view.paper
 			text.vo = vo;
 			_paper.addChild(text);
 			_list.push(text);
-			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+			text.item = _tool.addItem(text);
 		}
 		
 		private function addStaticText(vo:ItemVo):void
