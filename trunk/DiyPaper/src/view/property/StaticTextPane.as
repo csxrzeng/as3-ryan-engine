@@ -3,6 +3,7 @@ package view.property
 	import controller.Dispatcher;
 	import controller.GameController;
 	import controller.GameEvent;
+	import flash.events.Event;
 	import flash.text.TextFormatAlign;
 	import model.ItemVo;
 	import org.aswing.ASColor;
@@ -66,7 +67,7 @@ package view.property
 			sliderDropAngle.addStateListener(onShadowAngleChange);
 			sliderDropDistance.addStateListener(onShadowDistanceChange);
 			
-			txtInput.addStateListener(onTextChange);
+			txtInput.addEventListener(Event.CHANGE, onTextChange);
 			
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
@@ -124,7 +125,7 @@ package view.property
 			}
 		}
 		
-		private function onTextChange(e:AWEvent):void
+		private function onTextChange(e:Event):void
 		{
 			_settingVo.text = txtInput.getText();
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
@@ -229,7 +230,7 @@ package view.property
 		
 		private function onAddClick(e:AWEvent):void
 		{
-			GameController.paper.addItem(_settingVo);
+			GameController.paper.addItem(new ItemVo(ItemVo.STATIC_TEXT));
 		}
 		
 		private function onStatic(e:AWEvent):void
@@ -240,7 +241,7 @@ package view.property
 		private function onSpecial(e:AWEvent):void
 		{
 			btnSpecial.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.SPECIAL_TEXT}));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.SWITCH_PROPERTY, {winType:PropertyWin.SPECIAL_TEXT}));
 		}
 		
 		public function get settingVo():ItemVo

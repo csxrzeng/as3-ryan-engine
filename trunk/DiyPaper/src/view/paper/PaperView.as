@@ -19,6 +19,7 @@ package view.paper
 	import org.aswing.geom.IntDimension;
 	import org.aswing.Insets;
 	import org.aswing.JPanel;
+	import view.MainWindow;
 	import view.property.PropertyWin;
 	
 	/**
@@ -99,7 +100,7 @@ package view.paper
 			}
 		}
 		
-		private function getPropertyWinType(type:String):int 
+		private function getPropertyWinType(type:String):int
 		{
 			switch (type)
 			{
@@ -216,6 +217,7 @@ package view.paper
 			{
 				addStaticText(vo);
 			}
+			MainWindow.layerWin.addLayer(vo);
 		}
 	}
 }

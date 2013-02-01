@@ -1,33 +1,50 @@
-package view.thumb 
+package view.thumb
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import org.aswing.ASColor;
+	import flash.display.DisplayObject;
+	import org.aswing.AssetPane;
 	import org.aswing.border.LineBorder;
-	import org.aswing.EmptyLayout;
+	import org.aswing.BorderLayout;
 	import org.aswing.JPanel;
 	
 	/**
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class ThumbIcon extends JPanel 
+	public class ThumbIcon extends JPanel
 	{
+		public static const SIZE:int = 45;
+		
 		private var bmp:Bitmap;
-		private var bmd:BitmapData;
 		private var shape:JPanel;
 		
-		public function ThumbIcon() 
+		public function ThumbIcon()
 		{
-			setLayout(new EmptyLayout());
-			bmd = new BitmapData(45, 45, true, 0);
-			bmp = new Bitmap(bmd);
-			shape = new JPanel();
-			shape.setBorder(new LineBorder(null, new ASColor(0xDDDDDD, 1), 1, 2));
-			shape.setPreferredWidth(45);
-			shape.setPreferredHeight(45);
+			mouseChildren = false;
+			buttonMode = true;
+			super(new BorderLayout());
+			setPreferredWidth(SIZE);
+			setPreferredHeight(SIZE);
+			setBorder(new LineBorder());
 			
-			appendAll(bmp, shape);
+			bmp = new Bitmap();
+			var asset:AssetPane = new AssetPane(bmp);
+			asset.setPreferredWidth(SIZE);
+			asset.setPreferredHeight(SIZE);
+			append(asset, BorderLayout.CENTER);
+		}
+		
+		public function setIcon(view:DisplayObject):void
+		{
+			var orignWidth:Number = view.width;
+			var orignHeight:Number = view.height;
+			view.width = view.height = SIZE;
+			var bmd:BitmapData = new BitmapData(SIZE, SIZE);
+			bmd.draw(view);
+			bmp.bitmapData = bmd;
+			view.width = orignWidth;
+			view.height = orignHeight;
 		}
 	}
 }

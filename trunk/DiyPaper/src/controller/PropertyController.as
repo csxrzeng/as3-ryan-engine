@@ -33,10 +33,11 @@ package controller
 		override protected function initServer():void
 		{
 			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyWin);
+			Dispatcher.addEventListener(GameEvent.SWITCH_PROPERTY, switchPropertyWin);
 			Dispatcher.addEventListener(GameEvent.BasePropertyChange, basePropertyChange);
 		}
 		
-		private function basePropertyChange(e:GameEvent):void 
+		private function basePropertyChange(e:GameEvent):void
 		{
 			for (var key:String in e.data)
 			{
@@ -45,12 +46,19 @@ package controller
 			MainWindow.paper.updateBase();
 		}
 		
-		private function showPropertyWin(e:GameEvent):void 
+		private function showPropertyWin(e:GameEvent):void
 		{
 			var winType:int = e.data.winType;
 			var vo:ItemVo = e.data.vo;
 			MainWindow.toolBar.propertyBar.setButtonType(winType);
 			MainWindow.propertyWin.setType(winType, vo);
+		}
+		
+		private function switchPropertyWin(e:GameEvent):void
+		{
+			var winType:int = e.data.winType;
+			MainWindow.toolBar.propertyBar.setButtonType(winType);
+			MainWindow.propertyWin.setType(winType);
 		}
 		
 		private function showPropertyProcessor(e:GameEvent):void
