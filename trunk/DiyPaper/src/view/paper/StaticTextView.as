@@ -2,6 +2,7 @@ package view.paper
 {
 	import com.greensock.transform.TransformItem;
 	import flash.text.TextField;
+	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import model.ItemVo;
 	
@@ -17,6 +18,7 @@ package view.paper
 		
 		public function StaticTextView()
 		{
+			type = TextFieldType.INPUT;
 			multiline = true;
 			wordWrap = true;
 			formate = new TextFormat();
