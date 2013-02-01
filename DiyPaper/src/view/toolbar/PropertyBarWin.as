@@ -21,7 +21,7 @@ package view.toolbar
 			configEvents();
 		}
 		
-		public function setButtonType(data:*):void 
+		public function setButtonType(data:int):void 
 		{
 			btnBase.setSelected(false)
 			btnImage.setSelected(false)

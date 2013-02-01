@@ -64,7 +64,7 @@ package view
 		private function onApplicationResize(e:ResizedEvent):void
 		{
 			var size:IntDimension = e.getNewSize();
-			if (propertyWin.x + propertyWin.width > size.width)
+			if (true) // propertyWin.x + propertyWin.width > size.width)
 			{
 				propertyWin.x = size.width - propertyWin.width;
 			}

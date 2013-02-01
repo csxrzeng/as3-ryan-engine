@@ -48,7 +48,7 @@ package view.property
 			return _type;
 		}
 		
-		public function setType(type:int):void
+		public function setType(type:int, data:* = null):void
 		{
 			if (_type != type)
 			{
@@ -64,6 +64,7 @@ package view.property
 				case STATIC_TEXT:
 					setTitle("静态文字");
 					setContentPane(pStaticText);
+					pStaticText.settingVo = data;
 					break;
 				case SPECIAL_TEXT:
 					setTitle("特效文字");

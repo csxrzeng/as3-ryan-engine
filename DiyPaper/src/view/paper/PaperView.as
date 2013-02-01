@@ -19,6 +19,7 @@ package view.paper
 	import org.aswing.geom.IntDimension;
 	import org.aswing.Insets;
 	import org.aswing.JPanel;
+	import view.property.PropertyWin;
 	
 	/**
 	 * ...
@@ -89,11 +90,11 @@ package view.paper
 			{
 				var item:TransformItem = e.items[0];
 				selectedItem = item.targetObject as IItemView;
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, item));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {type:selectedItem.type, vo:selectedItem.vo}));
 			}
 			else
 			{
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {type:PropertyWin.BASE}));
 			}
 		}
 		
