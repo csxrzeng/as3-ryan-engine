@@ -139,6 +139,9 @@
         <Property name="Size" type="Size">
           <Value value="265,380"/>
         </Property>
+        <Property name="PreferredSize" type="PreferredSize">
+          <Value value="265,380"/>
+        </Property>
       </Properties>
       <Com name="JPanel" id="pane">
         <Properties>
