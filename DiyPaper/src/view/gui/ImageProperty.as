@@ -91,7 +91,7 @@ public class ImageProperty extends JPanel{
 		
 		txtColor = new JLabel();
 		txtColor.setLocation(new IntPoint(0, 0));
-		txtColor.setSize(new IntDimension(60, 19));
+		txtColor.setSize(new IntDimension(65, 19));
 		txtColor.setPreferredSize(new IntDimension(60, 19));
 		txtColor.setText("变色(0)");
 		txtColor.setHorizontalAlignment(AsWingConstants.LEFT);
@@ -113,7 +113,7 @@ public class ImageProperty extends JPanel{
 		
 		txtAlpha = new JLabel();
 		txtAlpha.setLocation(new IntPoint(0, 0));
-		txtAlpha.setSize(new IntDimension(60, 19));
+		txtAlpha.setSize(new IntDimension(65, 19));
 		txtAlpha.setPreferredSize(new IntDimension(60, 19));
 		txtAlpha.setText("透明(100)");
 		txtAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
@@ -135,9 +135,9 @@ public class ImageProperty extends JPanel{
 		
 		txtRotation = new JLabel();
 		txtRotation.setLocation(new IntPoint(0, 0));
-		txtRotation.setSize(new IntDimension(60, 19));
-		txtRotation.setPreferredSize(new IntDimension(60, 19));
-		txtRotation.setText("旋转(0°)");
+		txtRotation.setSize(new IntDimension(65, 19));
+		txtRotation.setPreferredSize(new IntDimension(65, 19));
+		txtRotation.setText("旋转(359°)");
 		txtRotation.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderRotation = new JSlider();

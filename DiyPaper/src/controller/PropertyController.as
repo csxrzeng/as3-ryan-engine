@@ -35,6 +35,12 @@ package controller
 			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyWin);
 			Dispatcher.addEventListener(GameEvent.SWITCH_PROPERTY, switchPropertyWin);
 			Dispatcher.addEventListener(GameEvent.BasePropertyChange, basePropertyChange);
+			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onSelectedItemUpdate);
+		}
+		
+		private function onSelectedItemUpdate(e:GameEvent):void 
+		{
+			MainWindow.propertyWin.update(e.data);
 		}
 		
 		private function basePropertyChange(e:GameEvent):void

@@ -26,19 +26,8 @@ package view.paper
 		
 		/* INTERFACE view.paper.IItemView */
 		
-		public function get item():TransformItem
+		public function update():void 
 		{
-			return _item;
-		}
-		
-		public function set item(value:TransformItem):void
-		{
-			_item = value;
-		}
-		
-		public function set vo(value:ItemVo):void
-		{
-			_vo = value;
 			alpha = _vo.alpha;
 			formate.font = _vo.font;
 			formate.size = _vo.size;
@@ -56,6 +45,22 @@ package view.paper
 				setTextFormat(formate, 0, length);
 			}
 			text = _vo.text;
+		}
+
+		public function get item():TransformItem
+		{
+			return _item;
+		}
+		
+		public function set item(value:TransformItem):void
+		{
+			_item = value;
+		}
+		
+		public function set vo(value:ItemVo):void
+		{
+			_vo = value;
+			update();
 		}
 		
 		public function get vo():ItemVo

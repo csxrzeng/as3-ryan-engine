@@ -32,6 +32,12 @@ package controller
 			Dispatcher.addEventListener(GameEvent.SavePaper, savePaperProcessor);
 			Dispatcher.addEventListener(GameEvent.LoadPaper, loadPaperProcessor);
 			Dispatcher.addEventListener(GameEvent.SaveToPng, saveToPngProcessor);
+			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onUpdateSelecteItem);
+		}
+		
+		private function onUpdateSelecteItem(e:GameEvent):void 
+		{
+			paper.updateItem(e.data);
 		}
 		
 		private function saveToPngProcessor(e:GameEvent):void
