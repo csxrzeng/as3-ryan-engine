@@ -8,7 +8,10 @@
         <Value value="none"/>
       </Property>
       <Property name="Size" type="Size">
-        <Value value="285,375"/>
+        <Value value="285,400"/>
+      </Property>
+      <Property name="PreferredSize" type="PreferredSize">
+        <Value value="285,400"/>
       </Property>
       <Property name="Layout" type="Layout">
         <Value>
@@ -27,13 +30,13 @@
           <Value value="none"/>
         </Property>
         <Property name="Location" type="Location">
-          <Value value="0,12"/>
+          <Value value="0,15"/>
         </Property>
         <Property name="Size" type="Size">
-          <Value value="285,350"/>
+          <Value value="285,370"/>
         </Property>
         <Property name="PreferredSize" type="PreferredSize">
-          <Value value="285,350"/>
+          <Value value="285,370"/>
         </Property>
         <Property name="Layout" type="Layout">
           <Value>
@@ -43,19 +46,22 @@
           </Value>
         </Property>
       </Properties>
-      <Com name="JLoadPane" id="loadpane97">
+      <Com name="JPanel" id="thumbPane">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="thumbPane"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
-            <Value value="public"/>
+            <Value value="none"/>
           </Property>
           <Property name="Location" type="Location">
             <Value value="30,5"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="45,45"/>
+            <Value value="46,46"/>
           </Property>
           <Property name="PreferredSize" type="PreferredSize">
             <Value value="46,46"/>
@@ -64,34 +70,6 @@
             <Value>
               <Border name="LineBorder">
                 <Properties>
-                  <Property name="Interior" type="Interior">
-                    <Value>
-                      <Border name="LineBorder">
-                        <Properties>
-                          <Property name="Interior" type="Interior">
-                            <Value>
-                              <Border name="LineBorder">
-                                <Properties>
-                                  <Property name="Color" type="Color">
-                                    <Value value="0,1"/>
-                                  </Property>
-                                  <Property name="Thickness" type="Thickness">
-                                    <Value value="1"/>
-                                  </Property>
-                                </Properties>
-                              </Border>
-                            </Value>
-                          </Property>
-                          <Property name="Color" type="Color">
-                            <Value value="ffffff,1"/>
-                          </Property>
-                          <Property name="Thickness" type="Thickness">
-                            <Value value="2"/>
-                          </Property>
-                        </Properties>
-                      </Border>
-                    </Value>
-                  </Property>
                   <Property name="Color" type="Color">
                     <Value value="0,1"/>
                   </Property>
@@ -116,13 +94,16 @@
             <Value value="139,11"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="10,10"/>
+            <Value value="131,36"/>
           </Property>
         </Properties>
-        <Com name="JButton" id="button101">
+        <Com name="JButton" id="btnReplace">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="btnReplace"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="public"/>
@@ -138,10 +119,13 @@
             </Property>
           </Properties>
         </Com>
-        <Com name="JButton" id="button102">
+        <Com name="JButton" id="btnDelete">
           <Properties>
+            <Property name="id" type="id">
+              <Value value="btnDelete"/>
+            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="private"/>
+              <Value value="protected"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
               <Value value="public"/>
@@ -158,16 +142,19 @@
           </Properties>
         </Com>
       </Com>
-      <Com name="JColorMixer" id="colormixer103">
+      <Com name="JColorMixer" id="colorMixer">
         <Properties>
+          <Property name="id" type="id">
+            <Value value="colorMixer"/>
+          </Property>
           <Property name="attr_scope" type="attr_scope">
-            <Value value="private"/>
+            <Value value="protected"/>
           </Property>
           <Property name="getter_scope" type="getter_scope">
             <Value value="public"/>
           </Property>
           <Property name="Location" type="Location">
-            <Value value="10,60"/>
+            <Value value="5,60"/>
           </Property>
           <Property name="Size" type="Size">
             <Value value="291,192"/>
@@ -183,10 +170,13 @@
             <Value value="none"/>
           </Property>
           <Property name="Location" type="Location">
-            <Value value="10,265"/>
+            <Value value="10,284"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="265,90"/>
+            <Value value="265,91"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="265,110"/>
           </Property>
           <Property name="Layout" type="Layout">
             <Value>
@@ -228,29 +218,44 @@
               </Value>
             </Property>
           </Properties>
-          <Com name="JLabel" id="label109">
+          <Com name="JLabel" id="txtColor">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="txtColor"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="none"/>
               </Property>
               <Property name="Location" type="Location">
-                <Value value="5,5"/>
+                <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="31,19"/>
+                <Value value="60,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="60,19"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="变色(0)"/>
               </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
+              </Property>
+              <Property name="HorizontalTextPosition" type="HorizontalTextPosition">
+                <Value value="2"/>
+              </Property>
             </Properties>
           </Com>
-          <Com name="JSlider" id="slider110">
+          <Com name="JSlider" id="sliderColor">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="sliderColor"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="public"/>
@@ -285,7 +290,7 @@
               <Value value="none"/>
             </Property>
             <Property name="Location" type="Location">
-              <Value value="14,281"/>
+              <Value value="0,24"/>
             </Property>
             <Property name="Size" type="Size">
               <Value value="265,19"/>
@@ -298,29 +303,41 @@
               </Value>
             </Property>
           </Properties>
-          <Com name="JLabel" id="label111">
+          <Com name="JLabel" id="txtAlpha">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="txtAlpha"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="none"/>
               </Property>
               <Property name="Location" type="Location">
-                <Value value="5,5"/>
+                <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="31,19"/>
+                <Value value="60,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="60,19"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="透明(100)"/>
               </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
+              </Property>
             </Properties>
           </Com>
-          <Com name="JSlider" id="slider112">
+          <Com name="JSlider" id="sliderAlpha">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="sliderAlpha"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="public"/>
@@ -355,10 +372,13 @@
               <Value value="none"/>
             </Property>
             <Property name="Location" type="Location">
-              <Value value="32,324"/>
+              <Value value="0,0"/>
             </Property>
             <Property name="Size" type="Size">
-              <Value value="265,19"/>
+              <Value value="265,20"/>
+            </Property>
+            <Property name="PreferredSize" type="PreferredSize">
+              <Value value="265,20"/>
             </Property>
             <Property name="Layout" type="Layout">
               <Value>
@@ -368,29 +388,41 @@
               </Value>
             </Property>
           </Properties>
-          <Com name="JLabel" id="label113">
+          <Com name="JLabel" id="txtRotation">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="txtRotation"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="none"/>
               </Property>
               <Property name="Location" type="Location">
-                <Value value="5,5"/>
+                <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="48,19"/>
+                <Value value="60,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="60,19"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="旋转(0°)"/>
               </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
+              </Property>
             </Properties>
           </Com>
-          <Com name="JSlider" id="slider114">
+          <Com name="JSlider" id="sliderRotation">
             <Properties>
+              <Property name="id" type="id">
+                <Value value="sliderRotation"/>
+              </Property>
               <Property name="attr_scope" type="attr_scope">
-                <Value value="private"/>
+                <Value value="protected"/>
               </Property>
               <Property name="getter_scope" type="getter_scope">
                 <Value value="public"/>
