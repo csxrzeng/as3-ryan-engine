@@ -13,202 +13,201 @@ public class ImageProperty extends JPanel{
 	
 	//members define
 	private var panel98:JPanel;
-	private var loadpane97:JLoadPane;
+	protected var thumbPane:JPanel;
 	private var panel100:JPanel;
-	private var button101:JButton;
-	private var button102:JButton;
-	private var colormixer103:JColorMixer;
+	protected var btnReplace:JButton;
+	protected var btnDelete:JButton;
+	protected var colorMixer:JColorMixer;
 	private var panel108:JPanel;
 	private var panel104:JPanel;
-	private var label109:JLabel;
-	private var slider110:JSlider;
+	protected var txtColor:JLabel;
+	protected var sliderColor:JSlider;
 	private var panel106:JPanel;
-	private var label111:JLabel;
-	private var slider112:JSlider;
+	protected var txtAlpha:JLabel;
+	protected var sliderAlpha:JSlider;
 	private var panel107:JPanel;
-	private var label113:JLabel;
-	private var slider114:JSlider;
+	protected var txtRotation:JLabel;
+	protected var sliderRotation:JSlider;
 	
 	/**
 	 * ImageProperty Constructor
 	 */
 	public function ImageProperty(){
 		//component creation
-		setSize(new IntDimension(285, 375));
+		setSize(new IntDimension(285, 400));
+		setPreferredSize(new IntDimension(285, 400));
 		var layout0:CenterLayout = new CenterLayout();
 		setLayout(layout0);
 		
 		panel98 = new JPanel();
-		panel98.setLocation(new IntPoint(0, 12));
-		panel98.setSize(new IntDimension(285, 350));
-		panel98.setPreferredSize(new IntDimension(285, 350));
+		panel98.setLocation(new IntPoint(0, 15));
+		panel98.setSize(new IntDimension(285, 370));
+		panel98.setPreferredSize(new IntDimension(285, 370));
 		var layout1:EmptyLayout = new EmptyLayout();
 		panel98.setLayout(layout1);
 		
-		loadpane97 = new JLoadPane();
-		loadpane97.setLocation(new IntPoint(30, 5));
-		loadpane97.setSize(new IntDimension(45, 45));
-		loadpane97.setPreferredSize(new IntDimension(46, 46));
+		thumbPane = new JPanel();
+		thumbPane.setLocation(new IntPoint(30, 5));
+		thumbPane.setSize(new IntDimension(46, 46));
+		thumbPane.setPreferredSize(new IntDimension(46, 46));
 		var border2:LineBorder = new LineBorder();
-		var border3:LineBorder = new LineBorder();
-		var border4:LineBorder = new LineBorder();
-		border4.setColor(new ASColor(0x0, 1));
-		border4.setThickness(1);
-		border3.setInterior(border4);
-		border3.setColor(new ASColor(0xffffff, 1));
-		border3.setThickness(2);
-		border2.setInterior(border3);
 		border2.setColor(new ASColor(0x0, 1));
 		border2.setThickness(1);
-		loadpane97.setBorder(border2);
+		thumbPane.setBorder(border2);
 		
 		panel100 = new JPanel();
 		panel100.setLocation(new IntPoint(139, 11));
-		panel100.setSize(new IntDimension(10, 10));
+		panel100.setSize(new IntDimension(131, 36));
 		
-		button101 = new JButton();
-		button101.setLocation(new IntPoint(5, 5));
-		button101.setSize(new IntDimension(58, 26));
-		button101.setText("替换素材");
+		btnReplace = new JButton();
+		btnReplace.setLocation(new IntPoint(5, 5));
+		btnReplace.setSize(new IntDimension(58, 26));
+		btnReplace.setText("替换素材");
 		
-		button102 = new JButton();
-		button102.setLocation(new IntPoint(47, 5));
-		button102.setSize(new IntDimension(58, 26));
-		button102.setText("删除素材");
+		btnDelete = new JButton();
+		btnDelete.setLocation(new IntPoint(47, 5));
+		btnDelete.setSize(new IntDimension(58, 26));
+		btnDelete.setText("删除素材");
 		
-		colormixer103 = new JColorMixer();
-		colormixer103.setLocation(new IntPoint(10, 60));
-		colormixer103.setSize(new IntDimension(291, 192));
+		colorMixer = new JColorMixer();
+		colorMixer.setLocation(new IntPoint(5, 60));
+		colorMixer.setSize(new IntDimension(291, 192));
 		
 		panel108 = new JPanel();
-		panel108.setLocation(new IntPoint(10, 265));
-		panel108.setSize(new IntDimension(265, 90));
-		var layout5:SoftBoxLayout = new SoftBoxLayout();
-		layout5.setAxis(AsWingConstants.VERTICAL);
-		layout5.setAlign(AsWingConstants.TOP);
-		layout5.setGap(10);
-		panel108.setLayout(layout5);
+		panel108.setLocation(new IntPoint(10, 284));
+		panel108.setSize(new IntDimension(265, 91));
+		panel108.setPreferredSize(new IntDimension(265, 110));
+		var layout3:SoftBoxLayout = new SoftBoxLayout();
+		layout3.setAxis(AsWingConstants.VERTICAL);
+		layout3.setAlign(AsWingConstants.TOP);
+		layout3.setGap(10);
+		panel108.setLayout(layout3);
 		
 		panel104 = new JPanel();
 		panel104.setLocation(new IntPoint(8, 261));
 		panel104.setSize(new IntDimension(265, 19));
-		var layout6:EmptyLayout = new EmptyLayout();
-		panel104.setLayout(layout6);
+		var layout4:EmptyLayout = new EmptyLayout();
+		panel104.setLayout(layout4);
 		
-		label109 = new JLabel();
-		label109.setLocation(new IntPoint(5, 5));
-		label109.setSize(new IntDimension(31, 19));
-		label109.setText("变色(0)");
+		txtColor = new JLabel();
+		txtColor.setLocation(new IntPoint(0, 0));
+		txtColor.setSize(new IntDimension(60, 19));
+		txtColor.setPreferredSize(new IntDimension(60, 19));
+		txtColor.setText("变色(0)");
+		txtColor.setHorizontalAlignment(AsWingConstants.LEFT);
+		txtColor.setHorizontalTextPosition(AsWingConstants.LEFT);
 		
-		slider110 = new JSlider();
-		slider110.setLocation(new IntPoint(65, 4));
-		slider110.setSize(new IntDimension(200, 14));
-		slider110.setValue(0);
-		slider110.setExtent(0);
-		slider110.setMinimum(0);
-		slider110.setMaximum(100);
+		sliderColor = new JSlider();
+		sliderColor.setLocation(new IntPoint(65, 4));
+		sliderColor.setSize(new IntDimension(200, 14));
+		sliderColor.setValue(0);
+		sliderColor.setExtent(0);
+		sliderColor.setMinimum(0);
+		sliderColor.setMaximum(100);
 		
 		panel106 = new JPanel();
-		panel106.setLocation(new IntPoint(14, 281));
+		panel106.setLocation(new IntPoint(0, 24));
 		panel106.setSize(new IntDimension(265, 19));
-		var layout7:EmptyLayout = new EmptyLayout();
-		panel106.setLayout(layout7);
+		var layout5:EmptyLayout = new EmptyLayout();
+		panel106.setLayout(layout5);
 		
-		label111 = new JLabel();
-		label111.setLocation(new IntPoint(5, 5));
-		label111.setSize(new IntDimension(31, 19));
-		label111.setText("透明(100)");
+		txtAlpha = new JLabel();
+		txtAlpha.setLocation(new IntPoint(0, 0));
+		txtAlpha.setSize(new IntDimension(60, 19));
+		txtAlpha.setPreferredSize(new IntDimension(60, 19));
+		txtAlpha.setText("透明(100)");
+		txtAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
 		
-		slider112 = new JSlider();
-		slider112.setLocation(new IntPoint(65, 4));
-		slider112.setSize(new IntDimension(200, 14));
-		slider112.setValue(0);
-		slider112.setExtent(0);
-		slider112.setMinimum(0);
-		slider112.setMaximum(100);
+		sliderAlpha = new JSlider();
+		sliderAlpha.setLocation(new IntPoint(65, 4));
+		sliderAlpha.setSize(new IntDimension(200, 14));
+		sliderAlpha.setValue(0);
+		sliderAlpha.setExtent(0);
+		sliderAlpha.setMinimum(0);
+		sliderAlpha.setMaximum(100);
 		
 		panel107 = new JPanel();
-		panel107.setLocation(new IntPoint(32, 324));
-		panel107.setSize(new IntDimension(265, 19));
-		var layout8:EmptyLayout = new EmptyLayout();
-		panel107.setLayout(layout8);
+		panel107.setLocation(new IntPoint(0, 0));
+		panel107.setSize(new IntDimension(265, 20));
+		panel107.setPreferredSize(new IntDimension(265, 20));
+		var layout6:EmptyLayout = new EmptyLayout();
+		panel107.setLayout(layout6);
 		
-		label113 = new JLabel();
-		label113.setLocation(new IntPoint(5, 5));
-		label113.setSize(new IntDimension(48, 19));
-		label113.setText("旋转(0°)");
+		txtRotation = new JLabel();
+		txtRotation.setLocation(new IntPoint(0, 0));
+		txtRotation.setSize(new IntDimension(60, 19));
+		txtRotation.setPreferredSize(new IntDimension(60, 19));
+		txtRotation.setText("旋转(0°)");
+		txtRotation.setHorizontalAlignment(AsWingConstants.LEFT);
 		
-		slider114 = new JSlider();
-		slider114.setLocation(new IntPoint(65, 4));
-		slider114.setSize(new IntDimension(200, 14));
-		slider114.setValue(0);
-		slider114.setExtent(0);
-		slider114.setMinimum(0);
-		slider114.setMaximum(100);
+		sliderRotation = new JSlider();
+		sliderRotation.setLocation(new IntPoint(65, 4));
+		sliderRotation.setSize(new IntDimension(200, 14));
+		sliderRotation.setValue(0);
+		sliderRotation.setExtent(0);
+		sliderRotation.setMinimum(0);
+		sliderRotation.setMaximum(100);
 		
 		//component layoution
 		append(panel98);
 		
-		panel98.append(loadpane97);
+		panel98.append(thumbPane);
 		panel98.append(panel100);
-		panel98.append(colormixer103);
+		panel98.append(colorMixer);
 		panel98.append(panel108);
 		
-		panel100.append(button101);
-		panel100.append(button102);
+		panel100.append(btnReplace);
+		panel100.append(btnDelete);
 		
 		panel108.append(panel104);
 		panel108.append(panel106);
 		panel108.append(panel107);
 		
-		panel104.append(label109);
-		panel104.append(slider110);
+		panel104.append(txtColor);
+		panel104.append(sliderColor);
 		
-		panel106.append(label111);
-		panel106.append(slider112);
+		panel106.append(txtAlpha);
+		panel106.append(sliderAlpha);
 		
-		panel107.append(label113);
-		panel107.append(slider114);
+		panel107.append(txtRotation);
+		panel107.append(sliderRotation);
 		
 	}
 	
 	//_________getters_________
 	
 	
-	public function getLoadpane97():JLoadPane{
-		return loadpane97;
+	
+	
+	public function getBtnReplace():JButton{
+		return btnReplace;
 	}
 	
-	
-	public function getButton101():JButton{
-		return button101;
+	public function getBtnDelete():JButton{
+		return btnDelete;
 	}
 	
-	public function getButton102():JButton{
-		return button102;
-	}
-	
-	public function getColormixer103():JColorMixer{
-		return colormixer103;
-	}
-	
-	
-	
-	
-	public function getSlider110():JSlider{
-		return slider110;
+	public function getColorMixer():JColorMixer{
+		return colorMixer;
 	}
 	
 	
 	
-	public function getSlider112():JSlider{
-		return slider112;
+	
+	public function getSliderColor():JSlider{
+		return sliderColor;
 	}
 	
 	
 	
-	public function getSlider114():JSlider{
-		return slider114;
+	public function getSliderAlpha():JSlider{
+		return sliderAlpha;
+	}
+	
+	
+	
+	public function getSliderRotation():JSlider{
+		return sliderRotation;
 	}
 	
 	
