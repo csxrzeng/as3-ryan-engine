@@ -47,8 +47,8 @@ package view.paper
 			display = value.display;
 			addChild(display);
 			//transform.matrix = _vo.matrix;
-			transform.colorTransform = _vo.colorTransform;
-			alpha = _vo.alpha;
+			//transform.colorTransform = _vo.colorTransform;
+			//alpha = _vo.alpha;
 		}
 	}
 }

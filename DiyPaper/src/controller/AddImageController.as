@@ -1,15 +1,18 @@
 package controller
 {
+	import com.ryan.debug.Log;
+	import com.ryan.resource.info.SWFInfo;
+	import com.ryan.resource.LoaderManager;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
 	import flash.events.Event;
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
+	import flash.utils.ByteArray;
 	import model.ItemVo;
-	import org.aswing.AssetPane;
+	import model.LoaderVo;
 	import org.aswing.event.AWEvent;
-	import org.aswing.JLoadPane;
 	import resource.Config;
 	
 	/**
@@ -32,8 +35,29 @@ package controller
 		
 		private function onAddLibraryImage(e:GameEvent):void 
 		{
+			LoaderManager.instance.load(Config.MEDIA_PATH + e.data + ".swf", onLibraryImageLoaded);
+		}
+		
+		private function onLibraryImageLoaded(info:SWFInfo):void 
+		{
+			var data:ByteArray = (info.data as LoaderInfo).bytes as ByteArray;
+			if (!data)
+			{
+				Log.error("swf数据错误");
+				return;
+			}
+			var loader:LoaderVo = new LoaderVo();
+			loader.url = info.name;
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onConvertComplete);
+			loader.loadBytes(data);
+		}
+		
+		private function onConvertComplete(e:Event):void 
+		{
+			var info:LoaderInfo = e.currentTarget as LoaderInfo;
+			info.removeEventListener(Event.COMPLETE, onConvertComplete);
 			var item:ItemVo = new ItemVo(ItemVo.IMAGE);
-			item.display = new JLoadPane(Config.MEDIA_PATH + e.data + ".swf", AssetPane.PREFER_SIZE_IMAGE);
+			item.display = info.loader;
 			GameController.paper.addItem(item);
 		}
 		
