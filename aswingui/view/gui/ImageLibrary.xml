@@ -10,6 +10,9 @@
       <Property name="Size" type="Size">
         <Value value="285,440"/>
       </Property>
+      <Property name="PreferredSize" type="PreferredSize">
+        <Value value="285,440"/>
+      </Property>
       <Property name="Border" type="Border">
         <Value>
           <Border name="EmptyBorder">
