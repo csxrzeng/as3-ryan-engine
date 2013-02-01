@@ -33,7 +33,7 @@ package view.property
 		private function onStatic(e:AWEvent):void
 		{
 			btnStatic.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.STATIC_TEXT));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.STATIC_TEXT}));
 		}
 		
 		private function onAdd(e:AWEvent):void
