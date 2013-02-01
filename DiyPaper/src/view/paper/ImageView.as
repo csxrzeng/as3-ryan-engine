@@ -15,6 +15,7 @@ package view.paper
 		private var display:DisplayObject;
 		private var _vo:ItemVo;
 		private var _item:TransformItem;
+		private var _lastRotation:int = 0;
 		
 		public function ImageView()
 		{
@@ -34,11 +35,12 @@ package view.paper
 				addChild(display);
 				_item.origin = _item.center;
 			}
-			_item.scaleX = _vo.scaleX;
-			_item.scaleY = _vo.scaleY;
-			_item.rotation = _vo.rotation;
-			_item.x = _vo.x
-			_item.y = _vo.y;
+			_item.rotate(_vo.rotation - _lastRotation);
+			_lastRotation = _vo.rotation;
+			//_item.scaleX = _vo.scaleX;
+			//_item.scaleY = _vo.scaleY;
+			//_item.x = _vo.x
+			//_item.y = _vo.y;
 			transform.colorTransform = _vo.colorTransform;
 			alpha = _vo.alpha;
 		}
@@ -58,11 +60,11 @@ package view.paper
 		
 		private function onUpdate(e:TransformEvent):void 
 		{
-			_vo.x = _item.x;
-			_vo.y = _item.y;
-			_vo.scaleX = _item.scaleX;
-			_vo.scaleY = _item.scaleY;
-			_vo.rotation = _item.rotation;
+			//_vo.x = _item.x;
+			//_vo.y = _item.y;
+			//_vo.scaleX = _item.scaleX;
+			//_vo.scaleY = _item.scaleY;
+			_lastRotation = _item.rotation;
 		}
 		
 		public function get vo():ItemVo
