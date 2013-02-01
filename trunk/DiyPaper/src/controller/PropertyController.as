@@ -47,8 +47,10 @@ package controller
 		
 		private function showPropertyWin(e:GameEvent):void 
 		{
-			MainWindow.toolBar.propertyBar.setButtonType(e.data);
-			MainWindow.propertyWin.setType(e.data);
+			var type:int = e.data.type;
+			var vo:ItemVo = e.data.vo;
+			MainWindow.toolBar.propertyBar.setButtonType(type);
+			MainWindow.propertyWin.setType(type, vo);
 		}
 		
 		private function showPropertyProcessor(e:GameEvent):void
