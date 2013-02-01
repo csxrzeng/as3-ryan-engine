@@ -1,5 +1,6 @@
 package com.ryan.resource.loader
 {
+	import flash.display.AVM1Movie;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -110,7 +111,7 @@ package com.ryan.resource.loader
 				}
 				_appDomain = loaderInfo.applicationDomain;
 			}
-			return _clip != null;
+			return _clip != null || content is AVM1Movie; // 1代的swf也可以
 		}
 
 		override public function dispose():void
