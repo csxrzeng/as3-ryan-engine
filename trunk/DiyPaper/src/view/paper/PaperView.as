@@ -78,7 +78,7 @@ package view.paper
 		
 		private function onMouseClick(e:MouseEvent):void
 		{
-			if (e.target == this)
+			if (e.target == this || e.target == _paper)
 			{
 				_tool.deselectAll();
 			}
@@ -88,14 +88,29 @@ package view.paper
 		{
 			if (e.items.length > 0) // 暂时只处理一个的情况
 			{
-				var item:TransformItem = e.items[0];
+				var item:TransformItem = e.items[e.items.length - 1];
 				selectedItem = item.targetObject as IItemView;
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {type:selectedItem.type, vo:selectedItem.vo}));
+				var winType:int = getPropertyWinType(selectedItem.vo.type);
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:winType, vo:selectedItem.vo}));
 			}
 			else
 			{
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {type:PropertyWin.BASE}));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.BASE}));
 			}
+		}
+		
+		private function getPropertyWinType(type:String):int 
+		{
+			switch (type)
+			{
+				case ItemVo.IMAGE:
+					return PropertyWin.IMAGE;
+				case ItemVo.SPECIAL_TEXT:
+					return PropertyWin.SPECIAL_TEXT;
+				case ItemVo.STATIC_TEXT:
+					return PropertyWin.STATIC_TEXT;
+			}
+			return PropertyWin.BASE;
 		}
 		
 		/**

@@ -72,7 +72,7 @@ package view.property
 		
 		private function onBackClick(e:AWEvent):void
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.LIBRARY));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.LIBRARY}));
 		}
 		
 		private function onBrowseClick(e:AWEvent):void 

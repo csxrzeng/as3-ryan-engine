@@ -53,17 +53,17 @@ package view.toolbar
 		
 		private function onBaseAction(e:AWEvent):void 
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.BASE));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.BASE}));
 		}
 		
 		private function onTextAction(e:AWEvent):void 
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.SPECIAL_TEXT));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.SPECIAL_TEXT}));
 		}
 		
 		private function onImageAction(e:AWEvent):void 
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.LIBRARY));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.LIBRARY}));
 		}
 		
 		private function onFullscreenAction(e:AWEvent):void 

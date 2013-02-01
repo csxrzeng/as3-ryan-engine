@@ -92,7 +92,7 @@ package view.property
 		
 		private function onMyAssetsClick(e:AWEvent):void 
 		{
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.ASSETS));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.ASSETS}));
 		}
 		
 	}

@@ -281,8 +281,6 @@ public class ImagePane extends JPanel{
 		aRV.addActionListener(onColorOffsetChange);
 		aGV.addActionListener(onColorOffsetChange);
 		aBV.addActionListener(onColorOffsetChange);
-		
-		Dispatcher.addEventListener(GameEvent.ShowProperty, onItemSelected);
 	}
 	
 	private function onColorOffsetChange(e:AWEvent):void

@@ -1,5 +1,6 @@
 package view.property
 {
+	import model.ItemVo;
 	import org.aswing.JFrame;
 	
 	/**
@@ -48,7 +49,7 @@ package view.property
 			return _type;
 		}
 		
-		public function setType(type:int, data:* = null):void
+		public function setType(type:int, data:ItemVo = null):void
 		{
 			if (_type != type)
 			{

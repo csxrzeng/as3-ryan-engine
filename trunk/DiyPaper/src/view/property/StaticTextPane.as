@@ -240,7 +240,7 @@ package view.property
 		private function onSpecial(e:AWEvent):void
 		{
 			btnSpecial.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, PropertyWin.SPECIAL_TEXT));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.SPECIAL_TEXT}));
 		}
 		
 		public function get settingVo():ItemVo
