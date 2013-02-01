@@ -12,6 +12,10 @@ package controller
 		 * 显示特定类型的属性面板
 		 */
 		static public const ShowProperty:String = "ShowProperty";
+		/**
+		 * 切换显示面板
+		 */
+		static public const SWITCH_PROPERTY:String = "switch_property";
 		
 		static public const SavePaper:String = "SavePaper";
 		static public const LoadPaper:String = "LoadPaper";
