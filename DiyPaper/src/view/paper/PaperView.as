@@ -152,7 +152,7 @@ package view.paper
 		private function addText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
-			vo.type = ItemVo.TEXT;
+			vo.type = ItemVo.STATIC_TEXT;
 			text.vo = vo;
 			_paper.addChild(text);
 			_list.push(text);
@@ -196,7 +196,7 @@ package view.paper
 			{
 				addText(vo);
 			}
-			else if (vo.type == ItemVo.TEXT)
+			else if (vo.type == ItemVo.STATIC_TEXT)
 			{
 				addStaticText(vo);
 			}

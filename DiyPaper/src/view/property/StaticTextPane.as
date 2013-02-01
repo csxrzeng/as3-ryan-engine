@@ -71,7 +71,7 @@ package view.property
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
 			
-			settingVo = new ItemVo(ItemVo.TEXT);
+			settingVo = new ItemVo(ItemVo.STATIC_TEXT);
 		}
 		
 		private function onPopHidden(e:AWEvent):void

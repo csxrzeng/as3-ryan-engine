@@ -14,7 +14,7 @@ package model
 	{
 		static public const IMAGE:String = "image";
 		static public const SPECIAL_TEXT:String = "special_text";
-		static public const TEXT:String = "text";
+		static public const STATIC_TEXT:String = "static_text";
 		
 		public var type:String = IMAGE;
 		
@@ -38,7 +38,7 @@ package model
 		public var color:uint;
 		public var bold:Boolean;
 		public var italic:Boolean;
-		public var size:int = 12;
+		public var size:int = 50;
 		public var align:String = TextFormatAlign.LEFT;
 		public var underline:Boolean;
 		public var glowFilter:GlowFilter = new GlowFilter();

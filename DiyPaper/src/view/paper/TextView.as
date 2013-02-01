@@ -19,7 +19,7 @@ package view.paper
 		
 		public function TextView()
 		{
-			_vo = new ItemVo(ItemVo.TEXT);
+			_vo = new ItemVo(ItemVo.STATIC_TEXT);
 			type = TextFieldType.INPUT;
 			multiline = true;
 			wordWrap = true;
