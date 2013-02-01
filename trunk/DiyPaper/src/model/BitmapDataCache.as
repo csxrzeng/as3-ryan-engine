@@ -1,5 +1,7 @@
 package model
 {
+	import com.ryan.resource.info.ImageInfo;
+	import com.ryan.resource.LoaderManager;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -71,10 +73,12 @@ package model
 				funs[url].push(callback);
 				if (data[url] == null) // Loader不存在才加载，不然会自动处理
 				{
-					var loader:LoaderVo = new LoaderVo(url);
-					data[url] = loader;
-					addListener(loader);
-					loader.load(new URLRequest(url), new LoaderContext(false, null, SecurityDomain.currentDomain));
+					data[url] = true;
+					LoaderManager.instance.load(url, completeHandler);
+					//var loader:LoaderVo = new LoaderVo(url);
+					//data[url] = loader;
+					//addListener(loader);
+					//loader.load(new URLRequest(url), new LoaderContext(false, null, SecurityDomain.currentDomain));
 				}
 				if (needDefault)
 				{
@@ -142,13 +146,11 @@ package model
 			}
 		}
 		
-		private static function completeHandler(e:Event):void
+		private static function completeHandler(info:ImageInfo):void
 		{
-			var info:LoaderInfo = e.currentTarget as LoaderInfo;
-			clearListener(info);
-			var url:String = (info.loader as LoaderVo).url;
+			var url:String = info.name;
 			var obj:Bitmap;
-			var bmd:BitmapData = obj.bitmapData;
+			var bmd:BitmapData = info.bitmapData;
 			if (info.content is Bitmap)
 			{
 				bmd = (info.content as Bitmap).bitmapData;
@@ -184,22 +186,22 @@ package model
 			delete funs[url];
 		}
 		
-		private static function errorHandler(e:Event):void
-		{
-			var info:LoaderInfo = e.currentTarget as LoaderInfo;
-			clearListener(info);
-		}
-		
-		static private function addListener(loader:Loader):void
-		{
-			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
-			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
-		}
-		
-		static private function clearListener(info:LoaderInfo):void
-		{
-			info.removeEventListener(Event.COMPLETE, completeHandler);
-			info.removeEventListener(IOErrorEvent.IO_ERROR, errorHandler);
-		}
+		//private static function errorHandler(e:Event):void
+		//{
+			//var info:LoaderInfo = e.currentTarget as LoaderInfo;
+			//clearListener(info);
+		//}
+		//
+		//static private function addListener(loader:Loader):void
+		//{
+			//loader.contentLoaderInfo.addEventListener(Event.COMPLETE, completeHandler);
+			//loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+		//}
+		//
+		//static private function clearListener(info:LoaderInfo):void
+		//{
+			//info.removeEventListener(Event.COMPLETE, completeHandler);
+			//info.removeEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+		//}
 	}
 }
