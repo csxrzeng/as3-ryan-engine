@@ -15,6 +15,7 @@ package view.paper
 	import org.aswing.border.EmptyBorder;
 	import org.aswing.border.LineBorder;
 	import org.aswing.CenterLayout;
+	import org.aswing.Component;
 	import org.aswing.EmptyLayout;
 	import org.aswing.geom.IntDimension;
 	import org.aswing.Insets;
@@ -29,7 +30,7 @@ package view.paper
 	public class PaperView extends JPanel
 	{
 		private var _vo:PaperVo;
-		private var _list:Array = [];
+		private var _list:Vector.<IItemView> = new Vector.<IItemView>();
 		private var _tool:TransformManager;
 		private var _perfersize:IntDimension;
 		private var _paper:JPanel;
@@ -87,10 +88,9 @@ package view.paper
 		
 		private function onSelectChange(e:TransformEvent):void
 		{
-			if (e.items.length > 0) // 暂时只处理一个的情况
+			if (_tool.selectedTargetObjects.length > 0) // 暂时只处理一个的情况
 			{
-				var item:TransformItem = e.items[e.items.length - 1];
-				selectedItem = item.targetObject as IItemView;
+				selectedItem = _tool.selectedTargetObjects[0] as IItemView;
 				var winType:int = getPropertyWinType(selectedItem.vo.type);
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:winType, vo:selectedItem.vo}));
 			}
@@ -159,31 +159,29 @@ package view.paper
 		private function addImage(vo:ItemVo):void
 		{
 			var image:ImageView = new ImageView();
-			vo.type = ItemVo.IMAGE;
-			image.vo = vo;
+			image.item = _tool.addItem(image);
 			_paper.addChild(image);
 			_list.push(image);
-			image.item = _tool.addItem(image);
+			image.vo = vo;
 		}
 		
 		private function addText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
-			vo.type = ItemVo.STATIC_TEXT;
-			text.vo = vo;
+			text.item = _tool.addItem(text);
 			_paper.addChild(text);
 			_list.push(text);
-			text.item = _tool.addItem(text);
+			text.vo = vo;
 		}
 		
 		private function addStaticText(vo:ItemVo):void
 		{
 			var text:StaticTextView = new StaticTextView();
-			text.vo = vo;
-			_paper.addChild(text);
-			_list.push(text);
 			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
 			text.item.lockRotation = true;
+			_paper.addChild(text);
+			_list.push(text);
+			text.vo = vo;
 		}
 		
 		/**
@@ -197,7 +195,7 @@ package view.paper
 				if (_list[i].vo == vo)
 				{
 					_tool.removeItem(_list[i]);
-					_paper.remove(_list[i]);
+					_paper.remove(_list[i] as Component);
 					_list.splice(i, 1);
 				}
 			}
@@ -218,6 +216,30 @@ package view.paper
 				addStaticText(vo);
 			}
 			MainWindow.layerWin.addLayer(vo);
+		}
+		
+		/**
+		 * 更新对象
+		 * @param	data
+		 */
+		public function updateItem(data:ItemVo):void 
+		{
+			if (selectedItem.vo == data)
+			{
+				selectedItem.update();
+			}
+		}
+		
+		private function indexOf(data:ItemVo):int
+		{
+			for (var i:int = 0; i < _list.length; i++) 
+			{
+				if (_list[i].vo == data)
+				{
+					return i;
+				}
+			}
+			return -1;
 		}
 	}
 }

@@ -77,6 +77,7 @@ package view.property
 				case IMAGE:
 					setTitle("图片属性");
 					setContentPane(pImage);
+					pImage.settingVo = data;
 					break;
 				case LIBRARY:
 					setTitle("在线图标");
@@ -89,6 +90,15 @@ package view.property
 			}
 			pack();
 			show();
+		}
+		
+		/**
+		 * 更新当前对象的属性
+		 * @param	data
+		 */
+		public function update(data:ItemVo):void 
+		{
+			setType(_type, data);
 		}
 	}
 }

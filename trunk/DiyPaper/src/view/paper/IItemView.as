@@ -14,6 +14,8 @@ package view.paper
 		
 		function get vo():ItemVo;
 		function set vo(value:ItemVo):void;
+		
+		function update():void;
 	}
 	
 }

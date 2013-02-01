@@ -37,6 +37,26 @@ package view.paper
 		
 		/* INTERFACE view.paper.IItemView */
 		
+		public function update():void 
+		{
+			alpha = _vo.alpha;
+			formate.font = _vo.font;
+			formate.size = _vo.size;
+			formate.color = _vo.color;
+			formate.bold = _vo.bold;
+			formate.italic = _vo.italic;
+			formate.leading = _vo.leading;
+			formate.letterSpacing = _vo.letterSpacing;
+			formate.align = _vo.align;
+			formate.underline = _vo.underline;
+			_textfield.defaultTextFormat = formate;
+			if (_textfield.length > 0)
+			{
+				_textfield.setTextFormat(formate, 0, _textfield.length);
+			}
+			_textfield.text = _vo.text;
+		}
+		
 		public function get item():TransformItem
 		{
 			return _item;
@@ -75,23 +95,7 @@ package view.paper
 		public function set vo(value:ItemVo):void
 		{
 			_vo = value;
-			//transform.matrix = _vo.matrix.clone();
-			alpha = _vo.alpha;
-			formate.font = _vo.font;
-			formate.size = _vo.size;
-			formate.color = _vo.color;
-			formate.bold = _vo.bold;
-			formate.italic = _vo.italic;
-			formate.leading = _vo.leading;
-			formate.letterSpacing = _vo.letterSpacing;
-			formate.align = _vo.align;
-			formate.underline = _vo.underline;
-			_textfield.defaultTextFormat = formate;
-			if (_textfield.length > 0)
-			{
-				_textfield.setTextFormat(formate, 0, _textfield.length);
-			}
-			_textfield.text = _vo.text;
+			update();
 		}
 	}
 }
