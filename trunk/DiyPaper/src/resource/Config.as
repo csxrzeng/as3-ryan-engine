@@ -15,6 +15,10 @@ package resource
 		 */
 		static public var filterType:String = "*.jpg;*.png";
 		/**
+		 * 支持的文件大小
+		 */
+		static public var MaxFileSize:int = 500 * 1024; // 500K;
+		/**
 		 * 是否管理员模式
 		 * 管理员模式所有资源需要上传到服务器
 		 * 否则直接读取到内存

@@ -1,4 +1,4 @@
-package resource.loader 
+package resource.proxy 
 {
 	import flash.events.DataEvent;
 	import flash.events.ErrorEvent;
