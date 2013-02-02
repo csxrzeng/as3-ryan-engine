@@ -40,6 +40,10 @@ package controller
 		 * 当前选中对象更新
 		 */
 		static public const UpdateSelectItem:String = "UpdateSelectItem";
+		/**
+		 * 删除选中对象
+		 */
+		static public const DeleteSelectedItem:String = "DeleteSelectedItem";
 		
 		public var data:*;
 		

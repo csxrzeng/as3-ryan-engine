@@ -33,6 +33,12 @@ package controller
 			Dispatcher.addEventListener(GameEvent.LoadPaper, loadPaperProcessor);
 			Dispatcher.addEventListener(GameEvent.SaveToPng, saveToPngProcessor);
 			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onUpdateSelecteItem);
+			Dispatcher.addEventListener(GameEvent.DeleteSelectedItem, onDeleteSelectedItem);
+		}
+		
+		private function onDeleteSelectedItem(e:GameEvent):void 
+		{
+			paper.removeSelectedItem(e.data);
 		}
 		
 		private function onUpdateSelecteItem(e:GameEvent):void 

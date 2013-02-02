@@ -2,6 +2,8 @@ package view.paper
 {
 	import com.greensock.events.TransformEvent;
 	import com.greensock.transform.TransformItem;
+	import controller.Dispatcher;
+	import controller.GameEvent;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -67,6 +69,7 @@ package view.paper
 			//_vo.scaleY = _item.scaleY;
 			_lastRotation = Math.round(_item.rotation + 360) % 360;
 			_vo.rotation = _lastRotation;
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _vo));
 		}
 		
 		public function get vo():ItemVo

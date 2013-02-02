@@ -3,6 +3,7 @@ package view.paper
 	import com.greensock.events.TransformEvent;
 	import com.greensock.transform.TransformItem;
 	import com.greensock.transform.TransformManager;
+	import com.ryan.utils.ArrayUtil;
 	import controller.Dispatcher;
 	import controller.GameEvent;
 	import flash.display.DisplayObject;
@@ -184,23 +185,6 @@ package view.paper
 			text.vo = vo;
 		}
 		
-		/**
-		 * 删除对象
-		 * @param	vo
-		 */
-		public function removeItem(vo:ItemVo):void
-		{
-			for (var i:int = 0; i < _list.length; i++)
-			{
-				if (_list[i].vo == vo)
-				{
-					_tool.removeItem(_list[i]);
-					_paper.remove(_list[i] as Component);
-					_list.splice(i, 1);
-				}
-			}
-		}
-		
 		public function addItem(vo:ItemVo):void
 		{
 			if (vo.type == ItemVo.IMAGE)
@@ -227,6 +211,24 @@ package view.paper
 			if (selectedItem.vo == data)
 			{
 				selectedItem.update();
+			}
+		}
+		
+		/**
+		 * 删除选中对象
+		 * @param	data
+		 */
+		public function removeSelectedItem(data:*):void 
+		{
+			if (selectedItem && selectedItem.vo == data)
+			{
+				_tool.removeItem(selectedItem);
+				ArrayUtil.removeItem(_list, selectedItem);
+				var obj:DisplayObject = selectedItem as DisplayObject;
+				if (obj && obj.parent == _paper)
+				{
+					_paper.removeChild(obj);
+				}
 			}
 		}
 		
