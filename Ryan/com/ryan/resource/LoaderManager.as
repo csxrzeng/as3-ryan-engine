@@ -70,6 +70,10 @@ package com.ryan.resource
 				if (!infoClass)
 				{
 					Log.error("文件类型不正确：" + url);
+					if (onFailed != null)
+					{
+						onFailed(null);
+					}
 					return;
 				}
 				var info:ResourceInfo = new infoClass(null);
