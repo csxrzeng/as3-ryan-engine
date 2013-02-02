@@ -40,7 +40,6 @@ package view.property
 			}
 		}
 		
-		
 		private function configUI():void 
 		{
 			sliderColor.setMinimum(0);

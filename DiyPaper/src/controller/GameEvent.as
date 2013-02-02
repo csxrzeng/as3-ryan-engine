@@ -44,6 +44,10 @@ package controller
 		 * 删除选中对象
 		 */
 		static public const DeleteSelectedItem:String = "DeleteSelectedItem";
+		/**
+		 * 替换选中对象的图片
+		 */
+		static public const ReplaceSelectedImage:String = "ReplaceSelectedImage";
 		
 		public var data:*;
 		
