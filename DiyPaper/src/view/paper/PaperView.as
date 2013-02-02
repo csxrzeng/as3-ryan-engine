@@ -80,7 +80,7 @@ package view.paper
 		
 		private function onMouseClick(e:MouseEvent):void
 		{
-			if (e.target == this || e.target == _paper)
+			if (e.target == _paper)
 			{
 				_tool.deselectAll();
 			}
