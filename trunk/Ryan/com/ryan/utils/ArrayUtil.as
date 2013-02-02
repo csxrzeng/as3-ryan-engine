@@ -13,10 +13,12 @@ package com.ryan.utils
 		 */
 		public static function removeItem(array:Object, item:Object):void
 		{
-			var index:int = array.indexOf(item);
-			if (index != -1)
+			for (var i:int = 0; i < array.length; i++) 
 			{
-				array.splice(index, 1);
+				if (array[i] == item)
+				{
+					array.splice(i, 1);
+				}
 			}
 		}
 	}
