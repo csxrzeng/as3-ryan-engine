@@ -59,10 +59,12 @@ package view.property
 		
 		private function onReplaceClick(e:MouseEvent):void 
 		{
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ReplaceSelectedImage, _settingVo));
 		}
 		
 		private function onDeleteClick(e:MouseEvent):void 
 		{
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.DeleteSelectedItem, _settingVo));
 		}
 		
 		private function onColorChange(e:ColorChooserEvent):void 
@@ -81,7 +83,9 @@ package view.property
 		
 		private function onSliderAlpha(e:InteractiveEvent):void 
 		{
+			_color = colorMixer.getSelectedColor();
 			_color = _color.changeAlpha(sliderAlpha.getValue() / 100);
+			colorMixer.setSelectedColor(_color);
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
@@ -95,8 +99,8 @@ package view.property
 		private function update():void
 		{
 			var rgb:uint = _settingVo.colorTransform.color;
-			_color = new ASColor(rgb, _settingVo.colorTransform.alphaMultiplier);
-			var alpha:int = _settingVo.colorTransform.alphaMultiplier * 100;
+			var alpha:int = (_settingVo.colorTransform.alphaOffset + 255) * 100 / 255;
+			_color = new ASColor(rgb, alpha / 100);
 			
 			colorMixer.setSelectedColor(_color);
 			

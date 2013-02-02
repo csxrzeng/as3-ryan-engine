@@ -1,4 +1,4 @@
-package resource 
+package resource.loader 
 {
 	import flash.events.DataEvent;
 	import flash.events.ErrorEvent;
