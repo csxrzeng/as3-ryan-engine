@@ -35,7 +35,8 @@ package view.paper
 				addChild(display);
 				_item.origin = _item.center;
 			}
-			_item.rotate(_vo.rotation - _lastRotation);
+			var degree:int = _vo.rotation - _lastRotation;
+			_item.rotate(degree * Math.PI / 180);
 			_lastRotation = _vo.rotation;
 			//_item.scaleX = _vo.scaleX;
 			//_item.scaleY = _vo.scaleY;
@@ -64,7 +65,8 @@ package view.paper
 			//_vo.y = _item.y;
 			//_vo.scaleX = _item.scaleX;
 			//_vo.scaleY = _item.scaleY;
-			_lastRotation = _item.rotation;
+			_lastRotation = Math.round(_item.rotation + 360) % 360;
+			_vo.rotation = _lastRotation;
 		}
 		
 		public function get vo():ItemVo
