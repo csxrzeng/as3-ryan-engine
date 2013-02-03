@@ -132,16 +132,16 @@ package view.paper
 		
 		private function onItemLayerChange(e:GameEvent):void
 		{
-			var vo:ItemVo = e.data as ItemVo;
-			var item:DisplayObject = itemViewContainer.getChildAt(vo.layer);
-			var index:int = itemViewContainer.getChildIndex(item);
+			var itemView:IItemView = e.data as IItemView;
+			//var item:DisplayObject = itemViewContainer.getChildAt(vo.layer);
+			//var index:int = itemViewContainer.getChildIndex(item);
 			if (e.type == GameEvent.UP_LAYER)
 			{
-				itemViewContainer.setChildIndex(item, index + 1);
+				itemViewContainer.swapChildrenAt(itemView.vo.layer, itemView.vo.layer - 1);
 			}
 			else
 			{
-				itemViewContainer.setChildIndex(item, index - 1);
+				itemViewContainer.swapChildrenAt(itemView.vo.layer, itemView.vo.layer + 1);
 			}
 		}
 		
@@ -182,6 +182,7 @@ package view.paper
 			itemViewContainer.addChild(image);
 			_list.push(image);
 			image.vo = vo;
+			MainWindow.layerWin.addLayer(image);
 		}
 		
 		private function addText(vo:ItemVo):void
@@ -191,6 +192,7 @@ package view.paper
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
+			MainWindow.layerWin.addLayer(text);
 		}
 		
 		private function addStaticText(vo:ItemVo):void
@@ -201,6 +203,7 @@ package view.paper
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
+			MainWindow.layerWin.addLayer(text);
 		}
 		
 		public function addItem(vo:ItemVo):void
@@ -221,7 +224,6 @@ package view.paper
 			{
 				throw new ArgumentError("item type error");
 			}
-			MainWindow.layerWin.addLayer(vo);
 			setItemSelected(vo);
 		}
 		

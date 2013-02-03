@@ -4,10 +4,9 @@ package view.thumb
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.geom.Matrix;
 	import model.ItemVo;
-	import view.paper.ImageView;
-	import view.paper.StaticTextView;
-	import view.paper.TextView;
+	import view.paper.IItemView;
 	
 	/**
 	 * ...
@@ -19,7 +18,8 @@ package view.thumb
 		
 		private var bmp:Bitmap;
 		
-		private var _data:ItemVo;
+		private var _vo:ItemVo;
+		private var _view:IItemView;
 		
 		public function ThumbIcon()
 		{
@@ -38,14 +38,11 @@ package view.thumb
 		{
 			if (view)
 			{
-				var orignWidth:Number = view.width;
-				var orignHeight:Number = view.height;
-				view.width = view.height = SIZE;
+				var matrix:Matrix = new Matrix();
+				matrix.scale((SIZE - 1) / view.width, (SIZE - 1) / view.height);
 				var bmd:BitmapData = new BitmapData(SIZE - 1, SIZE - 1);
-				bmd.draw(view);
+				bmd.draw(view, matrix, view.transform.colorTransform);
 				bmp.bitmapData = bmd;
-				view.width = orignWidth;
-				view.height = orignHeight;
 			}
 			else
 			{
@@ -61,54 +58,15 @@ package view.thumb
 			graphics.endFill();
 		}
 		
-		public function get data():ItemVo
+		public function get view():IItemView
 		{
-			return _data;
+			return _view;
 		}
 		
-		public function set data(value:ItemVo):void
+		public function set view(value:IItemView):void
 		{
-			_data = value;
-			if (_data)
-			{
-				if (_data.type == ItemVo.IMAGE)
-				{
-					addImage(_data);
-				}
-				else if (_data.type == ItemVo.SPECIAL_TEXT)
-				{
-					addText(_data);
-				}
-				else if (_data.type == ItemVo.STATIC_TEXT)
-				{
-					addStaticText(_data);
-				}
-			}
-			else
-			{
-				setIcon(null);
-			}
-		}
-		
-		private function addStaticText(vo:ItemVo):void
-		{
-			var text:StaticTextView = new StaticTextView();
-			text.vo = vo;
-			setIcon(text);
-		}
-		
-		private function addText(vo:ItemVo):void
-		{
-			var text:TextView = new TextView();
-			text.vo = vo;
-			setIcon(text);
-		}
-		
-		private function addImage(vo:ItemVo):void
-		{
-			var image:ImageView = new ImageView();
-			image.vo = vo;
-			setIcon(image);
+			_view = value;
+			setIcon(_view as DisplayObject);
 		}
 	}
 }
