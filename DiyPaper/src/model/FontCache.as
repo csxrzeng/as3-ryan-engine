@@ -1,42 +1,34 @@
-package model 
+package model
 {
+	import com.ryan.resource.ResourceManager;
 	import flash.utils.Dictionary;
+	import resource.Config;
 	import resource.MediaProxy;
-	import resource.SMedia;
+	
 	/**
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class FontCache 
+	public class FontCache
 	{
-		static private const FontXMLPath:String = "fonts/fonts.xml";
-		private var fontMap:Dictionary;
-		private var fontNameList:Array;
-		private var swfMap:Dictionary;
+		private var fontMap:Dictionary = new Dictionary();
+		private var swfMap:Dictionary = new Dictionary();
+		private var fontNameList:Array = [];
+		private var staticFonts:Array = [];
 		
-		public function FontCache() 
+		public function FontCache()
 		{
-			fontMap = new Dictionary();
-			swfMap = new Dictionary();
 			init();
 		}
 		
 		public function init():void
 		{
-			MediaProxy.Instance().PushArray([FontXMLPath]);
-			MediaProxy.Instance().start(onXmlComplete);
+			onStaticXmlComplete(XML(ResourceManager.getInfoByName(Config.SPECIAL_FONT_XML).data));
+			onSpecialXmlComplete(XML(ResourceManager.getInfoByName(Config.STATIC_FONT_XML).data));
 		}
 		
 		public function getFontNameList():Array
 		{
-			if (!fontNameList)
-			{
-				fontNameList = [];
-				for each (var item:FontVo in fontMap) 
-				{
-					fontNameList.push(item.name);
-				}
-			}
 			return fontNameList;
 		}
 		
@@ -50,13 +42,13 @@ package model
 			if (fontMap[fontName] && fontMap[fontName].state == 0)
 			{
 				fontMap[fontName].state = 1;
-				MediaProxy.Instance().PushArray(["fonts/" + (fontMap[fontName] as FontVo).url]);
+				MediaProxy.Instance().PushArray([Config.FONT_PATH + (fontMap[fontName] as FontVo).url]);
 				MediaProxy.Instance().start(function():void
-				{
-					swfMap[fontName] = MediaProxy.Instance().GetData("fonts/" + (fontMap[fontName] as FontVo).url);
-					fontMap[fontName].state = 2;
-					onComplete && onComplete();
-				});
+					{
+						swfMap[fontName] = MediaProxy.Instance().GetData(Config.FONT_PATH + (fontMap[fontName] as FontVo).url);
+						fontMap[fontName].state = 2;
+						onComplete && onComplete();
+					});
 				return;
 			}
 			onComplete();
@@ -67,17 +59,23 @@ package model
 			return !fontMap[name] ? "" : fontMap[name].font;
 		}
 		
-		private function onXmlComplete():void 
+		private function onSpecialXmlComplete(xml:XML):void
 		{
-			var text:String = MediaProxy.Instance().GetData(FontXMLPath);
-			if (text)
+			var items:XMLList = xml.children();
+			for each (var item:XML in items)
 			{
-				var xml:XML = XML(text);
-				var items:XMLList = xml.children();
-				for each (var item:XML in items) 
-				{
-					fontMap[String(item.@name)] = new FontVo(item.@name, item.@font, item.@url);
-				}
+				var vo:FontVo = new FontVo(item.@name, item.@font, item.@url);
+				fontMap[vo.name] = vo;
+				fontNameList.push(vo);
+			}
+		}
+		
+		private function onStaticXmlComplete(xml:XML):void
+		{
+			var items:XMLList = xml.children();
+			for each (var item:XML in items)
+			{
+				staticFonts.push(item.@name);
 			}
 		}
 	}

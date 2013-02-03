@@ -6,8 +6,17 @@ package resource
 	 */
 	public class Config 
 	{
+		static public var XML_PATH:String = "xmls/";
 		static public var MEDIA_PATH:String = "assets/";
 		static public var MY_MEDIA_PATH:String = "images/";
+		static public var FONT_PATH:String = "fonts/";
+		static public var PAPER_PATH:String = "papers/";
+		
+		static public var PAPER_XML:String = ""; // 当前加载的模版的路径
+		static public var SPECIAL_FONT_XML:String = "fonts/specialfonts.xml";
+		static public var STATIC_FONT_XML:String = "fonts/staticfonts.xml";
+		static public var LIBRARY_XML:String = "library.xml";
+		
 		static public var UPLOAD_IMAGE_URL:String = "http://localhost/diypaper/upload.php";
 		
 		/**

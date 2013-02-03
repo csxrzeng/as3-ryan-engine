@@ -77,7 +77,6 @@ package view.paper
 			{
 				formate = _textfield.getTextFormat(0, _textfield.length);
 			}
-			//_vo.matrix = transform.matrix;
 			_vo.alpha = alpha;
 			_vo.font = formate.font;
 			_vo.size = int(formate.size);

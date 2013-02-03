@@ -28,7 +28,7 @@ package view.paper
 	 */
 	public class PaperView extends JPanel
 	{
-		private var _vo:PaperVo;
+		private var _vo:PaperVo = Cache.instance.paper;
 		private var _list:Vector.<IItemView> = new Vector.<IItemView>();
 		private var _tool:TransformManager;
 		private var _perfersize:IntDimension;
@@ -43,8 +43,7 @@ package view.paper
 			setBorder(new EmptyBorder(null, new Insets(100, 150, 100, 150)));
 			setClipMasked(false);
 			setLayout(new CenterLayout());
-			_vo = Cache.instance.paper;
-			_perfersize = new IntDimension(_vo.width, _vo.height);
+			_perfersize = new IntDimension(300, 200);
 			_paper = new JPanel(new EmptyLayout());
 			_paper.setOpaque(true);
 			_paper.setClipMasked(false);
@@ -59,11 +58,11 @@ package view.paper
 			_tool.allowMultiSelect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
-			updateBase();
 			
 			Dispatcher.addEventListener(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, onStaticTextPropertyChange);
 			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
 			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
+			setVo(_vo); // 初始化
 		}
 		
 		public function updateBase():void
@@ -133,8 +132,6 @@ package view.paper
 		private function onItemLayerChange(e:GameEvent):void
 		{
 			var itemView:IItemView = e.data as IItemView;
-			//var item:DisplayObject = itemViewContainer.getChildAt(vo.layer);
-			//var index:int = itemViewContainer.getChildIndex(item);
 			if (e.type == GameEvent.UP_LAYER)
 			{
 				itemViewContainer.swapChildrenAt(itemView.vo.layer, itemView.vo.layer - 1);
@@ -160,14 +157,14 @@ package view.paper
 		public function setVo(value:PaperVo):void
 		{
 			_tool.removeAllItems();
-			for (var i:int = 0; i < _list.length; i++)
+			var count:int = itemViewContainer.numChildren;
+			for (var i:int = 0; i < count; i++)
 			{
-				removeChild(_list[i] as DisplayObject);
+				itemViewContainer.removeChildAt(0);
 			}
 			_list.length = 0;
 			_vo = value;
-			_perfersize.setSizeWH(_vo.width, _vo.height);
-			setPreferredSize(_perfersize);
+			updateBase();
 			for (var j:int = 0; j < _vo.items.length; j++)
 			{
 				var item:ItemVo = _vo.items[j];
@@ -185,7 +182,7 @@ package view.paper
 			MainWindow.layerWin.addLayer(image);
 		}
 		
-		private function addText(vo:ItemVo):void
+		private function addSpecialText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
 			text.item = _tool.addItem(text);
@@ -214,7 +211,7 @@ package view.paper
 			}
 			else if (vo.type == ItemVo.SPECIAL_TEXT)
 			{
-				addText(vo);
+				addSpecialText(vo);
 			}
 			else if (vo.type == ItemVo.STATIC_TEXT)
 			{
