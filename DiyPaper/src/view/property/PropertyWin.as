@@ -2,6 +2,7 @@ package view.property
 {
 	import model.ItemVo;
 	import org.aswing.JFrame;
+	import org.aswing.JPanel;
 	
 	/**
 	 * ...
@@ -22,6 +23,8 @@ package view.property
 		private var pImage:ImagePane;
 		private var pLibrary:LibraryPane;
 		private var pAssets:AssetsPane;
+		
+		private var lastPane:JPanel;
 		
 		private var _type:int = 0;
 		
@@ -51,6 +54,11 @@ package view.property
 		
 		public function setType(type:int, data:ItemVo = null):void
 		{
+			show();
+			if (lastPane)
+			{
+				getContentPane().remove(lastPane);
+			}
 			if (_type != type)
 			{
 				_type = type;
@@ -59,7 +67,7 @@ package view.property
 			{
 				case BASE:
 					setTitle("基本属性");
-					setContentPane(pBase);
+					lastPane = pBase;
 					pBase.update();
 					break;
 				case STATIC_TEXT:
@@ -71,8 +79,9 @@ package view.property
 					{
 						setTitle("添加静态文字");
 					}
-					setContentPane(pStaticText);
 					pStaticText.settingVo = data;
+					pStaticText.updateUI();
+					lastPane = pStaticText;
 					break;
 				case SPECIAL_TEXT:
 					if (data)
@@ -83,25 +92,25 @@ package view.property
 					{
 						setTitle("添加特效文字");
 					}
-					setContentPane(pSpecialText);
+					lastPane = pSpecialText;
 					pSpecialText.settingVo = data;
 					break;
 				case IMAGE:
 					setTitle("图片属性");
-					setContentPane(pImage);
+					lastPane = pImage;
 					pImage.settingVo = data;
 					break;
 				case LIBRARY:
 					setTitle("在线图标");
-					setContentPane(pLibrary);
+					lastPane = pLibrary;
 					break;
 				case ASSETS:
 					setTitle("我的素材");
-					setContentPane(pAssets);
+					lastPane = pAssets;
 					break;
 			}
+			getContentPane().append(lastPane);
 			pack();
-			show();
 		}
 		
 		/**
