@@ -233,7 +233,7 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="60,19"/>
+                <Value value="65,19"/>
               </Property>
               <Property name="PreferredSize" type="PreferredSize">
                 <Value value="60,19"/>
@@ -318,7 +318,7 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="60,19"/>
+                <Value value="65,19"/>
               </Property>
               <Property name="PreferredSize" type="PreferredSize">
                 <Value value="60,19"/>
@@ -403,13 +403,13 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="60,19"/>
+                <Value value="65,19"/>
               </Property>
               <Property name="PreferredSize" type="PreferredSize">
-                <Value value="60,19"/>
+                <Value value="65,19"/>
               </Property>
               <Property name="Text" type="Text">
-                <Value value="旋转(0°)"/>
+                <Value value="旋转(359°)"/>
               </Property>
               <Property name="HorizontalAlignment" type="HorizontalAlignment">
                 <Value value="2"/>
