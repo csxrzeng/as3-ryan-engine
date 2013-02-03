@@ -1,9 +1,9 @@
 package model
 {
 	import com.ryan.resource.ResourceManager;
+	import flash.text.Font;
 	import flash.utils.Dictionary;
 	import resource.Config;
-	import resource.MediaProxy;
 	
 	/**
 	 * ...
@@ -23,8 +23,8 @@ package model
 		
 		public function init():void
 		{
-			onStaticXmlComplete(XML(ResourceManager.getInfoByName(Config.SPECIAL_FONT_XML).data));
-			onSpecialXmlComplete(XML(ResourceManager.getInfoByName(Config.STATIC_FONT_XML).data));
+			onSpecialXmlComplete(XML(ResourceManager.getInfoByName(Config.SPECIAL_FONT_XML).data));
+			onStaticXmlComplete(XML(ResourceManager.getInfoByName(Config.STATIC_FONT_XML).data));
 		}
 		
 		public function getFontNameList():Array
@@ -32,31 +32,31 @@ package model
 			return fontNameList;
 		}
 		
-		public function hasLoadedFont(fontName:String):Boolean
+		public function getStaticFontList():Array 
 		{
-			return fontMap[fontName] && (fontMap[fontName] as FontVo).state == 2;
-		}
-		
-		public function loadFont(fontName:String, onComplete:Function = null):void
-		{
-			if (fontMap[fontName] && fontMap[fontName].state == 0)
-			{
-				fontMap[fontName].state = 1;
-				MediaProxy.Instance().PushArray([Config.FONT_PATH + (fontMap[fontName] as FontVo).url]);
-				MediaProxy.Instance().start(function():void
-					{
-						swfMap[fontName] = MediaProxy.Instance().GetData(Config.FONT_PATH + (fontMap[fontName] as FontVo).url);
-						fontMap[fontName].state = 2;
-						onComplete && onComplete();
-					});
-				return;
-			}
-			onComplete();
+			return staticFonts;
 		}
 		
 		public function getFont(name:String):String
 		{
 			return !fontMap[name] ? "" : fontMap[name].font;
+		}
+		
+		public function getStaticFontByFont(font:String):FontVo 
+		{
+			for each (var item:FontVo in staticFonts) 
+			{
+				if (item.font == font)
+				{
+					return item;
+				}
+			}
+			return staticFonts[0];
+		}
+		
+		private function hasLoadedFont(fontName:String):Boolean
+		{
+			return fontMap[fontName] && (fontMap[fontName] as FontVo).state == 2;
 		}
 		
 		private function onSpecialXmlComplete(xml:XML):void
@@ -75,8 +75,29 @@ package model
 			var items:XMLList = xml.children();
 			for each (var item:XML in items)
 			{
-				staticFonts.push(item.@name);
+				var vo:FontVo = new FontVo(item.@name, item.@font, null);
+				if (hasSystemFont(vo.name)) // 系统有才加进去
+				{
+					staticFonts.push(vo);
+				}
 			}
+			if (!staticFonts.length)
+			{
+				staticFonts.push("_sans"); // 没有字体
+			}
+		}
+		
+		private function hasSystemFont(name:String):Boolean
+		{
+			var ary:Array = Font.enumerateFonts(true);
+			for each (var item:Font in ary)
+			{
+				if (item.fontName == name)
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

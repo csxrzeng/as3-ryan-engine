@@ -63,12 +63,26 @@ package view.property
 					pBase.update();
 					break;
 				case STATIC_TEXT:
-					setTitle("静态文字");
+					if (data)
+					{
+						setTitle("静态文字属性");
+					}
+					else
+					{
+						setTitle("添加静态文字");
+					}
 					setContentPane(pStaticText);
 					pStaticText.settingVo = data;
 					break;
 				case SPECIAL_TEXT:
-					setTitle("特效文字");
+					if (data)
+					{
+						setTitle("特效文字属性");
+					}
+					else
+					{
+						setTitle("添加特效文字");
+					}
 					setContentPane(pSpecialText);
 					pSpecialText.settingVo = data;
 					break;
