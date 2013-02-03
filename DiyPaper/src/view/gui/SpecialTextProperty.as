@@ -19,8 +19,8 @@ public class SpecialTextProperty extends JPanel{
 	protected var txtInput:JTextArea;
 	private var panel91:JPanel;
 	protected var btnAdd:JButton;
-	protected var scrollpane:JScrollPane;
-	protected var pane:JPanel;
+	protected var combobox:JComboBox;
+	protected var colormixer:JColorMixer;
 	
 	/**
 	 * SpecialTextProperty Constructor
@@ -78,14 +78,15 @@ public class SpecialTextProperty extends JPanel{
 		btnAdd.setConstraints("East");
 		btnAdd.setText("添加文字");
 		
-		scrollpane = new JScrollPane();
-		scrollpane.setLocation(new IntPoint(0, 127));
-		scrollpane.setSize(new IntDimension(265, 283));
+		combobox = new JComboBox();
+		combobox.setSize(new IntDimension(90, 26));
+		combobox.setPreferredSize(new IntDimension(90, 26));
+		combobox.setConstraints("West");
+		combobox.setMaximumRowCount(7);
 		
-		pane = new JPanel();
-		pane.setLocation(new IntPoint(0, 0));
-		pane.setSize(new IntDimension(265, 283));
-		pane.setPreferredSize(new IntDimension(265, 283));
+		colormixer = new JColorMixer();
+		colormixer.setLocation(new IntPoint(0, 127));
+		colormixer.setSize(new IntDimension(265, 192));
 		
 		//component layoution
 		append(panel84);
@@ -93,14 +94,13 @@ public class SpecialTextProperty extends JPanel{
 		panel84.append(panel85);
 		panel84.append(txtInput);
 		panel84.append(panel91);
-		panel84.append(scrollpane);
+		panel84.append(colormixer);
 		
 		panel85.append(btnSpecial);
 		panel85.append(btnStatic);
 		
 		panel91.append(btnAdd);
-		
-		scrollpane.append(pane);
+		panel91.append(combobox);
 		
 	}
 	
@@ -125,7 +125,13 @@ public class SpecialTextProperty extends JPanel{
 		return btnAdd;
 	}
 	
+	public function getCombobox():JComboBox{
+		return combobox;
+	}
 	
+	public function getColormixer():JColorMixer{
+		return colormixer;
+	}
 	
 	
 }
