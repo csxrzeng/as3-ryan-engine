@@ -1,13 +1,14 @@
 package view.paper
 {
 	import com.greensock.transform.TransformItem;
+	import flash.display.IBitmapDrawable;
 	import model.ItemVo;
 	
 	/**
 	 * ...
 	 * @author xr.zeng
 	 */
-	public interface IItemView
+	public interface IItemView extends IBitmapDrawable
 	{
 		function get item():TransformItem;
 		function set item(value:TransformItem):void;

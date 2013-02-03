@@ -28,6 +28,7 @@ package view.property
 		private var mixerOwner:Component;
 		
 		private var _settingVo:ItemVo;
+		private var _isAdd:Boolean = true;
 		
 		public function StaticTextPane()
 		{
@@ -87,13 +88,13 @@ package view.property
 			{
 				_settingVo.glowFilter.color = color.getRGB();
 				btnBlur.setIcon(new ColorIcon(color, 16, 16));
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+				dispachPropertyChange();
 			}
 			else if (mixerOwner == btnDrop)
 			{
 				_settingVo.shadowFilter.color = color.getRGB();
 				btnDrop.setIcon(new ColorIcon(color, 16, 16));
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+				dispachPropertyChange();
 			}
 		}
 		
@@ -128,80 +129,92 @@ package view.property
 		private function onTextChange(e:Event):void
 		{
 			_settingVo.text = txtInput.getText();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onBoldChange(e:AWEvent):void
 		{
 			_settingVo.bold = btnBold.isSelected();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onItalicChange(e:AWEvent):void
 		{
 			_settingVo.italic = btnItalic.isSelected();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onUnderlineChange(e:AWEvent):void
 		{
 			_settingVo.underline = btnUnderline.isSelected();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onShadowDistanceChange(e:AWEvent):void
 		{
 			txtDropDistance.setText("距离(" + sliderDropDistance.getValue() + ")");
 			_settingVo.shadowFilter.distance = sliderDropDistance.getValue();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onShadowAngleChange(e:AWEvent):void
 		{
 			txtDropAngle.setText("角度(" + sliderDropAngle.getValue() + ")");
 			_settingVo.shadowFilter.angle = sliderDropAngle.getValue();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onShadowAlphaChange(e:AWEvent):void
 		{
 			txtDropAlpha.setText("透明(" + sliderDropAlpha.getValue() + ")");
 			_settingVo.shadowFilter.alpha = sliderDropAlpha.getValue() / 100;
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onShadowBlurChange(e:AWEvent):void
 		{
 			txtDrop.setText("效果(" + sliderDrop.getValue() + ")");
 			_settingVo.shadowFilter.strength = _settingVo.shadowFilter.blurX = _settingVo.shadowFilter.blurY = sliderDrop.getValue();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onGlowAlphaChange(e:AWEvent):void
 		{
 			txtBlurAlpha.setText("透明(" + sliderBlurAlpha.getValue() + ")");
 			_settingVo.glowFilter.alpha = sliderBlurAlpha.getValue() / 100;
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onGlowBlurChange(e:AWEvent):void
 		{
 			txtBlur.setText("粗细(" + sliderBlur.getValue() + ")");
 			_settingVo.glowFilter.blurX = _settingVo.glowFilter.blurY = sliderBlur.getValue();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onTextSizeChange(e:AWEvent):void
 		{
 			txtSize.setText("字号(" + sliderSize.getValue() + ")");
 			_settingVo.size = sliderSize.getValue();
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
 		}
 		
 		private function onAlignChange(e:AWEvent):void
 		{
 			setTxtAlign(e.currentTarget as JToggleButton);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			dispachPropertyChange();
+		}
+		
+		private function dispachAddText():void
+		{
+		}
+		
+		private function dispachPropertyChange():void
+		{
+			if (!_isAdd)
+			{
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+			}
 		}
 		
 		private function setTxtAlign(btn:JToggleButton):void
@@ -230,7 +243,12 @@ package view.property
 		
 		private function onAddClick(e:AWEvent):void
 		{
-			GameController.paper.addItem(new ItemVo(ItemVo.STATIC_TEXT));
+			if (_isAdd)
+			{
+				_isAdd = false;
+				btnAdd.setVisible(false);
+				GameController.paper.addItem(new ItemVo(ItemVo.STATIC_TEXT));
+			}
 		}
 		
 		private function onStatic(e:AWEvent):void
@@ -241,7 +259,7 @@ package view.property
 		private function onSpecial(e:AWEvent):void
 		{
 			btnSpecial.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.SWITCH_PROPERTY, {winType:PropertyWin.SPECIAL_TEXT}));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.SPECIAL_TEXT}));
 		}
 		
 		public function get settingVo():ItemVo
@@ -251,6 +269,17 @@ package view.property
 		
 		public function set settingVo(value:ItemVo):void
 		{
+			if (!value)
+			{
+				value = new ItemVo(ItemVo.STATIC_TEXT);
+				btnAdd.setVisible(true);
+				_isAdd = true;
+			}
+			else
+			{
+				btnAdd.setVisible(false);
+				_isAdd = false;
+			}
 			_settingVo = value;
 			if (_settingVo)	//根据VO设置按钮和文本的状态
 			{
