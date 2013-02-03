@@ -205,10 +205,10 @@
               <Value value="0,0"/>
             </Property>
             <Property name="Size" type="Size">
-              <Value value="60,22"/>
+              <Value value="90,26"/>
             </Property>
             <Property name="PreferredSize" type="PreferredSize">
-              <Value value="60,22"/>
+              <Value value="90,22"/>
             </Property>
             <Property name="Constraints" type="Constraints">
               <Value value="West"/>
@@ -218,30 +218,91 @@
             </Property>
           </Properties>
         </Com>
-        <Com name="JButton" id="btnAdd">
+        <Com name="JPanel" id="panel65">
           <Properties>
-            <Property name="id" type="id">
-              <Value value="btnAdd"/>
-            </Property>
             <Property name="attr_scope" type="attr_scope">
-              <Value value="protected"/>
+              <Value value="private"/>
             </Property>
             <Property name="getter_scope" type="getter_scope">
-              <Value value="public"/>
+              <Value value="none"/>
             </Property>
             <Property name="Location" type="Location">
-              <Value value="207,0"/>
+              <Value value="165,0"/>
             </Property>
             <Property name="Size" type="Size">
-              <Value value="58,26"/>
+              <Value value="100,26"/>
             </Property>
             <Property name="Constraints" type="Constraints">
               <Value value="East"/>
             </Property>
-            <Property name="Text" type="Text">
-              <Value value="添加文字"/>
+            <Property name="Layout" type="Layout">
+              <Value>
+                <Layout name="SoftBoxLayout">
+                  <Properties>
+                    <Property name="Axis" type="Axis">
+                      <Value value="0"/>
+                    </Property>
+                    <Property name="Align" type="Align">
+                      <Value value="4"/>
+                    </Property>
+                    <Property name="Gap" type="Gap">
+                      <Value value="5"/>
+                    </Property>
+                  </Properties>
+                </Layout>
+              </Value>
             </Property>
           </Properties>
+          <Com name="JButton" id="btnColor">
+            <Properties>
+              <Property name="id" type="id">
+                <Value value="btnColor"/>
+              </Property>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="protected"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="public"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="228,0"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="26,26"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="26,26"/>
+              </Property>
+              <Property name="Constraints" type="Constraints">
+                <Value value="East"/>
+              </Property>
+            </Properties>
+          </Com>
+          <Com name="JButton" id="btnAdd">
+            <Properties>
+              <Property name="id" type="id">
+                <Value value="btnAdd"/>
+              </Property>
+              <Property name="attr_scope" type="attr_scope">
+                <Value value="protected"/>
+              </Property>
+              <Property name="getter_scope" type="getter_scope">
+                <Value value="public"/>
+              </Property>
+              <Property name="Location" type="Location">
+                <Value value="207,0"/>
+              </Property>
+              <Property name="Size" type="Size">
+                <Value value="58,26"/>
+              </Property>
+              <Property name="Constraints" type="Constraints">
+                <Value value="East"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value="添加文字"/>
+              </Property>
+            </Properties>
+          </Com>
         </Com>
       </Com>
       <Com name="JPanel" id="panel32">
@@ -625,13 +686,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="50,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="字号(12)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -730,6 +797,9 @@
               <Property name="Text" type="Text">
                 <Value value="描边："/>
               </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
+              </Property>
             </Properties>
           </Com>
           <Com name="JButton" id="btnBlur">
@@ -744,16 +814,16 @@
                 <Value value="public"/>
               </Property>
               <Property name="Location" type="Location">
-                <Value value="239,0"/>
+                <Value value="229,0"/>
               </Property>
               <Property name="Size" type="Size">
                 <Value value="26,26"/>
               </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="26,26"/>
+              </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="East"/>
-              </Property>
-              <Property name="Text" type="Text">
-                <Value value="　"/>
               </Property>
             </Properties>
           </Com>
@@ -814,13 +884,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="43,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="粗细(5)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -896,13 +972,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="43,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="透明(0)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -994,6 +1076,9 @@
               <Property name="Text" type="Text">
                 <Value value="投影："/>
               </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
+              </Property>
             </Properties>
           </Com>
           <Com name="JButton" id="btnDrop">
@@ -1008,16 +1093,16 @@
                 <Value value="public"/>
               </Property>
               <Property name="Location" type="Location">
-                <Value value="237,0"/>
+                <Value value="229,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="18,26"/>
+                <Value value="26,26"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="26,26"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="East"/>
-              </Property>
-              <Property name="Text" type="Text">
-                <Value value="　"/>
               </Property>
             </Properties>
           </Com>
@@ -1078,13 +1163,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="43,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="效果(1)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -1160,13 +1251,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="43,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="透明(0)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -1242,13 +1339,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="50,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="角度(45)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
@@ -1324,13 +1427,19 @@
                 <Value value="0,0"/>
               </Property>
               <Property name="Size" type="Size">
-                <Value value="43,19"/>
+                <Value value="70,19"/>
+              </Property>
+              <Property name="PreferredSize" type="PreferredSize">
+                <Value value="70,19"/>
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="West"/>
               </Property>
               <Property name="Text" type="Text">
                 <Value value="距离(1)"/>
+              </Property>
+              <Property name="HorizontalAlignment" type="HorizontalAlignment">
+                <Value value="2"/>
               </Property>
             </Properties>
           </Com>
