@@ -79,9 +79,9 @@ package view.property
 					{
 						setTitle("添加静态文字");
 					}
+					lastPane = pStaticText;
 					pStaticText.settingVo = data;
 					pStaticText.updateUI();
-					lastPane = pStaticText;
 					break;
 				case SPECIAL_TEXT:
 					if (data)

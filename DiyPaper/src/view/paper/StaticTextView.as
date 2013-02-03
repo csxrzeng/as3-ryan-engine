@@ -65,30 +65,6 @@ package view.paper
 		
 		public function get vo():ItemVo
 		{
-			if (length == 0)
-			{
-				formate = defaultTextFormat;
-			}
-			else
-			{
-				formate = getTextFormat(0, length);
-			}
-			_vo.alpha = alpha;
-			_vo.font = formate.font;
-			_vo.size = int(formate.size);
-			_vo.color = uint(formate.color);
-			_vo.bold = Boolean(formate.bold);
-			_vo.italic = Boolean(formate.italic);
-			_vo.leading = int(formate.leading);
-			_vo.letterSpacing = int(formate.letterSpacing);
-			_vo.align = formate.align;
-			_vo.underline = formate.underline;
-			_vo.text = text;
-			if (filters && filters.length)
-			{
-				_vo.glowFilter = filters[0];
-				_vo.shadowFilter = filters[1];
-			}
 			return _vo;
 		}
 	}

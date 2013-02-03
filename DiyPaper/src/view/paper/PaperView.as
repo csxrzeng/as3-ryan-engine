@@ -59,7 +59,6 @@ package view.paper
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
 			
-			Dispatcher.addEventListener(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, onStaticTextPropertyChange);
 			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
 			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
 			setVo(_vo); // 初始化
@@ -116,19 +115,7 @@ package view.paper
 			}
 			return PropertyWin.BASE;
 		}
-		
-		/**
-		 * 静态文本属性面板的设置发生改变
-		 * @param	e
-		 */
-		private function onStaticTextPropertyChange(e:GameEvent):void
-		{
-			if (selectedItem && selectedItem is StaticTextView)
-			{
-				selectedItem.vo = e.data as ItemVo;
-			}
-		}
-		
+			
 		private function onItemLayerChange(e:GameEvent):void
 		{
 			var itemView:IItemView = e.data as IItemView;

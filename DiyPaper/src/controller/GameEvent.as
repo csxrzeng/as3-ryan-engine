@@ -29,10 +29,6 @@ package controller
 		 */
 		static public const AddLibraryImage:String = "AddLibraryImage";
 		/**
-		 * 静态文本属性改变
-		 */
-		static public const STATIC_TEXT_PROPERTY_CHANGE:String = "static_text_property_change";
-		/**
 		 * 当前选中对象更新
 		 */
 		static public const UpdateSelectItem:String = "UpdateSelectItem";

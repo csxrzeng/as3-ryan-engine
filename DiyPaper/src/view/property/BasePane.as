@@ -17,6 +17,7 @@ package view.property
 	import org.aswing.JPopup;
 	import view.cases.ColorIcon;
 	import view.gui.BaseProperty;
+	import view.MainWindow;
 	
 	/**
 	 * ...
@@ -37,7 +38,7 @@ package view.property
 			setClipMasked(false);
 			colorBorder = new ASColor(0x000000, 1);
 			colorMixer = new JColorMixer();
-			pop = new JPopup(this);
+			pop = new JPopup(MainWindow.propertyWin);
 			pop.append(colorMixer);
 			colorMixer.setOpaque(true);
 			colorMixer.setBackground(new ASColor(0xeeeeee, 1));
