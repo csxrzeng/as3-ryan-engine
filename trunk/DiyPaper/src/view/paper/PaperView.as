@@ -242,7 +242,10 @@ package view.paper
 			}
 		}
 		
-		public function get SeletedItemView():IItemView
+		/**
+		 * 获取当前的选中对象
+		 */
+		public function get seletedItemView():IItemView
 		{
 			return selectedItem;
 		}
