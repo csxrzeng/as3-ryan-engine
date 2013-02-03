@@ -7,6 +7,8 @@ package view.thumb
 	import flash.geom.Point;
 	import model.ItemVo;
 	import org.aswing.AssetPane;
+	import org.aswing.AsWingConstants;
+	import org.aswing.FlowLayout;
 	import org.aswing.JFrame;
 	import org.aswing.JScrollPane;
 	import org.aswing.JViewport;
@@ -45,6 +47,7 @@ package view.thumb
 			setResizable(false);
 			layers = new Sprite();
 			var asset:AssetPane = new AssetPane(layers, AssetPane.PREFER_SIZE_BOTH);
+			asset.setLayout(new FlowLayout(AsWingConstants.BOTTOM));
 			asset.setPreferredWidth(LIST_WIDTH);
 			asset.setPreferredHeight(LIST_HEIGHT);
 			viewport = new JViewport(asset);
@@ -91,7 +94,7 @@ package view.thumb
 			{
 				icon = layerList[i];
 				icon.view.vo.layer = i;
-				icon.y = i * (icon.height + ICON_GAP) + ICON_GAP;
+				icon.y = (layerList.length - i - 1) * (icon.height + ICON_GAP) + ICON_GAP;
 			}
 			//viewport.updateUI();
 		}
@@ -105,6 +108,7 @@ package view.thumb
 				updateNearbyIcon();
 				stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 				stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				MainWindow.paper.setItemSelected(draggingIcon.view.vo);
 			}
 		}
 		
@@ -118,14 +122,14 @@ package view.thumb
 			if (upIcon && upIcon.hitTestPoint(globalPoint.x, globalPoint.y))
 			{
 				swapLayer(draggingIcon, upIcon);
-				upIcon.y -= upIcon.height + ICON_GAP;
+				upIcon.y += upIcon.height + ICON_GAP;
 				updateNearbyIcon();
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.UP_LAYER, draggingIcon.view));
 			}
 			else if (downIcon && downIcon.hitTestPoint(globalPoint.x, globalPoint.y))
 			{
 				swapLayer(draggingIcon, downIcon);
-				downIcon.y += downIcon.height + ICON_GAP;
+				downIcon.y -= downIcon.height + ICON_GAP;
 				updateNearbyIcon();
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DOWN_LAYER, draggingIcon.view));
 			}
@@ -172,7 +176,7 @@ package view.thumb
 			icon.view = item;
 			var index:int = layerList.push(icon) - 1;
 			layers.addChild(icon);
-			icon.y = index * (icon.height + ICON_GAP) + ICON_GAP;
+			resortIcons();
 			if (layers.height > LIST_HEIGHT)
 			{
 				viewport.getView().setPreferredHeight(layers.height);
