@@ -45,6 +45,7 @@ package view.thumb
 		private function configUI():void
 		{
 			setResizable(false);
+			setClosable(false);
 			layers = new Sprite();
 			var asset:AssetPane = new AssetPane(layers, AssetPane.PREFER_SIZE_BOTH);
 			asset.setLayout(new FlowLayout(AsWingConstants.BOTTOM));

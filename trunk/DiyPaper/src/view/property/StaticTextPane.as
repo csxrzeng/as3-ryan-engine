@@ -72,8 +72,6 @@ package view.property
 			
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
-			
-			settingVo = new ItemVo(ItemVo.STATIC_TEXT);
 		}
 		
 		private function onPopHidden(e:AWEvent):void
@@ -247,7 +245,10 @@ package view.property
 			{
 				_isAdd = false;
 				btnAdd.setVisible(false);
-				GameController.paper.addItem(new ItemVo(ItemVo.STATIC_TEXT));
+				var item:ItemVo = new ItemVo(ItemVo.STATIC_TEXT);
+				item.text = txtInput.getText();
+				item.font = combobox.getSelectedItem();
+				GameController.paper.addItem(item);
 			}
 		}
 		

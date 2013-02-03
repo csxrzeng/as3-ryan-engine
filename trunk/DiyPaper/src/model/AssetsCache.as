@@ -1,14 +1,13 @@
 package model
 {
-	import resource.MediaProxy;
-	
+	import com.ryan.resource.ResourceManager;
+	import resource.Config;
 	/**
 	 * ...
 	 * @author xr.zeng
 	 */
 	public class AssetsCache
 	{
-		static private const ASSET_XML_PATH:String = "assets.xml";
 		private var assets:Vector.<String> = new Vector.<String>();
 		
 		public function AssetsCache()
@@ -18,8 +17,7 @@ package model
 		
 		public function init():void
 		{
-			MediaProxy.Instance().PushArray([ASSET_XML_PATH]);
-			MediaProxy.Instance().start(onXmlComplete);
+			onXmlComplete(XML(ResourceManager.getInfoByName(Config.LIBRARY_XML).data));
 		}
 		
 		public function get assetsList():Vector.<String>
@@ -27,17 +25,12 @@ package model
 			return assets;
 		}
 		
-		private function onXmlComplete():void
+		private function onXmlComplete(xml:XML):void
 		{
-			var text:String = MediaProxy.Instance().GetData(ASSET_XML_PATH);
-			if (text)
+			var items:XMLList = xml.children();
+			for each (var item:XML in items)
 			{
-				var xml:XML = XML(text);
-				var items:XMLList = xml.children();
-				for each (var item:XML in items)
-				{
-					assets.push(item.text());
-				}
+				assets.push(item.text());
 			}
 		}
 	}

@@ -48,8 +48,9 @@ package view.property
 			sH.setMaximum(3000);
 			sB.setMinimum(0);
 			sB.setMaximum(100);
-			configEvents();
 			setBgColor(new ASColor(0xFFFFFF, 1));
+			update();
+			configEvents(); // 一定要先update再添加事件，否则有点坑爹
 		}
 		
 		public function setBgColor(color:ASColor):void
