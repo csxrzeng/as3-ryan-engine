@@ -48,6 +48,14 @@ package controller
 		 * 替换选中对象的图片
 		 */
 		static public const ReplaceSelectedImage:String = "ReplaceSelectedImage";
+		/**
+		 * 向上一层
+		 */
+		static public const UP_LAYER:String = "up_layer";
+		/**
+		 * 向下一层
+		 */
+		static public const DOWN_LAYER:String = "down_layer";
 		
 		public var data:*;
 		

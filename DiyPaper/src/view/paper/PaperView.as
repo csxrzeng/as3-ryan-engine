@@ -1,22 +1,20 @@
 package view.paper
 {
 	import com.greensock.events.TransformEvent;
-	import com.greensock.transform.TransformItem;
 	import com.greensock.transform.TransformManager;
 	import com.ryan.utils.ArrayUtil;
 	import controller.Dispatcher;
 	import controller.GameEvent;
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.text.TextField;
 	import model.Cache;
 	import model.ItemVo;
 	import model.PaperVo;
 	import org.aswing.border.EmptyBorder;
 	import org.aswing.border.LineBorder;
 	import org.aswing.CenterLayout;
-	import org.aswing.Component;
 	import org.aswing.EmptyLayout;
 	import org.aswing.geom.IntDimension;
 	import org.aswing.Insets;
@@ -35,7 +33,8 @@ package view.paper
 		private var _tool:TransformManager;
 		private var _perfersize:IntDimension;
 		private var _paper:JPanel;
-		private var _bg:Sprite;
+		private var _bg:Shape;
+		private var itemViewContainer:Sprite;
 		
 		private var selectedItem:IItemView;
 		
@@ -49,8 +48,10 @@ package view.paper
 			_paper = new JPanel(new EmptyLayout());
 			_paper.setOpaque(true);
 			_paper.setClipMasked(false);
-			_bg = new Sprite();
+			_bg = new Shape();
 			_paper.addChild(_bg);
+			itemViewContainer = new Sprite();
+			_paper.addChild(itemViewContainer);
 			append(_paper);
 			_tool = new TransformManager();
 			_tool.forceSelectionToFront = false;
@@ -61,6 +62,8 @@ package view.paper
 			updateBase();
 			
 			Dispatcher.addEventListener(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, onStaticTextPropertyChange);
+			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
+			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
 		}
 		
 		public function updateBase():void
@@ -127,6 +130,21 @@ package view.paper
 			}
 		}
 		
+		private function onItemLayerChange(e:GameEvent):void
+		{
+			var vo:ItemVo = e.data as ItemVo;
+			var item:DisplayObject = itemViewContainer.getChildAt(vo.layer);
+			var index:int = itemViewContainer.getChildIndex(item);
+			if (e.type == GameEvent.UP_LAYER)
+			{
+				itemViewContainer.setChildIndex(item, index + 1);
+			}
+			else
+			{
+				itemViewContainer.setChildIndex(item, index - 1);
+			}
+		}
+		
 		public function getVo():PaperVo
 		{
 			_vo.width = _perfersize.width;
@@ -161,7 +179,7 @@ package view.paper
 		{
 			var image:ImageView = new ImageView();
 			image.item = _tool.addItem(image);
-			_paper.addChild(image);
+			itemViewContainer.addChild(image);
 			_list.push(image);
 			image.vo = vo;
 		}
@@ -170,7 +188,7 @@ package view.paper
 		{
 			var text:TextView = new TextView();
 			text.item = _tool.addItem(text);
-			_paper.addChild(text);
+			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
 		}
@@ -180,7 +198,7 @@ package view.paper
 			var text:StaticTextView = new StaticTextView();
 			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
 			text.item.lockRotation = true;
-			_paper.addChild(text);
+			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
 		}
@@ -199,6 +217,10 @@ package view.paper
 			{
 				addStaticText(vo);
 			}
+			else
+			{
+				throw new ArgumentError("item type error");
+			}
 			MainWindow.layerWin.addLayer(vo);
 		}
 		
@@ -206,7 +228,7 @@ package view.paper
 		 * 更新对象
 		 * @param	data
 		 */
-		public function updateItem(data:ItemVo):void 
+		public function updateItem(data:ItemVo):void
 		{
 			if (selectedItem.vo == data)
 			{
@@ -218,7 +240,7 @@ package view.paper
 		 * 删除选中对象
 		 * @param	data
 		 */
-		public function removeSelectedItem(data:*):void 
+		public function removeSelectedItem(data:*):void
 		{
 			if (selectedItem && selectedItem.vo == data)
 			{
@@ -234,7 +256,7 @@ package view.paper
 		
 		private function indexOf(data:ItemVo):int
 		{
-			for (var i:int = 0; i < _list.length; i++) 
+			for (var i:int = 0; i < _list.length; i++)
 			{
 				if (_list[i].vo == data)
 				{
