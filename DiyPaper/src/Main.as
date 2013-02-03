@@ -70,7 +70,16 @@ package
 			if (Config.PAPER_XML) // 存在模版
 			{
 				Cache.instance.paper.fromXML(XML(ResourceManager.getInfoByName(Config.PAPER_XML).data));
+				// 需要加载字库，加载图片等。加载完成才能初始化
 			}
+			else
+			{
+				initWindow();
+			}
+		}
+		
+		private function initWindow():void
+		{
 			GameController.init();
 			window = new MainWindow();
 			window.setSizeWH(stage.stageWidth, stage.stageHeight);
