@@ -8,9 +8,7 @@ package
 	import flash.events.Event;
 	import model.Cache;
 	import org.aswing.AsWingManager;
-	import org.aswing.UIManager;
 	import resource.Config;
-	import view.laf.MyLookAndFeel;
 	import view.MainWindow;
 	
 	/**
@@ -37,7 +35,6 @@ package
 			// entry point
 			Global.instance.initStage(stage);
 			AsWingManager.initAsStandard(this);
-			UIManager.setLookAndFeel(new MyLookAndFeel());
 			// specialfonts.xml, staticfonts.xml, library.xml
 			Config.PAPER_XML = ""; // default.xml // 模版
 			list = [

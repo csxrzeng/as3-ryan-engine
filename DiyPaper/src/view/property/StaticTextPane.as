@@ -4,18 +4,24 @@ package view.property
 	import controller.GameController;
 	import controller.GameEvent;
 	import flash.events.Event;
+	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	import model.Cache;
+	import model.FontVo;
 	import model.ItemVo;
 	import org.aswing.ASColor;
 	import org.aswing.colorchooser.JColorMixer;
 	import org.aswing.Component;
 	import org.aswing.event.AWEvent;
 	import org.aswing.event.ColorChooserEvent;
+	import org.aswing.event.InteractiveEvent;
 	import org.aswing.geom.IntPoint;
 	import org.aswing.JPopup;
 	import org.aswing.JToggleButton;
+	import org.aswing.VectorListModel;
 	import view.cases.ColorIcon;
 	import view.gui.StaticTextProperty;
+	
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -26,40 +32,44 @@ package view.property
 		private var pop:JPopup;
 		private var colorMixer:JColorMixer;
 		private var mixerOwner:Component;
-		
 		private var _settingVo:ItemVo;
 		private var _isAdd:Boolean = true;
 		
 		public function StaticTextPane()
 		{
+			super();
 			configUI();
 		}
 		
 		private function configUI():void
 		{
+			btnLtr.setVisible(false);
+			btnTtb.setVisible(false);
+			
+			combobox.setPreferredWidth(100);
+			var listModel:VectorListModel = new VectorListModel(Cache.instance.font.getStaticFontList());
+			combobox.setModel(listModel);
+			combobox.setSelectedIndex(0);
+			//combobox.setMaximumRowCount(listModel.size());
+			combobox.addEventListener(InteractiveEvent.SELECTION_CHANGED, onComboBoxChange);
 			colorMixer = new JColorMixer();
 			pop = new JPopup(this);
 			pop.append(colorMixer);
 			colorMixer.setOpaque(true);
 			colorMixer.setBackground(new ASColor(0xeeeeee, 1));
 			pop.pack();
-			
 			colorMixer.addEventListener(ColorChooserEvent.COLOR_ADJUSTING, onColorAdjusting);
 			pop.addEventListener(AWEvent.HIDDEN, onPopHidden);
-			
 			btnStatic.setSelected(true);
 			btnStatic.addEventListener(AWEvent.ACT, onStatic);
 			btnSpecial.addEventListener(AWEvent.ACT, onSpecial);
-			
 			btnAdd.addActionListener(onAddClick);
 			btnLeft.addActionListener(onAlignChange);
 			btnRight.addActionListener(onAlignChange);
 			btnCenter.addActionListener(onAlignChange);
-			
 			btnBold.addActionListener(onBoldChange);
 			btnItalic.addActionListener(onItalicChange);
 			btnUnderline.addActionListener(onUnderlineChange);
-			
 			sliderSize.addStateListener(onTextSizeChange);
 			sliderBlur.addStateListener(onGlowBlurChange);
 			sliderBlurAlpha.addStateListener(onGlowAlphaChange);
@@ -67,11 +77,17 @@ package view.property
 			sliderDropAlpha.addStateListener(onShadowAlphaChange);
 			sliderDropAngle.addStateListener(onShadowAngleChange);
 			sliderDropDistance.addStateListener(onShadowDistanceChange);
-			
 			txtInput.addEventListener(Event.CHANGE, onTextChange);
-			
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
+		}
+		
+		private function onComboBoxChange(e:InteractiveEvent):void
+		{
+			var font:FontVo = combobox.getSelectedItem();
+			_settingVo.font = font.font;
+			updateInputFont();
+			dispachPropertyChange();
 		}
 		
 		private function onPopHidden(e:AWEvent):void
@@ -203,10 +219,6 @@ package view.property
 			dispachPropertyChange();
 		}
 		
-		private function dispachAddText():void
-		{
-		}
-		
 		private function dispachPropertyChange():void
 		{
 			if (!_isAdd)
@@ -223,17 +235,15 @@ package view.property
 			}
 			toggleAlign = btn;
 			toggleAlign.setSelected(true);
-			switch(toggleAlign)
+			switch (toggleAlign)
 			{
-				case btnLeft:
+				case btnLeft: 
 					_settingVo.align = TextFormatAlign.LEFT;
 					break;
-					
-				case btnCenter:
+				case btnCenter: 
 					_settingVo.align = TextFormatAlign.CENTER;
 					break;
-					
-				case btnRight:
+				case btnRight: 
 					_settingVo.align = TextFormatAlign.RIGHT;
 					break;
 			}
@@ -260,7 +270,7 @@ package view.property
 		private function onSpecial(e:AWEvent):void
 		{
 			btnSpecial.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.SPECIAL_TEXT}));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType: PropertyWin.SPECIAL_TEXT}));
 		}
 		
 		public function get settingVo():ItemVo
@@ -282,18 +292,20 @@ package view.property
 				_isAdd = false;
 			}
 			_settingVo = value;
-			if (_settingVo)	//根据VO设置按钮和文本的状态
+			if (_settingVo) //根据VO设置按钮和文本的状态
 			{
+				combobox.setSelectedItem(Cache.instance.font.getStaticFontByFont(_settingVo.font));
 				txtInput.setText(_settingVo.text);
-				switch(_settingVo.align)
+				updateInputFont();
+				switch (_settingVo.align)
 				{
-					case TextFormatAlign.LEFT:
+					case TextFormatAlign.LEFT: 
 						setTxtAlign(btnLeft);
 						break;
-					case TextFormatAlign.CENTER:
+					case TextFormatAlign.CENTER: 
 						setTxtAlign(btnCenter);
 						break;
-					case TextFormatAlign.RIGHT:
+					case TextFormatAlign.RIGHT: 
 						setTxtAlign(btnRight);
 						break;
 				}
@@ -303,11 +315,21 @@ package view.property
 				sliderSize.setValue(_settingVo.size);
 				sliderBlur.setValue(_settingVo.glowFilter.blurX);
 				sliderBlurAlpha.setValue(_settingVo.glowFilter.alpha * 100);
-				
 				sliderDrop.setValue(_settingVo.shadowFilter.blurX);
 				sliderDropAlpha.setValue(_settingVo.shadowFilter.alpha * 100);
 				sliderDropAngle.setValue(_settingVo.shadowFilter.angle);
 				sliderDropDistance.setValue(_settingVo.shadowFilter.distance);
+			}
+		}
+		
+		private function updateInputFont():void
+		{
+			var formate:TextFormat = txtInput.getDefaultTextFormat();
+			formate.font = _settingVo.font;
+			txtInput.setDefaultTextFormat(formate);
+			if (txtInput.getLength())
+			{
+				txtInput.setTextFormat(formate, 0, txtInput.getLength());
 			}
 		}
 		

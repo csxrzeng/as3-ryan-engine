@@ -119,8 +119,8 @@ public class StaticTextProperty extends JPanel{
 		
 		combobox = new JComboBox();
 		combobox.setLocation(new IntPoint(0, 0));
-		combobox.setSize(new IntDimension(60, 22));
-		combobox.setPreferredSize(new IntDimension(60, 22));
+		combobox.setSize(new IntDimension(60, 26));
+		combobox.setPreferredSize(new IntDimension(60, 26));
 		combobox.setConstraints("West");
 		combobox.setMaximumRowCount(7);
 		
