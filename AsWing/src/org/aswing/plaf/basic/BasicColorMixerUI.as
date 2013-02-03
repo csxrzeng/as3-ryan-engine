@@ -761,13 +761,20 @@ public class BasicColorMixerUI extends BaseComponentUI {
 		HAdjuster = createHAdjuster();
 		SAdjuster = createSAdjuster();
 		LAdjuster = createLAdjuster();
+		AAdjuster.setPreferredWidth(50);
+		RAdjuster.setPreferredWidth(50);
+		GAdjuster.setPreferredWidth(50);
+		BAdjuster.setPreferredWidth(50);
+		HAdjuster.setPreferredWidth(50);
+		SAdjuster.setPreferredWidth(50);
+		LAdjuster.setPreferredWidth(50);
 	}
 	
 	private function createAAdjuster():JAdjuster{
 		var adjuster:JAdjuster = new JAdjuster(4, JAdjuster.VERTICAL);		
 		adjuster.setValueTranslator(
 			function(value:Number):String{
-				return Math.round(value) + "%";
+				return Math.round(value) + "";// + "%";
 			});
 		adjuster.setValues(100, 0, 0, 100);
 		return adjuster;
@@ -792,7 +799,7 @@ public class BasicColorMixerUI extends BaseComponentUI {
 		adjuster.setValues(0, 0, 0, 360);
 		adjuster.setValueTranslator(
 			function(value:Number):String{
-				return Math.round(value) + "°";
+				return Math.round(value) + "";// + "°";
 			});
 		return adjuster;
 	}
@@ -801,7 +808,7 @@ public class BasicColorMixerUI extends BaseComponentUI {
 		adjuster.setValues(0, 0, 0, 100);
 		adjuster.setValueTranslator(
 			function(value:Number):String{
-				return Math.round(value) + "%";
+				return Math.round(value) + "";// + "%";
 			});
 		return adjuster;
 	}
@@ -810,7 +817,7 @@ public class BasicColorMixerUI extends BaseComponentUI {
 		adjuster.setValues(0, 0, 0, 100);
 		adjuster.setValueTranslator(
 			function(value:Number):String{
-				return Math.round(value) + "%";
+				return Math.round(value) + "";// + "%";
 			});
 		return adjuster;
 	}
