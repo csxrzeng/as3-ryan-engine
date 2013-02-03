@@ -46,7 +46,7 @@ package model
 		public var align:String = TextFormatAlign.LEFT;
 		public var underline:Boolean;
 		public var glowFilter:GlowFilter = new GlowFilter(0x0, 1, 1, 1, 1, 1);
-		public var shadowFilter:DropShadowFilter = new DropShadowFilter();
+		public var shadowFilter:DropShadowFilter = new DropShadowFilter(1, 45, 0, 1, 1, 1, 1, 1);
 		
 		public function ItemVo(type:String = IMAGE)
 		{
