@@ -86,8 +86,7 @@
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="OpenDocument" />
-    <option testMovieCommand="http://localhost/diypaper/" />
+    <option testMovie="Default" />
   </options>
   <!-- Plugin storage -->
   <storage />

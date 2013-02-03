@@ -19,6 +19,8 @@ public class StaticTextProperty extends JPanel{
 	protected var txtInput:JTextArea;
 	private var panel29:JPanel;
 	protected var combobox:JComboBox;
+	private var panel65:JPanel;
+	protected var btnColor:JButton;
 	protected var btnAdd:JButton;
 	private var panel32:JPanel;
 	private var panel46:JPanel;
@@ -119,10 +121,26 @@ public class StaticTextProperty extends JPanel{
 		
 		combobox = new JComboBox();
 		combobox.setLocation(new IntPoint(0, 0));
-		combobox.setSize(new IntDimension(60, 26));
-		combobox.setPreferredSize(new IntDimension(60, 26));
+		combobox.setSize(new IntDimension(90, 26));
+		combobox.setPreferredSize(new IntDimension(90, 22));
 		combobox.setConstraints("West");
 		combobox.setMaximumRowCount(7);
+		
+		panel65 = new JPanel();
+		panel65.setLocation(new IntPoint(165, 0));
+		panel65.setSize(new IntDimension(100, 26));
+		panel65.setConstraints("East");
+		var layout4:SoftBoxLayout = new SoftBoxLayout();
+		layout4.setAxis(AsWingConstants.HORIZONTAL);
+		layout4.setAlign(AsWingConstants.RIGHT);
+		layout4.setGap(5);
+		panel65.setLayout(layout4);
+		
+		btnColor = new JButton();
+		btnColor.setLocation(new IntPoint(228, 0));
+		btnColor.setSize(new IntDimension(26, 26));
+		btnColor.setPreferredSize(new IntDimension(26, 26));
+		btnColor.setConstraints("East");
 		
 		btnAdd = new JButton();
 		btnAdd.setLocation(new IntPoint(207, 0));
@@ -133,18 +151,18 @@ public class StaticTextProperty extends JPanel{
 		panel32 = new JPanel();
 		panel32.setLocation(new IntPoint(0, 127));
 		panel32.setSize(new IntDimension(265, 26));
-		var layout4:BorderLayout = new BorderLayout();
-		layout4.setHgap(0);
-		layout4.setVgap(0);
-		panel32.setLayout(layout4);
+		var layout5:BorderLayout = new BorderLayout();
+		layout5.setHgap(0);
+		layout5.setVgap(0);
+		panel32.setLayout(layout5);
 		
 		panel46 = new JPanel();
 		panel46.setLocation(new IntPoint(0, 0));
 		panel46.setSize(new IntDimension(231, 36));
-		var layout5:FlowLayout = new FlowLayout();
-		layout5.setHgap(0);
-		layout5.setVgap(0);
-		panel46.setLayout(layout5);
+		var layout6:FlowLayout = new FlowLayout();
+		layout6.setHgap(0);
+		layout6.setVgap(0);
+		panel46.setLayout(layout6);
 		
 		btnLeft = new JToggleButton();
 		btnLeft.setLocation(new IntPoint(5, 5));
@@ -186,10 +204,10 @@ public class StaticTextProperty extends JPanel{
 		panel47.setLocation(new IntPoint(197, 0));
 		panel47.setSize(new IntDimension(68, 26));
 		panel47.setConstraints("East");
-		var layout6:FlowLayout = new FlowLayout();
-		layout6.setHgap(0);
-		layout6.setVgap(0);
-		panel47.setLayout(layout6);
+		var layout7:FlowLayout = new FlowLayout();
+		layout7.setHgap(0);
+		layout7.setVgap(0);
+		panel47.setLayout(layout7);
 		
 		btnLtr = new JToggleButton();
 		btnLtr.setLocation(new IntPoint(167, 5));
@@ -211,23 +229,25 @@ public class StaticTextProperty extends JPanel{
 		panel82.setLocation(new IntPoint(0, 304));
 		panel82.setSize(new IntDimension(265, 246));
 		panel82.setPreferredSize(new IntDimension(265, 246));
-		var layout7:SoftBoxLayout = new SoftBoxLayout();
-		layout7.setAxis(AsWingConstants.VERTICAL);
-		layout7.setAlign(AsWingConstants.TOP);
-		layout7.setGap(5);
-		panel82.setLayout(layout7);
+		var layout8:SoftBoxLayout = new SoftBoxLayout();
+		layout8.setAxis(AsWingConstants.VERTICAL);
+		layout8.setAlign(AsWingConstants.TOP);
+		layout8.setGap(5);
+		panel82.setLayout(layout8);
 		
 		panel48 = new JPanel();
 		panel48.setLocation(new IntPoint(0, 0));
 		panel48.setSize(new IntDimension(255, 20));
-		var layout8:EmptyLayout = new EmptyLayout();
-		panel48.setLayout(layout8);
+		var layout9:EmptyLayout = new EmptyLayout();
+		panel48.setLayout(layout9);
 		
 		txtSize = new JLabel();
 		txtSize.setLocation(new IntPoint(0, 0));
-		txtSize.setSize(new IntDimension(50, 19));
+		txtSize.setSize(new IntDimension(70, 19));
+		txtSize.setPreferredSize(new IntDimension(70, 19));
 		txtSize.setConstraints("West");
 		txtSize.setText("字号(12)");
+		txtSize.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderSize = new JSlider();
 		sliderSize.setLocation(new IntPoint(60, 4));
@@ -241,25 +261,26 @@ public class StaticTextProperty extends JPanel{
 		panel52 = new JPanel();
 		panel52.setLocation(new IntPoint(0, 27));
 		panel52.setSize(new IntDimension(265, 27));
-		var border9:EmptyBorder = new EmptyBorder();
-		border9.setRight(10);
-		panel52.setBorder(border9);
-		var layout10:BorderLayout = new BorderLayout();
-		layout10.setHgap(0);
-		layout10.setVgap(0);
-		panel52.setLayout(layout10);
+		var border10:EmptyBorder = new EmptyBorder();
+		border10.setRight(10);
+		panel52.setBorder(border10);
+		var layout11:BorderLayout = new BorderLayout();
+		layout11.setHgap(0);
+		layout11.setVgap(0);
+		panel52.setLayout(layout11);
 		
 		label53 = new JLabel();
 		label53.setLocation(new IntPoint(5, 5));
 		label53.setSize(new IntDimension(40, 26));
 		label53.setConstraints("West");
 		label53.setText("描边：");
+		label53.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		btnBlur = new JButton();
-		btnBlur.setLocation(new IntPoint(239, 0));
+		btnBlur.setLocation(new IntPoint(229, 0));
 		btnBlur.setSize(new IntDimension(26, 26));
+		btnBlur.setPreferredSize(new IntDimension(26, 26));
 		btnBlur.setConstraints("East");
-		btnBlur.setText("　");
 		
 		separator56 = new JSeparator();
 		separator56.setLocation(new IntPoint(0, 26));
@@ -269,36 +290,39 @@ public class StaticTextProperty extends JPanel{
 		panel57 = new JPanel();
 		panel57.setLocation(new IntPoint(0, 54));
 		panel57.setSize(new IntDimension(255, 20));
-		var layout11:EmptyLayout = new EmptyLayout();
-		panel57.setLayout(layout11);
+		var layout12:EmptyLayout = new EmptyLayout();
+		panel57.setLayout(layout12);
 		
 		txtBlur = new JLabel();
 		txtBlur.setLocation(new IntPoint(0, 0));
-		txtBlur.setSize(new IntDimension(43, 19));
+		txtBlur.setSize(new IntDimension(70, 19));
+		txtBlur.setPreferredSize(new IntDimension(70, 19));
 		txtBlur.setConstraints("West");
-		txtBlur.setText("粗细(1)");
+		txtBlur.setText("粗细(5)");
+		txtBlur.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderBlur = new JSlider();
 		sliderBlur.setLocation(new IntPoint(60, 4));
 		sliderBlur.setSize(new IntDimension(200, 14));
 		sliderBlur.setConstraints("East");
-		sliderBlur.setValue(1);
+		sliderBlur.setValue(0);
 		sliderBlur.setExtent(0);
-		sliderBlur.setMinimum(1);
-		sliderBlur.setMaximum(5);
+		sliderBlur.setMinimum(0);
+		sliderBlur.setMaximum(100);
 		
 		panel60 = new JPanel();
 		panel60.setLocation(new IntPoint(0, 81));
 		panel60.setSize(new IntDimension(255, 20));
-		var layout12:EmptyLayout = new EmptyLayout();
-		panel60.setLayout(layout12);
+		var layout13:EmptyLayout = new EmptyLayout();
+		panel60.setLayout(layout13);
 		
 		txtBlurAlpha = new JLabel();
 		txtBlurAlpha.setLocation(new IntPoint(0, 0));
-		txtBlurAlpha.setSize(new IntDimension(60, 19));
-		txtBlurAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
+		txtBlurAlpha.setSize(new IntDimension(70, 19));
+		txtBlurAlpha.setPreferredSize(new IntDimension(70, 19));
 		txtBlurAlpha.setConstraints("West");
 		txtBlurAlpha.setText("透明(0)");
+		txtBlurAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderBlurAlpha = new JSlider();
 		sliderBlurAlpha.setLocation(new IntPoint(60, 4));
@@ -312,23 +336,24 @@ public class StaticTextProperty extends JPanel{
 		panel63 = new JPanel();
 		panel63.setLocation(new IntPoint(0, 108));
 		panel63.setSize(new IntDimension(265, 27));
-		var border13:EmptyBorder = new EmptyBorder();
-		border13.setRight(10);
-		panel63.setBorder(border13);
-		var layout14:BorderLayout = new BorderLayout();
-		panel63.setLayout(layout14);
+		var border14:EmptyBorder = new EmptyBorder();
+		border14.setRight(10);
+		panel63.setBorder(border14);
+		var layout15:BorderLayout = new BorderLayout();
+		panel63.setLayout(layout15);
 		
 		label64 = new JLabel();
 		label64.setLocation(new IntPoint(5, 5));
 		label64.setSize(new IntDimension(34, 19));
 		label64.setConstraints("West");
 		label64.setText("投影：");
+		label64.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		btnDrop = new JButton();
-		btnDrop.setLocation(new IntPoint(237, 0));
-		btnDrop.setSize(new IntDimension(18, 26));
+		btnDrop.setLocation(new IntPoint(229, 0));
+		btnDrop.setSize(new IntDimension(26, 26));
+		btnDrop.setPreferredSize(new IntDimension(26, 26));
 		btnDrop.setConstraints("East");
-		btnDrop.setText("　");
 		
 		separator66 = new JSeparator();
 		separator66.setLocation(new IntPoint(0, 26));
@@ -338,36 +363,39 @@ public class StaticTextProperty extends JPanel{
 		panel70 = new JPanel();
 		panel70.setLocation(new IntPoint(0, 135));
 		panel70.setSize(new IntDimension(255, 20));
-		var layout15:EmptyLayout = new EmptyLayout();
-		panel70.setLayout(layout15);
+		var layout16:EmptyLayout = new EmptyLayout();
+		panel70.setLayout(layout16);
 		
 		txtDrop = new JLabel();
 		txtDrop.setLocation(new IntPoint(0, 0));
-		txtDrop.setSize(new IntDimension(43, 19));
+		txtDrop.setSize(new IntDimension(70, 19));
+		txtDrop.setPreferredSize(new IntDimension(70, 19));
 		txtDrop.setConstraints("West");
 		txtDrop.setText("效果(1)");
+		txtDrop.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderDrop = new JSlider();
 		sliderDrop.setLocation(new IntPoint(60, 4));
 		sliderDrop.setSize(new IntDimension(200, 14));
 		sliderDrop.setConstraints("East");
-		sliderDrop.setValue(1);
+		sliderDrop.setValue(0);
 		sliderDrop.setExtent(0);
-		sliderDrop.setMinimum(1);
-		sliderDrop.setMaximum(5);
+		sliderDrop.setMinimum(0);
+		sliderDrop.setMaximum(100);
 		
 		panel73 = new JPanel();
 		panel73.setLocation(new IntPoint(0, 332));
 		panel73.setSize(new IntDimension(255, 20));
-		var layout16:EmptyLayout = new EmptyLayout();
-		panel73.setLayout(layout16);
+		var layout17:EmptyLayout = new EmptyLayout();
+		panel73.setLayout(layout17);
 		
 		txtDropAlpha = new JLabel();
 		txtDropAlpha.setLocation(new IntPoint(0, 0));
-		txtDropAlpha.setSize(new IntDimension(60, 19));
-		txtDropAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
+		txtDropAlpha.setSize(new IntDimension(70, 19));
+		txtDropAlpha.setPreferredSize(new IntDimension(70, 19));
 		txtDropAlpha.setConstraints("West");
 		txtDropAlpha.setText("透明(0)");
+		txtDropAlpha.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderDropAlpha = new JSlider();
 		sliderDropAlpha.setLocation(new IntPoint(60, 4));
@@ -381,45 +409,48 @@ public class StaticTextProperty extends JPanel{
 		panel76 = new JPanel();
 		panel76.setLocation(new IntPoint(0, 189));
 		panel76.setSize(new IntDimension(255, 20));
-		var layout17:EmptyLayout = new EmptyLayout();
-		panel76.setLayout(layout17);
+		var layout18:EmptyLayout = new EmptyLayout();
+		panel76.setLayout(layout18);
 		
 		txtDropAngle = new JLabel();
 		txtDropAngle.setLocation(new IntPoint(0, 0));
-		txtDropAngle.setSize(new IntDimension(60, 19));
-		txtDropAngle.setHorizontalAlignment(AsWingConstants.LEFT);
+		txtDropAngle.setSize(new IntDimension(70, 19));
+		txtDropAngle.setPreferredSize(new IntDimension(70, 19));
 		txtDropAngle.setConstraints("West");
 		txtDropAngle.setText("角度(45)");
+		txtDropAngle.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderDropAngle = new JSlider();
 		sliderDropAngle.setLocation(new IntPoint(60, 4));
 		sliderDropAngle.setSize(new IntDimension(200, 14));
 		sliderDropAngle.setConstraints("East");
-		sliderDropAngle.setValue(45);
+		sliderDropAngle.setValue(0);
 		sliderDropAngle.setExtent(0);
 		sliderDropAngle.setMinimum(0);
-		sliderDropAngle.setMaximum(360);
+		sliderDropAngle.setMaximum(100);
 		
 		panel79 = new JPanel();
 		panel79.setLocation(new IntPoint(0, 216));
 		panel79.setSize(new IntDimension(255, 20));
-		var layout18:EmptyLayout = new EmptyLayout();
-		panel79.setLayout(layout18);
+		var layout19:EmptyLayout = new EmptyLayout();
+		panel79.setLayout(layout19);
 		
 		txtDropDistance = new JLabel();
 		txtDropDistance.setLocation(new IntPoint(0, 0));
-		txtDropDistance.setSize(new IntDimension(43, 19));
+		txtDropDistance.setSize(new IntDimension(70, 19));
+		txtDropDistance.setPreferredSize(new IntDimension(70, 19));
 		txtDropDistance.setConstraints("West");
 		txtDropDistance.setText("距离(1)");
+		txtDropDistance.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		sliderDropDistance = new JSlider();
 		sliderDropDistance.setLocation(new IntPoint(60, 4));
 		sliderDropDistance.setSize(new IntDimension(200, 14));
 		sliderDropDistance.setConstraints("East");
-		sliderDropDistance.setValue(1);
+		sliderDropDistance.setValue(0);
 		sliderDropDistance.setExtent(0);
-		sliderDropDistance.setMinimum(1);
-		sliderDropDistance.setMaximum(5);
+		sliderDropDistance.setMinimum(0);
+		sliderDropDistance.setMaximum(100);
 		
 		//component layoution
 		append(panel28);
@@ -435,7 +466,10 @@ public class StaticTextProperty extends JPanel{
 		panel25.append(btnStatic);
 		
 		panel29.append(combobox);
-		panel29.append(btnAdd);
+		panel29.append(panel65);
+		
+		panel65.append(btnColor);
+		panel65.append(btnAdd);
 		
 		panel32.append(panel46);
 		panel32.append(panel47);
@@ -510,6 +544,11 @@ public class StaticTextProperty extends JPanel{
 	
 	public function getCombobox():JComboBox{
 		return combobox;
+	}
+	
+	
+	public function getBtnColor():JButton{
+		return btnColor;
 	}
 	
 	public function getBtnAdd():JButton{

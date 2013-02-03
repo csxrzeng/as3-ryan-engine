@@ -21,6 +21,7 @@ package view.property
 	import org.aswing.VectorListModel;
 	import view.cases.ColorIcon;
 	import view.gui.StaticTextProperty;
+	import view.MainWindow;
 	
 	/**
 	 * ...
@@ -46,14 +47,20 @@ package view.property
 			btnLtr.setVisible(false);
 			btnTtb.setVisible(false);
 			
-			combobox.setPreferredWidth(100);
+			sliderBlur.setMaximum(5);
+			sliderBlurAlpha.setMaximum(100);
+			
+			sliderDrop.setMaximum(5);
+			sliderDropAlpha.setMaximum(100);
+			sliderDropAngle.setMaximum(359);
+			sliderDropDistance.setMaximum(5);
+			
 			var listModel:VectorListModel = new VectorListModel(Cache.instance.font.getStaticFontList());
 			combobox.setModel(listModel);
 			combobox.setSelectedIndex(0);
-			//combobox.setMaximumRowCount(listModel.size());
 			combobox.addEventListener(InteractiveEvent.SELECTION_CHANGED, onComboBoxChange);
 			colorMixer = new JColorMixer();
-			pop = new JPopup(this);
+			pop = new JPopup(MainWindow.propertyWin);
 			pop.append(colorMixer);
 			colorMixer.setOpaque(true);
 			colorMixer.setBackground(new ASColor(0xeeeeee, 1));
@@ -80,6 +87,7 @@ package view.property
 			txtInput.addEventListener(Event.CHANGE, onTextChange);
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
+			btnColor.addEventListener(AWEvent.ACT, onColorChange);
 		}
 		
 		private function onComboBoxChange(e:InteractiveEvent):void
@@ -101,13 +109,19 @@ package view.property
 			if (mixerOwner == btnBlur)
 			{
 				_settingVo.glowFilter.color = color.getRGB();
-				btnBlur.setIcon(new ColorIcon(color, 16, 16));
+				_settingVo.glowFilter.alpha = color.getAlpha();
 				dispachPropertyChange();
 			}
 			else if (mixerOwner == btnDrop)
 			{
 				_settingVo.shadowFilter.color = color.getRGB();
-				btnDrop.setIcon(new ColorIcon(color, 16, 16));
+				_settingVo.shadowFilter.alpha = color.getAlpha();
+				dispachPropertyChange();
+			}
+			else if (mixerOwner == btnColor)
+			{
+				_settingVo.color = color.getRGB();
+				_settingVo.alpha = color.getAlpha();
 				dispachPropertyChange();
 			}
 		}
@@ -117,7 +131,7 @@ package view.property
 			if (mixerOwner != btnDrop)
 			{
 				mixerOwner = btnDrop;
-				colorMixer.setSelectedColor(new ASColor(_settingVo.shadowFilter.color));
+				colorMixer.setSelectedColor(new ASColor(_settingVo.shadowFilter.color, _settingVo.shadowFilter.alpha));
 				showMixer();
 			}
 			else
@@ -131,7 +145,21 @@ package view.property
 			if (mixerOwner != btnBlur)
 			{
 				mixerOwner = btnBlur;
-				colorMixer.setSelectedColor(new ASColor(_settingVo.glowFilter.color));
+				colorMixer.setSelectedColor(new ASColor(_settingVo.glowFilter.color, _settingVo.glowFilter.alpha));
+				showMixer();
+			}
+			else
+			{
+				pop.hide();
+			}
+		}
+		
+		private function onColorChange(e:AWEvent):void
+		{
+			if (mixerOwner != btnColor)
+			{
+				mixerOwner = btnColor;
+				colorMixer.setSelectedColor(new ASColor(_settingVo.color, _settingVo.alpha));
 				showMixer();
 			}
 			else
@@ -223,7 +251,7 @@ package view.property
 		{
 			if (!_isAdd)
 			{
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.STATIC_TEXT_PROPERTY_CHANGE, _settingVo));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 			}
 		}
 		
@@ -319,7 +347,11 @@ package view.property
 				sliderDropAlpha.setValue(_settingVo.shadowFilter.alpha * 100);
 				sliderDropAngle.setValue(_settingVo.shadowFilter.angle);
 				sliderDropDistance.setValue(_settingVo.shadowFilter.distance);
+				btnColor.setIcon(new ColorIcon(new ASColor(_settingVo.color, _settingVo.alpha), 16, 16));
+				btnBlur.setIcon(new ColorIcon(new ASColor(_settingVo.glowFilter.color, _settingVo.glowFilter.alpha), 16, 16));
+				btnDrop.setIcon(new ColorIcon(new ASColor(_settingVo.shadowFilter.color, _settingVo.shadowFilter.alpha), 16, 16));
 			}
+			trace(1);
 		}
 		
 		private function updateInputFont():void
