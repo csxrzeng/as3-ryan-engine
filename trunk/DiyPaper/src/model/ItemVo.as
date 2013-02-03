@@ -25,6 +25,7 @@ package model
 		public var scaleY:Number = 1;
 		public var rotation:int;
 		public var alpha:Number = 1;
+		public var layer:int;
 		
 		// 图片
 		public var url:String = "";
