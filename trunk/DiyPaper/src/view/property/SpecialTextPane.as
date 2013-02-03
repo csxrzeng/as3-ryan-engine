@@ -14,6 +14,7 @@ package view.property
 	public class SpecialTextPane extends SpecialTextProperty
 	{
 		private var _settingVo:ItemVo;
+		private var _isAdd:Boolean = true;
 		
 		public function SpecialTextPane()
 		{
@@ -38,7 +39,7 @@ package view.property
 		private function onStatic(e:AWEvent):void
 		{
 			btnStatic.setSelected(false);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.SWITCH_PROPERTY, {winType:PropertyWin.STATIC_TEXT}));
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.STATIC_TEXT}));
 		}
 		
 		private function onAdd(e:AWEvent):void
@@ -53,6 +54,17 @@ package view.property
 		
 		public function set settingVo(value:ItemVo):void
 		{
+			if (!value)
+			{
+				value = new ItemVo(ItemVo.SPECIAL_TEXT);
+				btnAdd.setText("添加文字");
+				_isAdd = true;
+			}
+			else
+			{
+				btnAdd.setText("编辑文字");
+				_isAdd = false;
+			}
 			_settingVo = value;
 			if (_settingVo)	//根据VO设置按钮和文本的状态
 			{

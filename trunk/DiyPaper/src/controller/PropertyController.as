@@ -33,7 +33,6 @@ package controller
 		override protected function initServer():void
 		{
 			Dispatcher.addEventListener(GameEvent.ShowProperty, showPropertyWin);
-			Dispatcher.addEventListener(GameEvent.SWITCH_PROPERTY, switchPropertyWin);
 			Dispatcher.addEventListener(GameEvent.BasePropertyChange, basePropertyChange);
 			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onSelectedItemUpdate);
 		}
@@ -58,13 +57,6 @@ package controller
 			var vo:ItemVo = e.data.vo;
 			MainWindow.toolBar.propertyBar.setButtonType(winType);
 			MainWindow.propertyWin.setType(winType, vo);
-		}
-		
-		private function switchPropertyWin(e:GameEvent):void
-		{
-			var winType:int = e.data.winType;
-			MainWindow.toolBar.propertyBar.setButtonType(winType);
-			MainWindow.propertyWin.setType(winType);
 		}
 		
 		private function showPropertyProcessor(e:GameEvent):void

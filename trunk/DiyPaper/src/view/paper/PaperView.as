@@ -222,6 +222,29 @@ package view.paper
 				throw new ArgumentError("item type error");
 			}
 			MainWindow.layerWin.addLayer(vo);
+			setItemSelected(vo);
+		}
+		
+		/**
+		 * 选中某个对象
+		 * @param	vo
+		 */
+		public function setItemSelected(vo:ItemVo):void
+		{
+			if (selectedItem)
+			{
+				_tool.deselectItem(selectedItem);
+			}
+			var index:int = indexOf(vo);
+			if (index != -1)
+			{
+				_tool.selectItem(_list[index]);
+			}
+		}
+		
+		public function get SeletedItemView():IItemView
+		{
+			return selectedItem;
 		}
 		
 		/**

@@ -65,14 +65,12 @@ package view.property
 				case STATIC_TEXT:
 					setTitle("静态文字");
 					setContentPane(pStaticText);
-					if (data)
-					{
-						pStaticText.settingVo = data;
-					}
+					pStaticText.settingVo = data;
 					break;
 				case SPECIAL_TEXT:
 					setTitle("特效文字");
 					setContentPane(pSpecialText);
+					pSpecialText.settingVo = data;
 					break;
 				case IMAGE:
 					setTitle("图片属性");
