@@ -10,6 +10,8 @@ package view.thumb
 	import org.aswing.JFrame;
 	import org.aswing.JScrollPane;
 	import org.aswing.JViewport;
+	import view.MainWindow;
+	import view.paper.IItemView;
 	
 	/**
 	 * ...
@@ -62,10 +64,10 @@ package view.thumb
 		private function onSelectedItemUpdate(e:GameEvent):void
 		{
 			var vo:ItemVo = e.data as ItemVo;
-			var icon:ThumbIcon = layers.getChildAt(vo.layer) as ThumbIcon;
+			var icon:ThumbIcon = layerList[vo.layer];
 			if (icon)
 			{
-				icon.data = vo;
+				icon.view = MainWindow.paper.seletedItemView;
 			}
 		}
 		
@@ -88,6 +90,7 @@ package view.thumb
 			for (var i:int = 0; i < layerList.length; ++i)
 			{
 				icon = layerList[i];
+				icon.view.vo.layer = i;
 				icon.y = i * (icon.height + ICON_GAP) + ICON_GAP;
 			}
 			//viewport.updateUI();
@@ -117,14 +120,14 @@ package view.thumb
 				swapLayer(draggingIcon, upIcon);
 				upIcon.y -= upIcon.height + ICON_GAP;
 				updateNearbyIcon();
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.UP_LAYER, draggingIcon.data));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.UP_LAYER, draggingIcon.view));
 			}
 			else if (downIcon && downIcon.hitTestPoint(globalPoint.x, globalPoint.y))
 			{
 				swapLayer(draggingIcon, downIcon);
 				downIcon.y += downIcon.height + ICON_GAP;
 				updateNearbyIcon();
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DOWN_LAYER, draggingIcon.data));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DOWN_LAYER, draggingIcon.view));
 			}
 		}
 		
@@ -135,7 +138,9 @@ package view.thumb
 			if (index1 >= 0 && index2 >= 0)
 			{
 				layerList[index1] = icon2;
+				icon2.view.vo.layer = index1;
 				layerList[index2] = icon1;
+				icon1.view.vo.layer = index2;
 			}
 		}
 		
@@ -160,11 +165,11 @@ package view.thumb
 			}
 		}
 		
-		public function addLayer(vo:ItemVo):void
+		public function addLayer(item:IItemView):void
 		{
-			vo.layer = layerList.length;
+			item.vo.layer = layerList.length;
 			var icon:ThumbIcon = new ThumbIcon();
-			icon.data = vo;
+			icon.view = item;
 			var index:int = layerList.push(icon) - 1;
 			layers.addChild(icon);
 			icon.y = index * (icon.height + ICON_GAP) + ICON_GAP;
