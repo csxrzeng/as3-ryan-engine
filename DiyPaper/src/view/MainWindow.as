@@ -4,6 +4,7 @@ package view
 	import org.aswing.event.ResizedEvent;
 	import org.aswing.geom.IntDimension;
 	import view.paper.PaperView;
+	import view.paper.PreviewWin;
 	import view.property.PropertyWin;
 	import view.thumb.ThumbWin;
 	import view.toolbar.ToolBar;
@@ -24,6 +25,8 @@ package view
 		static public var layerWin:ThumbWin;
 		// 属性
 		static public var propertyWin:PropertyWin;
+		//预览
+		static public var previewWin:PreviewWin;
 		
 		public function MainWindow(owner:*=null, modal:Boolean=false)
 		{
@@ -41,7 +44,10 @@ package view
 			mapLayer = new JScrollPane(paper);
 			mapLayer.setOpaque(true);
 			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
-
+			
+			previewWin = new PreviewWin();
+			pane.append(previewWin);
+			
 			uiLayer = new JPanel(new EmptyLayout());
 			pane.append(toolBar, BorderLayout.NORTH);
 			pane.append(mapLayer, BorderLayout.CENTER);
