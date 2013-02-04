@@ -39,9 +39,9 @@ package model
 		public var font:String = "宋体";
 		public var letterSpacing:int = 0;
 		public var leading:int = 0;
-		public var color:uint;
-		public var bold:Boolean;
-		public var italic:Boolean;
+		public var color:uint = 0;
+		public var bold:Boolean = false;
+		public var italic:Boolean = false;
 		public var size:int = 50;
 		public var align:String = TextFormatAlign.LEFT;
 		public var underline:Boolean;

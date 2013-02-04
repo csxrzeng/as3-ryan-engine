@@ -13,8 +13,7 @@ public class PreviewUI extends JPanel{
 	
 	//members define
 	protected var scrollpane:JScrollPane;
-	private var panel3:JPanel;
-	private var panel4:JPanel;
+	protected var paneButtons:JPanel;
 	protected var btnBack:JButton;
 	protected var btnSave:JButton;
 	
@@ -23,35 +22,25 @@ public class PreviewUI extends JPanel{
 	 */
 	public function PreviewUI(){
 		//component creation
-		setSize(new IntDimension(500, 400));
-		var layout0:BorderLayout = new BorderLayout();
+		setSize(new IntDimension(612, 473));
+		var layout0:CenterLayout = new CenterLayout();
 		setLayout(layout0);
 		
 		scrollpane = new JScrollPane();
 		scrollpane.setLocation(new IntPoint(5, 5));
+		scrollpane.setSize(new IntDimension(0, 0));
 		scrollpane.setConstraints("Center");
 		
-		panel3 = new JPanel();
-		panel3.setSize(new IntDimension(10, 10));
-		panel3.setConstraints("Center");
-		var border1:EmptyBorder = new EmptyBorder();
-		border1.setTop(100);
-		border1.setLeft(100);
-		border1.setBottom(100);
-		border1.setRight(100);
-		panel3.setBorder(border1);
-		var layout2:BorderLayout = new BorderLayout();
-		panel3.setLayout(layout2);
-		
-		panel4 = new JPanel();
-		panel4.setLocation(new IntPoint(100, 274));
-		panel4.setSize(new IntDimension(300, 26));
-		panel4.setConstraints("South");
-		var layout3:FlowLayout = new FlowLayout();
-		layout3.setAlignment(AsWingConstants.CENTER);
-		layout3.setHgap(10);
-		layout3.setVgap(0);
-		panel4.setLayout(layout3);
+		paneButtons = new JPanel();
+		paneButtons.setLocation(new IntPoint(250, 400));
+		paneButtons.setSize(new IntDimension(150, 26));
+		paneButtons.setPreferredSize(new IntDimension(150, 26));
+		paneButtons.setConstraints("South");
+		var layout1:FlowLayout = new FlowLayout();
+		layout1.setAlignment(AsWingConstants.CENTER);
+		layout1.setHgap(10);
+		layout1.setVgap(0);
+		paneButtons.setLayout(layout1);
 		
 		btnBack = new JButton();
 		btnBack.setLocation(new IntPoint(75, 0));
@@ -67,17 +56,14 @@ public class PreviewUI extends JPanel{
 		
 		//component layoution
 		append(scrollpane);
-		append(panel3);
+		append(paneButtons);
 		
-		panel3.append(panel4);
-		
-		panel4.append(btnBack);
-		panel4.append(btnSave);
+		paneButtons.append(btnBack);
+		paneButtons.append(btnSave);
 		
 	}
 	
 	//_________getters_________
-	
 	
 	
 	

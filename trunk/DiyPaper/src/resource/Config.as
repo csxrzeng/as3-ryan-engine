@@ -17,7 +17,8 @@ package resource
 		static public var STATIC_FONT_XML:String = "fonts/staticfonts.xml";
 		static public var LIBRARY_XML:String = "library.xml";
 		
-		static public var UPLOAD_IMAGE_URL:String = "http://localhost/diypaper/upload.php";
+		static public var UPLOAD_IMAGE_URL:String = "upload.php"; // "http://localhost/diypaper/upload.php";
+		static public var UPLOAD_PAPER_URL:String = "paperupload.php"; // "http://localhost/diypaper/paperupload.php";
 		
 		/**
 		 * 支持的图片类型

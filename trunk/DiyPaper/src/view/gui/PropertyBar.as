@@ -24,7 +24,7 @@ public class PropertyBar extends JPanel{
 	 */
 	public function PropertyBar(){
 		//component creation
-		setSize(new IntDimension(180, 36));
+		setSize(new IntDimension(252, 36));
 		setConstraints("East");
 		var border0:EmptyBorder = new EmptyBorder();
 		border0.setRight(10);
@@ -32,24 +32,24 @@ public class PropertyBar extends JPanel{
 		
 		toolbar5 = new JToolBar();
 		toolbar5.setLocation(new IntPoint(5, 5));
-		toolbar5.setSize(new IntDimension(106, 26));
+		toolbar5.setSize(new IntDimension(178, 26));
 		toolbar5.setOrientation(AsWingConstants.HORIZONTAL);
 		toolbar5.setGap(5);
 		
 		btnBase = new JToggleButton();
 		btnBase.setLocation(new IntPoint(36, 0));
-		btnBase.setSize(new IntDimension(37, 26));
-		btnBase.setText("属性");
+		btnBase.setSize(new IntDimension(58, 26));
+		btnBase.setText("基本属性");
 		
 		btnText = new JToggleButton();
 		btnText.setLocation(new IntPoint(36, 0));
-		btnText.setSize(new IntDimension(37, 26));
-		btnText.setText("文字");
+		btnText.setSize(new IntDimension(58, 26));
+		btnText.setText("添加文字");
 		
 		btnImage = new JToggleButton();
 		btnImage.setLocation(new IntPoint(108, 0));
-		btnImage.setSize(new IntDimension(34, 26));
-		btnImage.setText("图片");
+		btnImage.setSize(new IntDimension(58, 26));
+		btnImage.setText("添加图片");
 		
 		spacer10 = new JSpacer();
 		spacer10.setLocation(new IntPoint(116, 13));

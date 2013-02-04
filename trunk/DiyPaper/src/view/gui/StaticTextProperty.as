@@ -127,8 +127,8 @@ public class StaticTextProperty extends JPanel{
 		combobox.setMaximumRowCount(7);
 		
 		panel65 = new JPanel();
-		panel65.setLocation(new IntPoint(165, 0));
-		panel65.setSize(new IntDimension(100, 26));
+		panel65.setLocation(new IntPoint(176, 0));
+		panel65.setSize(new IntDimension(89, 26));
 		panel65.setConstraints("East");
 		var layout4:SoftBoxLayout = new SoftBoxLayout();
 		layout4.setAxis(AsWingConstants.HORIZONTAL);
@@ -141,6 +141,7 @@ public class StaticTextProperty extends JPanel{
 		btnColor.setSize(new IntDimension(26, 26));
 		btnColor.setPreferredSize(new IntDimension(26, 26));
 		btnColor.setConstraints("East");
+		btnColor.setText(" ");
 		
 		btnAdd = new JButton();
 		btnAdd.setLocation(new IntPoint(207, 0));
@@ -281,6 +282,7 @@ public class StaticTextProperty extends JPanel{
 		btnBlur.setSize(new IntDimension(26, 26));
 		btnBlur.setPreferredSize(new IntDimension(26, 26));
 		btnBlur.setConstraints("East");
+		btnBlur.setText(" ");
 		
 		separator56 = new JSeparator();
 		separator56.setLocation(new IntPoint(0, 26));
@@ -354,6 +356,7 @@ public class StaticTextProperty extends JPanel{
 		btnDrop.setSize(new IntDimension(26, 26));
 		btnDrop.setPreferredSize(new IntDimension(26, 26));
 		btnDrop.setConstraints("East");
+		btnDrop.setText(" ");
 		
 		separator66 = new JSeparator();
 		separator66.setLocation(new IntPoint(0, 26));
