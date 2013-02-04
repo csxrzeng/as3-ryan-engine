@@ -66,8 +66,8 @@ package view.property
 		
 		private function onColorChange(e:ColorChooserEvent):void
 		{
-			//_color = e.getColor();
-			_color = colorMixer.getSelectedColor();
+			_color = e.getColor();
+			//_color = colorMixer.getSelectedColor();
 			//trace("color change event", _color);
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
@@ -102,7 +102,7 @@ package view.property
 										_settingVo.colorTransform.blueOffset);
 			_color = _color.changeAlpha(alpha);
 			
-			colorMixer.setSelectedColor(_color);
+			//colorMixer.setSelectedColor(_color);
 			
 			var multi:int = _settingVo.colorTransform.redMultiplier * 100;
 			

@@ -21,6 +21,7 @@ package utils
 			colorTransform.redOffset = color.getRed();
 			colorTransform.greenOffset = color.getGreen();
 			colorTransform.blueOffset = color.getBlue();
+			//trace(color.getAlpha());
 			colorTransform.alphaOffset = 255 * (color.getAlpha() - 1);
 			colorTransform.redMultiplier = multiplier;
 			colorTransform.greenMultiplier = multiplier;
