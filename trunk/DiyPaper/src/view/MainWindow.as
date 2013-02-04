@@ -28,10 +28,13 @@ package view
 		//预览
 		static public var previewWin:PreviewWin;
 		
+		static private var _instance:MainWindow;
+		
 		public function MainWindow(owner:*=null, modal:Boolean=false)
 		{
 			super(owner, modal);
 			configUI();
+			_instance = this;
 		}
 		
 		private function configUI():void
@@ -46,7 +49,7 @@ package view
 			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
 			
 			previewWin = new PreviewWin();
-			pane.append(previewWin);
+			//pane.append(previewWin);
 			
 			uiLayer = new JPanel(new EmptyLayout());
 			pane.append(toolBar, BorderLayout.NORTH);
@@ -73,6 +76,11 @@ package view
 			{
 				propertyWin.x = size.width - propertyWin.width;
 			}
+		}
+		
+		static public function get instance():MainWindow
+		{
+			return _instance;
 		}
 	}
 }

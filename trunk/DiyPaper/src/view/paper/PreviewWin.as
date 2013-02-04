@@ -6,6 +6,7 @@ package view.paper
 	import model.PaperVo;
 	import org.aswing.AssetPane;
 	import org.aswing.AsWingConstants;
+	import org.aswing.border.LineBorder;
 	import org.aswing.event.AWEvent;
 	import org.aswing.FlowLayout;
 	import org.aswing.JButton;
@@ -20,6 +21,7 @@ package view.paper
 		private var asset:AssetPane;
 		private var preview:Bitmap;
 		private var pbSave:JButton;
+		private var pbCancel:JButton;
 		
 		public function PreviewWin()
 		{
@@ -29,17 +31,19 @@ package view.paper
 		
 		private function initView():void
 		{
-			setPreferredWidth(Global.stage.stageWidth);
-			setPreferredHeight(Global.stage.stageHeight);
-			
 			preview = new Bitmap();
 			asset = new AssetPane(preview);
+			asset.setBorder(new LineBorder());
 			asset.setPreferredWidth(Global.stage.stageWidth);
 			asset.setPreferredHeight(200);
 			append(asset, AsWingConstants.CENTER);
 			
 			pbSave = new JButton("保存");
 			append(pbSave);
+			pbCancel = new JButton("放弃");
+			append(pbCancel);
+			
+			setBorder(new LineBorder());
 			
 			pbSave.addActionListener(onSaveClick);
 		}
