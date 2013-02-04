@@ -351,7 +351,6 @@ package view.property
 				btnBlur.setIcon(new ColorIcon(new ASColor(_settingVo.glowFilter.color, _settingVo.glowFilter.alpha), 16, 16));
 				btnDrop.setIcon(new ColorIcon(new ASColor(_settingVo.shadowFilter.color, _settingVo.shadowFilter.alpha), 16, 16));
 			}
-			trace(1);
 		}
 		
 		private function updateInputFont():void

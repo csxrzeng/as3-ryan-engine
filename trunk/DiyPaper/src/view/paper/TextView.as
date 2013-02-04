@@ -25,8 +25,8 @@ package view.paper
 			_textfield = new TextField();
 			//_textfield.multiline = true;
 			//_textfield.wordWrap = true;
-			//_textfield.embedFonts = true;
-			_textfield.type = TextFieldType.INPUT;
+			_textfield.embedFonts = true;
+			_textfield.type = TextFieldType.DYNAMIC;
 			_textfield.antiAliasType = AntiAliasType.ADVANCED;
 			_textfield.autoSize = TextFieldAutoSize.LEFT;
 			addChild(_textfield);
@@ -42,7 +42,6 @@ package view.paper
 			alpha = _vo.alpha;
 			formate.font = _vo.font;
 			formate.size = _vo.size;
-			formate.color = _vo.color;
 			formate.bold = _vo.bold;
 			formate.italic = _vo.italic;
 			formate.leading = _vo.leading;
@@ -55,6 +54,8 @@ package view.paper
 				_textfield.setTextFormat(formate, 0, _textfield.length);
 			}
 			_textfield.text = _vo.text;
+			_textfield.transform.colorTransform = _vo.colorTransform;
+			_item.update();
 		}
 		
 		public function get item():TransformItem
@@ -69,25 +70,6 @@ package view.paper
 		
 		public function get vo():ItemVo
 		{
-			if (_textfield.length == 0)
-			{
-				formate = _textfield.defaultTextFormat;
-			}
-			else
-			{
-				formate = _textfield.getTextFormat(0, _textfield.length);
-			}
-			_vo.alpha = alpha;
-			_vo.font = formate.font;
-			_vo.size = int(formate.size);
-			_vo.color = uint(formate.color);
-			_vo.bold = Boolean(formate.bold);
-			_vo.italic = Boolean(formate.italic);
-			_vo.leading = int(formate.leading);
-			_vo.letterSpacing = int(formate.letterSpacing);
-			_vo.align = formate.align;
-			_vo.underline = formate.underline;
-			_vo.text = _textfield.text;
 			return _vo;
 		}
 		

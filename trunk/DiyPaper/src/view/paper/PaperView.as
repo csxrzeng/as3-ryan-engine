@@ -172,7 +172,7 @@ package view.paper
 		private function addSpecialText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
-			text.item = _tool.addItem(text);
+			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, false);
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
@@ -246,6 +246,14 @@ package view.paper
 			{
 				selectedItem.update();
 			}
+			else
+			{
+				var item:IItemView = getItemView(data);
+				if (item)
+				{
+					item.update();
+				}
+			}
 		}
 		
 		/**
@@ -259,11 +267,21 @@ package view.paper
 				_tool.removeItem(selectedItem);
 				ArrayUtil.removeItem(_list, selectedItem);
 				var obj:DisplayObject = selectedItem as DisplayObject;
-				if (obj && obj.parent == _paper)
+				if (obj && obj.parent == itemViewContainer)
 				{
-					_paper.removeChild(obj);
+					itemViewContainer.removeChild(obj);
 				}
 			}
+		}
+		
+		public function getItemView(vo:ItemVo):IItemView
+		{
+			var index:int = indexOf(vo);
+			if (index != -1)
+			{
+				return _list[index];
+			}
+			return null;
 		}
 		
 		private function indexOf(data:ItemVo):int

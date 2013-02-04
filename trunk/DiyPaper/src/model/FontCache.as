@@ -13,7 +13,7 @@ package model
 	{
 		private var fontMap:Dictionary = new Dictionary();
 		private var swfMap:Dictionary = new Dictionary();
-		private var fontNameList:Array = [];
+		private var specialFonts:Array = [];
 		private var staticFonts:Array = [];
 		
 		public function FontCache()
@@ -27,9 +27,9 @@ package model
 			onStaticXmlComplete(XML(ResourceManager.getInfoByName(Config.STATIC_FONT_XML).data));
 		}
 		
-		public function getFontNameList():Array
+		public function getSpecialFontList():Array
 		{
-			return fontNameList;
+			return specialFonts;
 		}
 		
 		public function getStaticFontList():Array 
@@ -54,6 +54,18 @@ package model
 			return staticFonts[0];
 		}
 		
+		public function getSpecialFontByFont(font:String):FontVo 
+		{
+			for each (var item:FontVo in specialFonts) 
+			{
+				if (item.font == font)
+				{
+					return item;
+				}
+			}
+			return specialFonts[0];
+		}
+		
 		private function hasLoadedFont(fontName:String):Boolean
 		{
 			return fontMap[fontName] && (fontMap[fontName] as FontVo).state == 2;
@@ -66,7 +78,7 @@ package model
 			{
 				var vo:FontVo = new FontVo(item.@name, item.@font, item.@url);
 				fontMap[vo.name] = vo;
-				fontNameList.push(vo);
+				specialFonts.push(vo);
 			}
 		}
 		

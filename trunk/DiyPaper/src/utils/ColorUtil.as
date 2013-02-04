@@ -19,11 +19,11 @@ package utils
 		{
 			var colorTransform:ColorTransform = new ColorTransform();
 			colorTransform.color = color.getRGB();
-			colorTransform.alphaOffset = int(color.getAlpha() * 255 - 255);
+			colorTransform.alphaOffset = int(color.getAlpha() * 255);
 			colorTransform.redMultiplier = multiplier;
 			colorTransform.greenMultiplier = multiplier;
 			colorTransform.blueMultiplier = multiplier;
-			colorTransform.alphaMultiplier = 1;
+			colorTransform.alphaMultiplier = 0;
 			return colorTransform;
 		}
 	}
