@@ -148,25 +148,18 @@ package com.ryan.player
 			{
 				if (_isPlayOnce && index >= _frameCount)
 				{
-					if (_index < _frameCount -1) // 中间跳帧了，始终要播放一下最后一帧
+					_index = index;
+					stop();
+					_frame.dispose(); // 只播放一次，播放完成销毁定时器
+					if (onPlayComplete != null)
 					{
-						_index = _frameCount -1;
+						onPlayComplete(this); // 播放完成回调
 					}
-					else
+					if (_isRemoved && this.parent)
 					{
-						_index = index;
-						stop();
-						_frame.dispose(); // 只播放一次，播放完成销毁定时器
-						if (onPlayComplete != null)
-						{
-							onPlayComplete(this); // 播放完成回调
-						}
-						if (_isRemoved && this.parent)
-						{
-							this.parent.removeChild(this);
-						}
-						return;
+						this.parent.removeChild(this);
 					}
+					return;
 				}
 				_index = index % _frameCount;
 				render();
