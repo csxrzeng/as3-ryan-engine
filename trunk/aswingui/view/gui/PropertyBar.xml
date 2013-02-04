@@ -8,7 +8,7 @@
         <Value value="none"/>
       </Property>
       <Property name="Size" type="Size">
-        <Value value="180,36"/>
+        <Value value="252,36"/>
       </Property>
       <Property name="Constraints" type="Constraints">
         <Value value="East"/>
@@ -37,7 +37,7 @@
           <Value value="5,5"/>
         </Property>
         <Property name="Size" type="Size">
-          <Value value="106,26"/>
+          <Value value="178,26"/>
         </Property>
         <Property name="Orientation" type="Orientation">
           <Value value="0"/>
@@ -61,10 +61,10 @@
             <Value value="36,0"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="37,26"/>
+            <Value value="58,26"/>
           </Property>
           <Property name="Text" type="Text">
-            <Value value="属性"/>
+            <Value value="基本属性"/>
           </Property>
         </Properties>
       </Com>
@@ -83,10 +83,10 @@
             <Value value="36,0"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="37,26"/>
+            <Value value="58,26"/>
           </Property>
           <Property name="Text" type="Text">
-            <Value value="文字"/>
+            <Value value="添加文字"/>
           </Property>
         </Properties>
       </Com>
@@ -105,10 +105,10 @@
             <Value value="108,0"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="34,26"/>
+            <Value value="58,26"/>
           </Property>
           <Property name="Text" type="Text">
-            <Value value="图片"/>
+            <Value value="添加图片"/>
           </Property>
         </Properties>
       </Com>

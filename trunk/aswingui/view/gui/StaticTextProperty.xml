@@ -227,10 +227,10 @@
               <Value value="none"/>
             </Property>
             <Property name="Location" type="Location">
-              <Value value="165,0"/>
+              <Value value="176,0"/>
             </Property>
             <Property name="Size" type="Size">
-              <Value value="100,26"/>
+              <Value value="89,26"/>
             </Property>
             <Property name="Constraints" type="Constraints">
               <Value value="East"/>
@@ -275,6 +275,9 @@
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="East"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value=" "/>
               </Property>
             </Properties>
           </Com>
@@ -825,6 +828,9 @@
               <Property name="Constraints" type="Constraints">
                 <Value value="East"/>
               </Property>
+              <Property name="Text" type="Text">
+                <Value value=" "/>
+              </Property>
             </Properties>
           </Com>
           <Com name="JSeparator" id="separator56">
@@ -1103,6 +1109,9 @@
               </Property>
               <Property name="Constraints" type="Constraints">
                 <Value value="East"/>
+              </Property>
+              <Property name="Text" type="Text">
+                <Value value=" "/>
               </Property>
             </Properties>
           </Com>
