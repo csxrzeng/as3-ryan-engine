@@ -24,8 +24,6 @@ package view.property
 		private var pLibrary:LibraryPane;
 		private var pAssets:AssetsPane;
 		
-		private var lastPane:JPanel;
-		
 		private var _type:int = 0;
 		
 		public function PropertyWin(owner:* = null, title:String = "", modal:Boolean = false)
@@ -55,10 +53,6 @@ package view.property
 		public function setType(type:int, data:ItemVo = null):void
 		{
 			show();
-			if (lastPane)
-			{
-				getContentPane().remove(lastPane);
-			}
 			if (_type != type)
 			{
 				_type = type;
@@ -67,7 +61,7 @@ package view.property
 			{
 				case BASE:
 					setTitle("基本属性");
-					lastPane = pBase;
+					setContentPane(pBase);
 					pBase.update();
 					break;
 				case STATIC_TEXT:
@@ -79,7 +73,7 @@ package view.property
 					{
 						setTitle("添加静态文字");
 					}
-					lastPane = pStaticText;
+					setContentPane(pStaticText);
 					pStaticText.settingVo = data;
 					pStaticText.updateUI();
 					break;
@@ -92,24 +86,23 @@ package view.property
 					{
 						setTitle("添加特效文字");
 					}
-					lastPane = pSpecialText;
+					setContentPane(pSpecialText);
 					pSpecialText.settingVo = data;
 					break;
 				case IMAGE:
 					setTitle("图片属性");
-					lastPane = pImage;
+					setContentPane(pImage);
 					pImage.settingVo = data;
 					break;
 				case LIBRARY:
 					setTitle("在线图标");
-					lastPane = pLibrary;
+					setContentPane(pLibrary);
 					break;
 				case ASSETS:
 					setTitle("我的素材");
-					lastPane = pAssets;
+					setContentPane(pAssets);
 					break;
 			}
-			getContentPane().append(lastPane);
 			pack();
 		}
 		
