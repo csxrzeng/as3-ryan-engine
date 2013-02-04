@@ -37,7 +37,7 @@ package view.paper
 		
 		/* INTERFACE view.paper.IItemView */
 		
-		public function update():void 
+		public function update():void
 		{
 			alpha = _vo.alpha;
 			formate.font = _vo.font;

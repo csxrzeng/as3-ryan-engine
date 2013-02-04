@@ -96,7 +96,7 @@ package view.property
 		
 		private function update():void
 		{
-			var alpha:Number = _settingVo.colorTransform.alphaOffset / 255 + 1;
+			var alpha:Number = Math.min(_settingVo.colorTransform.alphaOffset, 0) / 255 + 1;
 			_color = ASColor.getASColor(_settingVo.colorTransform.redOffset,
 										_settingVo.colorTransform.greenOffset,
 										_settingVo.colorTransform.blueOffset);
