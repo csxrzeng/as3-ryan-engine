@@ -48,6 +48,14 @@ package controller
 		 * 向下一层
 		 */
 		static public const DOWN_LAYER:String = "down_layer";
+		/**
+		 * 显示预览
+		 */
+		static public const ShowPreview:String = "ShowPreview";
+		/**
+		 * 显示编辑
+		 */
+		static public const ShowNormal:String = "ShowNormal";
 		
 		public var data:*;
 		

@@ -1,35 +1,36 @@
-package view.toolbar
+package view.toolbar 
 {
+	import controller.Dispatcher;
+	import controller.GameEvent;
 	import org.aswing.event.AWEvent;
+	import org.aswing.JToolBar;
 	import view.gui.SaveBar;
-	import view.MainWindow;
 	
 	/**
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class SaveBarWin extends SaveBar
+	public class SaveBarWin extends SaveBar 
 	{
 		
-		public function SaveBarWin()
+		public function SaveBarWin() 
 		{
 			super();
 			configEvents();
 		}
 		
-		private function configEvents():void
+		private function configEvents():void 
 		{
 			btnPreview.addActionListener(onPreviewAction);
 			btnLink.addActionListener(onLinkAction);
 		}
 		
-		private function onPreviewAction(e:AWEvent):void
+		private function onPreviewAction(e:AWEvent):void 
 		{
-			MainWindow.previewWin.previewPaper(MainWindow.paper);
-			MainWindow.instance.getContentPane().append(MainWindow.previewWin);
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowPreview));
 		}
 		
-		private function onLinkAction(e:AWEvent):void
+		private function onLinkAction(e:AWEvent):void 
 		{
 			
 		}
