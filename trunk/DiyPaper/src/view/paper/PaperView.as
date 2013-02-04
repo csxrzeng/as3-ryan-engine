@@ -267,10 +267,11 @@ package view.paper
 				_tool.removeItem(selectedItem);
 				ArrayUtil.removeItem(_list, selectedItem);
 				var obj:DisplayObject = selectedItem as DisplayObject;
-				if (obj && obj.parent == itemViewContainer)
+				if (obj.parent == itemViewContainer)
 				{
 					itemViewContainer.removeChild(obj);
 				}
+				MainWindow.layerWin.deleteLayer(selectedItem); // 删除图层里面的数据
 			}
 		}
 		
