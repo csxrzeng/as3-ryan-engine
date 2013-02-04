@@ -18,7 +18,7 @@ package controller
 			Dispatcher.addEventListener(GameEvent.ShowPreview, onShowPreview);
 		}
 		
-		private function onShowNormal(e:GameEvent):void 
+		private function onShowNormal(e:GameEvent):void
 		{
 			MainWindow.toolBar.setVisible(true);
 			MainWindow.mapLayer.setVisible(true);
@@ -27,7 +27,7 @@ package controller
 			MainWindow.previewWin.setVisible(false);
 		}
 		
-		private function onShowPreview(e:GameEvent):void 
+		private function onShowPreview(e:GameEvent):void
 		{
 			MainWindow.toolBar.setVisible(false);
 			MainWindow.mapLayer.setVisible(false);

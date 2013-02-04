@@ -1,4 +1,4 @@
-package utils 
+package utils
 {
 	import flash.geom.ColorTransform;
 	import org.aswing.ASColor;
@@ -6,20 +6,22 @@ package utils
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class ColorUtil 
+	public class ColorUtil
 	{
 		
-		public function ColorUtil() 
+		public function ColorUtil()
 		{
 			
 		}
 		
 		
-		static public function color2ColorTransform(color:ASColor, multiplier:Number):ColorTransform 
+		static public function color2ColorTransform(color:ASColor, multiplier:Number):ColorTransform
 		{
 			var colorTransform:ColorTransform = new ColorTransform();
-			colorTransform.color = color.getRGB();
-			colorTransform.alphaOffset = int(color.getAlpha() * 255);
+			colorTransform.redOffset = color.getRed();
+			colorTransform.greenOffset = color.getGreen();
+			colorTransform.blueOffset = color.getBlue();
+			colorTransform.alphaOffset = 255 * (color.getAlpha() - 1);
 			colorTransform.redMultiplier = multiplier;
 			colorTransform.greenMultiplier = multiplier;
 			colorTransform.blueMultiplier = multiplier;
