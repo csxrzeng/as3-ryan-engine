@@ -9,7 +9,6 @@ package view.property
 	import org.aswing.ASColor;
 	import org.aswing.event.AWEvent;
 	import org.aswing.event.ColorChooserEvent;
-	import org.aswing.event.InteractiveEvent;
 	import org.aswing.JOptionPane;
 	import org.aswing.VectorListModel;
 	import resource.proxy.ResourceProxy;
@@ -49,7 +48,7 @@ package view.property
 			//settingVo = vo;
 		}
 		
-		private function onColorAdjusting(e:ColorChooserEvent):void 
+		private function onColorAdjusting(e:ColorChooserEvent):void
 		{
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(e.getColor(), 1);
 			dispachPropertyChange();
@@ -132,7 +131,8 @@ package view.property
 			{
 				combobox.setSelectedItem(Cache.instance.font.getSpecialFontByFont(_settingVo.font));
 				txtInput.setText(_settingVo.text);
-				colormixer.setSelectedColor(new ASColor(_settingVo.colorTransform.color, _settingVo.colorTransform.alphaOffset / 255));
+				
+				colormixer.setSelectedColor(new ASColor(_settingVo.colorTransform.color, _settingVo.colorTransform.alphaOffset / 255 + 1));
 			}
 		}
 	}
