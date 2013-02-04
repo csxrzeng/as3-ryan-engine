@@ -18,8 +18,10 @@ public class SpecialTextProperty extends JPanel{
 	protected var btnStatic:JToggleButton;
 	protected var txtInput:JTextArea;
 	private var panel91:JPanel;
-	protected var btnAdd:JButton;
 	protected var combobox:JComboBox;
+	private var panel24:JPanel;
+	protected var btnDelete:JButton;
+	protected var btnAdd:JButton;
 	protected var colormixer:JColorMixer;
 	
 	/**
@@ -68,21 +70,37 @@ public class SpecialTextProperty extends JPanel{
 		
 		panel91 = new JPanel();
 		panel91.setLocation(new IntPoint(0, 96));
-		panel91.setSize(new IntDimension(265, 0));
+		panel91.setSize(new IntDimension(265, 26));
 		var layout3:BorderLayout = new BorderLayout();
 		panel91.setLayout(layout3);
-		
-		btnAdd = new JButton();
-		btnAdd.setLocation(new IntPoint(104, 0));
-		btnAdd.setSize(new IntDimension(265, 26));
-		btnAdd.setConstraints("East");
-		btnAdd.setText("添加文字");
 		
 		combobox = new JComboBox();
 		combobox.setSize(new IntDimension(90, 26));
 		combobox.setPreferredSize(new IntDimension(90, 26));
 		combobox.setConstraints("West");
 		combobox.setMaximumRowCount(7);
+		
+		panel24 = new JPanel();
+		panel24.setLocation(new IntPoint(149, 0));
+		panel24.setSize(new IntDimension(116, 26));
+		panel24.setConstraints("East");
+		var layout4:FlowLayout = new FlowLayout();
+		layout4.setAlignment(AsWingConstants.RIGHT);
+		layout4.setHgap(0);
+		layout4.setVgap(0);
+		layout4.setMargin(false);
+		panel24.setLayout(layout4);
+		
+		btnDelete = new JButton();
+		btnDelete.setLocation(new IntPoint(5, 5));
+		btnDelete.setSize(new IntDimension(58, 26));
+		btnDelete.setText("删除文字");
+		
+		btnAdd = new JButton();
+		btnAdd.setLocation(new IntPoint(104, 0));
+		btnAdd.setSize(new IntDimension(265, 26));
+		btnAdd.setConstraints("East");
+		btnAdd.setText("添加文字");
 		
 		colormixer = new JColorMixer();
 		colormixer.setLocation(new IntPoint(0, 127));
@@ -99,8 +117,11 @@ public class SpecialTextProperty extends JPanel{
 		panel85.append(btnSpecial);
 		panel85.append(btnStatic);
 		
-		panel91.append(btnAdd);
 		panel91.append(combobox);
+		panel91.append(panel24);
+		
+		panel24.append(btnDelete);
+		panel24.append(btnAdd);
 		
 	}
 	
@@ -121,12 +142,17 @@ public class SpecialTextProperty extends JPanel{
 	}
 	
 	
-	public function getBtnAdd():JButton{
-		return btnAdd;
-	}
-	
 	public function getCombobox():JComboBox{
 		return combobox;
+	}
+	
+	
+	public function getBtnDelete():JButton{
+		return btnDelete;
+	}
+	
+	public function getBtnAdd():JButton{
+		return btnAdd;
 	}
 	
 	public function getColormixer():JColorMixer{

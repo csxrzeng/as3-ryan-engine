@@ -1,7 +1,9 @@
 package controller
 {
 	import model.ItemVo;
+	import model.UserStatus;
 	import view.MainWindow;
+	
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -10,7 +12,6 @@ package controller
 	{
 		public function PropertyController()
 		{
-			
 		}
 		
 		override protected function initServer():void
@@ -20,7 +21,7 @@ package controller
 			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onSelectedItemUpdate);
 		}
 		
-		private function onSelectedItemUpdate(e:GameEvent):void 
+		private function onSelectedItemUpdate(e:GameEvent):void
 		{
 			MainWindow.propertyWin.update(e.data);
 		}
@@ -36,10 +37,13 @@ package controller
 		
 		private function showPropertyWin(e:GameEvent):void
 		{
-			var winType:int = e.data.winType;
-			var vo:ItemVo = e.data.vo;
-			MainWindow.toolBar.propertyBar.setButtonType(winType);
-			MainWindow.propertyWin.setType(winType, vo);
+			if (UserStatus.curStatus == UserStatus.NORMAL)
+			{
+				var winType:int = e.data.winType;
+				var vo:ItemVo = e.data.vo;
+				MainWindow.toolBar.propertyBar.setButtonType(winType);
+				MainWindow.propertyWin.setType(winType, vo);
+			}
 		}
 	}
 }

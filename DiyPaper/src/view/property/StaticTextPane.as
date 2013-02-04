@@ -281,12 +281,14 @@ package view.property
 		{
 			if (_isAdd)
 			{
-				_isAdd = false;
-				btnAdd.setVisible(false);
 				var item:ItemVo = new ItemVo(ItemVo.STATIC_TEXT);
 				item.text = txtInput.getText();
 				item.font = combobox.getSelectedItem();
 				GameController.paper.addItem(item);
+			}
+			else
+			{
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DeleteSelectedItem, _settingVo));
 			}
 		}
 		
@@ -311,12 +313,12 @@ package view.property
 			if (!value)
 			{
 				value = new ItemVo(ItemVo.STATIC_TEXT);
-				btnAdd.setVisible(true);
+				btnAdd.setText("添加文字");
 				_isAdd = true;
 			}
 			else
 			{
-				btnAdd.setVisible(false);
+				btnAdd.setText("删除文字");
 				_isAdd = false;
 			}
 			_settingVo = value;

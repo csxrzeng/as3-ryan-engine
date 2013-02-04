@@ -5,6 +5,7 @@ package view.paper
 	import com.ryan.utils.ArrayUtil;
 	import controller.Dispatcher;
 	import controller.GameEvent;
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -62,6 +63,14 @@ package view.paper
 			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
 			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
 			setVo(_vo); // 初始化
+		}
+		
+		public function getPreview():BitmapData
+		{
+			_tool.deselectAll(); // 取消选择
+			var bmd:BitmapData = new BitmapData(_vo.width, _vo.height);
+			bmd.draw(_paper);
+			return bmd;
 		}
 		
 		public function updateBase():void

@@ -1,5 +1,7 @@
 package controller
 {
+	import model.UserStatus;
+	import org.aswing.BorderLayout;
 	import view.MainWindow;
 	
 	/**
@@ -20,20 +22,15 @@ package controller
 		
 		private function onShowNormal(e:GameEvent):void
 		{
-			MainWindow.toolBar.setVisible(true);
-			MainWindow.mapLayer.setVisible(true);
-			MainWindow.layerWin.show();
-			MainWindow.propertyWin.show();
-			MainWindow.previewWin.setVisible(false);
+			UserStatus.curStatus = UserStatus.NORMAL;
+			MainWindow.instance.setPreviewShow(false);
 		}
 		
 		private function onShowPreview(e:GameEvent):void
 		{
-			MainWindow.toolBar.setVisible(false);
-			MainWindow.mapLayer.setVisible(false);
-			MainWindow.layerWin.hide();
-			MainWindow.propertyWin.hide();
-			MainWindow.previewWin.setVisible(true);
+			UserStatus.curStatus = UserStatus.PREVIEW;
+			MainWindow.instance.setPreviewShow(true);
+			MainWindow.previewWin.previewPaper(MainWindow.paper);
 		}
 	}
 }

@@ -37,6 +37,7 @@ package view.property
 			btnSpecial.addEventListener(AWEvent.ACT, onSpecial);
 			btnStatic.addEventListener(AWEvent.ACT, onStatic);
 			btnAdd.addEventListener(AWEvent.ACT, onAdd);
+			btnDelete.addEventListener(AWEvent.ACT, onDelete);
 			colormixer.addEventListener(ColorChooserEvent.COLOR_ADJUSTING, onColorAdjusting);
 			
 			var model:VectorListModel = new VectorListModel(Cache.instance.font.getSpecialFontList());
@@ -50,7 +51,7 @@ package view.property
 		
 		private function onColorAdjusting(e:ColorChooserEvent):void
 		{
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(e.getColor(), 1);
+			_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 1);
 			dispachPropertyChange();
 		}
 		
@@ -63,6 +64,11 @@ package view.property
 		{
 			btnStatic.setSelected(false);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.STATIC_TEXT}));
+		}
+		
+		private function onDelete(e:AWEvent):void
+		{
+			Dispatcher.dispatchEvent(new GameEvent(GameEvent.DeleteSelectedItem, _settingVo));
 		}
 		
 		private function onAdd(e:AWEvent):void
@@ -119,11 +125,13 @@ package view.property
 			{
 				value = new ItemVo(ItemVo.SPECIAL_TEXT);
 				btnAdd.setText("添加文字");
+				btnDelete.setVisible(false);
 				_isAdd = true;
 			}
 			else
 			{
 				btnAdd.setText("编辑文字");
+				btnDelete.setVisible(true);
 				_isAdd = false;
 			}
 			_settingVo = value;
