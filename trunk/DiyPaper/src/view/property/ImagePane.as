@@ -1,12 +1,10 @@
-package view.property 
+package view.property
 {
 	import controller.Dispatcher;
-	import controller.GameController;
 	import controller.GameEvent;
 	import flash.events.MouseEvent;
 	import model.ItemVo;
 	import org.aswing.ASColor;
-	import org.aswing.event.AWEvent;
 	import org.aswing.event.ColorChooserEvent;
 	import org.aswing.event.InteractiveEvent;
 	import utils.ColorUtil;
@@ -16,22 +14,22 @@ package view.property
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class ImagePane extends ImageProperty 
+	public class ImagePane extends ImageProperty
 	{
 		private var _settingVo:ItemVo;
 		private var _color:ASColor = new ASColor();
 		
-		public function ImagePane() 
+		public function ImagePane()
 		{
 			configUI();
 		}
 		
-		//public function get settingVo():ItemVo 
+		//public function get settingVo():ItemVo
 		//{
 			//return _settingVo;
 		//}
 		
-		public function set settingVo(value:ItemVo):void 
+		public function set settingVo(value:ItemVo):void
 		{
 			_settingVo = value;
 			if (_settingVo)
@@ -40,7 +38,7 @@ package view.property
 			}
 		}
 		
-		private function configUI():void 
+		private function configUI():void
 		{
 			sliderColor.setMinimum(0);
 			sliderColor.setMaximum(100);
@@ -56,31 +54,33 @@ package view.property
 			sliderRotation.addEventListener(InteractiveEvent.STATE_CHANGED, onSliderRotation);
 		}
 		
-		private function onReplaceClick(e:MouseEvent):void 
+		private function onReplaceClick(e:MouseEvent):void
 		{
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.ReplaceSelectedImage, _settingVo));
 		}
 		
-		private function onDeleteClick(e:MouseEvent):void 
+		private function onDeleteClick(e:MouseEvent):void
 		{
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.DeleteSelectedItem, _settingVo));
 		}
 		
-		private function onColorChange(e:ColorChooserEvent):void 
+		private function onColorChange(e:ColorChooserEvent):void
 		{
-			_color = e.getColor();
+			//_color = e.getColor();
+			_color = colorMixer.getSelectedColor();
+			//trace("color change event", _color);
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
 		
-		private function onSliderColor(e:InteractiveEvent):void 
+		private function onSliderColor(e:InteractiveEvent):void
 		{
 			_color = colorMixer.getSelectedColor();
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
 		
-		private function onSliderAlpha(e:InteractiveEvent):void 
+		private function onSliderAlpha(e:InteractiveEvent):void
 		{
 			_color = colorMixer.getSelectedColor();
 			_color = _color.changeAlpha(sliderAlpha.getValue() / 100);
@@ -88,7 +88,7 @@ package view.property
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
 		
-		private function onSliderRotation(e:InteractiveEvent):void 
+		private function onSliderRotation(e:InteractiveEvent):void
 		{
 			_settingVo.rotation = sliderRotation.getValue();
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
@@ -96,9 +96,11 @@ package view.property
 		
 		private function update():void
 		{
-			var rgb:uint = _settingVo.colorTransform.color;
-			var alpha:int = _settingVo.colorTransform.alphaOffset * 100 / 255;
-			_color = new ASColor(rgb, alpha / 100);
+			var alpha:Number = _settingVo.colorTransform.alphaOffset / 255 + 1;
+			_color = ASColor.getASColor(_settingVo.colorTransform.redOffset,
+										_settingVo.colorTransform.greenOffset,
+										_settingVo.colorTransform.blueOffset);
+			_color = _color.changeAlpha(alpha);
 			
 			colorMixer.setSelectedColor(_color);
 			
@@ -107,8 +109,8 @@ package view.property
 			txtColor.setText("变色(" + multi + ")");
 			sliderColor.setValue(multi);
 			
-			txtAlpha.setText("透明(" + alpha + ")");
-			sliderAlpha.setValue(alpha);
+			txtAlpha.setText("透明(" + int(alpha * 100) + ")");
+			sliderAlpha.setValue(alpha * 100);
 			
 			txtRotation.setText("旋转(" + _settingVo.rotation + "°)");
 			sliderRotation.setValue(_settingVo.rotation);

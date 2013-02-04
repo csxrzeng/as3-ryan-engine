@@ -49,8 +49,8 @@ package view
 			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
 			
 			previewWin = new PreviewWin();
-			pane.append(previewWin, BorderLayout.CENTER);
-			previewWin.setVisible(false);
+			//pane.append(previewWin);
+			//previewWin.setVisible(false);
 			
 			uiLayer = new JPanel(new EmptyLayout());
 			pane.append(toolBar, BorderLayout.NORTH);
