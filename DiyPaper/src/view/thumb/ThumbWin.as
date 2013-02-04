@@ -184,5 +184,25 @@ package view.thumb
 			}
 			viewport.updateUI();
 		}
+		
+		public function deleteLayer(item:IItemView):void
+		{
+			if (item == null || item.vo == null)
+			{
+				return;
+			}
+			var index:int = item.vo.layer;
+			if (index < 0 || index >= layerList.length)
+			{
+				return;
+			}
+			var icon:ThumbIcon = layerList[index];
+			if (icon.parent == layers)
+			{
+				layers.removeChild(icon);
+			}
+			layerList.splice(index, 1);
+			resortIcons();
+		}
 	}
 }
