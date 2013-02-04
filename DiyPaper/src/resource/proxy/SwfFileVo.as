@@ -15,10 +15,12 @@ package resource.proxy
 		public var onError:Function;
 		public var extData:Object;
 		public var url:String;
+		public var multi:Boolean; // 是否可以多份数据
 		
-		public function SwfFileVo(url:String = null) 
+		public function SwfFileVo(url:String = null, multi:Boolean = true) 
 		{
 			this.url = url;
+			this.multi = multi;
 		}
 		
 		public function start():void
@@ -30,7 +32,14 @@ package resource.proxy
 		{
 			if (info && info.data)
 			{
-				Convertor.convert(info.data.bytes, onConverterComplete, onError);
+				if (multi)
+				{
+					Convertor.convert(info.data.bytes, onConverterComplete, onError);
+				}
+				else
+				{
+					dealComplete(info.data.content);
+				}
 			}
 			else
 			{
@@ -42,6 +51,21 @@ package resource.proxy
 		{
 			if (display)
 			{
+				dealComplete(display);
+			}
+			else
+			{
+				dealError("加载失败");
+			}
+		}
+		
+		private function onFailed(info:ImageInfo):void 
+		{
+			dealError("加载失败");
+		}
+		
+		private function dealComplete(display:DisplayObject):void
+		{
 				if (onComplete != null)
 				{
 					if (extData)
@@ -53,16 +77,6 @@ package resource.proxy
 						onComplete(display);
 					}
 				}
-			}
-			else
-			{
-				dealError("加载失败");
-			}
-		}
-		
-		private function onFailed(info:ImageInfo):void 
-		{
-			dealError("加载失败");
 		}
 		
 		private function dealError(text:String):void

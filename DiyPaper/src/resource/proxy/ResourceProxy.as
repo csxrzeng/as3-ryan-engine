@@ -1,6 +1,8 @@
 package resource.proxy 
 {
+	import model.FontVo;
 	import model.ItemVo;
+	import resource.Config;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -60,13 +62,18 @@ package resource.proxy
 		
 		/**
 		 * 加载文字swf，（暂时先加载字库，以后换成动态生成）
+		 * @param	vo
 		 * @param	onComplete
 		 * @param	onError
 		 * @param	extData
 		 */
-		static public function loadFont(vo:ItemVo, onComplete:Function, onError:Function = null):void
+		static public function loadFont(font:FontVo, onComplete:Function, onError:Function = null, extData:Object = null):void
 		{
-			
+			var vo:SwfFileVo = new SwfFileVo(Config.FONT_PATH + font.url, false); // 字体只需要一份
+			vo.onComplete = onComplete;
+			vo.onError = onError;
+			vo.extData = extData;
+			vo.start();
 		}
 	}
 

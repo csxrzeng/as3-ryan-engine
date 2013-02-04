@@ -84,7 +84,6 @@ package view.property
 		{
 			_color = colorMixer.getSelectedColor();
 			_color = _color.changeAlpha(sliderAlpha.getValue() / 100);
-			colorMixer.setSelectedColor(_color);
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
@@ -98,7 +97,7 @@ package view.property
 		private function update():void
 		{
 			var rgb:uint = _settingVo.colorTransform.color;
-			var alpha:int = (_settingVo.colorTransform.alphaOffset + 255) * 100 / 255;
+			var alpha:int = _settingVo.colorTransform.alphaOffset * 100 / 255;
 			_color = new ASColor(rgb, alpha / 100);
 			
 			colorMixer.setSelectedColor(_color);
