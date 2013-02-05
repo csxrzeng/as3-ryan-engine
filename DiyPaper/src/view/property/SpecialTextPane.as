@@ -48,9 +48,8 @@ package view.property
 		private function onColorAdjusting(e:ColorChooserEvent):void
 		{
 			var color:ASColor = e.getColor();
-			//trace("开始：", color, colormixer.getSelectedColor());
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(color, 1);
-			//trace("结束：", ColorUtil.transform2Color(_settingVo.colorTransform));
+			//trace("开始：", color);
+			_settingVo.colorTransform = ColorUtil.color2ColorTransform(color, 100);
 			dispachPropertyChange();
 		}
 		
@@ -80,7 +79,7 @@ package view.property
 				var curVo:ItemVo = _settingVo;
 				if (_isAdd)
 				{
-					_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 1);
+					_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 100);
 					_settingVo = new ItemVo(ItemVo.SPECIAL_TEXT);
 				}
 				ResourceProxy.loadFont(vo, onFontComplete, onFontError, curVo);
@@ -138,8 +137,8 @@ package view.property
 			{
 				combobox.setSelectedItem(Cache.instance.font.getSpecialFontByFont(_settingVo.font));
 				txtInput.setText(_settingVo.text);
-				
 				colormixer.setSelectedColor(ColorUtil.transform2Color(_settingVo.colorTransform));
+				//trace("结束：", ColorUtil.transform2Color(_settingVo.colorTransform));
 			}
 		}
 	}

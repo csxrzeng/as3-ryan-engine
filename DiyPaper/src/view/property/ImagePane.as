@@ -89,7 +89,7 @@ package view.property
 		{
 			//trace("开始：", _color, sliderColor.getValue());
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue());
-			//trace("变换：", ColorUtil.transform2Color(_settingVo.colorTransform), ColorUtil.transform2Multiplier(_settingVo.colorTransform));
+			//trace("变换：", ColorUtil.transform2Color(_settingVo.colorTransform));
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
 		
