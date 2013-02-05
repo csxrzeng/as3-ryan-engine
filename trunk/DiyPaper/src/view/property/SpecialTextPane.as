@@ -43,15 +43,14 @@ package view.property
 			var model:VectorListModel = new VectorListModel(Cache.instance.font.getSpecialFontList());
 			combobox.setModel(model);
 			combobox.setSelectedIndex(0);
-			
-			var vo:ItemVo = new ItemVo(ItemVo.SPECIAL_TEXT);
-			vo.font = combobox.getSelectedItem().font;
-			//settingVo = vo;
 		}
 		
 		private function onColorAdjusting(e:ColorChooserEvent):void
 		{
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 1);
+			var color:ASColor = e.getColor();
+			//trace("开始：", color, colormixer.getSelectedColor());
+			_settingVo.colorTransform = ColorUtil.color2ColorTransform(color, 1);
+			//trace("结束：", ColorUtil.transform2Color(_settingVo.colorTransform));
 			dispachPropertyChange();
 		}
 		
@@ -140,7 +139,7 @@ package view.property
 				combobox.setSelectedItem(Cache.instance.font.getSpecialFontByFont(_settingVo.font));
 				txtInput.setText(_settingVo.text);
 				
-				colormixer.setSelectedColor(new ASColor(_settingVo.colorTransform.color, _settingVo.colorTransform.alphaOffset / 255 + 1));
+				colormixer.setSelectedColor(ColorUtil.transform2Color(_settingVo.colorTransform));
 			}
 		}
 	}

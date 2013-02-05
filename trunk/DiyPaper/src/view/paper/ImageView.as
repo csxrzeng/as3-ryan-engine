@@ -40,12 +40,7 @@ package view.paper
 			var degree:int = _vo.rotation - _lastRotation;
 			_item.rotate(degree * Math.PI / 180);
 			_lastRotation = _vo.rotation;
-			//_item.scaleX = _vo.scaleX;
-			//_item.scaleY = _vo.scaleY;
-			//_item.x = _vo.x
-			//_item.y = _vo.y;
 			transform.colorTransform = _vo.colorTransform;
-			alpha = _vo.alpha;
 		}
 		
 		public function get item():TransformItem 

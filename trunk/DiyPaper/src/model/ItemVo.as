@@ -30,7 +30,7 @@ package model
 		// 图片
 		public var url:String = "";
 		public var display:DisplayObject; // 显示对象
-		public var colorTransform:ColorTransform = new ColorTransform(1, 1, 1, 0, 0, 0, 0, 255);
+		public var colorTransform:ColorTransform = new ColorTransform(1, 1, 1, 1, 0, 0, 0, 0);
 		
 		//文字
 		public var width:int = 100;
