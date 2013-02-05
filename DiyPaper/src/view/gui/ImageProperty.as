@@ -101,7 +101,7 @@ public class ImageProperty extends JPanel{
 		sliderColor.setLocation(new IntPoint(65, 4));
 		sliderColor.setSize(new IntDimension(200, 14));
 		sliderColor.setValue(0);
-		sliderColor.setExtent(0);
+		sliderColor.setExtent(1);
 		sliderColor.setMinimum(0);
 		sliderColor.setMaximum(100);
 		

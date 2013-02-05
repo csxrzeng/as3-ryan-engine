@@ -66,25 +66,30 @@ package view.property
 		
 		private function onColorChange(e:ColorChooserEvent):void
 		{
-			_color = e.getColor();
-			//_color = colorMixer.getSelectedColor();
-			//trace("color change event", _color);
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
+			_color = colorMixer.getSelectedColor();
+			_color = _color.changeAlpha(e.getColor().getAlpha());
+			changeColor();
 		}
 		
 		private function onSliderColor(e:InteractiveEvent):void
 		{
 			_color = colorMixer.getSelectedColor();
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
-			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
+			_color = _color.changeAlpha(sliderAlpha.getValue() / 100);
+			changeColor();
 		}
 		
 		private function onSliderAlpha(e:InteractiveEvent):void
 		{
 			_color = colorMixer.getSelectedColor();
 			_color = _color.changeAlpha(sliderAlpha.getValue() / 100);
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue() / 100);
+			changeColor();
+		}
+		
+		private function changeColor():void
+		{
+			//trace("开始：", _color, sliderColor.getValue());
+			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue());
+			//trace("变换：", ColorUtil.transform2Color(_settingVo.colorTransform), ColorUtil.transform2Multiplier(_settingVo.colorTransform));
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
 		}
 		
@@ -96,21 +101,16 @@ package view.property
 		
 		private function update():void
 		{
-			var alpha:Number = Math.min(_settingVo.colorTransform.alphaOffset, 0) / 255 + 1;
-			_color = ASColor.getASColor(_settingVo.colorTransform.redOffset,
-										_settingVo.colorTransform.greenOffset,
-										_settingVo.colorTransform.blueOffset);
-			_color = _color.changeAlpha(alpha);
+			var multiplier:int = ColorUtil.transform2Multiplier(_settingVo.colorTransform);
+			var alpha:int = ColorUtil.transform2Alpha(_settingVo.colorTransform);
+			_color = ColorUtil.transform2Color(_settingVo.colorTransform);
+			colorMixer.setSelectedColor(_color);
+
+			txtColor.setText("变色(" + multiplier + ")");
+			sliderColor.setValue(multiplier);
 			
-			//colorMixer.setSelectedColor(_color);
-			
-			var multi:int = _settingVo.colorTransform.redMultiplier * 100;
-			
-			txtColor.setText("变色(" + multi + ")");
-			sliderColor.setValue(multi);
-			
-			txtAlpha.setText("透明(" + int(alpha * 100) + ")");
-			sliderAlpha.setValue(alpha * 100);
+			txtAlpha.setText("透明(" + alpha + ")");
+			sliderAlpha.setValue(alpha);
 			
 			txtRotation.setText("旋转(" + _settingVo.rotation + "°)");
 			sliderRotation.setValue(_settingVo.rotation);

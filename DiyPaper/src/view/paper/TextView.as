@@ -8,6 +8,8 @@ package view.paper
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import model.ItemVo;
+	import org.aswing.ASColor;
+	import utils.ColorUtil;
 	
 	/**
 	 * ...
@@ -39,7 +41,9 @@ package view.paper
 		
 		public function update():void
 		{
-			alpha = _vo.alpha;
+			var color:ASColor = ColorUtil.transform2Color(_vo.colorTransform);
+			alpha = color.getAlpha();
+			formate.color = color.getRGB();
 			formate.font = _vo.font;
 			formate.size = _vo.size;
 			formate.bold = _vo.bold;
@@ -54,7 +58,6 @@ package view.paper
 				_textfield.setTextFormat(formate, 0, _textfield.length);
 			}
 			_textfield.text = _vo.text;
-			_textfield.transform.colorTransform = _vo.colorTransform;
 			_item.update();
 		}
 		
