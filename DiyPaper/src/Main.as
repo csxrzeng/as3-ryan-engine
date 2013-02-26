@@ -6,6 +6,7 @@ package
 	import controller.GameController;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.system.Security;
 	import model.Cache;
 	import org.aswing.AsWingManager;
 	import resource.Config;
@@ -23,6 +24,7 @@ package
 		
 		public function Main():void
 		{
+			Security.allowDomain("*");
 			if (stage)
 				init();
 			else

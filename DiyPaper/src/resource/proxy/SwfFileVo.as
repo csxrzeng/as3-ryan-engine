@@ -2,6 +2,7 @@ package resource.proxy
 {
 	import com.ryan.resource.info.ImageInfo;
 	import com.ryan.resource.info.SWFInfo;
+	import com.ryan.resource.loader.LoaderErrorEvent;
 	import com.ryan.resource.LoaderManager;
 	import flash.display.DisplayObject;
 	import flash.utils.ByteArray;
@@ -59,9 +60,9 @@ package resource.proxy
 			}
 		}
 		
-		private function onFailed(info:ImageInfo):void 
+		private function onFailed(error:LoaderErrorEvent):void 
 		{
-			dealError("加载失败");
+			dealError("加载失败：" + error.text);
 		}
 		
 		private function dealComplete(display:DisplayObject):void
