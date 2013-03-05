@@ -4,7 +4,6 @@ package view.paper
 	import com.greensock.transform.TransformItem;
 	import controller.Dispatcher;
 	import controller.GameEvent;
-	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import model.ItemVo;

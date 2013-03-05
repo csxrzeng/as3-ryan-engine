@@ -3,6 +3,7 @@ package view.property
 	import controller.Dispatcher;
 	import controller.GameController;
 	import controller.GameEvent;
+	import flash.events.FocusEvent;
 	import model.Cache;
 	import model.FontVo;
 	import model.ItemVo;
@@ -43,6 +44,20 @@ package view.property
 			var model:VectorListModel = new VectorListModel(Cache.instance.font.getSpecialFontList());
 			combobox.setModel(model);
 			combobox.setSelectedIndex(0);
+			txtInput.addEventListener(FocusEvent.FOCUS_IN, onFocusHandler);
+			txtInput.addEventListener(FocusEvent.FOCUS_OUT, onFocusHandler);
+		}
+		
+		private function onFocusHandler(e:FocusEvent):void 
+		{
+			if (e.type == FocusEvent.FOCUS_IN && txtInput.getText() == ItemVo.DEFAULT_TEXT)
+			{
+				txtInput.setText("");
+			}
+			else if (e.type == FocusEvent.FOCUS_OUT && txtInput.getText() == "")
+			{
+				txtInput.setText(ItemVo.DEFAULT_TEXT);
+			}
 		}
 		
 		private function onColorAdjusting(e:ColorChooserEvent):void
@@ -71,6 +86,11 @@ package view.property
 		
 		private function onAdd(e:AWEvent):void
 		{
+			var text:String = txtInput.getText();
+			if (text == "" || text == ItemVo.DEFAULT_TEXT)
+			{
+				return; // 不允许空字符
+			}
 			var vo:FontVo = combobox.getSelectedItem();
 			if (vo)
 			{

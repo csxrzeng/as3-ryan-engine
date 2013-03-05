@@ -61,7 +61,7 @@ package resource.proxy
 		}
 		
 		/**
-		 * 加载文字swf，（暂时先加载字库，以后换成动态生成）
+		 * 加载字库swf
 		 * @param	vo
 		 * @param	onComplete
 		 * @param	onError
@@ -70,6 +70,22 @@ package resource.proxy
 		static public function loadFont(font:FontVo, onComplete:Function, onError:Function = null, extData:Object = null):void
 		{
 			var vo:SwfFileVo = new SwfFileVo(Config.FONT_PATH + font.url, false); // 字体只需要一份
+			vo.onComplete = onComplete;
+			vo.onError = onError;
+			vo.extData = extData;
+			vo.start();
+		}
+		
+		/**
+		 * 加载特效文字
+		 * @param	item itemVo 
+		 * @param	onComplete 完成的回调函数 onComplete(displayObject, extData);
+		 * @param	onError 失败的回调 onError(desc);
+		 * @param	extData
+		 */
+		static public function loadFontSwf(item:ItemVo, onComplete:Function, onError:Function = null, extData:Object = null):void
+		{
+			var vo:FontProxyVo = new FontProxyVo(item);
 			vo.onComplete = onComplete;
 			vo.onError = onError;
 			vo.extData = extData;
