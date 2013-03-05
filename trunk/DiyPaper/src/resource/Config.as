@@ -6,19 +6,25 @@ package resource
 	 */
 	public class Config 
 	{
-		static public var XML_PATH:String = "xmls/";
-		static public var MEDIA_PATH:String = "assets/";
-		static public var MY_MEDIA_PATH:String = "images/";
-		static public var FONT_PATH:String = "fonts/";
-		static public var PAPER_PATH:String = "papers/";
+		static public var PATH:String = "http://localhost/diypaper/"; // "";
 		
-		static public var PAPER_XML:String = ""; // 当前加载的模版的路径
-		static public var SPECIAL_FONT_XML:String = "fonts/specialfonts.xml";
-		static public var STATIC_FONT_XML:String = "fonts/staticfonts.xml";
-		static public var LIBRARY_XML:String = "library.xml";
+		static public var XML_PATH:String = PATH + "xmls/";
+		static public var PAPER_PATH:String = PATH + "papers/";
+		static public var MEDIA_PATH:String = PATH + "assets/";
+		static public var MY_MEDIA_PATH:String = PATH + "images/";
+		static public var FONT_PATH:String = PATH + "fonts/";
 		
-		static public var UPLOAD_IMAGE_URL:String = "upload.php"; // "http://localhost/diypaper/upload.php";
-		static public var UPLOAD_PAPER_URL:String = "paperupload.php"; // "http://localhost/diypaper/paperupload.php";
+		static public var SPECIAL_FONT_XML:String = PATH + "fonts/specialfonts.xml";
+		static public var STATIC_FONT_XML:String = PATH + "fonts/staticfonts.xml";
+		static public var LIBRARY_XML:String = PATH + "library.xml";
+		
+		static public var IMAGE_PROXY:String = PATH + "imageproxy.php";
+		static public var FONT_PROXY:String = PATH + "fontproxy.php";
+		
+		static public var UPLOAD_IMAGE_URL:String = PATH + "upload.php";
+		static public var UPLOAD_PAPER_URL:String = PATH + "paperupload.php";
+		
+		static public var PAPER_XML:String = ""; // 当前加载的模版的xml文件名
 		
 		/**
 		 * 支持的图片类型

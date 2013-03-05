@@ -13,6 +13,7 @@ package model
 	 */
 	public class ItemVo
 	{
+		static public const DEFAULT_TEXT:String = "点击编辑文字";
 		static public const IMAGE:String = "image";
 		static public const SPECIAL_TEXT:String = "special_text";
 		static public const STATIC_TEXT:String = "static_text";
@@ -35,7 +36,7 @@ package model
 		//文字
 		public var width:int = 100;
 		public var height:int = 100;
-		public var text:String = "点击编辑文字";
+		public var text:String = DEFAULT_TEXT;
 		public var font:String = "宋体";
 		public var letterSpacing:int = 0;
 		public var leading:int = 0;

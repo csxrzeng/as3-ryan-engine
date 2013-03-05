@@ -1,26 +1,26 @@
-package resource.proxy
+package resource.proxy 
 {
-	import com.ryan.resource.info.SWFInfo;
+	import com.ryan.resource.info.DataInfo;
 	import com.ryan.resource.loader.LoaderErrorEvent;
 	import com.ryan.resource.LoaderManager;
 	import flash.display.DisplayObject;
+	import model.ItemVo;
+	import resource.Config;
 	
 	/**
-	 * ...
+	 * 加载通过php_ming生成的包含特效文字的swf
 	 * @author xr.zeng
 	 */
-	public class SwfFileVo
+	public class FontProxyVo 
 	{
 		public var onComplete:Function;
 		public var onError:Function;
 		public var extData:Object;
 		public var url:String;
-		public var multi:Boolean; // 是否可以多份数据
 		
-		public function SwfFileVo(url:String = null, multi:Boolean = true)
+		public function FontProxyVo(item:ItemVo) 
 		{
-			this.url = url;
-			this.multi = multi;
+			url = Config.FONT_PROXY + "?font=" + encodeURIComponent(item.font) + "&text=" + encodeURIComponent(item.text);
 		}
 		
 		public function start():void
@@ -28,34 +28,15 @@ package resource.proxy
 			LoaderManager.instance.load(url, onLoaded, 3, null, null, onFailed);
 		}
 		
-		private function onLoaded(info:SWFInfo):void
+		private function onLoaded(info:DataInfo):void 
 		{
-			if (info && info.data)
+			if (info && info.byteArray)
 			{
-				if (multi)
-				{
-					Convertor.convert(info.data.bytes, onConverterComplete, dealError);
-				}
-				else
-				{
-					dealComplete(info.data.content);
-				}
+				Convertor.convert(info.byteArray, onConverterComplete, dealError);
 			}
 			else
 			{
-				dealError("加载的不是图片");
-			}
-		}
-		
-		private function onConverterComplete(display:DisplayObject):void
-		{
-			if (display)
-			{
-				dealComplete(display);
-			}
-			else
-			{
-				dealError("加载失败");
+				dealError("加载特效字失败，请重试");
 			}
 		}
 		
@@ -64,9 +45,9 @@ package resource.proxy
 			dealError("加载失败：" + error.text);
 		}
 		
-		private function dealComplete(display:DisplayObject):void
+		private function onConverterComplete(display:DisplayObject):void
 		{
-			if (onComplete != null)
+			if (display)
 			{
 				if (extData)
 				{
@@ -76,6 +57,10 @@ package resource.proxy
 				{
 					onComplete(display);
 				}
+			}
+			else
+			{
+				dealError("转换特效文字失败，php问题");
 			}
 		}
 		

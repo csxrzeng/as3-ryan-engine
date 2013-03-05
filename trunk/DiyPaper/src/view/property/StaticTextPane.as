@@ -4,6 +4,7 @@ package view.property
 	import controller.GameController;
 	import controller.GameEvent;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import model.Cache;
@@ -88,6 +89,20 @@ package view.property
 			btnBlur.addActionListener(onGlowColorChange);
 			btnDrop.addActionListener(onShadowColorChange);
 			btnColor.addEventListener(AWEvent.ACT, onColorChange);
+			txtInput.addEventListener(FocusEvent.FOCUS_IN, onFocusHandler);
+			txtInput.addEventListener(FocusEvent.FOCUS_OUT, onFocusHandler);
+		}
+		
+		private function onFocusHandler(e:FocusEvent):void 
+		{
+			if (e.type == FocusEvent.FOCUS_IN && txtInput.getText() == ItemVo.DEFAULT_TEXT)
+			{
+				txtInput.setText("");
+			}
+			else if (e.type == FocusEvent.FOCUS_OUT && txtInput.getText() == "")
+			{
+				txtInput.setText(ItemVo.DEFAULT_TEXT);
+			}
 		}
 		
 		private function onComboBoxChange(e:InteractiveEvent):void
@@ -279,6 +294,11 @@ package view.property
 		
 		private function onAddClick(e:AWEvent):void
 		{
+			var text:String = txtInput.getText();
+			if (text == "" || text == ItemVo.DEFAULT_TEXT)
+			{
+				return; // 不允许空字符
+			}
 			if (_isAdd)
 			{
 				var item:ItemVo = new ItemVo(ItemVo.STATIC_TEXT);
