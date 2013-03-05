@@ -64,15 +64,14 @@ package com.ryan.resource
 		{
 			if (!ResourceManager.hasInfoByName(url))
 			{
-				var filePath:String = url.split("?")[0];
-				var type:String = filePath.substr(filePath.lastIndexOf(".")).toUpperCase();
+				var type:String = FileType.getType(url);
 				var infoClass:Class = FileType.getLoaderInfoByType(type);
 				if (!infoClass)
 				{
 					Log.error("文件类型不正确：" + url);
 					if (onFailed != null)
 					{
-						onFailed(null);
+						onFailed(new LoaderErrorEvent("文件类型不正确：" + url));
 					}
 					return;
 				}
@@ -94,7 +93,7 @@ package com.ryan.resource
 				Log.error( fileName + "==没有该文件" );
 				if(onFailed is Function)
 				{
-					onFailed(info);
+					onFailed(new LoaderErrorEvent(fileName + "==没有该文件"));
 				}
 				return ;
 			}
