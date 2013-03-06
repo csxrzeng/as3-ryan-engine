@@ -4,6 +4,7 @@ package controller
 	import flash.display.DisplayObject;
 	import flash.net.FileReference;
 	import model.ItemVo;
+	import model.library.AssetVo;
 	import org.aswing.JOptionPane;
 	import resource.Config;
 	import resource.proxy.ResourceProxy;
@@ -28,7 +29,7 @@ package controller
 		
 		private function onAddLibraryImage(e:GameEvent):void 
 		{
-			ResourceProxy.loadSwf(Config.MEDIA_PATH + e.data + ".swf", onLoadComplete, onError);
+			ResourceProxy.loadSwf(Config.MEDIA_PATH + (e.data as AssetVo).file, onLoadComplete, onError);
 		}
 		
 		private function onLoadComplete(display:DisplayObject):void 
