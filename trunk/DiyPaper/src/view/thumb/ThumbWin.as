@@ -97,7 +97,7 @@ package view.thumb
 				icon.view.vo.layer = i;
 				icon.y = (layerList.length - i - 1) * (icon.height + ICON_GAP) + ICON_GAP;
 			}
-			//viewport.updateUI();
+			viewport.updateUI();
 		}
 		
 		private function onMouseDown(e:MouseEvent):void

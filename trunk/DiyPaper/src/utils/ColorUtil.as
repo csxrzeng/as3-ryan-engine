@@ -32,9 +32,9 @@ package utils
 		static public function transform2Color(transform:ColorTransform):ASColor
 		{
 			var multiplier:Number = 1 - transform.redMultiplier;
-			var r:int = multiplier == 0 ? 255 : Math.round(transform.redOffset / multiplier);
-			var g:int = multiplier == 0 ? 255 : Math.round(transform.greenOffset / multiplier);
-			var b:int = multiplier == 0 ? 255 : Math.round(transform.blueOffset / multiplier);
+			var r:int = multiplier == 0 ? 0 : Math.round(transform.redOffset / multiplier);
+			var g:int = multiplier == 0 ? 0 : Math.round(transform.greenOffset / multiplier);
+			var b:int = multiplier == 0 ? 0 : Math.round(transform.blueOffset / multiplier);
 			var color:ASColor = new ASColor((r << 16) + (g << 8) + b, transform.alphaMultiplier);
 			return color;
 		}

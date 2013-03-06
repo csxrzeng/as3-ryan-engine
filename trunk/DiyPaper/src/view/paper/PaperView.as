@@ -269,19 +269,32 @@ package view.paper
 		 * 删除选中对象
 		 * @param	data
 		 */
-		public function removeSelectedItem(data:*):void
+		public function removeSelectedItem(data:ItemVo):void
 		{
 			if (selectedItem && selectedItem.vo == data)
 			{
-				_tool.removeItem(selectedItem);
-				ArrayUtil.removeItem(_list, selectedItem);
-				var obj:DisplayObject = selectedItem as DisplayObject;
-				if (obj.parent == itemViewContainer)
-				{
-					itemViewContainer.removeChild(obj);
-				}
-				MainWindow.layerWin.deleteLayer(selectedItem); // 删除图层里面的数据
+				removeItemView(selectedItem);
 			}
+			else
+			{
+				removeItemView(getItemView(data));
+			}
+		}
+		
+		private function removeItemView(item:IItemView):void
+		{
+			if (!item)
+			{
+				return;
+			}
+			_tool.removeItem(item);
+			ArrayUtil.removeItem(_list, item);
+			var obj:DisplayObject = item as DisplayObject;
+			if (obj.parent == itemViewContainer)
+			{
+				itemViewContainer.removeChild(obj);
+			}
+			MainWindow.layerWin.deleteLayer(item); // 删除图层里面的数据
 		}
 		
 		public function getItemView(vo:ItemVo):IItemView
