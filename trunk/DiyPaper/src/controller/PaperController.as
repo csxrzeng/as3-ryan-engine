@@ -38,7 +38,10 @@ package controller
 		
 		private function onDeleteSelectedItem(e:GameEvent):void 
 		{
-			paper.removeSelectedItem(e.data);
+			if (e.data)
+			{
+				paper.removeSelectedItem(e.data);
+			}
 		}
 		
 		private function onUpdateSelecteItem(e:GameEvent):void 

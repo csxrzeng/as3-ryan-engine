@@ -1,2 +1,2 @@
-FOR %%f IN (ttf\*.ttf) DO ttf_to_fdb %%f
+for %%f in (ttf/*.ttf) do ttf_to_fdb ttf/%%f
 pause
