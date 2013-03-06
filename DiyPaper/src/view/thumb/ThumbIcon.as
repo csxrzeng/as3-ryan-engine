@@ -1,9 +1,12 @@
 package view.thumb
 {
+	import controller.Dispatcher;
+	import controller.GameEvent;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import model.ItemVo;
 	import view.paper.IItemView;
@@ -16,22 +19,40 @@ package view.thumb
 	{
 		public static const SIZE:int = 45;
 		
-		private var bmp:Bitmap;
+		[Embed(source="../../assets/close.png")]
+		static private const CLOSE_CLASS:Class;
+		static private const CLOSE_BMD:BitmapData = new CLOSE_CLASS().bitmapData;
 		
-		private var _vo:ItemVo;
+		private var bmp:Bitmap;
+		private var closeBtn:Sprite;
+		
 		private var _view:IItemView;
 		
 		public function ThumbIcon()
 		{
-			mouseChildren = false;
 			buttonMode = true;
+			
+			drawBorder();
 			
 			bmp = new Bitmap();
 			bmp.x = 1;
 			bmp.y = 1;
 			addChild(bmp);
 			
-			drawBorder();
+			closeBtn = new Sprite()
+			closeBtn.addChild(new Bitmap(CLOSE_BMD));
+			closeBtn.x = SIZE - CLOSE_BMD.width - 2;
+			closeBtn.y = 2;
+			addChild(closeBtn);
+			closeBtn.addEventListener(MouseEvent.CLICK, onCloseBtnClick);
+		}
+		
+		private function onCloseBtnClick(e:MouseEvent):void 
+		{
+			if (_view)
+			{
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DeleteSelectedItem, _view.vo));
+			}
 		}
 		
 		private function setIcon(view:DisplayObject):void
