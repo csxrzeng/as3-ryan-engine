@@ -1,6 +1,9 @@
 package model
 {
 	import com.ryan.resource.ResourceManager;
+	import flash.utils.Dictionary;
+	import model.library.AssetVo;
+	import model.library.TypeVo;
 	import resource.Config;
 	/**
 	 * ...
@@ -8,7 +11,8 @@ package model
 	 */
 	public class AssetsCache
 	{
-		private var assets:Vector.<String> = new Vector.<String>();
+		private var typeList:Array = [];
+		private var cache:Dictionary = new Dictionary();
 		
 		public function AssetsCache()
 		{
@@ -20,17 +24,36 @@ package model
 			onXmlComplete(XML(ResourceManager.getInfoByName(Config.LIBRARY_XML).data));
 		}
 		
-		public function get assetsList():Vector.<String>
+		public function getTypeList():Array
 		{
-			return assets;
+			return typeList;
+		}
+		
+		public function getAssetsList(type:int):Vector.<AssetVo>
+		{
+			return cache[type] as Vector.<AssetVo>;
 		}
 		
 		private function onXmlComplete(xml:XML):void
 		{
-			var items:XMLList = xml.children();
-			for each (var item:XML in items)
+			var types:XMLList = xml.children();
+			for each (var type:XML in types)
 			{
-				assets.push(item.text());
+				var typeVo:TypeVo = new TypeVo();
+				typeVo.id = type.@id;
+				typeVo.name = type.@name;
+				typeList.push(typeVo);
+				var itemList:Vector.<AssetVo> = new Vector.<AssetVo>();
+				cache[typeVo.id] = itemList;
+				var items:XMLList = type.children();
+				for each (var item:XML in items)
+				{
+					var assetVo:AssetVo = new AssetVo();
+					assetVo.id = item.@id;
+					assetVo.thumb = item.@thumb;
+					assetVo.file = item.@file;
+					itemList.push(assetVo);
+				}
 			}
 		}
 	}
