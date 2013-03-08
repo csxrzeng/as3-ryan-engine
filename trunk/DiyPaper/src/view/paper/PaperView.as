@@ -307,6 +307,14 @@ package view.paper
 			return null;
 		}
 		
+		/**
+		 * 获取xml
+		 */
+		public function getXML():XML
+		{
+			return <paper>这是一个测试</paper>;
+		}
+		
 		private function indexOf(data:ItemVo):int
 		{
 			for (var i:int = 0; i < _list.length; i++)

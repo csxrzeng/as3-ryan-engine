@@ -34,19 +34,26 @@ if (empty($xmlstr))
 }
 else
 {
-	$filename = "";
-	do
+	$filename = urldecode($_GET["file"]);
+	if ($filename)
 	{
-		$filename = random(15); //设置随机数长度
-		$name = $filename.".jpg";
-		$uploadfile = $uploaddir.$name; 
-	}while(file_exists($uploadfile));
+		$uploadfile = $uploaddir.$filename;
+	}
+	else
+	{
+		do
+		{
+			$prefilename = random(15); //设置随机数长度
+			$filename = $prefilename.".jpg";
+			$uploadfile = $uploaddir.$filename; 
+		}while (file_exists($uploadfile));
+	}
 
 	$jpg = $xmlstr;//得到post过来的二进制原始数据
 	$file = fopen($uploadfile, "w");//打开文件准备写入
 	fwrite($file, $jpg);//写入
 	fclose($file);//关闭
 
-	echo "result=1&file=", $name;
+	echo "result=1&file=", $filename;
 }
 ?>

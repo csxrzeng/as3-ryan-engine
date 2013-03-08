@@ -10,6 +10,7 @@ package controller
 		static public var paper:PaperController;
 		static public var property:PropertyController;
 		static public var system:SystemController;
+		static public var save:SaveController;
 		
 		public function GameController()
 		{
@@ -21,6 +22,7 @@ package controller
 			paper = new PaperController();
 			property = new PropertyController();
 			system = new SystemController();
+			save = new SaveController();
 		}
 	}
 }

@@ -39,7 +39,7 @@ package model
 		{
 			width = xml.@width;
 			height = xml.@height;
-			var list:XMLList = xml.children();
+			var list:XMLList = xml.item;
 			var len:int = list.length();
 			for (var i:int = 0; i < len; i++) 
 			{

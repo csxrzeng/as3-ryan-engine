@@ -22,9 +22,12 @@ package resource
 		static public var FONT_PROXY:String = PATH + "fontproxy.php";
 		
 		static public var UPLOAD_IMAGE_URL:String = PATH + "upload.php";
+		static public var UPLOAD_XML_URL:String = PATH + "xmlupload.php";
 		static public var UPLOAD_PAPER_URL:String = PATH + "paperupload.php";
 		
-		static public var PAPER_XML:String = ""; // 当前加载的模版的xml文件名
+		static public var TEMPLET_XML:String = ""; // 当前加载的模版XML
+		static public var PAPER_XML:String = ""; // 当前保存的模版的xml文件名，当为管理员的时候，等于ModelXML
+		static public var PAPER_IMAGE:String = ""; // 当前保存的图片的jpg文件名
 		
 		/**
 		 * 支持的图片类型
