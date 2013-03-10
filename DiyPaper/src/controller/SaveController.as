@@ -41,7 +41,7 @@ package controller
 		{
 			var request:URLRequest = new URLRequest(Config.UPLOAD_XML_URL);
 			var vars:URLVariables = new URLVariables();
-			if (!Config.PAPER_XML)
+			if (true || !Config.PAPER_XML) // 每次都根据图片名字来保存XML
 			{
 				var index:int = Config.PAPER_IMAGE.lastIndexOf(".");
 				if (index == -1)
@@ -86,7 +86,7 @@ package controller
 		
 		private function saveBitmap():void
 		{
-			var encoder:JPEGEncoder = new JPEGEncoder(80);
+			var encoder:JPEGEncoder = new JPEGEncoder(80); // 设置图片品质，默认80
 			var bytes:ByteArray = encoder.encode(bitmapData);
 
 			var url:String = Config.UPLOAD_PAPER_URL;
