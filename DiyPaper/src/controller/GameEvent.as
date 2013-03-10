@@ -40,14 +40,18 @@ package controller
 		 * 替换选中对象的图片
 		 */
 		static public const ReplaceSelectedImage:String = "ReplaceSelectedImage";
+		///**
+		 //* 向上一层
+		 //*/
+		//static public const UP_LAYER:String = "up_layer";
+		///**
+		 //* 向下一层
+		 //*/
+		//static public const DOWN_LAYER:String = "down_layer";
 		/**
-		 * 向上一层
+		 * 重排层次
 		 */
-		static public const UP_LAYER:String = "up_layer";
-		/**
-		 * 向下一层
-		 */
-		static public const DOWN_LAYER:String = "down_layer";
+		static public const RESORT_LAYER:String = "resort_layer";
 		/**
 		 * 显示预览
 		 */

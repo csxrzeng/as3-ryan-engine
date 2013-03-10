@@ -1,6 +1,7 @@
 package model 
 {
 	import org.aswing.ASColor;
+	import utils.ColorUtil;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -22,23 +23,14 @@ package model
 		{
 		}
 		
-		public function toXML():XML
-		{
-			var xml:XML = <paper/>;
-			xml.@width = width;
-			xml.@height = height;
-			for (var i:int = 0; i < items.length; i++) 
-			{
-				var item:ItemVo = items[i];
-				xml.appendChild(item.toXML());
-			}
-			return xml;
-		}
-		
 		public function fromXML(xml:XML):void
 		{
 			width = xml.@width;
 			height = xml.@height;
+			var argb:uint = parseInt(xml.@background, 16);
+			background = ColorUtil.getASColor(argb);
+			border = xml.@border;
+			borderColor = ColorUtil.getASColor(parseInt(xml.@borderColor, 16));
 			var list:XMLList = xml.item;
 			var len:int = list.length();
 			for (var i:int = 0; i < len; i++) 

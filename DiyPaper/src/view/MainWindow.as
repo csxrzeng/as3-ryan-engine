@@ -40,23 +40,29 @@ package view
 		{
 			var pane:Container = getContentPane();
 			toolBar = new ToolBar();
-			paper = new PaperView()
-			mapLayer = new JScrollPane(paper);
-			mapLayer.setOpaque(true);
-			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
-			previewWin = new PreviewWin();
-			uiLayer = new JPanel(new EmptyLayout());
-			pane.append(toolBar, BorderLayout.NORTH);
-			pane.append(mapLayer, BorderLayout.CENTER);
-			pane.append(uiLayer, BorderLayout.CENTER);
+			
 			layerWin = new ThumbWin(this, "图层");
 			layerWin.show();
 			layerWin.x = 0;
 			layerWin.y = 50;
+			
 			propertyWin = new PropertyWin(this, "基本属性");
 			propertyWin.show();
 			propertyWin.x = 700;
 			propertyWin.y = 50;
+			previewWin = new PreviewWin();
+			
+			paper = new PaperView()
+			mapLayer = new JScrollPane(paper);
+			mapLayer.setOpaque(true);
+			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
+			
+			uiLayer = new JPanel(new EmptyLayout());
+			
+			pane.append(toolBar, BorderLayout.NORTH);
+			pane.append(mapLayer, BorderLayout.CENTER);
+			pane.append(uiLayer, BorderLayout.CENTER);
+			
 			addEventListener(ResizedEvent.RESIZED, onApplicationResize);
 		}
 		

@@ -13,6 +13,7 @@ package view.property
 	import org.aswing.JOptionPane;
 	import org.aswing.VectorListModel;
 	import resource.proxy.ResourceProxy;
+	import resource.proxy.SwfFileVo;
 	import utils.ColorUtil;
 	import view.gui.SpecialTextProperty;
 	import view.MainWindow;
@@ -106,8 +107,9 @@ package view.property
 			}
 		}
 		
-		private function onFontComplete(fontSwf:*, vo:ItemVo):void
+		private function onFontComplete(swfVo:SwfFileVo):void
 		{
+			var vo:ItemVo = swfVo.extData as ItemVo;
 			var item:IItemView = MainWindow.paper.getItemView(vo);
 			if (!item)
 			{

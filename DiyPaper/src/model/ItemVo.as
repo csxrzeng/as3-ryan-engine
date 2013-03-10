@@ -7,6 +7,9 @@ package model
 	import flash.geom.Matrix;
 	import flash.text.TextFormatAlign;
 	import org.aswing.ASColor;
+	import utils.ColorUtil;
+	import utils.XMLUtil;
+	
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -17,9 +20,9 @@ package model
 		static public const IMAGE:String = "image";
 		static public const SPECIAL_TEXT:String = "special_text";
 		static public const STATIC_TEXT:String = "static_text";
-		
 		public var type:String = IMAGE;
-		
+		public var centerX:Number = 100;
+		public var centerY:Number = 100;
 		public var x:int = 100;
 		public var y:int = 100;
 		public var scaleX:Number = 1;
@@ -27,12 +30,10 @@ package model
 		public var rotation:int;
 		public var alpha:Number = 1;
 		public var layer:int;
-		
 		// 图片
 		public var url:String = "";
 		public var display:DisplayObject; // 显示对象
 		public var colorTransform:ColorTransform = new ColorTransform(1, 1, 1, 1, 0, 0, 0, 0);
-		
 		//文字
 		public var width:int = 100;
 		public var height:int = 100;
@@ -56,98 +57,71 @@ package model
 		
 		public function fromXML(xml:XML):void
 		{
-			type = xml.@type;
-			setMatrix(xml);
-			alpha = xml.@alpha;
-			if (type == IMAGE)
+			type = xml.type;
+			switch (type)
 			{
-				url = xml.@url;
-				setColorTransform(xml);
-			}
-			else
-			{
-				text = xml.@text;
-				font = xml.@font;
-				letterSpacing = xml.@letterSpacing;
-				leading = xml.@leading;
-				color = parseInt(xml.@color, 16);
-				bold = String(xml.@bold) == "true";
-				italic = String(xml.@italic) == "true";
-				size = parseInt(xml.@size);
+				case IMAGE: 
+					setImage(xml);
+					break;
+				case SPECIAL_TEXT: 
+					setSpecialText(xml);
+					break;
+				case STATIC_TEXT: 
+					setStaticText(xml);
+					break;
+				default: 
+					throw new Error("错误的ItemVo类型");
+					break;
 			}
 		}
 		
-		public function toXML():XML
+		private function setSpecialText(xml:XML):void
 		{
-			var xml:XML = <item/>;
-			xml.@type = type;
-			xml.@alpha = alpha;
-			getMatrix(xml);
-			if (type == IMAGE)
-			{
-				xml.@url = url;
-				getColorTransform(xml);
-			}
-			else
-			{
-				xml.@text = text;
-				xml.@font = font;
-				xml.@letterSpacing = letterSpacing;
-				xml.@leading = leading;
-				xml.@color = "0x" + color.toString(16);
-				xml.@bold = bold;
-				xml.@italic = italic;
-				xml.@size = size;
-			}
-			return xml;
+			type = xml.type;
+			text = xml.text;
+			font = xml.font;
+			size = xml.size;
+			bold = xml.bold == "true";
+			italic = xml.italic == "true";
+			leading = xml.leading;
+			letterSpacing = xml.letterSpacing;
+			align = xml.align;
+			underline = xml.underline == "true";
+			colorTransform = XMLUtil.colorTransformFromXML(xml.colortransform[0]);
+			scaleX = xml.scaleX;
+			scaleY = xml.scaleY;
+			rotation = xml.rotation;
+			centerX = xml.centerX;
+			centerY = xml.centerY;
 		}
 		
-		private function setMatrix(xml:XML):void
+		private function setStaticText(xml:XML):void
 		{
-			width = xml.@width;
-			height = xml.@height;
-			x = xml.@x;
-			y = xml.@y;
-			rotation = xml.@rotation;
+			x = xml.x;
+			y = xml.y;
+			width = xml.width;
+			height = xml.height;
+			text = xml.text;
+			font = xml.font;
+			color = parseInt(xml.color, 16); 
+			alpha = xml.alpha;
+			align = xml.align;
+			bold = xml.bold == "true";
+			italic = xml.italic == "true";
+			underline = xml.underline == "true";
+			glowFilter = XMLUtil.glowFilterFromXML(xml.glowfilter[0]);
+			shadowFilter = XMLUtil.dropShadowFilterFromXML(xml.dropshadowfilter[0]);
 		}
 		
-		private function getMatrix(xml:XML):void
+		private function setImage(xml:XML):void
 		{
-			xml.@width = width;
-			xml.@height = height;
-			xml.@x = x;
-			xml.@y = y;
-			xml.@rotation = rotation;
-		}
-		
-		private function setColorTransform(xml:XML):void
-		{
-			with (colorTransform)
-			{
-				redMultiplier = xml.@rm;
-				greenMultiplier = xml.@gm;
-				blueMultiplier = xml.@bm;
-				alphaMultiplier = xml.@am;
-				redOffset = xml.@ro;
-				greenOffset = xml.@go;
-				blueOffset = xml.@bo;
-				alphaOffset = xml.@ao;
-			}
-		}
-		
-		private function getColorTransform(xml:XML):void
-		{
-			with (colorTransform)
-			{
-				xml.@rm = redMultiplier;
-				xml.@gm = greenMultiplier;
-				xml.@bm = blueMultiplier;
-				xml.@am = alphaMultiplier;
-				xml.@ro = redOffset;
-				xml.@go = greenOffset;
-				xml.@bo = blueOffset;
-				xml.@ao = alphaOffset;
-			}
+			url = xml.url;
+			scaleX = xml.scaleX;
+			scaleY = xml.scaleY;
+			centerX = xml.centerX;
+			centerY = xml.centerY;
+			rotation = xml.rotation;
+			colorTransform = XMLUtil.colorTransformFromXML(xml.colortransform[0]);
 		}
 	}
 }

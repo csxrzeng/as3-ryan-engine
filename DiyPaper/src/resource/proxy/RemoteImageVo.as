@@ -15,6 +15,7 @@ package resource.proxy
 	 */
 	public class RemoteImageVo 
 	{
+		public var bmd:BitmapData;
 		public var onComplete:Function;
 		public var onError:Function;
 		public var extData:Object;
@@ -41,7 +42,8 @@ package resource.proxy
 		{
 			if (info && info.bitmapData)
 			{
-				dealComplete(info.bitmapData);
+				bmd = info.bitmapData;
+				dealComplete();
 			}
 			else
 			{
@@ -77,7 +79,8 @@ package resource.proxy
 		{
 			if (display is Bitmap)
 			{
-				dealComplete((display as Bitmap).bitmapData);
+				bmd = (display as Bitmap).bitmapData;
+				dealComplete();
 			}
 			else
 			{
@@ -85,18 +88,11 @@ package resource.proxy
 			}
 		}
 		
-		private function dealComplete(bitmapData:BitmapData):void
+		private function dealComplete():void
 		{
 			if (onComplete != null)
 			{
-				if (extData)
-				{
-					onComplete(bitmapData, extData);
-				}
-				else
-				{
-					onComplete(bitmapData);
-				}
+				onComplete(this);
 			}
 		}
 		

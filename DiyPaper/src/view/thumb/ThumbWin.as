@@ -35,11 +35,20 @@ package view.thumb
 		private var draggingIcon:ThumbIcon;
 		private var upIcon:ThumbIcon;
 		private var downIcon:ThumbIcon;
+		private var lastLayer:int;
 		
 		public function ThumbWin(owner:* = null, title:String = "", modal:Boolean = false)
 		{
 			super(owner, title, modal);
 			configUI();
+		}
+		
+		public function updateAll():void
+		{
+			for each (var icon:ThumbIcon in layerList)
+			{
+				icon.view = icon.view;
+			}
 		}
 		
 		private function configUI():void
@@ -68,11 +77,32 @@ package view.thumb
 		private function onSelectedItemUpdate(e:GameEvent):void
 		{
 			var vo:ItemVo = e.data as ItemVo;
-			var icon:ThumbIcon = layerList[vo.layer];
-			if (icon)
+			var index:int = indexOfVo(vo);
+			if (index != -1)
 			{
+				var icon:ThumbIcon =layerList[index];
 				icon.view = MainWindow.paper.seletedItemView;
 			}
+		}
+		
+		private function onMouseDown(e:MouseEvent):void
+		{
+			draggingIcon = e.target as ThumbIcon;
+			if (draggingIcon)
+			{
+				lastLayer = draggingIcon.view.vo.layer;
+				dy = draggingIcon.y - e.stageY;
+				layers.addChild(draggingIcon);
+				stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+				stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				MainWindow.paper.setItemSelected(draggingIcon.view.vo);
+			}
+		}
+		
+		private function onMouseMove(e:MouseEvent):void
+		{
+			draggingIcon.y = dy + e.stageY;
+			resortIcons();
 		}
 		
 		private function onMouseUp(e:MouseEvent):void
@@ -88,96 +118,54 @@ package view.thumb
 			downIcon = null;
 		}
 		
-		private function resortIcons():void
+		private function resortIcons(fireEvent:Boolean = true):void
 		{
-			var icon:ThumbIcon;
-			for (var i:int = 0; i < layerList.length; ++i)
+			layerList.sort(sortByY); // 按Y倒序排列
+			var len:int = layerList.length;
+			for (var i:int = 0; i < len; ++i)
 			{
-				icon = layerList[i];
-				icon.view.vo.layer = i;
-				icon.y = (layerList.length - i - 1) * (icon.height + ICON_GAP) + ICON_GAP;
+				layerList[i].view.vo.layer = len - i - 1;
+				if (layerList[i] != draggingIcon)
+				{
+					layerList[i].y = i * (layerList[i].height + ICON_GAP) + ICON_GAP;
+				}
 			}
 			viewport.updateUI();
+			if (fireEvent && draggingIcon)
+			{
+				if (draggingIcon.view.vo.layer != lastLayer) // 层次不同了
+				{
+					lastLayer = draggingIcon.view.vo.layer;
+					Dispatcher.dispatchEvent(new GameEvent(GameEvent.RESORT_LAYER))
+				}
+			}
 		}
 		
-		private function onMouseDown(e:MouseEvent):void
+		private function sortByY(a:ThumbIcon, b:ThumbIcon):int
 		{
-			draggingIcon = e.target as ThumbIcon;
-			if (draggingIcon)
+			if (a.y < b.y)
 			{
-				dy = draggingIcon.y - e.stageY;
-				updateNearbyIcon();
-				stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-				stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-				MainWindow.paper.setItemSelected(draggingIcon.view.vo);
+				return -1;
 			}
+			else if (a.y > b.y)
+			{
+				return 1;
+			}
+			return 0;
 		}
-		
-		private function onMouseMove(e:MouseEvent):void
-		{
-			draggingIcon.y = dy + e.stageY;
-			var px:Number = draggingIcon.width / 2;
-			var py:Number = draggingIcon.height / 2;
-			var globalPoint:Point = draggingIcon.localToGlobal(new Point(px, py));
-			
-			if (upIcon && upIcon.hitTestPoint(globalPoint.x, globalPoint.y))
-			{
-				swapLayer(draggingIcon, upIcon);
-				upIcon.y += upIcon.height + ICON_GAP;
-				updateNearbyIcon();
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.UP_LAYER, draggingIcon.view));
-			}
-			else if (downIcon && downIcon.hitTestPoint(globalPoint.x, globalPoint.y))
-			{
-				swapLayer(draggingIcon, downIcon);
-				downIcon.y -= downIcon.height + ICON_GAP;
-				updateNearbyIcon();
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.DOWN_LAYER, draggingIcon.view));
-			}
-		}
-		
-		private function swapLayer(icon1:ThumbIcon, icon2:ThumbIcon):void
-		{
-			var index1:int = layerList.indexOf(icon1);
-			var index2:int = layerList.indexOf(icon2);
-			if (index1 >= 0 && index2 >= 0)
-			{
-				layerList[index1] = icon2;
-				icon2.view.vo.layer = index1;
-				layerList[index2] = icon1;
-				icon1.view.vo.layer = index2;
-			}
-		}
-		
-		private function updateNearbyIcon():void
-		{
-			var index:int = layerList.indexOf(draggingIcon);
-			if (index > 0)
-			{
-				downIcon = layerList[index - 1];
-			}
-			else
-			{
-				downIcon = null;
-			}
-			if (index < layerList.length - 1)
-			{
-				upIcon = layerList[index + 1];
-			}
-			else
-			{
-				upIcon = null;
-			}
-		}
-		
+				
 		public function addLayer(item:IItemView):void
 		{
+			if (indexOf(item) != -1)
+			{
+				return;
+			}
 			item.vo.layer = layerList.length;
 			var icon:ThumbIcon = new ThumbIcon();
 			icon.view = item;
-			var index:int = layerList.push(icon) - 1;
 			layers.addChild(icon);
-			resortIcons();
+			layerList.push(icon);
+			resortIcons(false);
 			if (layers.height > LIST_HEIGHT)
 			{
 				viewport.getView().setPreferredHeight(layers.height);
@@ -187,22 +175,51 @@ package view.thumb
 		
 		public function deleteLayer(item:IItemView):void
 		{
-			if (item == null || item.vo == null)
+			var index:int = indexOf(item);
+			if (index != -1)
 			{
-				return;
+				var icon:ThumbIcon = layerList[index];
+				if (icon.parent == layers)
+				{
+					layers.removeChild(icon);
+				}
+				layerList.splice(index, 1);
+				resortIcons(false);
 			}
-			var index:int = item.vo.layer;
-			if (index < 0 || index >= layerList.length)
+		}
+		
+		public function updateLayer(item:IItemView):void
+		{
+			var index:int = indexOf(item);
+			if (index != -1)
 			{
-				return;
+				var icon:ThumbIcon = layerList[index];
+				icon.view = icon.view;
 			}
-			var icon:ThumbIcon = layerList[index];
-			if (icon.parent == layers)
+		}
+		
+		private function indexOf(item:IItemView):int
+		{
+			for (var i:int = 0; i < layerList.length; ++i)
 			{
-				layers.removeChild(icon);
+				if (layerList[i].view == item)
+				{
+					return i;
+				}
 			}
-			layerList.splice(index, 1);
-			resortIcons();
+			return -1;
+		}
+		
+		private function indexOfVo(vo:ItemVo):int
+		{
+			for (var i:int = 0; i < layerList.length; ++i)
+			{
+				if (layerList[i].view.vo == vo)
+				{
+					return i;
+				}
+			}
+			return -1;
 		}
 	}
 }

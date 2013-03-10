@@ -35,8 +35,8 @@ package utils
 			filter.blurX = xml.@blurX;
 			filter.blurY = xml.@blurY;
 			filter.color = xml.@color;
-			filter.inner = xml.@inner;
-			filter.knockout = xml.@knockout;
+			filter.inner = xml.@inner == "true";
+			filter.knockout = xml.@knockout == "true";
 			filter.quality = xml.@quality;
 			filter.strength = xml.@strength;
 			return filter;
@@ -68,9 +68,9 @@ package utils
 			filter.blurY = xml.@blurY;
 			filter.color = xml.@color;
 			filter.distance = xml.@distance;
-			filter.hideObject = xml.@hideObject;
-			filter.inner = xml.@inner;
-			filter.knockout = xml.@knockout;
+			filter.hideObject = xml.@hideObject == "true";
+			filter.inner = xml.@inner == "true";
+			filter.knockout = xml.@knockout == "true";
 			filter.quality = xml.@quality;
 			filter.strength = xml.@strength;
 			return filter;

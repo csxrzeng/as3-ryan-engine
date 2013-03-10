@@ -14,6 +14,21 @@ package utils
 			
 		}
 		
+		static public function getRGB(argb:uint):uint
+		{
+			return argb & 0x00FFFFFF;
+		}
+		
+		static public function getAlpha(argb:uint):Number
+		{
+			return argb >>> 24 / 255;
+		}
+		
+		static public function getASColor(argb:uint):ASColor
+		{
+			return new ASColor(getRGB(argb), getAlpha(argb));
+		}
+		
 		static public function color2ColorTransform(color:ASColor, percent:int = 100):ColorTransform
 		{
 			var multiplier:Number = percent / 100;
