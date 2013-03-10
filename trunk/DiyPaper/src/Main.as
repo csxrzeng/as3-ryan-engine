@@ -39,7 +39,9 @@ package
 			AsWingManager.initAsStandard(this);
 			// specialfonts.xml, staticfonts.xml, library.xml
 			var params:Object = root.loaderInfo.parameters;
-			params.templet = "076QAuI5QENrWZK.xml"; // 测试
+			//params.templet = "076QAuI5QENrWZK.xml"; // 测试
+			params.admin = 1;
+			Config.isAdministrator = params.admin == "1"; // 管理员
 			Config.TEMPLET_XML = params.templet; // 模版
 			list = [
 				Config.STATIC_FONT_XML,

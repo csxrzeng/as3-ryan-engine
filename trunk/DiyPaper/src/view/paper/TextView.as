@@ -10,6 +10,7 @@ package view.paper
 	import model.ItemVo;
 	import org.aswing.ASColor;
 	import utils.ColorUtil;
+	import utils.XMLUtil;
 	
 	/**
 	 * ...
@@ -24,9 +25,8 @@ package view.paper
 		
 		public function TextView()
 		{
+			mouseChildren = false;
 			_textfield = new TextField();
-			//_textfield.multiline = true;
-			//_textfield.wordWrap = true;
 			_textfield.embedFonts = true;
 			_textfield.type = TextFieldType.DYNAMIC;
 			_textfield.antiAliasType = AntiAliasType.ADVANCED;
@@ -80,6 +80,28 @@ package view.paper
 		{
 			_vo = value;
 			update();
+		}
+		
+		public function toXML():XML
+		{
+			var xml:XML = <item/>;
+			xml.type = _vo.type;
+			xml.text = _vo.text;
+			xml.font = _vo.font;
+			xml.size = _vo.size;
+			xml.bold = _vo.bold;
+			xml.italic = _vo.italic;
+			xml.leading = _vo.leading;
+			xml.letterSpacing = _vo.letterSpacing;
+			xml.align = _vo.align;
+			xml.underline = _vo.underline;
+			xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
+			xml.scaleX = _item.scaleX;
+			xml.scaleY = _item.scaleY;
+			xml.rotation = _item.rotation;
+			xml.centerX = _item.center.x;
+			xml.centerY = _item.center.y;
+			return xml;
 		}
 	}
 }

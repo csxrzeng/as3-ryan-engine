@@ -5,6 +5,7 @@ package view.paper
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import model.ItemVo;
+	import utils.XMLUtil;
 	
 	/**
 	 * ...
@@ -18,9 +19,10 @@ package view.paper
 		
 		public function StaticTextView()
 		{
-			type = TextFieldType.INPUT;
-			multiline = true;
-			wordWrap = true;
+			type = TextFieldType.DYNAMIC;
+			selectable = false;
+			multiline = false;
+			wordWrap = false;
 			formate = new TextFormat();
 		}
 		
@@ -66,6 +68,26 @@ package view.paper
 		public function get vo():ItemVo
 		{
 			return _vo;
+		}
+		
+		public function toXML():XML
+		{
+			var xml:XML = <item/>;
+			xml.type = _vo.type;
+			xml.x = x;
+			xml.y = y;
+			xml.width = width;
+			xml.height = height;
+			xml.text = _vo.text;
+			xml.font = _vo.font;
+			xml.color = _vo.color;
+			xml.align = _vo.align;
+			xml.bold = _vo.bold;
+			xml.italic = _vo.italic;
+			xml.underline = _vo.underline;
+			xml.appendChild(XMLUtil.glowFilterToXML(_vo.glowFilter));
+			xml.appendChild(XMLUtil.dropShadowFilterToXML(_vo.shadowFilter));
+			return xml;
 		}
 	}
 

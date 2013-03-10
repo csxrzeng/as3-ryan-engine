@@ -65,7 +65,7 @@ package view
 			var size:IntDimension = e.getNewSize();
 			if (true) // propertyWin.x + propertyWin.width > size.width)
 			{
-				propertyWin.x = size.width - propertyWin.width;
+				propertyWin.x = size.width - propertyWin.width - 20;
 			}
 		}
 		

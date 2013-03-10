@@ -7,6 +7,7 @@ package view.paper
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import model.ItemVo;
+	import utils.XMLUtil;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -75,6 +76,20 @@ package view.paper
 		{
 			_vo = value;
 			update();
+		}
+		
+		public function toXML():XML
+		{
+			var xml:XML = <item/>;
+			xml.type = _vo.type;
+			xml.url = _vo.url;
+			xml.scaleX = _item.scaleX;
+			xml.scaleY = _item.scaleY;
+			xml.centerX = _item.center.x;
+			xml.centerY = _item.center.y;
+			xml.rotation = _item.rotation;
+			xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
+			return xml;
 		}
 	}
 }
