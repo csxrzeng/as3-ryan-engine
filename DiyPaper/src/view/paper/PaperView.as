@@ -36,7 +36,6 @@ package view.paper
 		private var _paper:JPanel;
 		private var _bg:Shape;
 		private var itemViewContainer:Sprite;
-		
 		private var selectedItem:IItemView;
 		
 		public function PaperView()
@@ -59,7 +58,6 @@ package view.paper
 			_tool.allowMultiSelect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
-			
 			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
 			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
 			setVo(_vo); // 初始化
@@ -71,6 +69,25 @@ package view.paper
 			var bmd:BitmapData = new BitmapData(_vo.width, _vo.height);
 			bmd.draw(_paper);
 			return bmd;
+		}
+		
+		/**
+		 * 获取xml
+		 */
+		public function getXML():XML
+		{
+			var xml:XML = <paper></paper>;
+			xml.@width = _vo.width;
+			xml.@height = _vo.height;
+			xml.@background = _vo.background.getARGB();
+			xml.@border = _vo.border;
+			xml.@borderColor = _vo.borderColor.getARGB();
+			for (var i:int = 0; i < _list.length; ++i)
+			{
+				var item:XML = _list[i].toXML();
+				xml.appendChild(item);
+			}
+			return xml;
 		}
 		
 		public function updateBase():void
@@ -103,11 +120,11 @@ package view.paper
 			{
 				selectedItem = _tool.selectedTargetObjects[0] as IItemView;
 				var winType:int = getPropertyWinType(selectedItem.vo.type);
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:winType, vo:selectedItem.vo}));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType: winType, vo: selectedItem.vo}));
 			}
 			else
 			{
-				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType:PropertyWin.BASE}));
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType: PropertyWin.BASE}));
 			}
 		}
 		
@@ -115,16 +132,16 @@ package view.paper
 		{
 			switch (type)
 			{
-				case ItemVo.IMAGE:
+				case ItemVo.IMAGE: 
 					return PropertyWin.IMAGE;
-				case ItemVo.SPECIAL_TEXT:
+				case ItemVo.SPECIAL_TEXT: 
 					return PropertyWin.SPECIAL_TEXT;
-				case ItemVo.STATIC_TEXT:
+				case ItemVo.STATIC_TEXT: 
 					return PropertyWin.STATIC_TEXT;
 			}
 			return PropertyWin.BASE;
 		}
-			
+		
 		private function onItemLayerChange(e:GameEvent):void
 		{
 			var itemView:IItemView = e.data as IItemView;
@@ -181,7 +198,7 @@ package view.paper
 		private function addSpecialText(vo:ItemVo):void
 		{
 			var text:TextView = new TextView();
-			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, false);
+			text.item = _tool.addItem(text, TransformManager.SCALE_NORMAL, false);
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
@@ -191,11 +208,14 @@ package view.paper
 		private function addStaticText(vo:ItemVo):void
 		{
 			var text:StaticTextView = new StaticTextView();
-			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, true);
+			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, false);
 			text.item.lockRotation = true;
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
+			text.width = text.textWidth + 4;
+			text.height = text.textHeight + 4;
+			text.item.update();
 			MainWindow.layerWin.addLayer(text);
 		}
 		
@@ -305,14 +325,6 @@ package view.paper
 				return _list[index];
 			}
 			return null;
-		}
-		
-		/**
-		 * 获取xml
-		 */
-		public function getXML():XML
-		{
-			return <paper>这是一个测试</paper>;
 		}
 		
 		private function indexOf(data:ItemVo):int

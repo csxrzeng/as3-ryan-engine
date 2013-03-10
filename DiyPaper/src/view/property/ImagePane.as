@@ -22,6 +22,7 @@ package view.property
 		public function ImagePane()
 		{
 			configUI();
+			thumbPane.visible = false; // 隐藏预览图
 		}
 		
 		//public function get settingVo():ItemVo

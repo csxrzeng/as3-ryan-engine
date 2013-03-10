@@ -16,6 +16,8 @@ package view.paper
 		function get vo():ItemVo;
 		function set vo(value:ItemVo):void;
 		
+		function toXML():XML;
+		
 		function update():void;
 	}
 	

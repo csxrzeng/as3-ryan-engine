@@ -295,7 +295,7 @@ package view.property
 		private function onAddClick(e:AWEvent):void
 		{
 			var text:String = txtInput.getText();
-			if (text == "" || text == ItemVo.DEFAULT_TEXT)
+			if (text == "")
 			{
 				return; // 不允许空字符
 			}
