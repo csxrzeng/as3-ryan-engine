@@ -1,5 +1,6 @@
 package view.paper
 {
+	import com.greensock.events.TransformEvent;
 	import com.greensock.transform.TransformItem;
 	import flash.display.Sprite;
 	import flash.text.AntiAliasType;
@@ -7,6 +8,8 @@ package view.paper
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import model.Cache;
+	import model.FontVo;
 	import model.ItemVo;
 	import org.aswing.ASColor;
 	import utils.ColorUtil;
@@ -33,7 +36,7 @@ package view.paper
 			_textfield.autoSize = TextFieldAutoSize.LEFT;
 			addChild(_textfield);
 			
-			_vo = new ItemVo(ItemVo.STATIC_TEXT);
+			//_vo = new ItemVo(ItemVo.STATIC_TEXT);
 			formate = new TextFormat();
 		}
 		
@@ -58,6 +61,11 @@ package view.paper
 				_textfield.setTextFormat(formate, 0, _textfield.length);
 			}
 			_textfield.text = _vo.text;
+			_item.scaleX = _vo.scaleX;
+			_item.scaleY = _vo.scaleY;
+			_item.rotation = _vo.rotation;
+			_item.center.x = _vo.centerX;
+			_item.center.y = _vo.centerY;
 			_item.update();
 		}
 		
@@ -69,6 +77,18 @@ package view.paper
 		public function set item(value:TransformItem):void
 		{
 			_item = value;
+			_item.addEventListener(TransformEvent.ROTATE, onUpdate);
+			_item.addEventListener(TransformEvent.SCALE, onUpdate);
+			_item.addEventListener(TransformEvent.MOVE, onUpdate);
+		}
+		
+		private function onUpdate(e:TransformEvent):void 
+		{
+			_vo.centerX = _item.center.x;
+			_vo.centerY = _item.center.y;
+			_vo.scaleX = _item.scaleX;
+			_vo.scaleY = _item.scaleY;
+			_vo.rotation = _item.rotation;
 		}
 		
 		public function get vo():ItemVo

@@ -1,8 +1,12 @@
 package resource.proxy
 {
+	import com.ryan.resource.info.ImageInfo;
+	import com.ryan.resource.info.ResourceInfo;
 	import com.ryan.resource.info.SWFInfo;
 	import com.ryan.resource.loader.LoaderErrorEvent;
 	import com.ryan.resource.LoaderManager;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	
 	/**
@@ -16,6 +20,7 @@ package resource.proxy
 		public var extData:Object;
 		public var url:String;
 		public var multi:Boolean; // 是否可以多份数据
+		public var display:DisplayObject;
 		
 		public function SwfFileVo(url:String = null, multi:Boolean = true)
 		{
@@ -28,9 +33,9 @@ package resource.proxy
 			LoaderManager.instance.load(url, onLoaded, 3, null, null, onFailed);
 		}
 		
-		private function onLoaded(info:SWFInfo):void
+		private function onLoaded(info:ResourceInfo):void
 		{
-			if (info && info.data)
+			if (info is SWFInfo)
 			{
 				if (multi)
 				{
@@ -38,8 +43,14 @@ package resource.proxy
 				}
 				else
 				{
-					dealComplete(info.data.content);
+					display = info.data.content;
+					dealComplete();
 				}
+			}
+			else if (info is ImageInfo)
+			{
+				display = new Bitmap((info as ImageInfo).bitmapData, "auto", true);
+				dealComplete();
 			}
 			else
 			{
@@ -51,7 +62,8 @@ package resource.proxy
 		{
 			if (display)
 			{
-				dealComplete(display);
+				this.display = display;
+				dealComplete();
 			}
 			else
 			{
@@ -64,18 +76,11 @@ package resource.proxy
 			dealError("加载失败：" + error.text);
 		}
 		
-		private function dealComplete(display:DisplayObject):void
+		private function dealComplete():void
 		{
 			if (onComplete != null)
 			{
-				if (extData)
-				{
-					onComplete(display, extData);
-				}
-				else
-				{
-					onComplete(display);
-				}
+				onComplete(this);
 			}
 		}
 		

@@ -1,6 +1,7 @@
 package resource.proxy 
 {
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.events.DataEvent;
 	import flash.events.Event;
@@ -18,12 +19,14 @@ package resource.proxy
 	 */
 	public class ImageFileVo
 	{
+		public var bmd:BitmapData;
+		public var url:String = "";
 		public var onComplete:Function;
 		public var onError:Function;
 		public var extData:Object;
 		private var file:FileReference;
 		
-		public function ImageFileVo() 
+		public function ImageFileVo()
 		{
 			file = new FileReference();
 			configEvents();
@@ -72,8 +75,8 @@ package resource.proxy
 			var vars:URLVariables = new URLVariables(e.data);
 			if (vars.result == "1")
 			{
-				var file:String = vars.file;
-				ResourceProxy.loadRemoteImage(Config.MY_MEDIA_PATH + file, onComplete, onError, extData);
+				url = Config.MY_MEDIA_PATH + vars.file;
+				ResourceProxy.loadRemoteImage(url, onRemoteComplete, onError, extData);
 			}
 			else
 			{
@@ -81,20 +84,23 @@ package resource.proxy
 			}
 		}
 		
+		private function onRemoteComplete(image:RemoteImageVo):void
+		{
+			bmd = image.bmd;
+			if (onComplete != null)
+			{
+				onComplete(this);
+			}
+		}
+		
 		private function onContentComplete(display:DisplayObject):void
 		{
 			if (display is Bitmap)
 			{
+				bmd = (display as Bitmap).bitmapData;
 				if (onComplete != null)
 				{
-					if (extData)
-					{
-						onComplete((display as Bitmap).bitmapData, extData);
-					}
-					else
-					{
-						onComplete((display as Bitmap).bitmapData);
-					}
+					onComplete(this);
 				}
 			}
 			else

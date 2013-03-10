@@ -7,7 +7,10 @@ package view.paper
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import model.ItemVo;
+	import resource.proxy.ResourceProxy;
+	import resource.proxy.SwfFileVo;
 	import utils.XMLUtil;
+	import view.MainWindow;
 	/**
 	 * ...
 	 * @author xr.zeng
@@ -27,6 +30,11 @@ package view.paper
 		
 		public function update():void
 		{
+			if (!_vo.display)
+			{
+				ResourceProxy.loadSwf(_vo.url, onLoadComplete);
+				return;
+			}
 			if (display && display != _vo.display && display.parent == this)
 			{
 				removeChild(display);
@@ -41,6 +49,13 @@ package view.paper
 			_item.rotate(degree * Math.PI / 180);
 			_lastRotation = _vo.rotation;
 			transform.colorTransform = _vo.colorTransform;
+		}
+		
+		private function onLoadComplete(vo:SwfFileVo):void 
+		{
+			_vo.display = vo.display;
+			update();
+			MainWindow.layerWin.updateLayer(this);
 		}
 		
 		public function get item():TransformItem 

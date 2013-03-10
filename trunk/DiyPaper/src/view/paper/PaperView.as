@@ -58,9 +58,8 @@ package view.paper
 			_tool.allowMultiSelect = false;
 			_tool.addEventListener(TransformEvent.SELECTION_CHANGE, onSelectChange);
 			addEventListener(MouseEvent.CLICK, onMouseClick);
-			Dispatcher.addEventListener(GameEvent.UP_LAYER, onItemLayerChange);
-			Dispatcher.addEventListener(GameEvent.DOWN_LAYER, onItemLayerChange);
-			setVo(_vo); // 初始化
+			Dispatcher.addEventListener(GameEvent.RESORT_LAYER, onItemLayerChange);
+			//setVo(_vo); // 初始化
 		}
 		
 		public function getPreview():BitmapData
@@ -79,9 +78,9 @@ package view.paper
 			var xml:XML = <paper></paper>;
 			xml.@width = _vo.width;
 			xml.@height = _vo.height;
-			xml.@background = _vo.background.getARGB();
+			xml.@background = _vo.background.getARGB().toString(16);
 			xml.@border = _vo.border;
-			xml.@borderColor = _vo.borderColor.getARGB();
+			xml.@borderColor = _vo.borderColor.getARGB().toString(16);
 			for (var i:int = 0; i < _list.length; ++i)
 			{
 				var item:XML = _list[i].toXML();
@@ -144,14 +143,9 @@ package view.paper
 		
 		private function onItemLayerChange(e:GameEvent):void
 		{
-			var itemView:IItemView = e.data as IItemView;
-			if (e.type == GameEvent.UP_LAYER)
+			for each (var item:IItemView in _list)
 			{
-				itemViewContainer.swapChildrenAt(itemView.vo.layer, itemView.vo.layer - 1);
-			}
-			else
-			{
-				itemViewContainer.swapChildrenAt(itemView.vo.layer, itemView.vo.layer + 1);
+				itemViewContainer.setChildIndex(item as DisplayObject, item.vo.layer);
 			}
 		}
 		
@@ -325,6 +319,18 @@ package view.paper
 				return _list[index];
 			}
 			return null;
+		}
+		
+		/**
+		 * 全部子对象刷新
+		 */
+		public function updateAll():void 
+		{
+			for each(var item:IItemView in _list)
+			{
+				item.update();
+			}
+			MainWindow.layerWin.updateAll();
 		}
 		
 		private function indexOf(data:ItemVo):int
