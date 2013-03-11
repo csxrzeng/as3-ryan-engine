@@ -12,9 +12,12 @@ package
 	import model.ItemVo;
 	import org.aswing.AsWingManager;
 	import org.aswing.JOptionPane;
+	import org.aswing.JPopup;
+	import org.aswing.JWindow;
 	import resource.Config;
 	import resource.PaperResource;
 	import resource.proxy.ResourceProxy;
+	import view.gui.LoadingPane;
 	import view.MainWindow;
 	
 	/**
@@ -26,6 +29,9 @@ package
 		private var window:MainWindow;
 		private var list:Array;
 		private var loadedNum:int;
+		private var loadingWin:JPopup;
+		private var loadingPane:JWindow;
+		private var loading:LoadingPane;
 		
 		public function Main():void
 		{
@@ -44,8 +50,8 @@ package
 			AsWingManager.initAsStandard(this);
 			// specialfonts.xml, staticfonts.xml, library.xml
 			var params:Object = root.loaderInfo.parameters;
-			params.templet = "D0uk0GdQS9WZ3We.xml"; // 测试
-			params.admin = 1;
+			//params.templet = "D0uk0GdQS9WZ3We.xml"; // 测试
+			//params.admin = 1;
 			Config.isAdministrator = params.admin == "1"; // 管理员
 			Config.TEMPLET_XML = params.templet; // 模版
 			list = [
@@ -57,6 +63,7 @@ package
 			{
 				list.push(Config.XML_PATH + Config.TEMPLET_XML); // 加载模版
 			}
+			showProgress(1, 100);
 			for (var i:int = 0; i < list.length; i++) 
 			{
 				LoaderManager.instance.load(list[i], onLoaded, 3, null, null, onFailed);
@@ -104,7 +111,14 @@ package
 		
 		private function onStageResize(e:Event):void
 		{
-			window.setSizeWH(stage.stageWidth, stage.stageHeight);
+			if (window)
+			{
+				window.setSizeWH(stage.stageWidth, stage.stageHeight);
+			}
+			if (loadingPane)
+			{
+				loadingPane.setSizeWH(stage.stageWidth, stage.stageHeight);
+			}
 		}
 		
 		private function onLoadError():void
@@ -114,7 +128,33 @@ package
 		
 		private function onLoadProgress(cur:Number, total:Number):void
 		{
-			
+			showProgress(cur, total, "正在加载模版：");
+		}
+		
+		private function showProgress(cur:Number, total:Number, desc:String = "正在努力加载中："):void
+		{
+			if (!loadingPane)
+			{
+				loadingPane = new JWindow();
+				loadingPane.setSizeWH(stage.stageWidth, stage.stageHeight);
+				loading = new LoadingPane();
+				loadingPane.getContentPane().append(loading);
+				loading.progressBar.setIndeterminate(true);
+				loadingPane.show();
+			}
+			loading.label.setText(desc + int(cur / total * 100) + "%");
+		}
+		
+		private function hideProgress():void
+		{
+			if (loadingPane)
+			{
+				loadingPane.hide();
+				loading.progressBar.setIndeterminate(false);
+				loadingPane.remove(loading);
+				loading = null;
+				loadingPane = null;
+			}
 		}
 	}
 }

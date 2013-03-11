@@ -8,6 +8,7 @@ package resource.proxy
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
+	import flash.events.ProgressEvent;
 	import resource.Config;
 	/**
 	 * ...
@@ -20,6 +21,7 @@ package resource.proxy
 		public var onError:Function;
 		public var extData:Object;
 		public var url:String;
+		public var onProgress:Function;
 		
 		public function RemoteImageVo(url:String = null) 
 		{
@@ -35,7 +37,15 @@ package resource.proxy
 				dealError("只能加载jpg或者png图片");
 				return;
 			}
-			LoaderManager.instance.load(url, onLoaded, 3, null, null, onFailed);
+			LoaderManager.instance.load(url, onLoaded, 3, null, progressHandler, onFailed);
+		}
+		
+		private function progressHandler(e:ProgressEvent):void 
+		{
+			if (onProgress != null)
+			{
+				onProgress(e.bytesLoaded, e.bytesTotal);
+			}
 		}
 		
 		private function onLoaded(info:ImageInfo):void 

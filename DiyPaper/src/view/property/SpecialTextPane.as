@@ -15,6 +15,7 @@ package view.property
 	import resource.proxy.ResourceProxy;
 	import resource.proxy.SwfFileVo;
 	import utils.ColorUtil;
+	import view.gui.LoadingPane;
 	import view.gui.SpecialTextProperty;
 	import view.MainWindow;
 	import view.paper.IItemView;
@@ -27,6 +28,7 @@ package view.property
 	{
 		private var _settingVo:ItemVo;
 		private var _isAdd:Boolean = true;
+		private var loadingPane:LoadPane
 		
 		public function SpecialTextPane()
 		{
@@ -47,6 +49,8 @@ package view.property
 			combobox.setSelectedIndex(0);
 			txtInput.addEventListener(FocusEvent.FOCUS_IN, onFocusHandler);
 			txtInput.addEventListener(FocusEvent.FOCUS_OUT, onFocusHandler);
+			
+			loadingPane = new LoadPane();
 		}
 		
 		private function onFocusHandler(e:FocusEvent):void 
@@ -103,12 +107,21 @@ package view.property
 					_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 100);
 					_settingVo = new ItemVo(ItemVo.SPECIAL_TEXT);
 				}
-				ResourceProxy.loadFont(vo, onFontComplete, onFontError, curVo);
+				append(loadingPane);
+				loadingPane.show();
+				onProgress(0, 100);
+				ResourceProxy.loadFont(vo, onFontComplete, onFontError, curVo, onProgress);
 			}
+		}
+		
+		private function onProgress(cur:Number, total:Number):void
+		{
+			loadingPane.setProgress(cur, total, "正在加载字体：");
 		}
 		
 		private function onFontComplete(swfVo:SwfFileVo):void
 		{
+			loadingPane.hide();
 			var vo:ItemVo = swfVo.extData as ItemVo;
 			var item:IItemView = MainWindow.paper.getItemView(vo);
 			if (!item)

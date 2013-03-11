@@ -8,6 +8,7 @@ package resource.proxy
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
+	import flash.events.ProgressEvent;
 	
 	/**
 	 * ...
@@ -17,6 +18,7 @@ package resource.proxy
 	{
 		public var onComplete:Function;
 		public var onError:Function;
+		public var onProgress:Function;
 		public var extData:Object;
 		public var url:String;
 		public var multi:Boolean; // 是否可以多份数据
@@ -30,7 +32,15 @@ package resource.proxy
 		
 		public function start():void
 		{
-			LoaderManager.instance.load(url, onLoaded, 3, null, null, onFailed);
+			LoaderManager.instance.load(url, onLoaded, 3, null, progressHandler, onFailed);
+		}
+		
+		private function progressHandler(e:ProgressEvent):void 
+		{
+			if (onProgress != null)
+			{
+				onProgress(e.bytesLoaded, e.bytesTotal);
+			}
 		}
 		
 		private function onLoaded(info:ResourceInfo):void
