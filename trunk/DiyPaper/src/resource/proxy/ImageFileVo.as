@@ -24,6 +24,7 @@ package resource.proxy
 		public var onComplete:Function;
 		public var onError:Function;
 		public var extData:Object;
+		public var onProgress:Function;
 		private var file:FileReference;
 		
 		public function ImageFileVo()
@@ -45,7 +46,7 @@ package resource.proxy
 			file.addEventListener(Event.CANCEL, onCancel);
 			file.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
 			file.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onIOError);
-			file.addEventListener(ProgressEvent.PROGRESS, onProgress);
+			file.addEventListener(ProgressEvent.PROGRESS, progressHandler);
 		}
 		
 		private function clearEvents():void
@@ -56,7 +57,7 @@ package resource.proxy
 			file.removeEventListener(Event.CANCEL, onCancel);
 			file.removeEventListener(IOErrorEvent.IO_ERROR, onIOError);
 			file.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
-			file.removeEventListener(ProgressEvent.PROGRESS, onProgress);
+			file.removeEventListener(ProgressEvent.PROGRESS, progressHandler);
 		}
 		
 		private function onCancel(e:Event):void 
@@ -64,9 +65,22 @@ package resource.proxy
 			dealError("");
 		}
 		
-		private function onProgress(e:ProgressEvent):void 
+		private function progressHandler(e:ProgressEvent):void 
 		{
-			
+			if (Config.isAdministrator)
+			{
+				if (onProgress != null)
+				{
+					onProgress(e.bytesLoaded / e.bytesTotal, 2);
+				}
+			}
+			else
+			{
+				if (onProgress != null)
+				{
+					onProgress(e.bytesLoaded, e.bytesTotal);
+				}
+			}
 		}
 		
 		private function onUploadCompleteData(e:DataEvent):void 
@@ -76,11 +90,19 @@ package resource.proxy
 			if (vars.result == "1")
 			{
 				url = Config.MY_MEDIA_PATH + vars.file;
-				ResourceProxy.loadRemoteImage(url, onRemoteComplete, onError, extData);
+				ResourceProxy.loadRemoteImage(url, onRemoteComplete, onError, extData, onRemoteProgress);
 			}
 			else
 			{
 				dealError("上传失败：" + vars.desc);
+			}
+		}
+		
+		private function onRemoteProgress(cur:Number, total:Number):void 
+		{
+			if (onProgress != null)
+			{
+				onProgress(1 + cur / total, 2);
 			}
 		}
 		

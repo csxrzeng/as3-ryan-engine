@@ -1,4 +1,4 @@
-package resource 
+package resource
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -8,11 +8,12 @@ package resource
 	import model.PaperVo;
 	import resource.proxy.ResourceProxy;
 	import resource.proxy.SwfFileVo;
+	
 	/**
 	 * 预加载需要的资源
 	 * @author 曾宪荣
 	 */
-	public class PaperResource 
+	public class PaperResource
 	{
 		private var paperVo:PaperVo;
 		private var onComplete:Function;
@@ -20,6 +21,7 @@ package resource
 		private var onProgress:Function;
 		private var totalCount:int;
 		private var completeCount:int;
+		private var subprogress:Number;
 		
 		public function PaperResource(paper:PaperVo)
 		{
@@ -37,14 +39,14 @@ package resource
 			{
 				if (item.type == ItemVo.IMAGE)
 				{
-					ResourceProxy.loadSwf(item.url, onSwfComplete, onSwfError, item);
+					ResourceProxy.loadSwf(item.url, onSwfComplete, onSwfError, item, progressHandler);
 				}
 				else if (item.type == ItemVo.SPECIAL_TEXT)
 				{
 					var font:FontVo = Cache.instance.font.getSpecialFontByFont(item.font);
 					if (font)
 					{
-						ResourceProxy.loadFont(font, onFontComplete, onFontError, item);
+						ResourceProxy.loadFont(font, onFontComplete, onFontError, item, progressHandler);
 					}
 					else
 					{
@@ -58,7 +60,19 @@ package resource
 			}
 		}
 		
-		private function onSwfComplete(swf:SwfFileVo):void 
+		private function progressHandler(... rest):void
+		{
+			if (onProgress != null)
+			{
+				subprogress++;
+				if (subprogress < 100)
+				{
+					onProgress(completeCount + subprogress / 100, totalCount);
+				}
+			}
+		}
+		
+		private function onSwfComplete(swf:SwfFileVo):void
 		{
 			completeCount++;
 			var item:ItemVo = swf.extData as ItemVo;
@@ -66,28 +80,29 @@ package resource
 			checkComplete();
 		}
 		
-		private function onSwfError(err:String):void 
+		private function onSwfError(err:String):void
 		{
 			completeCount++;
 			checkComplete();
 		}
 		
-		private function onFontComplete(swf:SwfFileVo):void 
+		private function onFontComplete(swf:SwfFileVo):void
 		{
 			completeCount++;
 			checkComplete();
 		}
 		
-		private function onFontError(err:String):void 
+		private function onFontError(err:String):void
 		{
 			completeCount++;
 			checkComplete();
 		}
 		
-		private function checkComplete():void 
+		private function checkComplete():void
 		{
 			if (onProgress != null)
 			{
+				subprogress = 0;
 				onProgress(completeCount, totalCount);
 			}
 			if (completeCount >= totalCount)

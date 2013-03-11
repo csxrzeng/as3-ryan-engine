@@ -16,6 +16,8 @@ package view.property
 	 */
 	public class AssetsPane extends MyAssetsPane 
 	{
+		private var loading:LoadPane;
+		
 		public function AssetsPane() 
 		{
 			configUI();
@@ -26,6 +28,7 @@ package view.property
 			btnBack.addEventListener(AWEvent.ACT, onBackClick);
 			btnBrowse.addEventListener(AWEvent.ACT, onBrowseClick);
 			btnDownload.addEventListener(AWEvent.ACT, onDownloadClick);
+			loading = new LoadPane();
 		}
 		
 		private function onBackClick(e:AWEvent):void
@@ -36,11 +39,22 @@ package view.property
 		private function onBrowseClick(e:AWEvent):void 
 		{
 			btnBrowse.setEnabled(false);
-			ResourceProxy.loadLocalImage(onLocalComplete, onLocalError, null);
+			ResourceProxy.loadLocalImage(onLocalComplete, onLocalError, null, onProgress);
+		}
+		
+		private function onProgress(cur:Number, total:Number):void 
+		{
+			if (!loading.isShowing())
+			{
+				append(loading);
+				loading.show();
+			}
+			loading.setProgress(cur, total, "正在加载图片：");
 		}
 		
 		private function onLocalComplete(image:ImageFileVo):void 
 		{
+			loading.hide();
 			btnBrowse.setEnabled(true);
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddImageToPaper, image));
 		}
@@ -55,11 +69,12 @@ package view.property
 		{
 			btnDownload.setEnabled(false);
 			var url:String = txtDownload.getText();
-			ResourceProxy.loadRemoteImage(url, onRemoteComplete, onRemoteError, null);
+			ResourceProxy.loadRemoteImage(url, onRemoteComplete, onRemoteError, null, onProgress);
 		}
 		
 		private function onRemoteComplete(image:RemoteImageVo):void
 		{
+			loading.hide();
 			var imageFile:ImageFileVo = new ImageFileVo();
 			imageFile.bmd = image.bmd;
 			imageFile.url = image.url;

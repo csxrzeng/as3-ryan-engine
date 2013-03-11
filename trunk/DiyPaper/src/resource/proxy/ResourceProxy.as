@@ -21,12 +21,13 @@ package resource.proxy
 		 * @param	onComplete 完成的回调函数 onComplete(vo:ImageFileVo);
 		 * @param	onError 失败的回调 onError(desc);
 		 */
-		static public function loadLocalImage(onComplete:Function, onError:Function = null, extData:Object = null):void
+		static public function loadLocalImage(onComplete:Function, onError:Function = null, extData:Object = null, onProgress:Function = null):void
 		{
 			var vo:ImageFileVo = new ImageFileVo();
 			vo.onComplete = onComplete;
 			vo.onError = onError;
 			vo.extData = extData;
+			vo.onProgress = onProgress;
 			vo.start();
 		}
 		
@@ -36,12 +37,13 @@ package resource.proxy
 		 * @param	onError 失败的回调 onError(desc);
 		 * @param	extData
 		 */
-		static public function loadRemoteImage(url:String, onComplete:Function, onError:Function = null, extData:Object = null):void
+		static public function loadRemoteImage(url:String, onComplete:Function, onError:Function = null, extData:Object = null, onProgress:Function = null):void
 		{
 			var vo:RemoteImageVo = new RemoteImageVo(url);
 			vo.onComplete = onComplete;
 			vo.onError = onError;
 			vo.extData = extData;
+			vo.onProgress = onProgress;
 			vo.start();
 		}
 		
@@ -51,12 +53,13 @@ package resource.proxy
 		 * @param	onError 失败的回调 onError(desc);
 		 * @param	extData
 		 */
-		static public function loadSwf(url:String, onComplete:Function, onError:Function = null, extData:Object = null):void
+		static public function loadSwf(url:String, onComplete:Function, onError:Function = null, extData:Object = null, onProgress:Function = null):void
 		{
 			var vo:SwfFileVo = new SwfFileVo(url);
 			vo.onComplete = onComplete;
 			vo.onError = onError;
 			vo.extData = extData;
+			vo.onProgress = onProgress;
 			vo.start();
 		}
 		
@@ -67,12 +70,13 @@ package resource.proxy
 		 * @param	onError
 		 * @param	extData
 		 */
-		static public function loadFont(font:FontVo, onComplete:Function, onError:Function = null, extData:Object = null):void
+		static public function loadFont(font:FontVo, onComplete:Function, onError:Function = null, extData:Object = null, onProgress:Function = null):void
 		{
 			var vo:SwfFileVo = new SwfFileVo(Config.FONT_PATH + font.url, false); // 字体只需要一份
 			vo.onComplete = onComplete;
 			vo.onError = onError;
 			vo.extData = extData;
+			vo.onProgress = onProgress;
 			vo.start();
 		}
 		
