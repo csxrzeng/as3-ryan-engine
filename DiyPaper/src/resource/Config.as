@@ -6,7 +6,7 @@ package resource
 	 */
 	public class Config 
 	{
-		static public var PATH:String = "http://localhost/diypaper/"; // "";
+		static public var PATH:String =  ""; // "http://localhost/diypaper/"; //
 		
 		static public var XML_PATH:String = PATH + "xmls/";
 		static public var PAPER_PATH:String = PATH + "papers/";
