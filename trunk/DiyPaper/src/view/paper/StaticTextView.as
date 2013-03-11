@@ -48,10 +48,6 @@ package view.paper
 				setTextFormat(formate, 0, length);
 			}
 			text = _vo.text;
-			_item.x = _vo.x;
-			_item.y = _vo.y;
-			_item.width = _vo.width;
-			_item.height = _vo.height;
 		}
 
 		public function get item():TransformItem
@@ -62,17 +58,6 @@ package view.paper
 		public function set item(value:TransformItem):void
 		{
 			_item = value;
-			_item.addEventListener(TransformEvent.ROTATE, onUpdate);
-			_item.addEventListener(TransformEvent.SCALE, onUpdate);
-			_item.addEventListener(TransformEvent.MOVE, onUpdate);
-		}
-		
-		private function onUpdate(e:TransformEvent):void 
-		{
-			_vo.x = _item.x;
-			_vo.y = _item.y;
-			_vo.width = _item.width;
-			_vo.height = _item.height;
 		}
 		
 		public function set vo(value:ItemVo):void
@@ -90,10 +75,10 @@ package view.paper
 		{
 			var xml:XML = <item/>;
 			xml.type = _vo.type;
-			xml.x = _item.x;
-			xml.y = _item.y;
-			xml.width = width;
-			xml.height = height;
+			//xml.x = _item.x;
+			//xml.y = _item.y;
+			//xml.width = width;
+			//xml.height = height;
 			xml.text = _vo.text;
 			xml.font = _vo.font;
 			xml.color = _vo.color.toString(16);

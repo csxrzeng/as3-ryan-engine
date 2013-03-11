@@ -55,6 +55,7 @@ package view.paper
 		{
 			_vo.display = vo.display;
 			update();
+			_item.update();
 			MainWindow.layerWin.updateLayer(this);
 		}
 		
@@ -67,16 +68,10 @@ package view.paper
 		{
 			_item = value;
 			_item.addEventListener(TransformEvent.ROTATE, onUpdate);
-			_item.addEventListener(TransformEvent.SCALE, onUpdate);
-			_item.addEventListener(TransformEvent.MOVE, onUpdate);
 		}
 		
 		private function onUpdate(e:TransformEvent):void 
 		{
-			//_vo.x = _item.x;
-			//_vo.y = _item.y;
-			//_vo.scaleX = _item.scaleX;
-			//_vo.scaleY = _item.scaleY;
 			_lastRotation = Math.round(_item.rotation + 360) % 360;
 			_vo.rotation = _lastRotation;
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _vo));
@@ -98,11 +93,11 @@ package view.paper
 			var xml:XML = <item/>;
 			xml.type = _vo.type;
 			xml.url = _vo.url;
-			xml.scaleX = _item.scaleX;
-			xml.scaleY = _item.scaleY;
-			xml.centerX = _item.center.x;
-			xml.centerY = _item.center.y;
-			xml.rotation = _item.rotation;
+			//xml.scaleX = _item.scaleX;
+			//xml.scaleY = _item.scaleY;
+			//xml.x = _item.x;
+			//xml.y = _item.y;
+			//xml.rotation = _item.rotation;
 			xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
 			return xml;
 		}

@@ -84,6 +84,7 @@ package view.paper
 			for (var i:int = 0; i < _list.length; ++i)
 			{
 				var item:XML = _list[i].toXML();
+				item.appendChild(_tool.exportItemXML(_list[i] as DisplayObject));
 				xml.appendChild(item);
 			}
 			return xml;
@@ -143,10 +144,16 @@ package view.paper
 		
 		private function onItemLayerChange(e:GameEvent):void
 		{
+			_list.sort(sortByLayer);
 			for each (var item:IItemView in _list)
 			{
 				itemViewContainer.setChildIndex(item as DisplayObject, item.vo.layer);
 			}
+		}
+		
+		private function sortByLayer(a:IItemView, b:IItemView):Number 
+		{
+			return a.vo.layer - b.vo.layer;
 		}
 		
 		public function getVo():PaperVo
@@ -175,11 +182,15 @@ package view.paper
 			for (var j:int = 0; j < _vo.items.length; j++)
 			{
 				var item:ItemVo = _vo.items[j];
-				addItem(item);
+				var itemView:IItemView = addItem(item);
+				if (item.xml)
+				{
+					_tool.applyItemXML(item.xml.item[0], null, 0xcccccc, itemView as DisplayObject);
+				}
 			}
 		}
 		
-		private function addImage(vo:ItemVo):void
+		private function addImage(vo:ItemVo):ImageView
 		{
 			var image:ImageView = new ImageView();
 			image.item = _tool.addItem(image);
@@ -187,19 +198,23 @@ package view.paper
 			_list.push(image);
 			image.vo = vo;
 			MainWindow.layerWin.addLayer(image);
+			_tool.selectItem(image);
+			return image;
 		}
 		
-		private function addSpecialText(vo:ItemVo):void
+		private function addSpecialText(vo:ItemVo):SpecialTextView
 		{
-			var text:TextView = new TextView();
+			var text:SpecialTextView = new SpecialTextView();
 			text.item = _tool.addItem(text, TransformManager.SCALE_NORMAL, false);
 			itemViewContainer.addChild(text);
 			_list.push(text);
 			text.vo = vo;
 			MainWindow.layerWin.addLayer(text);
+			_tool.selectItem(text);
+			return text;
 		}
 		
-		private function addStaticText(vo:ItemVo):void
+		private function addStaticText(vo:ItemVo):StaticTextView
 		{
 			var text:StaticTextView = new StaticTextView();
 			text.item = _tool.addItem(text, TransformManager.SCALE_WIDTH_AND_HEIGHT, false);
@@ -211,27 +226,29 @@ package view.paper
 			text.height = text.textHeight + 4;
 			text.item.update();
 			MainWindow.layerWin.addLayer(text);
+			_tool.selectItem(text);
+			return text;
 		}
 		
-		public function addItem(vo:ItemVo):void
+		public function addItem(vo:ItemVo):IItemView
 		{
 			if (vo.type == ItemVo.IMAGE)
 			{
-				addImage(vo);
+				return addImage(vo);
 			}
 			else if (vo.type == ItemVo.SPECIAL_TEXT)
 			{
-				addSpecialText(vo);
+				return addSpecialText(vo);
 			}
 			else if (vo.type == ItemVo.STATIC_TEXT)
 			{
-				addStaticText(vo);
+				return addStaticText(vo);
 			}
 			else
 			{
 				throw new ArgumentError("item type error");
 			}
-			setItemSelected(vo);
+			return null;
 		}
 		
 		/**

@@ -13,6 +13,7 @@ package
 	import org.aswing.AsWingManager;
 	import org.aswing.JOptionPane;
 	import resource.Config;
+	import resource.PaperResource;
 	import resource.proxy.ResourceProxy;
 	import view.MainWindow;
 	
@@ -43,7 +44,7 @@ package
 			AsWingManager.initAsStandard(this);
 			// specialfonts.xml, staticfonts.xml, library.xml
 			var params:Object = root.loaderInfo.parameters;
-			params.templet = "LCxCklz4Deb5seY.xml"; // 测试
+			params.templet = "D0uk0GdQS9WZ3We.xml"; // 测试
 			params.admin = 1;
 			Config.isAdministrator = params.admin == "1"; // 管理员
 			Config.TEMPLET_XML = params.templet; // 模版
@@ -81,26 +82,14 @@ package
 			if (Config.TEMPLET_XML) // 存在模版
 			{
 				Cache.instance.paper.fromXML(XML(ResourceManager.getInfoByName(Config.XML_PATH + Config.TEMPLET_XML).data));
-				initWindow();
+				var pr:PaperResource = new PaperResource(Cache.instance.paper);
 				// 需要加载字库，加载图片等。加载完成才能初始化
-				for each (var item:ItemVo in Cache.instance.paper.items)
-				{
-					if (item.type == ItemVo.SPECIAL_TEXT)
-					{
-						var font:FontVo = Cache.instance.font.getSpecialFontByFont(item.font);
-						ResourceProxy.loadFont(font, onFontComplete);
-					}
-				}
+				pr.start(initWindow, onLoadError, onLoadProgress);
 			}
 			else
 			{
 				initWindow();
 			}
-		}
-		
-		private function onFontComplete(...rest):void 
-		{
-			MainWindow.paper.updateAll();
 		}
 		
 		private function initWindow():void
@@ -116,6 +105,16 @@ package
 		private function onStageResize(e:Event):void
 		{
 			window.setSizeWH(stage.stageWidth, stage.stageHeight);
+		}
+		
+		private function onLoadError():void
+		{
+			JOptionPane.showMessageDialog("失败", "加载模版失败");
+		}
+		
+		private function onLoadProgress(cur:Number, total:Number):void
+		{
+			
 		}
 	}
 }
