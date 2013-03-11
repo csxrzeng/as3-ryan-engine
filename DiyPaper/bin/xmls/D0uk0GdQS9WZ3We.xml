@@ -1,0 +1,36 @@
+<paper width="600" height="300" background="ffffffff" border="0" borderColor="ff000000">
+  <item>
+    <type>image</type>
+    <url>http://localhost/diypaper/assets/50.swf</url>
+    <colortransform alphaMultiplier="1" alphaOffset="0" blueMultiplier="1" blueOffset="0" greenMultiplier="1" greenOffset="0" redMultiplier="1" redOffset="0"/>
+    <item name="instance3199" level="0" a="1" b="0" c="0" d="1" tx="0" ty="0" xOffset="0" yOffset="0" rawWidth="310" rawHeight="310" scaleMode="scaleNormal" hasSelectableText="0" minScaleX="-Infinity" maxScaleX="Infinity" minScaleY="-Infinity" maxScaleY="Infinity"/>
+  </item>
+  <item>
+    <type>special_text</type>
+    <text>点击编辑文字</text>
+    <font>Microsoft YaHei</font>
+    <size>50</size>
+    <bold>false</bold>
+    <italic>false</italic>
+    <leading>0</leading>
+    <letterSpacing>0</letterSpacing>
+    <align>left</align>
+    <underline>false</underline>
+    <colortransform alphaMultiplier="1" alphaOffset="0" blueMultiplier="0" blueOffset="0" greenMultiplier="0" greenOffset="0" redMultiplier="0" redOffset="0"/>
+    <item name="instance2874" level="1" a="1" b="0" c="0" d="1" tx="0" ty="0" xOffset="0" yOffset="0" rawWidth="304" rawHeight="69.95" scaleMode="scaleNormal" hasSelectableText="0" minScaleX="-Infinity" maxScaleX="Infinity" minScaleY="-Infinity" maxScaleY="Infinity"/>
+  </item>
+  <item>
+    <type>static_text</type>
+    <text>点击编辑文字</text>
+    <font>宋体</font>
+    <color>0</color>
+    <alpha>1</alpha>
+    <align>left</align>
+    <bold>false</bold>
+    <italic>false</italic>
+    <underline>false</underline>
+    <glowfilter alpha="1" blurX="1" blurY="1" color="0" inner="false" knockout="false" quality="1" strength="1"/>
+    <dropshadowfilter alpha="1" angle="45" blurX="1" blurY="1" color="0" distance="1" hideObject="false" inner="false" knockout="false" quality="1" strength="1"/>
+    <item name="instance2952" level="2" a="1" b="0" c="0" d="1" tx="100" ty="0" xOffset="0" yOffset="0" rawWidth="304" rawHeight="61" scaleMode="scaleWidthAndHeight" hasSelectableText="1" minScaleX="-Infinity" maxScaleX="Infinity" minScaleY="-Infinity" maxScaleY="Infinity"/>
+  </item>
+</paper>

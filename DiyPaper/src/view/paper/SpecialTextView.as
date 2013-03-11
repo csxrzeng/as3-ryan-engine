@@ -19,14 +19,14 @@ package view.paper
 	 * ...
 	 * @author xr.zeng
 	 */
-	public class TextView extends Sprite implements IItemView
+	public class SpecialTextView extends Sprite implements IItemView
 	{
 		private var _vo:ItemVo;
 		private var formate:TextFormat;
 		private var _item:TransformItem;
 		private var _textfield:TextField;
 		
-		public function TextView()
+		public function SpecialTextView()
 		{
 			mouseChildren = false;
 			_textfield = new TextField();
@@ -61,11 +61,6 @@ package view.paper
 				_textfield.setTextFormat(formate, 0, _textfield.length);
 			}
 			_textfield.text = _vo.text;
-			_item.scaleX = _vo.scaleX;
-			_item.scaleY = _vo.scaleY;
-			_item.rotation = _vo.rotation;
-			_item.center.x = _vo.centerX;
-			_item.center.y = _vo.centerY;
 			_item.update();
 		}
 		
@@ -77,18 +72,6 @@ package view.paper
 		public function set item(value:TransformItem):void
 		{
 			_item = value;
-			_item.addEventListener(TransformEvent.ROTATE, onUpdate);
-			_item.addEventListener(TransformEvent.SCALE, onUpdate);
-			_item.addEventListener(TransformEvent.MOVE, onUpdate);
-		}
-		
-		private function onUpdate(e:TransformEvent):void 
-		{
-			_vo.centerX = _item.center.x;
-			_vo.centerY = _item.center.y;
-			_vo.scaleX = _item.scaleX;
-			_vo.scaleY = _item.scaleY;
-			_vo.rotation = _item.rotation;
 		}
 		
 		public function get vo():ItemVo
@@ -116,11 +99,11 @@ package view.paper
 			xml.align = _vo.align;
 			xml.underline = _vo.underline;
 			xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
-			xml.scaleX = _item.scaleX;
-			xml.scaleY = _item.scaleY;
-			xml.rotation = _item.rotation;
-			xml.centerX = _item.center.x;
-			xml.centerY = _item.center.y;
+			//xml.scaleX = _item.scaleX;
+			//xml.scaleY = _item.scaleY;
+			//xml.rotation = _item.rotation;
+			//xml.x = _item.x;
+			//xml.y = _item.y;
 			return xml;
 		}
 	}

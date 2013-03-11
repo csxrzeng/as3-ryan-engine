@@ -2436,9 +2436,12 @@ package com.greensock.transform {
                  * @param placeholderColor If the targetObject cannot be found in the display list (based on its name), it will create a new Sprite and fill it with this color, using it as a placeholder.
                  * @return The DisplayObject associated with the item (a placeholder Sprite if the targeObject wasn't found in the display list).
                  */
-                public function applyItemXML(xml:XML, defaultParent:DisplayObjectContainer=null, placeholderColor:uint=0xCCCCCC):DisplayObject {
+                public function applyItemXML(xml:XML, defaultParent:DisplayObjectContainer=null, placeholderColor:uint=0xCCCCCC, mc:DisplayObject = null):DisplayObject {
                         var parent:DisplayObjectContainer = _parent || defaultParent;
-                        var mc:DisplayObject = parent.getChildByName(xml.@name);
+                        if (mc == null)
+						{
+							mc = parent.getChildByName(xml.@name);
+						}
                         if (mc == null) {
                                 var i:int = _items.length;
                                 while (i--) {
