@@ -7,8 +7,25 @@
 	
 	<script src="js/swfobject.js"></script>
 	<script>
-		var flashvars = {
-		};
+		function QueryString()
+		{
+			var obj = {};
+			var name,value,i;
+			var str=location.href;
+			var num=str.indexOf("?");
+			if (num != -1)
+			{
+				str=str.substr(num+1);
+				var arrtmp=str.split("&");
+				for(i=0;i < arrtmp.length;i++)
+				{
+					arr=arrtmp[i].split("=");
+					obj[arr[0]]=arr.length > 1 ? arr[1] : "";
+				}
+			}
+			return obj;
+		}
+		var flashvars = QueryString();
 		var params = {
 			menu: "false",
 			scale: "noScale",
