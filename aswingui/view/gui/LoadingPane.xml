@@ -1,0 +1,111 @@
+<AsWingUI name="LoadingPane" packageName="view.gui">
+  <Com name="JPanel" id="panel1">
+    <Properties>
+      <Property name="attr_scope" type="attr_scope">
+        <Value value="private"/>
+      </Property>
+      <Property name="getter_scope" type="getter_scope">
+        <Value value="none"/>
+      </Property>
+      <Property name="Size" type="Size">
+        <Value value="285,440"/>
+      </Property>
+      <Property name="PreferredSize" type="PreferredSize">
+        <Value value="285,440"/>
+      </Property>
+      <Property name="Layout" type="Layout">
+        <Value>
+          <Layout name="CenterLayout">
+            <Properties/>
+          </Layout>
+        </Value>
+      </Property>
+    </Properties>
+    <Com name="JPanel" id="panel3">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="150,182"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="100,35"/>
+        </Property>
+        <Property name="Constraints" type="Constraints">
+          <Value value="Center"/>
+        </Property>
+        <Property name="Layout" type="Layout">
+          <Value>
+            <Layout name="SoftBoxLayout">
+              <Properties>
+                <Property name="Axis" type="Axis">
+                  <Value value="1"/>
+                </Property>
+                <Property name="Align" type="Align">
+                  <Value value="0"/>
+                </Property>
+                <Property name="Gap" type="Gap">
+                  <Value value="5"/>
+                </Property>
+              </Properties>
+            </Layout>
+          </Value>
+        </Property>
+      </Properties>
+      <Com name="JProgressBar" id="progressBar">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="progressBar"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="139,161"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="200,11"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="200,11"/>
+          </Property>
+          <Property name="Constraints" type="Constraints">
+            <Value value="Center"/>
+          </Property>
+          <Property name="Value" type="Value">
+            <Value value="0"/>
+          </Property>
+          <Property name="Minimum" type="Minimum">
+            <Value value="0"/>
+          </Property>
+          <Property name="Maximum" type="Maximum">
+            <Value value="100"/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JLabel" id="label">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="label"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Text" type="Text">
+            <Value value="正在加载字体：1%"/>
+          </Property>
+        </Properties>
+      </Com>
+    </Com>
+  </Com>
+</AsWingUI>

@@ -17,6 +17,7 @@ package view.toolbar
 		{
 			super();
 			configEvents();
+			btnLink.visible = false;
 		}
 		
 		private function configEvents():void 
