@@ -20,6 +20,10 @@ public class ImageLibrary extends JPanel{
 	protected var cbType:JComboBox;
 	protected var spLibrary:JScrollPane;
 	protected var pane:JPanel;
+	private var panel21:JPanel;
+	protected var btnPre:JLabelButton;
+	protected var txtPage:JTextField;
+	protected var btnNext:JLabelButton;
 	
 	/**
 	 * ImageLibrary Constructor
@@ -79,24 +83,59 @@ public class ImageLibrary extends JPanel{
 		
 		spLibrary = new JScrollPane();
 		spLibrary.setLocation(new IntPoint(10, 45));
-		spLibrary.setSize(new IntDimension(285, 360));
-		spLibrary.setPreferredSize(new IntDimension(285, 360));
+		spLibrary.setSize(new IntDimension(285, 332));
+		spLibrary.setPreferredSize(new IntDimension(285, 332));
+		var border4:LineBorder = new LineBorder();
+		border4.setColor(new ASColor(0x666666, 1));
+		border4.setThickness(1);
+		border4.setRound(1);
+		spLibrary.setBorder(border4);
 		
 		pane = new JPanel();
-		pane.setLocation(new IntPoint(0, 0));
-		pane.setSize(new IntDimension(285, 360));
-		pane.setPreferredSize(new IntDimension(285, 360));
-		var layout4:FlowWrapLayout = new FlowWrapLayout();
-		layout4.setPreferWidth(265);
-		layout4.setAlignment(AsWingConstants.LEFT);
-		layout4.setHgap(1);
-		layout4.setVgap(1);
-		pane.setLayout(layout4);
+		pane.setLocation(new IntPoint(1, 0));
+		pane.setSize(new IntDimension(265, 328));
+		pane.setPreferredSize(new IntDimension(265, 328));
+		var layout5:FlowWrapLayout = new FlowWrapLayout();
+		layout5.setPreferWidth(265);
+		layout5.setAlignment(AsWingConstants.LEFT);
+		layout5.setHgap(1);
+		layout5.setVgap(1);
+		pane.setLayout(layout5);
+		
+		panel21 = new JPanel();
+		panel21.setLocation(new IntPoint(0, 432));
+		panel21.setSize(new IntDimension(285, 26));
+		var layout6:FlowLayout = new FlowLayout();
+		layout6.setAlignment(AsWingConstants.CENTER);
+		layout6.setHgap(8);
+		layout6.setVgap(2);
+		panel21.setLayout(layout6);
+		
+		btnPre = new JLabelButton();
+		btnPre.setLocation(new IntPoint(122, 5));
+		btnPre.setSize(new IntDimension(40, 19));
+		btnPre.setText("上一页");
+		
+		txtPage = new JTextField();
+		txtPage.setLocation(new IntPoint(112, 5));
+		txtPage.setSize(new IntDimension(60, 22));
+		txtPage.setPreferredSize(new IntDimension(60, 22));
+		txtPage.setText("1/1");
+		txtPage.setEditable(true);
+		txtPage.setMaxChars(7);
+		txtPage.setRestrict("0-9/");
+		txtPage.setWordWrap(false);
+		
+		btnNext = new JLabelButton();
+		btnNext.setLocation(new IntPoint(145, 5));
+		btnNext.setSize(new IntDimension(40, 19));
+		btnNext.setText("下一页");
 		
 		//component layoution
 		append(panel117);
 		append(panel7);
 		append(spLibrary);
+		append(panel21);
 		
 		panel117.append(btnOnline);
 		panel117.append(btnMyAssets);
@@ -105,6 +144,10 @@ public class ImageLibrary extends JPanel{
 		panel7.append(cbType);
 		
 		spLibrary.append(pane);
+		
+		panel21.append(btnPre);
+		panel21.append(txtPage);
+		panel21.append(btnNext);
 		
 	}
 	
@@ -126,6 +169,19 @@ public class ImageLibrary extends JPanel{
 	}
 	
 	
+	
+	
+	public function getBtnPre():JLabelButton{
+		return btnPre;
+	}
+	
+	public function getTxtPage():JTextField{
+		return txtPage;
+	}
+	
+	public function getBtnNext():JLabelButton{
+		return btnNext;
+	}
 	
 	
 }

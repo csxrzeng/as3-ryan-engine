@@ -17,7 +17,7 @@ package view.thumb
 	 */
 	public class ThumbIcon extends Sprite
 	{
-		public static const SIZE:int = 45;
+		public static const SIZE:int = 40;
 		
 		[Embed(source="../../assets/close.png")]
 		static private const CLOSE_CLASS:Class;
@@ -41,8 +41,8 @@ package view.thumb
 			
 			closeBtn = new Sprite()
 			closeBtn.addChild(new Bitmap(CLOSE_BMD));
-			closeBtn.x = SIZE - CLOSE_BMD.width - 2;
-			closeBtn.y = 2;
+			closeBtn.x = SIZE - CLOSE_BMD.width - 1;
+			closeBtn.y = 1;
 			addChild(closeBtn);
 			closeBtn.addEventListener(MouseEvent.CLICK, onCloseBtnClick);
 		}
@@ -74,7 +74,7 @@ package view.thumb
 		private function drawBorder():void
 		{
 			graphics.clear();
-			graphics.lineStyle(1);
+			graphics.lineStyle(1, 0xafaba8);
 			graphics.drawRect(0, 0, SIZE, SIZE);
 			graphics.endFill();
 		}

@@ -40,7 +40,13 @@ package controller
 		{
 			if (e.data)
 			{
-				paper.removeSelectedItem(e.data);
+				JOptionPane.showMessageDialog("删除图层", "你确定要删除该图层吗？", function(result:int):void
+				{
+					if (result == JOptionPane.YES)
+					{
+						paper.removeSelectedItem(e.data);
+					}
+				}, null, true, null, JOptionPane.YES | JOptionPane.NO);
 			}
 		}
 		

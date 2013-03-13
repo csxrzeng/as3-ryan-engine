@@ -120,10 +120,12 @@ package view.paper
 			{
 				selectedItem = _tool.selectedTargetObjects[0] as IItemView;
 				var winType:int = getPropertyWinType(selectedItem.vo.type);
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ItemSelected, selectedItem));
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType: winType, vo: selectedItem.vo}));
 			}
 			else
 			{
+				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ItemSelected, null));
 				Dispatcher.dispatchEvent(new GameEvent(GameEvent.ShowProperty, {winType: PropertyWin.BASE}));
 			}
 		}

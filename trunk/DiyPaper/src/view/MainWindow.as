@@ -55,7 +55,7 @@ package view
 			paper = new PaperView()
 			mapLayer = new JScrollPane(paper);
 			mapLayer.setOpaque(true);
-			mapLayer.setBackground(new ASColor(0xeeeeee, 1));
+			mapLayer.setBackground(new ASColor(0xBBBBBB, 1));
 			
 			uiLayer = new JPanel(new EmptyLayout());
 			

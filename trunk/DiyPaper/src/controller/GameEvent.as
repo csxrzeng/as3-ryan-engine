@@ -60,6 +60,10 @@ package controller
 		 * 显示编辑
 		 */
 		static public const ShowNormal:String = "ShowNormal";
+		/**
+		 * 选择对象
+		 */
+		static public const ItemSelected:String = "ItemSelected";
 		
 		public var data:*;
 		
