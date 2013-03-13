@@ -23,11 +23,16 @@ import org.aswing.geom.IntPoint;
  * @author iiley
  */
 public class JOptionPane extends JPanel {
-	public static var OK_STR:String = "OK";
-	public static var CANCEL_STR:String = "Cancel";
-	public static var YES_STR:String = "Yes";
-	public static var NO_STR:String = "No";
-	public static var CLOSE_STR:String = "Close";
+	//public static var OK_STR:String = "OK";
+	//public static var CANCEL_STR:String = "Cancel";
+	//public static var YES_STR:String = "Yes";
+	//public static var NO_STR:String = "No";
+	//public static var CLOSE_STR:String = "Close";
+	public static var OK_STR:String = "确定";
+	public static var CANCEL_STR:String = "取消";
+	public static var YES_STR:String = "确定";
+	public static var NO_STR:String = "取消";
+	public static var CLOSE_STR:String = "关闭";
 	
 	
 	public static const OK:int = 1; //00001
