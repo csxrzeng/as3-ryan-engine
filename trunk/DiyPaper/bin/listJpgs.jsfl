@@ -28,7 +28,7 @@ function listJpgs()
 		}
 	}
 	fl.trace(xml);
-	if (FLfile.write(url + "/assets.xml", xml))
+	if (FLfile.write(url + "/assetstemp.xml", xml))
 	{
 		fl.trace("success");
 	}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
+	<!--name为字体名称，font为字体对应的英文名（参考src/GenerateStaticFonts.as），url为字库文件名-->
 	<item name="微软雅黑" font="Microsoft YaHei" url="yahei.swf"></item>
 	<item name="隶书" font="LiSu" url="lishu.swf"></item>
 </data>
