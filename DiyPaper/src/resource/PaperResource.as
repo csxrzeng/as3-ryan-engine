@@ -65,9 +65,9 @@ package resource
 			if (onProgress != null)
 			{
 				subprogress++;
-				if (subprogress < 100)
+				if (subprogress < 900)
 				{
-					onProgress(completeCount + subprogress / 100, totalCount);
+					onProgress(completeCount + subprogress / 1000, totalCount);
 				}
 			}
 		}
