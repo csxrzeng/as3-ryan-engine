@@ -3,7 +3,10 @@ package view.property
 	import controller.Dispatcher;
 	import controller.GameEvent;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import model.Cache;
 	import model.library.AssetVo;
 	import model.library.TypeVo;
@@ -25,8 +28,14 @@ package view.property
 	 */
 	public class LibraryPane extends ImageLibrary 
 	{
-		private var urlList:Vector.<AssetVo> = new Vector.<AssetVo>();
+		static private const COLUMN:int = 4;
+		
 		private var iconList:Vector.<JLoadPane> = new Vector.<JLoadPane>();
+		private var urlList:Vector.<AssetVo> = new Vector.<AssetVo>();
+		private var pageData:Vector.<AssetVo>;
+		private var pageSize:int = 20;
+		private var curPage:int = 0;
+		private var maxPage:int = 1;
 		
 		public function LibraryPane() 
 		{
@@ -35,7 +44,7 @@ package view.property
 		
 		private function configUI():void 
 		{
-			pane = new JPanel(new FlowWrapLayout(265, FlowWrapLayout.LEFT, 1, 1, false));
+			//pane = new JPanel(new FlowWrapLayout(265, FlowWrapLayout.LEFT, 1, 1, false));
 			pane.setPreferredWidth(265);
 			spLibrary.setHorizontalScrollBarPolicy(JScrollPane.SCROLLBAR_NEVER);
 			spLibrary.setView(pane);
@@ -45,6 +54,38 @@ package view.property
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 			pane.addEventListener(MouseEvent.CLICK, onPaneClick);
 			cbType.addSelectionListener(onTypeSelection);
+			var format:TextFormat = txtPage.getDefaultTextFormat();
+			format.align = TextFormatAlign.CENTER;
+			txtPage.setDefaultTextFormat(format);
+			txtPage.setTextFormat(format);
+			txtPage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			btnPre.addEventListener(AWEvent.ACT, onBtnPreAction);
+			btnNext.addEventListener(AWEvent.ACT, onBtnNextAction);
+		}
+		
+		private function onKeyDown(e:KeyboardEvent):void 
+		{
+			if (e.keyCode == 13)
+			{
+				var p:int = parseInt(txtPage.getText().split("/")[0]);
+				if (!isNaN(p))
+				{
+					curPage = p;
+					updatePageData();
+				}
+			}
+		}
+		
+		private function onBtnPreAction(e:AWEvent):void 
+		{
+			--curPage;
+			updatePageData();
+		}
+		
+		private function onBtnNextAction(e:AWEvent):void 
+		{
+			++curPage;
+			updatePageData();
 		}
 		
 		private function onTypeSelection(e:InteractiveEvent):void 
@@ -62,9 +103,9 @@ package view.property
 			if (icon)
 			{
 				var index:int = iconList.indexOf(icon);
-				if (index != -1)
+				if (index != -1 && index < pageData.length)
 				{
-					Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddLibraryImage, urlList[index]));
+					Dispatcher.dispatchEvent(new GameEvent(GameEvent.AddLibraryImage, pageData[index]));
 				}
 			}
 		}
@@ -77,6 +118,7 @@ package view.property
 		
 		private function initTypes():void 
 		{
+			pageSize = Cache.instance.assets.pageSize;
 			var types:Array = Cache.instance.assets.getTypeList();
 			cbType.setListData(types);
 			if (types.length > 0)
@@ -88,12 +130,32 @@ package view.property
 		
 		private function updateTypes(typeVo:TypeVo):void
 		{
-			pane.removeAll();
-			iconList.length = 0;
 			urlList = Cache.instance.assets.getAssetsList(typeVo.id);
-			for (var i:int = 0; i < urlList.length; i++) 
+			maxPage = Math.max(1, Math.ceil(urlList.length / pageSize));
+			curPage = 0;
+			updatePageData();
+		}
+		
+		private function updatePageData():void
+		{
+			// 清除
+			iconList.length = 0;
+			pane.removeAll();
+			if (curPage < 0)
 			{
-				var icon:JLoadPane = new JLoadPane(Config.MEDIA_PATH + urlList[i].thumb, AssetPane.PREFER_SIZE_IMAGE);
+				curPage = 0;
+			}
+			if (curPage >= maxPage)
+			{
+				curPage = maxPage - 1;
+			}
+			btnPre.setEnabled(curPage != 0);
+			btnNext.setEnabled(curPage != maxPage - 1);
+			txtPage.setText((curPage + 1) + "/" + maxPage);
+			pageData = urlList.slice(curPage * pageSize, (curPage + 1) * pageSize);
+			for (var i:int = 0; i < pageData.length; i++) 
+			{
+				var icon:JLoadPane = new JLoadPane(Config.MEDIA_PATH + pageData[i].thumb, AssetPane.PREFER_SIZE_IMAGE);
 				icon.setPreferredSize(new IntDimension(64, 64));
 				icon.mouseChildren = false;
 				pane.append(icon);
@@ -101,6 +163,9 @@ package view.property
 				icon.addEventListener(MouseEvent.ROLL_OVER, onIconRollOver);
 				icon.addEventListener(MouseEvent.ROLL_OVER, onIconRollOut);
 			}
+			var rowCount:int = Math.ceil(pageData.length / COLUMN);
+			var h:int = rowCount * 65 + 2;
+			pane.setPreferredHeight(Math.max(h, 326));
 		}
 		
 		private function onIconRollOver(e:MouseEvent):void 

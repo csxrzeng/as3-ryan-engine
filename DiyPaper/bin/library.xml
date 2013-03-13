@@ -1,4 +1,4 @@
-<assets>
+<assets pagesize="20">
 	<type id="1" name="美女">
 		<item id="49" thumb="49.jpg" file="49.swf" />
 		<item id="50" thumb="50.jpg" file="50.swf" />
@@ -89,8 +89,11 @@
 		<item id="136" thumb="136.jpg" file="136.swf" />
 		<item id="137" thumb="137.jpg" file="137.swf" />
 		<item id="138" thumb="138.jpg" file="138.swf" />
+	</type>
+	<type id="4" name="稀有">
 		<item id="139" thumb="139.jpg" file="139.swf" />
 		<item id="140" thumb="140.jpg" file="140.swf" />
 		<item id="141" thumb="141.jpg" file="141.swf" />
+		<item id="142" thumb="999.jpg" file="999.jpg" />
 	</type>
 </assets>

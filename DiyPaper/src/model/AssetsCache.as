@@ -13,6 +13,7 @@ package model
 	{
 		private var typeList:Array = [];
 		private var cache:Dictionary = new Dictionary();
+		public var pageSize:int = 20; // 可以读取xml配置
 		
 		public function AssetsCache()
 		{
@@ -36,6 +37,11 @@ package model
 		
 		private function onXmlComplete(xml:XML):void
 		{
+			var ps:int = parseInt(xml.@pagesize);
+			if (!isNaN(ps))
+			{
+				pageSize = ps;
+			}
 			var types:XMLList = xml.children();
 			for each (var type:XML in types)
 			{

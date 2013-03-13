@@ -71,7 +71,7 @@ package view.toolbar
 			if (Global.stage.displayState == StageDisplayState.NORMAL)
 			{
 				Global.stage.displayState = StageDisplayState.FULL_SCREEN;
-				btnFullscreen.setText("普通");
+				btnFullscreen.setText("退出全屏");
 			}
 			else
 			{

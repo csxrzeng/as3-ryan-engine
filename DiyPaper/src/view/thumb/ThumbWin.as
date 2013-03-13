@@ -4,6 +4,7 @@ package view.thumb
 	import controller.GameEvent;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.filters.GlowFilter;
 	import flash.geom.Point;
 	import model.ItemVo;
 	import org.aswing.AssetPane;
@@ -21,8 +22,8 @@ package view.thumb
 	 */
 	public class ThumbWin extends JFrame
 	{
-		private static const LIST_WIDTH:int = 50;
-		private static const LIST_HEIGHT:int = 300;
+		private static const LIST_WIDTH:int = 60;
+		private static const LIST_HEIGHT:int = 440;
 		private static const ICON_GAP:int = 5;
 		
 		private var scrollPane:JScrollPane;
@@ -33,9 +34,10 @@ package view.thumb
 		
 		private var dy:Number;
 		private var draggingIcon:ThumbIcon;
-		private var upIcon:ThumbIcon;
-		private var downIcon:ThumbIcon;
+		private var selectedIcon:ThumbIcon;
 		private var lastLayer:int;
+		
+		private const BLUE_FILTERS:Array = [new GlowFilter(0x0041c3, 0.7, 6, 6, 5, 1)]; 
 		
 		public function ThumbWin(owner:* = null, title:String = "", modal:Boolean = false)
 		{
@@ -64,7 +66,7 @@ package view.thumb
 			viewport.setPreferredWidth(LIST_WIDTH);
 			viewport.setPreferredHeight(LIST_HEIGHT);
 			
-			scrollPane = new JScrollPane(viewport, JScrollPane.SCROLLBAR_ALWAYS, JScrollPane.SCROLLBAR_NEVER);
+			scrollPane = new JScrollPane(viewport, JScrollPane.SCROLLBAR_AS_NEEDED, JScrollPane.SCROLLBAR_NEVER);
 			setContentPane(scrollPane);
 			pack();
 			
@@ -72,6 +74,23 @@ package view.thumb
 			layers.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 			
 			Dispatcher.addEventListener(GameEvent.UpdateSelectItem, onSelectedItemUpdate);
+			Dispatcher.addEventListener(GameEvent.ItemSelected, onItemSelected);
+		}
+		
+		private function onItemSelected(e:GameEvent):void 
+		{
+			if (selectedIcon)
+			{
+				selectedIcon.filters = null;
+				selectedIcon = null;
+			}
+			var item:IItemView = e.data as IItemView;
+			var index:int = indexOf(item);
+			if (index != -1)
+			{
+				selectedIcon = layerList[index];
+				selectedIcon.filters = BLUE_FILTERS;
+			}
 		}
 		
 		private function onSelectedItemUpdate(e:GameEvent):void
@@ -80,7 +99,7 @@ package view.thumb
 			var index:int = indexOfVo(vo);
 			if (index != -1)
 			{
-				var icon:ThumbIcon =layerList[index];
+				var icon:ThumbIcon = layerList[index];
 				icon.view = MainWindow.paper.seletedItemView;
 			}
 		}
@@ -114,8 +133,6 @@ package view.thumb
 				draggingIcon = null;
 				resortIcons();
 			}
-			upIcon = null;
-			downIcon = null;
 		}
 		
 		private function resortIcons(fireEvent:Boolean = true):void
@@ -162,13 +179,14 @@ package view.thumb
 			}
 			item.vo.layer = layerList.length;
 			var icon:ThumbIcon = new ThumbIcon();
+			icon.x = 2;
 			icon.view = item;
 			layers.addChild(icon);
 			layerList.push(icon);
 			resortIcons(false);
 			if (layers.height > LIST_HEIGHT)
 			{
-				viewport.getView().setPreferredHeight(layers.height);
+				viewport.getView().setPreferredHeight(layers.height + ICON_GAP * 2);
 			}
 			viewport.updateUI();
 		}
@@ -185,6 +203,10 @@ package view.thumb
 				}
 				layerList.splice(index, 1);
 				resortIcons(false);
+				if (layers.height < LIST_HEIGHT)
+				{
+					viewport.getView().setPreferredHeight(LIST_HEIGHT);
+				}
 			}
 		}
 		
@@ -200,11 +222,14 @@ package view.thumb
 		
 		private function indexOf(item:IItemView):int
 		{
-			for (var i:int = 0; i < layerList.length; ++i)
+			if (item)
 			{
-				if (layerList[i].view == item)
+				for (var i:int = 0; i < layerList.length; ++i)
 				{
-					return i;
+					if (layerList[i].view == item)
+					{
+						return i;
+					}
 				}
 			}
 			return -1;
@@ -212,11 +237,14 @@ package view.thumb
 		
 		private function indexOfVo(vo:ItemVo):int
 		{
-			for (var i:int = 0; i < layerList.length; ++i)
+			if (vo)
 			{
-				if (layerList[i].view.vo == vo)
+				for (var i:int = 0; i < layerList.length; ++i)
 				{
-					return i;
+					if (layerList[i].view.vo == vo)
+					{
+						return i;
+					}
 				}
 			}
 			return -1;
