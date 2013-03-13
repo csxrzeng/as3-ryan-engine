@@ -21,13 +21,13 @@
                 <Value value="15"/>
               </Property>
               <Property name="Left" type="Left">
-                <Value value="10"/>
+                <Value value="0"/>
               </Property>
               <Property name="Bottom" type="Bottom">
                 <Value value="15"/>
               </Property>
               <Property name="Right" type="Right">
-                <Value value="10"/>
+                <Value value="0"/>
               </Property>
             </Properties>
           </Border>
@@ -125,6 +125,80 @@
         </Properties>
       </Com>
     </Com>
+    <Com name="JPanel" id="panel7">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="10,46"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="265,22"/>
+        </Property>
+        <Property name="Layout" type="Layout">
+          <Value>
+            <Layout name="SoftBoxLayout">
+              <Properties>
+                <Property name="Axis" type="Axis">
+                  <Value value="0"/>
+                </Property>
+                <Property name="Align" type="Align">
+                  <Value value="0"/>
+                </Property>
+              </Properties>
+            </Layout>
+          </Value>
+        </Property>
+      </Properties>
+      <Com name="JLabel" id="label10">
+        <Properties>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="private"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="none"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="5,6"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="64,19"/>
+          </Property>
+          <Property name="Text" type="Text">
+            <Value value="素材分类："/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JComboBox" id="cbType">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="cbType"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="protected"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="105,0"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="120,22"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="120,22"/>
+          </Property>
+          <Property name="MaximumRowCount" type="MaximumRowCount">
+            <Value value="7"/>
+          </Property>
+        </Properties>
+      </Com>
+    </Com>
     <Com name="JScrollPane" id="spLibrary">
       <Properties>
         <Property name="id" type="id">
@@ -140,10 +214,27 @@
           <Value value="10,45"/>
         </Property>
         <Property name="Size" type="Size">
-          <Value value="265,380"/>
+          <Value value="285,332"/>
         </Property>
         <Property name="PreferredSize" type="PreferredSize">
-          <Value value="265,380"/>
+          <Value value="285,332"/>
+        </Property>
+        <Property name="Border" type="Border">
+          <Value>
+            <Border name="LineBorder">
+              <Properties>
+                <Property name="Color" type="Color">
+                  <Value value="666666,1"/>
+                </Property>
+                <Property name="Thickness" type="Thickness">
+                  <Value value="1"/>
+                </Property>
+                <Property name="Round" type="Round">
+                  <Value value="1"/>
+                </Property>
+              </Properties>
+            </Border>
+          </Value>
         </Property>
       </Properties>
       <Com name="JPanel" id="pane">
@@ -158,13 +249,13 @@
             <Value value="none"/>
           </Property>
           <Property name="Location" type="Location">
-            <Value value="0,0"/>
+            <Value value="1,0"/>
           </Property>
           <Property name="Size" type="Size">
-            <Value value="265,380"/>
+            <Value value="265,328"/>
           </Property>
           <Property name="PreferredSize" type="PreferredSize">
-            <Value value="265,380"/>
+            <Value value="265,328"/>
           </Property>
           <Property name="Layout" type="Layout">
             <Value>
@@ -185,6 +276,120 @@
                 </Properties>
               </Layout>
             </Value>
+          </Property>
+        </Properties>
+      </Com>
+    </Com>
+    <Com name="JPanel" id="panel21">
+      <Properties>
+        <Property name="attr_scope" type="attr_scope">
+          <Value value="private"/>
+        </Property>
+        <Property name="getter_scope" type="getter_scope">
+          <Value value="none"/>
+        </Property>
+        <Property name="Location" type="Location">
+          <Value value="0,432"/>
+        </Property>
+        <Property name="Size" type="Size">
+          <Value value="285,26"/>
+        </Property>
+        <Property name="Layout" type="Layout">
+          <Value>
+            <Layout name="FlowLayout">
+              <Properties>
+                <Property name="Alignment" type="Alignment">
+                  <Value value="0"/>
+                </Property>
+                <Property name="Hgap" type="Hgap">
+                  <Value value="8"/>
+                </Property>
+                <Property name="Vgap" type="Vgap">
+                  <Value value="2"/>
+                </Property>
+              </Properties>
+            </Layout>
+          </Value>
+        </Property>
+      </Properties>
+      <Com name="JLabelButton" id="btnPre">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="btnPre"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="protected"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="122,5"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="40,19"/>
+          </Property>
+          <Property name="Text" type="Text">
+            <Value value="上一页"/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JTextField" id="txtPage">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="txtPage"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="protected"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="112,5"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="60,22"/>
+          </Property>
+          <Property name="PreferredSize" type="PreferredSize">
+            <Value value="60,22"/>
+          </Property>
+          <Property name="Text" type="Text">
+            <Value value="1/1"/>
+          </Property>
+          <Property name="Editable" type="Editable">
+            <Value value="true"/>
+          </Property>
+          <Property name="MaxChars" type="MaxChars">
+            <Value value="7"/>
+          </Property>
+          <Property name="Restrict" type="Restrict">
+            <Value value="0-9/"/>
+          </Property>
+          <Property name="WordWrap" type="WordWrap">
+            <Value value="false"/>
+          </Property>
+        </Properties>
+      </Com>
+      <Com name="JLabelButton" id="btnNext">
+        <Properties>
+          <Property name="id" type="id">
+            <Value value="btnNext"/>
+          </Property>
+          <Property name="attr_scope" type="attr_scope">
+            <Value value="protected"/>
+          </Property>
+          <Property name="getter_scope" type="getter_scope">
+            <Value value="public"/>
+          </Property>
+          <Property name="Location" type="Location">
+            <Value value="145,5"/>
+          </Property>
+          <Property name="Size" type="Size">
+            <Value value="40,19"/>
+          </Property>
+          <Property name="Text" type="Text">
+            <Value value="下一页"/>
           </Property>
         </Properties>
       </Com>
