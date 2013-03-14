@@ -1,6 +1,7 @@
 package
 {
 	import com.ryan.global.Global;
+	import com.ryan.resource.info.XMLInfo;
 	import com.ryan.resource.LoaderManager;
 	import com.ryan.resource.ResourceManager;
 	import controller.GameController;
@@ -48,6 +49,22 @@ package
 			// entry point
 			Global.instance.initStage(stage);
 			AsWingManager.initAsStandard(this);
+			LoaderManager.instance.load("config.xml?" + Math.random(), onConfigLoaded, 1, null, null, onConfigFailed);
+		}
+		
+		private function onConfigLoaded(xmlinfo:XMLInfo):void 
+		{
+			Config.init(xmlinfo.xml);
+			loadXMLs();
+		}
+		
+		private function onConfigFailed(...rest):void 
+		{
+			JOptionPane.showMessageDialog("错误", "加载配置文件失败！");
+		}
+		
+		private function loadXMLs():void
+		{
 			// specialfonts.xml, staticfonts.xml, library.xml
 			var params:Object = root.loaderInfo.parameters;
 			//params.templet = "D0uk0GdQS9WZ3We.xml"; // 测试

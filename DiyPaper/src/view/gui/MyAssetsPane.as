@@ -19,7 +19,7 @@ public class MyAssetsPane extends JPanel{
 	private var panel161:JPanel;
 	protected var btnBrowse:JButton;
 	private var spacer163:JSpacer;
-	private var label164:JLabel;
+	protected var lblRemote:JLabel;
 	protected var txtDownload:JTextField;
 	private var panel166:JPanel;
 	protected var btnDownload:JButton;
@@ -78,11 +78,11 @@ public class MyAssetsPane extends JPanel{
 		spacer163.setSize(new IntDimension(265, 50));
 		spacer163.setPreferredSize(new IntDimension(265, 50));
 		
-		label164 = new JLabel();
-		label164.setLocation(new IntPoint(10, 159));
-		label164.setSize(new IntDimension(265, 19));
-		label164.setText("为了确保您能顺利加载,请您选择小于500k的图片");
-		label164.setHorizontalAlignment(AsWingConstants.LEFT);
+		lblRemote = new JLabel();
+		lblRemote.setLocation(new IntPoint(10, 159));
+		lblRemote.setSize(new IntDimension(265, 19));
+		lblRemote.setText("为了确保您能顺利加载,请您选择小于500k的图片");
+		lblRemote.setHorizontalAlignment(AsWingConstants.LEFT);
 		
 		txtDownload = new JTextField();
 		txtDownload.setLocation(new IntPoint(10, 178));
@@ -105,7 +105,7 @@ public class MyAssetsPane extends JPanel{
 		append(txtUpload);
 		append(panel161);
 		append(spacer163);
-		append(label164);
+		append(lblRemote);
 		append(txtDownload);
 		append(panel166);
 		

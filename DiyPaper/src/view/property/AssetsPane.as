@@ -3,8 +3,10 @@ package view.property
 	import controller.Dispatcher;
 	import controller.GameEvent;
 	import flash.display.BitmapData;
+	import flash.events.Event;
 	import org.aswing.event.AWEvent;
 	import org.aswing.JOptionPane;
+	import resource.Config;
 	import resource.proxy.ImageFileVo;
 	import resource.proxy.RemoteImageVo;
 	import resource.proxy.ResourceProxy;
@@ -29,6 +31,8 @@ package view.property
 			btnBrowse.addEventListener(AWEvent.ACT, onBrowseClick);
 			btnDownload.addEventListener(AWEvent.ACT, onDownloadClick);
 			loading = new LoadPane();
+			txtUpload.setText("从本地上传图片(jpg,png),不可大于" + int(Config.MaxFileSize / 1024) + "k!");
+			lblRemote.setText("为了确保您能顺利加载,请您选择小于" + int(Config.MaxFileSize / 1024) + "k的图片");
 		}
 		
 		private function onBackClick(e:AWEvent):void
