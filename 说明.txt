@@ -1,4 +1,4 @@
-1. FlashDevelop项目配置文件：DiyPaper/DiyPaper.as3proj
+﻿1. FlashDevelop项目配置文件：DiyPaper/DiyPaper.as3proj
 2. DiyPaper为主项目文件夹。
    AsWing为AsWing的源码，并有小修改。
    greensock为greensock的源码，主要用到了其中的TransformManager
@@ -7,7 +7,8 @@
    
    aswingui里面为使用ASWing的UI编辑器编辑的UI
 
-3. 网站根目录为 DiyPaper/bin
+3. config.xml配置路径
+   网站根目录为 DiyPaper/bin
    a)assets文件夹，存放在线图标的缩略图和源文件。
    library.xml配置在线图标，包括分页的大小，类型，缩略图，源文件的路径等。
    b)fonts 存放通过FlashCS生成的字体库文件。
