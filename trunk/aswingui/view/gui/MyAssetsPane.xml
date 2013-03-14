@@ -194,10 +194,13 @@
         </Property>
       </Properties>
     </Com>
-    <Com name="JLabel" id="label164">
+    <Com name="JLabel" id="lblRemote">
       <Properties>
+        <Property name="id" type="id">
+          <Value value="lblRemote"/>
+        </Property>
         <Property name="attr_scope" type="attr_scope">
-          <Value value="private"/>
+          <Value value="protected"/>
         </Property>
         <Property name="getter_scope" type="getter_scope">
           <Value value="none"/>
