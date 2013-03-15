@@ -109,7 +109,9 @@ package view.property
 				var curVo:ItemVo = _settingVo;
 				if (_isAdd)
 				{
-					_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 100);
+					//_settingVo.colorTransform = ColorUtil.color2ColorTransform(colormixer.getSelectedColor(), 100);
+					_settingVo.color = colormixer.getSelectedColor().getRGB();
+					_settingVo.alpha = colormixer.getSelectedColor().getAlpha();
 					_settingVo = new ItemVo(ItemVo.SPECIAL_TEXT);
 				}
 				append(loadingPane);

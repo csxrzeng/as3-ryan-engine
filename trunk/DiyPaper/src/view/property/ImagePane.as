@@ -18,6 +18,7 @@ package view.property
 	{
 		private var _settingVo:ItemVo;
 		private var _color:ASColor = new ASColor();
+		private var isThisChange:Boolean;
 		
 		public function ImagePane()
 		{
@@ -67,8 +68,7 @@ package view.property
 		
 		private function onColorChange(e:ColorChooserEvent):void
 		{
-			_color = colorMixer.getSelectedColor();
-			_color = _color.changeAlpha(e.getColor().getAlpha());
+			_color = e.getColor();
 			changeColor();
 		}
 		
@@ -91,7 +91,9 @@ package view.property
 			//trace("开始：", _color, sliderColor.getValue());
 			_settingVo.colorTransform = ColorUtil.color2ColorTransform(_color, sliderColor.getValue());
 			//trace("变换：", ColorUtil.transform2Color(_settingVo.colorTransform));
+			isThisChange = true;
 			Dispatcher.dispatchEvent(new GameEvent(GameEvent.UpdateSelectItem, _settingVo));
+			isThisChange = false;
 		}
 		
 		private function onSliderRotation(e:InteractiveEvent):void
@@ -105,8 +107,10 @@ package view.property
 			var multiplier:int = ColorUtil.transform2Multiplier(_settingVo.colorTransform);
 			var alpha:int = ColorUtil.transform2Alpha(_settingVo.colorTransform);
 			_color = ColorUtil.transform2Color(_settingVo.colorTransform);
-			colorMixer.setSelectedColor(_color);
-
+			if (!isThisChange)
+			{
+				colorMixer.setSelectedColor(_color);
+			}
 			txtColor.setText("变色(" + multiplier + ")");
 			sliderColor.setValue(multiplier);
 			
