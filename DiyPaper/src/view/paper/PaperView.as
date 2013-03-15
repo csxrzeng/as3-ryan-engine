@@ -184,7 +184,7 @@ package view.paper
 			for (var j:int = 0; j < _vo.items.length; j++)
 			{
 				var item:ItemVo = _vo.items[j];
-				var itemView:IItemView = addItem(item);
+				var itemView:IItemView = addItem(item, false);
 				if (item.xml)
 				{
 					_tool.applyItemXML(item.xml.item[0], null, 0xcccccc, itemView as DisplayObject);
@@ -232,25 +232,37 @@ package view.paper
 			return text;
 		}
 		
-		public function addItem(vo:ItemVo):IItemView
+		/**
+		 * 添加对象
+		 * @param	vo
+		 * @param	center 是否居中
+		 * @return
+		 */
+		public function addItem(vo:ItemVo, center:Boolean = true):IItemView
 		{
+			var itemview:IItemView;
 			if (vo.type == ItemVo.IMAGE)
 			{
-				return addImage(vo);
+				itemview = addImage(vo);
 			}
 			else if (vo.type == ItemVo.SPECIAL_TEXT)
 			{
-				return addSpecialText(vo);
+				itemview = addSpecialText(vo);
 			}
 			else if (vo.type == ItemVo.STATIC_TEXT)
 			{
-				return addStaticText(vo);
+				itemview = addStaticText(vo);
 			}
 			else
 			{
 				throw new ArgumentError("item type error");
 			}
-			return null;
+			if (center && itemview)
+			{
+				itemview.item.x = (_paper.width - itemview.item.width) / 2;
+				itemview.item.y = (_paper.height - itemview.item.height) / 2;
+			}
+			return itemview;
 		}
 		
 		/**

@@ -41,14 +41,14 @@ package model
 		public var font:String = "宋体";
 		public var letterSpacing:int = 0;
 		public var leading:int = 0;
-		public var color:uint = 0;
+		public var color:uint = 0x7F7F7F;
 		public var bold:Boolean = false;
 		public var italic:Boolean = false;
 		public var size:int = 50;
 		public var align:String = TextFormatAlign.LEFT;
 		public var underline:Boolean;
-		public var glowFilter:GlowFilter = new GlowFilter(0x0, 1, 1, 1, 1, 1);
-		public var shadowFilter:DropShadowFilter = new DropShadowFilter(1, 45, 0, 1, 1, 1, 1, 1);
+		public var glowFilter:GlowFilter = new GlowFilter(0x7F7F7F, 1, 1, 1, 1, 1);
+		public var shadowFilter:DropShadowFilter = new DropShadowFilter(1, 45, 0x7F7F7F, 1, 1, 1, 1, 1);
 		
 		public var xml:XML;
 		
@@ -124,7 +124,9 @@ package model
 			centerX = xml.centerX;
 			centerY = xml.centerY;
 			rotation = xml.rotation;
-			colorTransform = XMLUtil.colorTransformFromXML(xml.colortransform[0]);
+			alpha = xml.alpha;
+			color = parseInt(xml.color, 16);
+			//colorTransform = XMLUtil.colorTransformFromXML(xml.colortransform[0]);
 		}
 	}
 }

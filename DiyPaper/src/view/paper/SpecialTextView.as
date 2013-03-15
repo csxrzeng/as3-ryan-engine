@@ -44,9 +44,9 @@ package view.paper
 		
 		public function update():void
 		{
-			var color:ASColor = ColorUtil.transform2Color(_vo.colorTransform);
-			alpha = color.getAlpha();
-			formate.color = color.getRGB();
+			//var color:ASColor = ColorUtil.transform2Color(_vo.colorTransform);
+			alpha = _vo.alpha;
+			formate.color = _vo.color;
 			formate.font = _vo.font;
 			formate.size = _vo.size;
 			formate.bold = _vo.bold;
@@ -98,7 +98,9 @@ package view.paper
 			xml.letterSpacing = _vo.letterSpacing;
 			xml.align = _vo.align;
 			xml.underline = _vo.underline;
-			xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
+			xml.color = _vo.color.toString(16);
+			xml.alpha = _vo.alpha;
+			//xml.appendChild(XMLUtil.colorTransformToXML(_vo.colorTransform));
 			//xml.scaleX = _item.scaleX;
 			//xml.scaleY = _item.scaleY;
 			//xml.rotation = _item.rotation;

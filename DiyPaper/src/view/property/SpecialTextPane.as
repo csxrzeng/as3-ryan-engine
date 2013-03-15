@@ -29,6 +29,7 @@ package view.property
 		private var _settingVo:ItemVo;
 		private var _isAdd:Boolean = true;
 		private var loadingPane:LoadPane
+		private var isThisChange:Boolean = false;
 		
 		public function SpecialTextPane()
 		{
@@ -69,8 +70,12 @@ package view.property
 		{
 			var color:ASColor = e.getColor();
 			//trace("开始：", color);
-			_settingVo.colorTransform = ColorUtil.color2ColorTransform(color, 100);
+			//_settingVo.colorTransform = ColorUtil.color2ColorTransform(color, 100);
+			_settingVo.color = color.getRGB();
+			_settingVo.alpha = color.getAlpha();
+			isThisChange = true;
 			dispachPropertyChange();
+			isThisChange = false;
 		}
 		
 		private function onSpecial(e:AWEvent):void
@@ -172,7 +177,11 @@ package view.property
 			{
 				combobox.setSelectedItem(Cache.instance.font.getSpecialFontByFont(_settingVo.font));
 				txtInput.setText(_settingVo.text);
-				colormixer.setSelectedColor(ColorUtil.transform2Color(_settingVo.colorTransform));
+				//colormixer.setSelectedColor(ColorUtil.transform2Color(_settingVo.colorTransform));
+				if (!isThisChange) // 不是这里主动改变的才变
+				{
+					colormixer.setSelectedColor(new ASColor(_settingVo.color, _settingVo.alpha));
+				}
 				//trace("结束：", ColorUtil.transform2Color(_settingVo.colorTransform));
 			}
 		}
