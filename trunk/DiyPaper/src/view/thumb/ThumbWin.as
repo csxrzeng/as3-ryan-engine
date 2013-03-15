@@ -59,8 +59,8 @@ package view.thumb
 			setClosable(false);
 			layers = new Sprite();
 			var asset:AssetPane = new AssetPane(layers, AssetPane.PREFER_SIZE_BOTH);
-			asset.setLayout(new FlowLayout(AsWingConstants.BOTTOM));
-			asset.setPreferredWidth(LIST_WIDTH);
+			asset.setLayout(new FlowLayout(FlowLayout.CENTER));
+			asset.setPreferredWidth(LIST_WIDTH - 15); // 减去滚动条
 			asset.setPreferredHeight(LIST_HEIGHT);
 			viewport = new JViewport(asset);
 			viewport.setPreferredWidth(LIST_WIDTH);
